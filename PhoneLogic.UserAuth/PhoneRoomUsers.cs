@@ -61,16 +61,20 @@ namespace PhoneLogic.UserAuth
         public PhoneRoomUsers()
         {
                cache = MemoryCache.Default;
-               policy = new CacheItemPolicy();
-               policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(Convert.ToInt32(UserAuth.Properties.Resources.ADCacheDuration));
+               policy = new CacheItemPolicy
+               {
+                   AbsoluteExpiration =
+                       DateTimeOffset.Now.AddSeconds(Convert.ToInt32(UserAuth.Properties.Resources.ADCacheDuration))
+               };
                ChalfontUsers = cache["ChalfontUsers"] as IEnumerable<UserPrincipal> ;
                MKEUsers = cache["MKEUsers"] as IEnumerable<UserPrincipal> ;
                AllUsers = cache["Allsers"] as IEnumerable<UserPrincipal> ;
         }
-
-        //private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","~solar~53");
-        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "reckner.com");
-        //private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+        #if DEBUG
+                private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","~solar~53");
+        #else
+                private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+        #endif
 
         public Boolean IsSupervisor(string userName)
         {

@@ -46,10 +46,10 @@
                                 SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}" 
                   DisplayMemberPath="Name" 
                   SelectedValuePath="Name"  />
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Visibility="Collapsed">
                         <TextBlock Margin="5 0" VerticalAlignment="Center" 
                        Text="Availability" Width="80" />
-                        <ComboBox Margin="5" VerticalAlignment="Center" 
+                        <ComboBox Margin="5" VerticalAlignment="Center"  Visibility="Collapsed"
                       Name="availabilityComboBox" Width="140"  ItemsSource="{Binding Path=LyncStatusRanges, Mode=OneWay}"  
                                 SelectedValue="{Binding Path=SelectedLyncStatusRange, Mode=TwoWay}" 
                   DisplayMemberPath="Name" SelectedValuePath="Name"/>

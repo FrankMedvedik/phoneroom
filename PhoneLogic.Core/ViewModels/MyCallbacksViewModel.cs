@@ -44,17 +44,24 @@ namespace PhoneLogic.Core.ViewModels
         
         public async void GetMyCallbacks()
         {
+            myCallback s = null; 
+            if (SelectedMyCallback != null)
+            {
+                s = SelectedMyCallback;
+
+            }
 
             LoadDate = DateTime.Now; 
             try{
                 var mcb = await CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri);
-
                 MyCallbacks.Clear();
                 if (mcb.Count > 0)
                 {
                     foreach (var p in mcb)
                         MyCallbacks.Add(p);
                     ShowGridData = true;
+                    if(s != null) 
+                        SelectedMyCallback = (myCallback) MyCallbacks.FirstOrDefault(x => x.callbackID == s.callbackID);
                 }
                 else
                     ShowGridData = false;
@@ -69,6 +76,7 @@ namespace PhoneLogic.Core.ViewModels
                 LoadFailed(e);
 
             }
+
 
         }
      
