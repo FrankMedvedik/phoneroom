@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="02ec8249108c4e478927f9aee983f3dd" Name="Diagram1">
+        <EntityTypeShape EntityType="PhoneLogic.Repository.person" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="PhoneLogic.Repository.phone" Width="1.5" PointX="3" PointY="1.75" />
+        <AssociationConnector Association="PhoneLogic.Repository.fk_person_phone" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

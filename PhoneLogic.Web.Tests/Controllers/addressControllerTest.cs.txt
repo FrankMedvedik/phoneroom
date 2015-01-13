@@ -1,0 +1,41 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Net.Http;
+using System.Net;
+using System.Collections.Generic;
+using Phonelogic.Domain;
+
+
+namespace Phonelogic.API.Tests
+{
+    [TestClass]
+    public class addressControllerTest
+    {
+        HttpClient client = new HttpClient();
+
+        public addressControllerTest()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri(TestConfig.baseAddress);
+        }
+        #region phoneController
+
+        [TestMethod]
+        public void GetAllAddresses()
+        {
+            HttpResponseMessage response = client.GetAsync("address?$top=4").Result;
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void GetSpecificAddress()
+        {
+            HttpResponseMessage response = client.GetAsync("address(guid'" + TestConfig.addressGuid + "')").Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        #endregion
+
+    }
+}

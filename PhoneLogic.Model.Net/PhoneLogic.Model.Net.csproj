@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4C77A22-6318-4E32-90CB-9E9854E03F5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhoneLogic.Model</RootNamespace>
+    <AssemblyName>PhoneLogic.Model.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\CallbackDto.cs">
+      <Link>Models\CallbackDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Phonelogic.Model.Silverlight\Models\myCallback.cs">
+      <Link>Models\myCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\Phonelogic.Model.Silverlight\Models\person.cs">
+      <Link>Models\person.cs</Link>
+    </Compile>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\PhoneCall.cs">
+      <Link>Models\PhoneCall.cs</Link>
+    </Compile>
+    <Compile Include="..\Phonelogic.Model.Silverlight\Models\PhoneFormatter.cs">
+      <Link>Models\PhoneFormatter.cs</Link>
+    </Compile>
+    <Compile Include="..\Phonelogic.Model.Silverlight\Models\PhoneLogicContext.cs">
+      <Link>Models\PhoneLogicContext.cs</Link>
+    </Compile>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\PhoneLogicTask.cs">
+      <Link>Models\PhoneLogicTask.cs</Link>
+    </Compile>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\Recruiter.cs">
+      <Link>Models\Recruiter.cs</Link>
+    </Compile>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\RecruiterLog.cs">
+      <Link>Models\RecruiterLog.cs</Link>
+    </Compile>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\TestConfig.cs">
+      <Link>TestConfig.cs</Link>
+    </Compile>
+    <Compile Include="Models\rptInboundCallByHour.cs" />
+    <Compile Include="Models\RptJobActivity.cs" />
+    <Compile Include="Models\RptTodayCallLogSummary.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

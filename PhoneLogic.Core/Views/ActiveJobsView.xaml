@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="PhoneLogic.Core.Views.ActiveJobsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ignore="http://www.ignore.com"
+             xmlns:viewModels="clr-namespace:PhoneLogic.Core.ViewModels"
+             xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
+             xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             mc:Ignorable="d ignore">
+    <Control.DataContext>
+        <viewModels:MyTasksViewModel/>
+    </Control.DataContext>
+        <Control.Resources>
+            <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
+            <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
+            <DataTemplate x:Key="JobTemplate" >
+                <Border BorderThickness="1"  Background="LightBlue" BorderBrush="Black" >
+                    <Grid Margin="6" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="2" Grid.Column="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0"  Text="Job: "  HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding jobFormatted}" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Newest Call: " HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Oldest Call: " HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3"  Text="Call Cnt: "  HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding newest_call}" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding  oldest_call}" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Grid.Row="3"  Text="{Binding call_cnt}"  HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </Control.Resources>
+    <Grid  Width="600" Height="600">
+        <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+        <ListBox x:Name="Avail" ItemTemplate="{StaticResource JobTemplate}" ItemsSource="{Binding JobCallStats}"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="6"  Background="Aquamarine">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <toolkit:WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ListBox>
+        </Grid>
+</UserControl>
+

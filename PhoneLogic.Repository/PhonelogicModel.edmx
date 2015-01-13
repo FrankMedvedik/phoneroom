@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhoneLogicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="agent">
+          <Key>
+            <PropertyRef Name="agentID" />
+            <PropertyRef Name="teamID" />
+          </Key>
+          <Property Name="agentID" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="teamID" Type="int" Nullable="false" />
+          <Property Name="agentName" Type="varchar" MaxLength="50" />
+          <Property Name="agentFirstName" Type="varchar" MaxLength="35" />
+          <Property Name="agentLastName" Type="varchar" MaxLength="35" />
+          <Property Name="dialOutJobNum" Type="char" MaxLength="8" />
+          <Property Name="dialOutTaskID" Type="int" />
+          <Property Name="SIP" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="agentLog">
+          <Key>
+            <PropertyRef Name="logID" />
+          </Key>
+          <Property Name="logID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agentEvent" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="eventTime" Type="datetime" Nullable="false" />
+          <Property Name="agentID" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="eventDscr" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="jobNum" Type="char" MaxLength="8" />
+          <Property Name="taskID" Type="int" />
+          <Property Name="callerID" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="callbacks">
+          <Key>
+            <PropertyRef Name="callbackID" />
+          </Key>
+          <Property Name="callbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jobNum" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="taskID" Type="int" Nullable="false" />
+          <Property Name="phoneNum" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="msgScr" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="timeEntered" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="20" />
+          <Property Name="SIP" Type="nchar" MaxLength="256" />
+          <Property Name="StatusDate" Type="datetime" />
+          <Property Name="msgLength" Type="int" />
+        </EntityType>
+        <EntityType Name="callLog">
+          <Key>
+            <PropertyRef Name="callID" />
+          </Key>
+          <Property Name="callID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="callEvent" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="eventTime" Type="datetime" Nullable="false" />
+          <Property Name="implementationID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="callerID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="tollFreeNum" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="jobNum" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="taskID" Type="int" Nullable="false" />
+          <Property Name="eventDscr" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="lyncCallQueue">
+          <Key>
+            <PropertyRef Name="callQueueId" />
+          </Key>
+          <Property Name="callQueueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="callId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="callerId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="remoteEndPointUri" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="toTag" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fromTag" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="jobNum" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="timeIn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="returnedCalls">
+          <Key>
+            <PropertyRef Name="callbackID" />
+            <PropertyRef Name="SIP" />
+            <PropertyRef Name="startCallDate" />
+          </Key>
+          <Property Name="callbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIP" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="startCallDate" Type="datetime" Nullable="false" />
+          <Property Name="endCallDate" Type="datetime" />
+          <Property Name="phoneNum" Type="char" MaxLength="10" />
+        </EntityType>
+        <Function Name="pl_CloseCallback_sip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="callbackID" Type="int" Mode="In" />
+          <Parameter Name="SIP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pl_getJobCallStats" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pl_GetMyCallbacks_sip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SIP" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="pl_getMyPhoneLogicTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SIP" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="pl_GetPhoneLogicTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jobNum" Type="char" Mode="In" />
+          <Parameter Name="taskID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pl_GetTodayCallLogSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pl_InsertPlacedCall" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="agentID" Type="char" Mode="In" />
+          <Parameter Name="jobNumber" Type="char" Mode="In" />
+          <Parameter Name="callerID" Type="char" Mode="In" />
+          <Parameter Name="eventDscr" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pl_InsertSuccessfullCallback" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="agentID" Type="char" Mode="In" />
+          <Parameter Name="callbackID" Type="int" Mode="In" />
+          <Parameter Name="eventDscr" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="rpt_GetAgentLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sip" Type="nvarchar" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="rpt_GetCallActivityByJobNumberwPM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="reportDate" Type="datetime" Mode="In" />
+          <Parameter Name="beginTime" Type="varchar" Mode="In" />
+          <Parameter Name="endTime" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="rpt_GetCallLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="rpt_GetJobCallActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Start" Type="datetime" Mode="In" />
+          <Parameter Name="End" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="rpt_GetTodayCallLogSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="rpt_InboundCallByHour" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="beginDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="PhoneLogicModelStoreContainer">
+          <EntitySet Name="agent" EntityType="Self.agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="agentLog" EntityType="Self.agentLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="callbacks" EntityType="Self.callbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="callLog" EntityType="Self.callLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lyncCallQueue" EntityType="Self.lyncCallQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="returnedCalls" EntityType="Self.returnedCalls" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhoneLogicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PhoneLogicEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="getMyCallbacks" ReturnType="Collection(PhoneLogicModel.callbackDTO)">
+          <Parameter Name="SIP" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="returnedCalls" EntityType="PhoneLogicModel.returnedCall" />
+          <EntitySet Name="inboundCalls" EntityType="PhoneLogicModel.inboundCall" />
+          <EntitySet Name="callbacks" EntityType="PhoneLogicModel.callback" />
+          <FunctionImport Name="InsertPlacedCall" ReturnType="Collection(Int32)">
+            <Parameter Name="agentID" Mode="In" Type="String" />
+            <Parameter Name="jobNumber" Mode="In" Type="String" />
+            <Parameter Name="callerID" Mode="In" Type="String" />
+            <Parameter Name="eventDscr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertSuccessfullCallback" ReturnType="Collection(Int32)">
+            <Parameter Name="agentID" Mode="In" Type="String" />
+            <Parameter Name="callbackID" Mode="In" Type="Int32" />
+            <Parameter Name="eventDscr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CloseCallback" ReturnType="Collection(Int32)">
+            <Parameter Name="callbackID" Mode="In" Type="Int32" />
+            <Parameter Name="SIP" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="agents" EntityType="PhoneLogicModel.agent" />
+          <FunctionImport Name="GetMyPhoneLogicTasks" ReturnType="Collection(PhoneLogicModel.PhoneLogicTaskDTO)">
+          <Parameter Name="SIP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPhoneLogicTask" ReturnType="Collection(PhoneLogicModel.PhoneLogicTaskDTO)">
+            <Parameter Name="jobNum" Mode="In" Type="String" />
+            <Parameter Name="taskID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_InboundCallByHour" ReturnType="Collection(PhoneLogicModel.rptInboundCallByHourResult)">
+            <Parameter Name="beginDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetTodayCallLogSummary" ReturnType="Collection(PhoneLogicModel.rptGetTodayCallLogSummaryResult)" />
+          <FunctionImport Name="rpt_GetJobCallActivity" ReturnType="Collection(PhoneLogicModel.rptGetJobCallActivityResult)">
+            <Parameter Name="Start" Mode="In" Type="DateTime" />
+            <Parameter Name="End" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="agentLogs" EntityType="PhoneLogicModel.agentLog" />
+          <EntitySet Name="callLogs" EntityType="PhoneLogicModel.callLog" />
+          <FunctionImport Name="rpt_GetAgentLog" ReturnType="Collection(PhoneLogicModel.agentLogDTO)">
+            <Parameter Name="sip" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetCallLog" ReturnType="Collection(PhoneLogicModel.callLogDTO)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="returnedCall">
+          <Key>
+            <PropertyRef Name="callbackID" />
+            <PropertyRef Name="SIP" />
+            <PropertyRef Name="startCallDate" />
+          </Key>
+          <Property Name="callbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIP" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="startCallDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endCallDate" Type="DateTime" Precision="3" />
+          <Property Name="phoneNum" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="inboundCall">
+          <Key>
+            <PropertyRef Name="callQueueId" />
+          </Key>
+          <Property Name="callQueueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="callId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="callerId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="toTag" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fromTag" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="jobNum" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="timeIn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="remoteEndPointUri" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="callback">
+          <Key>
+            <PropertyRef Name="callbackID" />
+          </Key>
+          <Property Name="callbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jobNum" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="taskID" Type="Int32" Nullable="false" />
+          <Property Name="phoneNum" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="msgScr" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="timeEntered" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="msgLength" Type="Int32" />
+          <Property Name="SIP" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="StatusDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="callbackDTO">
+          <Property Type="Int32" Name="callbackID" Nullable="false" />
+          <Property Type="String" Name="jobNum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskID" Nullable="false" />
+          <Property Type="String" Name="phoneNum" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="msgLength" Nullable="true" />
+          <Property Type="DateTime" Name="StatusDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UTC_code" Nullable="true" />
+          <Property Type="String" Name="Region" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="timeEntered" Nullable="false" Precision="23" />
+          <Property Type="String" Name="tollFreeNumber" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="msgScr" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SIP" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TaskTypeId" Nullable="false" MaxLength="35" />
+        </ComplexType>
+        <EntityType Name="agent">
+          <Key>
+            <PropertyRef Name="agentID" />
+            <PropertyRef Name="teamID" />
+          </Key>
+          <Property Name="agentID" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="teamID" Type="Int32" Nullable="false" />
+          <Property Name="agentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentFirstName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="agentLastName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="dialOutJobNum" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="dialOutTaskID" Type="Int32" />
+          <Property Name="SIP" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="PhoneLogicTaskDTO">
+          <Property Type="String" Name="jobNum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskID" Nullable="false" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="taskDscr" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="TaskStartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="TaskEndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="taskTypeID" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="taskStatusID" Nullable="false" MaxLength="35" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="Int32" Name="menuID" Nullable="false" />
+          <Property Type="Boolean" Name="canEnhanceQueue" Nullable="false" />
+          <Property Type="Boolean" Name="canZeroOut" Nullable="false" />
+          <Property Type="DateTime" Name="stopCallbackTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="stopQueueTime" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="closedMsgID" Nullable="false" />
+          <Property Type="Int32" Name="closedHits" Nullable="false" />
+          <Property Type="String" Name="internetURL" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="catiURL" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="created" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="updated" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="oldest_call" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="newest_call" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="call_cnt" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="rptInboundCallByHourResult">
+          <Property Type="String" Name="WorkDate" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Before_9am" Nullable="true" />
+          <Property Type="Int32" Name="C9_am" Nullable="true" />
+          <Property Type="Int32" Name="C10_am" Nullable="true" />
+          <Property Type="Int32" Name="C11_am" Nullable="true" />
+          <Property Type="Int32" Name="C12_pm" Nullable="true" />
+          <Property Type="Int32" Name="C1_pm" Nullable="true" />
+          <Property Type="Int32" Name="C2_pm" Nullable="true" />
+          <Property Type="Int32" Name="C3_pm" Nullable="true" />
+          <Property Type="Int32" Name="C4_pm" Nullable="true" />
+          <Property Type="Int32" Name="C5_pm" Nullable="true" />
+          <Property Type="Int32" Name="C6_pm" Nullable="true" />
+          <Property Type="Int32" Name="C7_pm" Nullable="true" />
+          <Property Type="Int32" Name="C8_pm" Nullable="true" />
+          <Property Type="Int32" Name="C9_pm" Nullable="true" />
+          <Property Type="Int32" Name="C10_pm" Nullable="true" />
+          <Property Type="Int32" Name="after_10pm" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="rptGetTodayCallLogSummaryResult">
+          <Property Type="String" Name="jobNum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskID" Nullable="false" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="taskDscr" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="taskTypeID" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="taskStatusID" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="tollfreenumber" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="InboundCalls" Nullable="true" />
+          <Property Type="Int32" Name="NoAgents" Nullable="true" />
+          <Property Type="Int32" Name="Abandoned" Nullable="true" />
+          <Property Type="Int32" Name="LeftMessage" Nullable="true" />
+          <Property Type="Int32" Name="CallBack" Nullable="true" />
+          <Property Type="Int32" Name="PlacedCall" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="rptGetJobCallActivityResult">
+          <Property Type="String" Name="jobNum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskID" Nullable="false" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="taskDscr" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="taskTypeID" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="taskStatusID" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="ProjMgr" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="InboundCall" Nullable="true" />
+          <Property Type="Int32" Name="DirectCall" Nullable="true" />
+          <Property Type="Int32" Name="QueuedCall" Nullable="true" />
+          <Property Type="Int32" Name="PlaceQueuedCall" Nullable="true" />
+          <Property Type="Int32" Name="Callback" Nullable="true" />
+          <Property Type="Int32" Name="SuccessfullCallback" Nullable="true" />
+          <Property Type="Int32" Name="OutboundCall" Nullable="true" />
+          <Property Type="Int32" Name="AbandonedCall" Nullable="true" />
+          <Property Type="Int32" Name="NoInterviewers" Nullable="true" />
+          <Property Type="Int32" Name="ClosedJob" Nullable="true" />
+          <Property Type="Int32" Name="PhoneRoomClosed" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="agentLog">
+          <Key>
+            <PropertyRef Name="logID" />
+          </Key>
+          <Property Name="logID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agentEvent" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="eventTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="agentID" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="eventDscr" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="jobNum" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="taskID" Type="Int32" />
+          <Property Name="callerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="callLog">
+          <Key>
+            <PropertyRef Name="callID" />
+          </Key>
+          <Property Name="callID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="callEvent" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="eventTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="implementationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="callerID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="tollFreeNum" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="jobNum" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="taskID" Type="Int32" Nullable="false" />
+          <Property Name="eventDscr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="rpt_GetAgentLog_Result">
+          <Property Type="String" Name="agentevent" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="agentid" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="callerid" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="eventdscr" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="eventtime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="jobnum" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="logid" Nullable="false" />
+          <Property Type="Int32" Name="taskid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="rpt_GetCallLog_Result">
+          <Property Type="String" Name="callerid" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="callevent" Nullable="false" MaxLength="35" />
+          <Property Type="Int32" Name="callid" Nullable="false" />
+          <Property Type="String" Name="eventdscr" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="eventtime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="implementationid" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="jobnum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskid" Nullable="false" />
+          <Property Type="String" Name="tollfreenum" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="callLogDTO">
+          <Property Type="String" Name="callerid" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="callevent" Nullable="false" MaxLength="35" />
+          <Property Type="Int32" Name="callid" Nullable="false" />
+          <Property Type="String" Name="eventdscr" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="eventtime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="implementationid" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="jobnum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskid" Nullable="false" />
+          <Property Type="String" Name="tollfreenum" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="agentLogDTO">
+          <Property Type="String" Name="agentevent" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="agentid" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="callerid" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="eventdscr" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="eventtime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="jobnum" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="logid" Nullable="false" />
+          <Property Type="Int32" Name="taskid" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhoneLogicModelStoreContainer" CdmEntityContainer="PhoneLogicEntities">
+          <FunctionImportMapping FunctionImportName="getMyCallbacks" FunctionName="PhoneLogicModel.Store.pl_GetMyCallbacks_sip">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.callbackDTO">
+                <ScalarProperty Name="callbackID" ColumnName="callbackID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="msgLength" ColumnName="msgLength" />
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+                <ScalarProperty Name="UTC_code" ColumnName="UTC_code" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="timeEntered" ColumnName="timeEntered" />
+                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
+                <ScalarProperty Name="msgScr" ColumnName="msgScr" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="SIP" ColumnName="SIP" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="returnedCalls">
+            <EntityTypeMapping TypeName="PhoneLogicModel.returnedCall">
+              <MappingFragment StoreEntitySet="returnedCalls">
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="endCallDate" ColumnName="endCallDate" />
+                <ScalarProperty Name="startCallDate" ColumnName="startCallDate" />
+                <ScalarProperty Name="SIP" ColumnName="SIP" />
+                <ScalarProperty Name="callbackID" ColumnName="callbackID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inboundCalls">
+            <EntityTypeMapping TypeName="PhoneLogicModel.inboundCall">
+              <MappingFragment StoreEntitySet="lyncCallQueue">
+                <ScalarProperty Name="remoteEndPointUri" ColumnName="remoteEndPointUri" />
+                <ScalarProperty Name="timeIn" ColumnName="timeIn" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="fromTag" ColumnName="fromTag" />
+                <ScalarProperty Name="toTag" ColumnName="toTag" />
+                <ScalarProperty Name="callerId" ColumnName="callerId" />
+                <ScalarProperty Name="callId" ColumnName="callId" />
+                <ScalarProperty Name="callQueueId" ColumnName="callQueueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="callbacks">
+            <EntityTypeMapping TypeName="PhoneLogicModel.callback">
+              <MappingFragment StoreEntitySet="callbacks">
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SIP" ColumnName="SIP" />
+                <ScalarProperty Name="msgLength" ColumnName="msgLength" />
+                <ScalarProperty Name="timeEntered" ColumnName="timeEntered" />
+                <ScalarProperty Name="msgScr" ColumnName="msgScr" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="callbackID" ColumnName="callbackID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertPlacedCall" FunctionName="PhoneLogicModel.Store.pl_InsertPlacedCall" />
+          <FunctionImportMapping FunctionImportName="InsertSuccessfullCallback" FunctionName="PhoneLogicModel.Store.pl_InsertSuccessfullCallback" />
+          <FunctionImportMapping FunctionImportName="CloseCallback" FunctionName="PhoneLogicModel.Store.pl_CloseCallback_sip" />
+          <EntitySetMapping Name="agents">
+            <EntityTypeMapping TypeName="PhoneLogicModel.agent">
+              <MappingFragment StoreEntitySet="agent">
+                <ScalarProperty Name="SIP" ColumnName="SIP" />
+                <ScalarProperty Name="dialOutTaskID" ColumnName="dialOutTaskID" />
+                <ScalarProperty Name="dialOutJobNum" ColumnName="dialOutJobNum" />
+                <ScalarProperty Name="agentLastName" ColumnName="agentLastName" />
+                <ScalarProperty Name="agentFirstName" ColumnName="agentFirstName" />
+                <ScalarProperty Name="agentName" ColumnName="agentName" />
+                <ScalarProperty Name="teamID" ColumnName="teamID" />
+                <ScalarProperty Name="agentID" ColumnName="agentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPhoneLogicTask" FunctionName="PhoneLogicModel.Store.pl_GetPhoneLogicTask">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.PhoneLogicTaskDTO">
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
+                <ScalarProperty Name="TaskStartDate" ColumnName="TaskStartDate" />
+                <ScalarProperty Name="TaskEndDate" ColumnName="TaskEndDate" />
+                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
+                <ScalarProperty Name="taskStatusID" ColumnName="taskStatusID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="menuID" ColumnName="menuID" />
+                <ScalarProperty Name="canEnhanceQueue" ColumnName="canEnhanceQueue" />
+                <ScalarProperty Name="canZeroOut" ColumnName="canZeroOut" />
+                <ScalarProperty Name="stopCallbackTime" ColumnName="stopCallbackTime" />
+                <ScalarProperty Name="stopQueueTime" ColumnName="stopQueueTime" />
+                <ScalarProperty Name="closedMsgID" ColumnName="closedMsgID" />
+                <ScalarProperty Name="closedHits" ColumnName="closedHits" />
+                <ScalarProperty Name="internetURL" ColumnName="internetURL" />
+                <ScalarProperty Name="catiURL" ColumnName="catiURL" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="updated" ColumnName="updated" />
+                <ScalarProperty Name="oldest_call" ColumnName="oldest_call" />
+                <ScalarProperty Name="newest_call" ColumnName="newest_call" />
+                <ScalarProperty Name="call_cnt" ColumnName="call_cnt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMyPhoneLogicTasks" FunctionName="PhoneLogicModel.Store.pl_getMyPhoneLogicTasks">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.PhoneLogicTaskDTO">
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
+                <ScalarProperty Name="TaskStartDate" ColumnName="TaskStartDate" />
+                <ScalarProperty Name="TaskEndDate" ColumnName="TaskEndDate" />
+                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
+                <ScalarProperty Name="taskStatusID" ColumnName="taskStatusID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="menuID" ColumnName="menuID" />
+                <ScalarProperty Name="canEnhanceQueue" ColumnName="canEnhanceQueue" />
+                <ScalarProperty Name="canZeroOut" ColumnName="canZeroOut" />
+                <ScalarProperty Name="stopCallbackTime" ColumnName="stopCallbackTime" />
+                <ScalarProperty Name="stopQueueTime" ColumnName="stopQueueTime" />
+                <ScalarProperty Name="closedMsgID" ColumnName="closedMsgID" />
+                <ScalarProperty Name="closedHits" ColumnName="closedHits" />
+                <ScalarProperty Name="internetURL" ColumnName="internetURL" />
+                <ScalarProperty Name="catiURL" ColumnName="catiURL" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="updated" ColumnName="updated" />
+                <ScalarProperty Name="oldest_call" ColumnName="oldest_call" />
+                <ScalarProperty Name="newest_call" ColumnName="newest_call" />
+                <ScalarProperty Name="call_cnt" ColumnName="call_cnt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_InboundCallByHour" FunctionName="PhoneLogicModel.Store.rpt_InboundCallByHour">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.rptInboundCallByHourResult">
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="Before_9am" ColumnName="Before 9am" />
+                <ScalarProperty Name="C9_am" ColumnName="9 am" />
+                <ScalarProperty Name="C10_am" ColumnName="10 am" />
+                <ScalarProperty Name="C11_am" ColumnName="11 am" />
+                <ScalarProperty Name="C12_pm" ColumnName="12 pm" />
+                <ScalarProperty Name="C1_pm" ColumnName="1 pm" />
+                <ScalarProperty Name="C2_pm" ColumnName="2 pm" />
+                <ScalarProperty Name="C3_pm" ColumnName="3 pm" />
+                <ScalarProperty Name="C4_pm" ColumnName="4 pm" />
+                <ScalarProperty Name="C5_pm" ColumnName="5 pm" />
+                <ScalarProperty Name="C6_pm" ColumnName="6 pm" />
+                <ScalarProperty Name="C7_pm" ColumnName="7 pm" />
+                <ScalarProperty Name="C8_pm" ColumnName="8 pm" />
+                <ScalarProperty Name="C9_pm" ColumnName="9 pm" />
+                <ScalarProperty Name="C10_pm" ColumnName="10 pm" />
+                <ScalarProperty Name="after_10pm" ColumnName="after 10pm" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetTodayCallLogSummary" FunctionName="PhoneLogicModel.Store.rpt_GetTodayCallLogSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.rptGetTodayCallLogSummaryResult">
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
+                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
+                <ScalarProperty Name="taskStatusID" ColumnName="taskStatusID" />
+                <ScalarProperty Name="tollfreenumber" ColumnName="tollfreenumber" />
+                <ScalarProperty Name="InboundCalls" ColumnName="InboundCalls" />
+                <ScalarProperty Name="NoAgents" ColumnName="NoAgents" />
+                <ScalarProperty Name="Abandoned" ColumnName="Abandoned" />
+                <ScalarProperty Name="LeftMessage" ColumnName="LeftMessage" />
+                <ScalarProperty Name="CallBack" ColumnName="CallBack" />
+                <ScalarProperty Name="PlacedCall" ColumnName="PlacedCall" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetJobCallActivity" FunctionName="PhoneLogicModel.Store.rpt_GetJobCallActivity">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.rptGetJobCallActivityResult">
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
+                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
+                <ScalarProperty Name="taskStatusID" ColumnName="taskStatusID" />
+                <ScalarProperty Name="ProjMgr" ColumnName="ProjMgr" />
+                <ScalarProperty Name="InboundCall" ColumnName="InboundCall" />
+                <ScalarProperty Name="DirectCall" ColumnName="DirectCall" />
+                <ScalarProperty Name="QueuedCall" ColumnName="QueuedCall" />
+                <ScalarProperty Name="PlaceQueuedCall" ColumnName="PlaceQueuedCall" />
+                <ScalarProperty Name="Callback" ColumnName="Callback" />
+                <ScalarProperty Name="SuccessfullCallback" ColumnName="SuccessfullCallback" />
+                <ScalarProperty Name="OutboundCall" ColumnName="OutboundCall" />
+                <ScalarProperty Name="AbandonedCall" ColumnName="AbandonedCall" />
+                <ScalarProperty Name="NoInterviewers" ColumnName="NoInterviewers" />
+                <ScalarProperty Name="ClosedJob" ColumnName="ClosedJob" />
+                <ScalarProperty Name="PhoneRoomClosed" ColumnName="PhoneRoomClosed" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="agentLogs">
+            <EntityTypeMapping TypeName="PhoneLogicModel.agentLog">
+              <MappingFragment StoreEntitySet="agentLog">
+                <ScalarProperty Name="callerID" ColumnName="callerID" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="eventDscr" ColumnName="eventDscr" />
+                <ScalarProperty Name="agentID" ColumnName="agentID" />
+                <ScalarProperty Name="eventTime" ColumnName="eventTime" />
+                <ScalarProperty Name="agentEvent" ColumnName="agentEvent" />
+                <ScalarProperty Name="logID" ColumnName="logID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="callLogs">
+            <EntityTypeMapping TypeName="PhoneLogicModel.callLog">
+              <MappingFragment StoreEntitySet="callLog">
+                <ScalarProperty Name="eventDscr" ColumnName="eventDscr" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="tollFreeNum" ColumnName="tollFreeNum" />
+                <ScalarProperty Name="callerID" ColumnName="callerID" />
+                <ScalarProperty Name="implementationID" ColumnName="implementationID" />
+                <ScalarProperty Name="eventTime" ColumnName="eventTime" />
+                <ScalarProperty Name="callEvent" ColumnName="callEvent" />
+                <ScalarProperty Name="callID" ColumnName="callID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetAgentLog" FunctionName="PhoneLogicModel.Store.rpt_GetAgentLog">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.agentLogDTO">
+                <ScalarProperty Name="agentevent" ColumnName="agentevent" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="callerid" ColumnName="callerid" />
+                <ScalarProperty Name="eventdscr" ColumnName="eventdscr" />
+                <ScalarProperty Name="eventtime" ColumnName="eventtime" />
+                <ScalarProperty Name="jobnum" ColumnName="jobnum" />
+                <ScalarProperty Name="logid" ColumnName="logid" />
+                <ScalarProperty Name="taskid" ColumnName="taskid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetCallLog" FunctionName="PhoneLogicModel.Store.rpt_GetCallLog">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.callLogDTO">
+                <ScalarProperty Name="callerid" ColumnName="callerid" />
+                <ScalarProperty Name="callevent" ColumnName="callevent" />
+                <ScalarProperty Name="callid" ColumnName="callid" />
+                <ScalarProperty Name="eventdscr" ColumnName="eventdscr" />
+                <ScalarProperty Name="eventtime" ColumnName="eventtime" />
+                <ScalarProperty Name="implementationid" ColumnName="implementationid" />
+                <ScalarProperty Name="jobnum" ColumnName="jobnum" />
+                <ScalarProperty Name="taskid" ColumnName="taskid" />
+                <ScalarProperty Name="tollfreenum" ColumnName="tollfreenum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

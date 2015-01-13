@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhoneLogic.Repository.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name_prefix" Type="nvarchar" MaxLength="5" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="middle_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="name_suffix" Type="nvarchar" MaxLength="15" />
+          <Property Name="title" Type="nvarchar" MaxLength="35" />
+          <Property Name="birth_date" Type="smalldatetime" />
+          <Property Name="gender" Type="char" MaxLength="1" />
+          <Property Name="source_id" Type="int" />
+          <Property Name="source_key" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="updated" Type="smalldatetime" Nullable="false" />
+          <Property Name="contact_pref" Type="int" />
+          <Property Name="updated_user" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="created_user" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="phone">
+          <Key>
+            <PropertyRef Name="phone_id" />
+          </Key>
+          <Property Name="phone_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="phone_type" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="phone_order" Type="int" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="22" Nullable="false" />
+          <Property Name="is_default" Type="bit" />
+          <Property Name="updated" Type="smalldatetime" />
+          <Property Name="updated_user" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="created_user" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_person_phone">
+          <End Role="person" Type="Self.person" Multiplicity="1" />
+          <End Role="phone" Type="Self.phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="phone">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhoneLogicRepositoryStoreContainer">
+          <EntitySet Name="person" EntityType="Self.person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phone" EntityType="Self.phone" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_person_phone" Association="Self.fk_person_phone">
+            <End Role="person" EntitySet="person" />
+            <End Role="phone" EntitySet="phone" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhoneLogic.Repository" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="respEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="people" EntityType="PhoneLogic.Repository.person" />
+          <EntitySet Name="phones" EntityType="PhoneLogic.Repository.phone" />
+          <AssociationSet Name="fk_person_phone" Association="PhoneLogic.Repository.fk_person_phone">
+            <End Role="person" EntitySet="people" />
+            <End Role="phone" EntitySet="phones" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Guid" Nullable="false" />
+          <Property Name="name_prefix" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="middle_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="name_suffix" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="birth_date" Type="DateTime" Precision="0" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="source_id" Type="Int32" />
+          <Property Name="source_key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="updated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="contact_pref" Type="Int32" />
+          <Property Name="updated_user" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="created_user" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="phones" Relationship="PhoneLogic.Repository.fk_person_phone" FromRole="person" ToRole="phone" />
+        </EntityType>
+        <EntityType Name="phone">
+          <Key>
+            <PropertyRef Name="phone_id" />
+          </Key>
+          <Property Name="phone_id" Type="Guid" Nullable="false" />
+          <Property Name="person_id" Type="Guid" Nullable="false" />
+          <Property Name="phone_type" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="phone_order" Type="Int32" Nullable="false" />
+          <Property Name="phone_number" Type="String" Nullable="false" MaxLength="22" FixedLength="false" Unicode="true" />
+          <Property Name="is_default" Type="Boolean" />
+          <Property Name="updated" Type="DateTime" Precision="0" />
+          <Property Name="updated_user" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="created_user" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="person" Relationship="PhoneLogic.Repository.fk_person_phone" FromRole="phone" ToRole="person" />
+        </EntityType>
+        <Association Name="fk_person_phone">
+          <End Type="PhoneLogic.Repository.person" Role="person" Multiplicity="1" />
+          <End Type="PhoneLogic.Repository.phone" Role="phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="phone">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhoneLogicRepositoryStoreContainer" CdmEntityContainer="respEntities">
+          <EntitySetMapping Name="people">
+            <EntityTypeMapping TypeName="PhoneLogic.Repository.person">
+              <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="created_user" ColumnName="created_user" />
+                <ScalarProperty Name="updated_user" ColumnName="updated_user" />
+                <ScalarProperty Name="contact_pref" ColumnName="contact_pref" />
+                <ScalarProperty Name="updated" ColumnName="updated" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="source_key" ColumnName="source_key" />
+                <ScalarProperty Name="source_id" ColumnName="source_id" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="name_suffix" ColumnName="name_suffix" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="name_prefix" ColumnName="name_prefix" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phones">
+            <EntityTypeMapping TypeName="PhoneLogic.Repository.phone">
+              <MappingFragment StoreEntitySet="phone">
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="created_user" ColumnName="created_user" />
+                <ScalarProperty Name="updated_user" ColumnName="updated_user" />
+                <ScalarProperty Name="updated" ColumnName="updated" />
+                <ScalarProperty Name="is_default" ColumnName="is_default" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="phone_order" ColumnName="phone_order" />
+                <ScalarProperty Name="phone_type" ColumnName="phone_type" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="phone_id" ColumnName="phone_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

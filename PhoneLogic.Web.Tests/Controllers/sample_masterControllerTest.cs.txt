@@ -1,0 +1,42 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Net.Http;
+using System.Net;
+using System.Collections.Generic;
+using Phonelogic.Domain;
+
+
+namespace Phonelogic.API.Tests
+{
+    [TestClass]
+    public class sample_masterControllerTest
+    {
+        HttpClient client = new HttpClient();
+
+        public sample_masterControllerTest()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri(TestConfig.baseAddress);
+        }
+        #region sample_masterController
+
+        [TestMethod]
+        public void GetAllsample_masters()
+        {
+            HttpResponseMessage response = client.GetAsync("sample_master").Result;
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void GetSpecificsample_master()
+        {
+            HttpResponseMessage response = client.GetAsync("sample_master('" + TestConfig.SampleMaster + "')").Result;
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        #endregion
+
+    }
+}

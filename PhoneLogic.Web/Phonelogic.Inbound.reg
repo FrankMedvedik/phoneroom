@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+HKEY_CURRENT_USER\Software\Microsoft\Office\Lync\Security\Trusted Sites\*.reckner.com"
+"https"=dword:00000001
+"http"=dword:00000001
+"file"=dword:00000001
+
+
+[HKEY_CURRENT_USER\Software\Microsoft\Office\15.0\Lync\Addins\{E7D2695C-96F8-4C49-858A-28F6106B2B39}]
+"Name"="PhoneLogic.Inbound"
+"InternalURL"="http://cc-app.reckner.com/inbound/PhoneLogic.Inbound.html"
+"ExternalURL"="http://cc-app.reckner.com/inbound/PhoneLogic.Inbound.html"
+"InstallLink"="http://cc-app.reckner.com/inbound/PhoneLogic.Inbound.REG"
+"DefaultContextPackage"=dword:00000001
+"ExtensibilityWindowSize"=dword:00000001

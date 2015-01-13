@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="PhoneLogic.Core.Views.ThemeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"   
+    xmlns:commands="clr-namespace:PhoneLogic.Core.Commands"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <commands:ThemeChangeCommand x:Key="ThemeChangeCommand" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <toolkit:Theme x:Name="ThemeContainer"  ThemeUri="/System.Windows.Controls.Theming.BureauBlue;component/Theme.xaml">
+            <toolkit:ContextMenuService.ContextMenu>
+                <toolkit:ContextMenu>
+                    <toolkit:MenuItem Header="Theme" IsEnabled="False"/>
+                    <toolkit:Separator />
+                    <toolkit:MenuItem Header="Default" />
+
+                    <toolkit:MenuItem Header="Bubble Creme"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="BubbleCreme"/>
+
+                    <toolkit:MenuItem Header="Bureau Black"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="BureauBlack"/>
+
+                    <toolkit:MenuItem Header="Bureau Blue"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="BureauBlue"/>
+<toolkit:MenuItem />
+                    <toolkit:MenuItem Header="Expression Dark"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="ExpressionDark"/>
+
+                    <toolkit:MenuItem Header="Expression Light"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="ExpressionLight"/>
+
+                    <toolkit:MenuItem Header="Rainier Orange"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="RainierOrange"/>
+
+                    <toolkit:MenuItem Header="Rainier Purple"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="RainierPurple"/>
+
+                    <toolkit:MenuItem Header="Shiny Blue"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="ShinyBlue"/>
+
+                    <toolkit:MenuItem Header="Shiny Red"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="ShinyRed"/>
+
+                    <toolkit:MenuItem Header="Whistler Blue"
+                            Command="{StaticResource ThemeChangeCommand}"
+                            CommandParameter="WhistlerBlue"/>
+                </toolkit:ContextMenu>
+            </toolkit:ContextMenuService.ContextMenu>
+        </toolkit:Theme> 
+    </Grid>
+</UserControl>

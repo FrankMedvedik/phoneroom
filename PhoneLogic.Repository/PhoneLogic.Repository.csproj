@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85088AC6-4AFA-4E25-A99D-9C141A436BF1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhoneLogic.Repository</RootNamespace>
+    <AssemblyName>PhoneLogic.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Phonelogic.Web\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="agent.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="agentLog.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="agentLogDTO.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="callback.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="callbackDTO.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="callLog.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="callLogDTO.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inboundCall.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="person.cs">
+      <DependentUpon>RespModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="phone.cs">
+      <DependentUpon>RespModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneLogicEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhoneLogicEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhonelogicModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhonelogicModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhonelogicModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhonelogicModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhonelogicModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneLogicTaskDTO.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RespModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RespModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RespModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RespModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RespModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RespModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="returnedCall.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rptGetJobCallActivityResult.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rptGetTodayCallLogSummaryResult.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rptInboundCallByHourResult.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_GetAgentLog_Result.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_GetCallLog_Result.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\AgentUtils.cs" />
+    <Compile Include="Utils\FormatUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="PhonelogicModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PhonelogicModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>PhonelogicModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="PhoneLogicEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PhoneLogicEntities.cs</LastGenOutput>
+      <DependentUpon>PhonelogicModel.edmx</DependentUpon>
+    </None>
+    <None Include="PhonelogicModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PhonelogicModel.Context.cs</LastGenOutput>
+      <DependentUpon>PhonelogicModel.edmx</DependentUpon>
+    </None>
+    <None Include="PhonelogicModel.edmx.diagram">
+      <DependentUpon>PhonelogicModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="RespModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RespModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PhonelogicModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PhonelogicModel.cs</LastGenOutput>
+      <DependentUpon>PhonelogicModel.edmx</DependentUpon>
+    </None>
+    <None Include="RespModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RespModel.edmx</DependentUpon>
+      <LastGenOutput>RespModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="RespModel.edmx.diagram">
+      <DependentUpon>RespModel.edmx</DependentUpon>
+    </None>
+    <None Include="RespModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RespModel.edmx</DependentUpon>
+      <LastGenOutput>RespModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\outbound.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

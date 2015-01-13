@@ -1,0 +1,40 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Net.Http;
+using System.Net;
+using System.Collections.Generic;
+using Phonelogic.Domain;
+
+
+namespace Phonelogic.API.Tests
+{
+    [TestClass]
+    public class countryControllerTest
+    {
+        HttpClient client = new HttpClient();
+
+        public countryControllerTest()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri(TestConfig.baseAddress);
+        }
+        #region countryController
+
+        [TestMethod]
+        public void GetAllcountrys()
+        {
+            HttpResponseMessage response = client.GetAsync("countries").Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void GetSpecificcountry()
+        {
+            HttpResponseMessage response = client.GetAsync("countries('" + TestConfig.CountryCode + "')").Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        #endregion
+
+    }
+}

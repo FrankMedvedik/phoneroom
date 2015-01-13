@@ -1,0 +1,40 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Net.Http;
+using System.Net;
+using System.Collections.Generic;
+using Phonelogic.Domain;
+
+
+namespace Phonelogic.API.Tests
+{
+    [TestClass]
+    public class data_sourceControllerTest
+    {
+        HttpClient client = new HttpClient();
+
+        public data_sourceControllerTest()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri(TestConfig.baseAddress);
+        }
+        #region contact_prefController
+
+        [TestMethod]
+        public void GetAlldata_sources()
+        {
+            HttpResponseMessage response = client.GetAsync("data_sources").Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void GetSpecificdata_source()
+        {
+            HttpResponseMessage response = client.GetAsync("data_sources(" + TestConfig.DataSource +")").Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        #endregion
+
+    }
+}
