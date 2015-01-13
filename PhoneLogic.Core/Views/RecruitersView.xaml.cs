@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using PhoneLogic.Core.ViewModels;
 
 namespace PhoneLogic.Core.Views
 {

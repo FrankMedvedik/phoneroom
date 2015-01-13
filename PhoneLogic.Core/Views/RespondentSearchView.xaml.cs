@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.ViewModels;
-using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Views
 {

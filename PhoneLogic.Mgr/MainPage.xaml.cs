@@ -1,13 +1,4 @@
-﻿/*=====================================================================
-  File:      MainPage.xaml.cs
-
-  Summary:   Main page view for PhoneLogic.Mgr project. 
-
-=====================================================================*/
-
-using System;
-using System.Windows.Controls;
-using System.Threading;
+﻿using System.Windows.Controls;
 
 namespace PhoneLogic.Mgr
 {

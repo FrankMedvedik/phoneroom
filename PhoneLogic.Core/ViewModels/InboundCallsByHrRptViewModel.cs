@@ -73,9 +73,9 @@ namespace PhoneLogic.Core.ViewModels
 
 
 
-        private ObservableCollection<rptInboundCallByHour> _rpt = new ObservableCollection<rptInboundCallByHour>();
+        private ObservableCollection<RptInboundCallByHour> _rpt = new ObservableCollection<RptInboundCallByHour>();
 
-        public ObservableCollection<rptInboundCallByHour> Rpt
+        public ObservableCollection<RptInboundCallByHour> Rpt
         {
             get { return _rpt; }
             set

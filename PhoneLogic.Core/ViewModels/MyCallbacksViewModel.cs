@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using Microsoft.Lync.Model;
 using Newtonsoft.Json;
 using PhoneLogic.Core.MVVM_Base_Types;
@@ -17,11 +16,7 @@ namespace PhoneLogic.Core.ViewModels
 
         public MyCallBacksViewModel()
         {
-            de = new DebugEventsViewModel();
-            de.DebugEvents.Add("startup");
-            de.DebugEvents.Add("Launce the vipers!");
-
-            StartAutoRefresh(ApiRefreshFrequency.UserDB);
+          StartAutoRefresh(ApiRefreshFrequency.UserDB);
         }
 
         private Boolean _canRefresh = true;
@@ -66,13 +61,10 @@ namespace PhoneLogic.Core.ViewModels
                 else
                     ShowGridData = false;
                 LoadedOk = true;
-               // MessageBox.Show("mcbcnt" + mcb.Count() + "Show Grid Data" + ShowGridData);
 
             }
             catch (Exception e)
             {
-//                MessageBox.Show(e.ToString());
-//                MessageBox.Show("mcbcnt" + mcb.Count() + "Show Grid Data" + ShowGridData);
                 LoadFailed(e);
 
             }

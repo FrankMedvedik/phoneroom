@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 
 namespace PhoneLogic.Core.MVVM_Base_Types
@@ -111,7 +110,7 @@ namespace PhoneLogic.Core.MVVM_Base_Types
             }
         }
 
-        public void LoadFailed(Exception e, [CallerMemberName] string name = null)
+        protected void LoadFailed(Exception e, [CallerMemberName] string name = null)
         {
             LoadMethod = name;
             LoadedOk = false;

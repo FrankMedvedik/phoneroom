@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhoneLogic.Model
 {
-    public class rptInboundCallByHour
+    public class RptInboundCallByHour
     {
         [Display(Name = "Date")]
         public string WorkDate { get; set; }

@@ -1,10 +1,7 @@
 ﻿namespace PhoneLogic.Model
 {
-    using System.ComponentModel;
     using System;
-    using System.IO;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+
 
 
 #if SILVERLIGHT

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using PhoneLogic.Core.MVVM_Base_Types;
 
 namespace System.Runtime.CompilerServices
 {

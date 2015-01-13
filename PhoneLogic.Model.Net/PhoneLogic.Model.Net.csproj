@@ -66,7 +66,7 @@
     <Compile Include="..\PhoneLogic.Model.Silverlight\TestConfig.cs">
       <Link>TestConfig.cs</Link>
     </Compile>
-    <Compile Include="Models\rptInboundCallByHour.cs" />
+    <Compile Include="Models\RptInboundCallByHour.cs" />
     <Compile Include="Models\RptJobActivity.cs" />
     <Compile Include="Models\RptTodayCallLogSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

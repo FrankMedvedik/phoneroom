@@ -35,43 +35,19 @@ namespace PhoneLogic.Core.Services
             cb.statusDate = DateTime.Now;
             await Put(cb);
         }
-        /*
+
 
         private static async Task Put(CallbackDto cb)
         {
             string uriTemplate = ApiWebSite.urlRoot + "Callbacks/{0}";
-            var putRequest = JsonConvert.SerializeObject(cb);
-            var uri = new Uri(string.Format(uriTemplate, cb.callbackID), UriKind.Absolute);
+            var postRequest = JsonConvert.SerializeObject(cb);
+            var url = string.Format(uriTemplate, cb.callbackID);
+            var uri = new Uri(url, UriKind.Absolute);
             var client = new WebClient();
-            client.Headers["Content-Length"] = putRequest.Length.ToString(CultureInfo.InvariantCulture);
+            client.Headers["Content-Length"] = postRequest.Length.ToString(CultureInfo.InvariantCulture);
             client.Headers["Content-Type"] = "application/json";
-            var result = await client.UploadStringTaskAsync(uri, "PUT", putRequest);
+            var result = await client.UploadStringTaskAsync(uri, "POST", postRequest);
         }
-
-                private static async Task Put(PhoneCall p)
-                {
-                    string url = ApiWebSite.urlRoot + "PhoneCalls/";
-                    var postRequest = JsonConvert.SerializeObject(p);
-                    var uri = new Uri(url, UriKind.Absolute);
-                    var client = new WebClient();
-                    client.Headers["Content-Length"] = postRequest.Length.ToString(CultureInfo.InvariantCulture);
-                    client.Headers["Content-Type"] = "application/json";
-                    var result = await client.UploadStringTaskAsync(uri, "POST", postRequest);
-                }
-
-
-        */
-                private static async Task Put(CallbackDto cb)
-                {
-                    string uriTemplate = ApiWebSite.urlRoot + "Callbacks/{0}";
-                    var postRequest = JsonConvert.SerializeObject(cb);
-                    var url = string.Format(uriTemplate, cb.callbackID);
-                    var uri = new Uri(url, UriKind.Absolute);
-                    var client = new WebClient();
-                    client.Headers["Content-Length"] = postRequest.Length.ToString(CultureInfo.InvariantCulture);
-                    client.Headers["Content-Type"] = "application/json";
-                    var result = await client.UploadStringTaskAsync(uri, "POST", postRequest);
-                }
 
         
         public  static async Task<List<myCallback>> GetMyCallbacks(string sip)

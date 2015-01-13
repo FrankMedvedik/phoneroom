@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -9,7 +7,6 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using PhoneLogic.Model;
 using PhoneLogic.Repository;
-using PhoneLogic.Repository.Utils;
 
 namespace PhoneLogic.Web.Controllers
 {

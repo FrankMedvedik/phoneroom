@@ -8,12 +8,6 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.ViewModels
 {
-    /// <summary>
-    /// This class contains properties that a View can data bind to.
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class RecruitersAvailableViewModel : CollectionViewModelBase
     {
         /* test data */
@@ -23,9 +17,6 @@ namespace PhoneLogic.Core.ViewModels
             GetRecruiters();
         }
 
-        /// <summary>
-        /// Initializes a new instance of the RecruiteresOnline class.
-        /// </summary>
         public RecruitersAvailableViewModel()
         {
             StartAutoRefresh(ApiRefreshFrequency.Rpts);

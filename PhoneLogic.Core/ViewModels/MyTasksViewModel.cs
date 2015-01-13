@@ -3,10 +3,7 @@ using PhoneLogic.Core.MVVM_Base_Types;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 using System.Collections.ObjectModel;
-using System.Net;
 using System;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 
 
 namespace PhoneLogic.Core.ViewModels
@@ -37,13 +34,10 @@ namespace PhoneLogic.Core.ViewModels
                 else
                     ShowGridData = false;
                 LoadedOk = true;
-                // MessageBox.Show("mcbcnt" + mcb.Count() + "Show Grid Data" + ShowGridData);
 
             }
             catch (Exception e)
             {
-//                MessageBox.Show(e.ToString());
-//                MessageBox.Show("mcbcnt" + mcb.Count() + "Show Grid Data" + ShowGridData);
                 LoadFailed(e);
 
             }

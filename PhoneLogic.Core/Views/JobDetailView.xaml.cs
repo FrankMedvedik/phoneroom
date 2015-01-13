@@ -1,13 +1,10 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using Microsoft.Lync.Model;
 using Microsoft.Lync.Model.Conversation;
 using Microsoft.Lync.Model.Extensibility;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
-using Newtonsoft.Json;
 
 namespace PhoneLogic.Core.Views
 {

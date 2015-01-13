@@ -9,15 +9,9 @@ using Microsoft.Lync.Model.Extensibility;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
-using reckner.Tools;
 
 namespace PhoneLogic.Core.Views
 {
-    /// <summary>
-    ///     MyCallbacksControl is a control which displays a bound collection of myCallback objects.
-    /// </summary>
-    /// <remarks>
-    /// </remarks>
     public partial class MyCallbacksView
     {
         private readonly MyCallBacksViewModel _vm;
@@ -196,9 +190,7 @@ namespace PhoneLogic.Core.Views
                     PlaybackControls.Visibility = Visibility.Collapsed;
                     break;
             }
-
             lblStatus.Text = msgPlayback.CurrentState.ToString();
-            //_vm.de.DebugEvents.Add(msgPlayback.CurrentState.ToString());
         }
 
         private void StopMsg_Click(object sender, RoutedEventArgs e)

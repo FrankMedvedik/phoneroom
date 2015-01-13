@@ -27,26 +27,14 @@ namespace PhoneLogic.Core.Services
 
         public async static void testAll()
         {
-            //int lqs = GetMyQueuedCalls();
+            
             var x = GetMyQueueSummary();
             List<string> la = await GetAvailableRecruiters();
             List<string> lo = await GetOnlineRecruiters();
-          //  List <JobSummary> ljs = GetJobSummary();
             List<QueueDetail> lqd = GetQueueDetail("20140001:1");
 
         }
       
-        //public static int GetMyQueuedCalls()
-        //{
-        //    var proxy = new PhoneLogicServiceClient();
-        //    // Parameters that you pass to the BeginDoWork method go right after EndDoWork. 
-        //    Object state = "test";
-        //    var channel = proxy.ChannelFactory.CreateChannel();
-        //    var t = Task<int>.Factory.FromAsync(channel.BeginGetMyQueuedCalls,
-        //        channel.EndGetMyQueuedCalls, LyncClient.GetClient().Self.Contact.Uri, state);
-        //    return t.Result;
-        //}
-
         public async static Task<ObservableCollection<QueueSummary>> GetMyQueueSummary()
         {
             var wqs = new ObservableCollection<QueueSummary>();
@@ -65,22 +53,6 @@ namespace PhoneLogic.Core.Services
             }
             return wqs;
         }
-
-        //public static List<QueueSummary> GetMyQueuedCalls()
-        //{
-        //    var proxy = new PhoneLogicServiceClient();
-        //    // Parameters that you pass to the BeginDoWork method go right after EndDoWork. 
-        //    Object state = "test";
-        //    var channel = proxy.ChannelFactory.CreateChannel();
-
-        //    var t = Task<List<QueueSummary>>.Factory.FromAsync(channel.BeginGetMyQueuedCalls,
-        //        channel.EndGetMyQueuedCalls, LyncClient.GetClient().Self.Contact.Uri, state);
-
-
-        //    if(List<QueueSummary>t.Result)
-        //    return t.Result;
-        //}
-
 
         public async static Task<List<String>> GetAvailableRecruiters()
         {

@@ -29,12 +29,12 @@ namespace PhoneLogic.Core.Services
             return JsonConvert.DeserializeObject<List<RptTodayCallLogSummary>>(data);
         }
 
-        public static async Task<List<rptInboundCallByHour>> GetInboundCallsByHour(DateTime startDate,DateTime endDate)
+        public static async Task<List<RptInboundCallByHour>> GetInboundCallsByHour(DateTime startDate,DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
                      new Uri(ApiWebSite.urlRoot + "InboundCallRpt?StartDate=" + startDate + "&EndDate="+endDate));
-            return JsonConvert.DeserializeObject<List<rptInboundCallByHour>>(data);
+            return JsonConvert.DeserializeObject<List<RptInboundCallByHour>>(data);
         }
 
 

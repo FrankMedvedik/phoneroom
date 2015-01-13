@@ -1,8 +1,7 @@
-﻿using System;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Description;
-using PhoneLogic.Repository;
 using PhoneLogic.Model;
+using PhoneLogic.Repository;
 
 namespace PhoneLogic.Web.Controllers
 {

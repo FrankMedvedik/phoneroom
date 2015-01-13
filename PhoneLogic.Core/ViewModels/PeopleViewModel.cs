@@ -7,22 +7,9 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.ViewModels
 {
-    /// <summary>
-    /// This class contains properties that a View can data bind to.
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
+
     public class PeopleViewModel : CollectionViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the PeopleViewModel1 class.
-        /// </summary>
-        public PeopleViewModel() 
-        {
-
-
-        }
         public void LookupPhone(string phoneNum)
         {
             if (phoneNum != null)

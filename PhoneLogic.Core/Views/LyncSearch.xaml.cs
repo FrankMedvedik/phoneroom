@@ -11,7 +11,7 @@ namespace PhoneLogic.Core.Views
         {
 
             InitializeComponent();
-            this.DataContext = ConversationContext.Instance.PhoneLogicContext;
+            DataContext = ConversationContext.Instance.PhoneLogicContext;
         }
 
     }

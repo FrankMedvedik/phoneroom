@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\PhoneLogic.Model.Net\Models\rptInboundCallByHour.cs">
-      <Link>Models\rptInboundCallByHour.cs</Link>
+    <Compile Include="..\PhoneLogic.Model.Net\Models\RptInboundCallByHour.cs">
+      <Link>Models\RptInboundCallByHour.cs</Link>
     </Compile>
     <Compile Include="..\PhoneLogic.Model.Net\Models\RptJobActivity.cs">
       <Link>Models\RptJobActivity.cs</Link>
@@ -48,7 +48,6 @@
     <Compile Include="Models\PhoneRoom.cs" />
     <Compile Include="Models\QueueSummary.cs" />
     <Compile Include="Models\PhoneLogicTask.cs" />
-    <Compile Include="Models\jobCallStat.cs" />
     <Compile Include="Models\RecruiterLog.cs" />
     <Compile Include="Models\Recruiter.cs" />
     <Compile Include="Models\myCallback.cs" />

@@ -1,29 +1,18 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using PhoneLogic.Core.MVVM_Base_Types;
-using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 
 
 namespace PhoneLogic.Core.ViewModels
 {
-    /// <summary>
-    /// This class contains properties that a View can data bind to.
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class RecruitersOnlineViewModel : CollectionViewModelBase
     {
-        
         protected override void RefreshAll(object sender, EventArgs e)
         {
             GetRecruiters(); 
         }
 
-        /// <summary>
-        /// Initializes a new instance of the RecruiteresOnline class.
-        /// </summary>
         public RecruitersOnlineViewModel()
         {
             StartAutoRefresh(ApiRefreshFrequency.Rpts);

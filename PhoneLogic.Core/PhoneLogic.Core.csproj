@@ -147,12 +147,6 @@
     <Compile Include="Views\LyncSearch.xaml.cs">
       <DependentUpon>LyncSearch.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CollectionFrame.xaml.cs">
-      <DependentUpon>CollectionFrame.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DataStateView.xaml.cs">
-      <DependentUpon>DataStateView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\InboundCallsByHrRptView.xaml.cs">
       <DependentUpon>InboundCallsByHrRptView.xaml</DependentUpon>
     </Compile>
@@ -179,9 +173,6 @@
     </Compile>
     <Compile Include="Views\DebugEventsView.xaml.cs">
       <DependentUpon>DebugEventsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\JobSummaryView.xaml.cs">
-      <DependentUpon>JobSummaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecruitersAvailableView.xaml.cs">
       <DependentUpon>RecruitersAvailableView.xaml</DependentUpon>
@@ -238,14 +229,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CollectionFrame.xaml">
-      <SubType>Form</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DataStateView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\InboundCallsByHrRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -281,10 +264,6 @@
     <Page Include="Views\DebugEventsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\JobSummaryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.JobSummary.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
