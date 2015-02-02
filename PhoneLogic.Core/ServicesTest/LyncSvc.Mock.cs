@@ -12,7 +12,7 @@ namespace PhoneLogic.Core.ServicesTest
     {
 
         public static List<QueueSummary> GetMyQueuedCalls()
-        {
+        {   
             var lqs = new List<QueueSummary>();
             lqs.Add(
                 new QueueSummary

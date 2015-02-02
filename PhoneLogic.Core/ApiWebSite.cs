@@ -4,8 +4,8 @@ namespace PhoneLogic.Core
     public static class ApiWebSite
     {
 #if DEBUG
-             public static string urlRoot = "http://localhost:19938/api/";
-            //public static string urlRoot = "http://cc-app.reckner.com/inbound/api/";
+             //public static string urlRoot = "http://localhost:19938/api/";
+            public static string urlRoot = "http://cc-app.reckner.com/inbound/api/";
 #else
         public static string urlRoot = "http://cc-prod.reckner.com/phoneroom/api/";
 #endif

@@ -43,16 +43,33 @@ namespace PhoneLogic.Inbound
                     }
                     else
                     {
+                     //   MessageBox.Show(appData);
                         // we have a call and it has app data meaning we should know the job info
                         ConversationContext.Instance.PhoneLogicContext =
                             JsonConvert.DeserializeObject<PhoneLogicContext>(appData);
-                        ConversationContext.Instance.ShowJobDetailView = true;
+                        if (ConversationContext.Instance.PhoneLogicContext.jobNumber.Length > 8)
+                        {
+                            //MessageBox.Show(ConversationContext.Instance.PhoneLogicContext.jobNumber.Substring(0, 8) + " " 
+                            //    + ConversationContext.Instance.PhoneLogicContext.jobNumber.Substring(9));
+                            ConversationContext.Instance.PhoneLogicContext.taskId =
+                                Convert.ToInt32(ConversationContext.Instance.PhoneLogicContext.jobNumber.Substring(9));
+                            ConversationContext.Instance.PhoneLogicContext.jobNumber =
+                                ConversationContext.Instance.PhoneLogicContext.jobNumber.Substring(0, 8);
+                        }
 
+                        ConversationContext.Instance.ShowJobDetailView = true;
+                        //MessageBox.Show(ConversationContext.Instance.PhoneLogicContext.jobNumber + " " + 
+                        //    ConversationContext.Instance.PhoneLogicContext.TaskID);
+
+                        //MessageBox.Show(String.Format("Job {0}  Task {1}",
+                        //    ConversationContext.Instance.PhoneLogicContext.jobNumber,
+                        //    ConversationContext.Instance.PhoneLogicContext.TaskID));
+                    
+                    }
                         // a callback comes from a message if it is not a call back you can't close the callback.
                         ConversationContext.Instance.ShowCallbackButtons =
-                            ConversationContext.Instance.PhoneLogicContext.callbackId != -1;
+                            ConversationContext.Instance.PhoneLogicContext.callbackId != 0;
                     }
-                }
             }
             catch (Exception e)
             {
