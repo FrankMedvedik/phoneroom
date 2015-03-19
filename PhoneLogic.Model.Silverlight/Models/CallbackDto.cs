@@ -3,7 +3,6 @@
     using System;
 
 
-
 #if SILVERLIGHT
     public class callback : INotifyPropertyChanged
 

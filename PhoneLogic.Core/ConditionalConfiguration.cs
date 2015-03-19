@@ -13,29 +13,29 @@ namespace PhoneLogic.Core
         public static int LyncApi = 1;
     }
 
-    public static class EndPointConfig
-    {
-        public  static void UpdateAddress(ServiceEndpoint endpoint)
-        {
-            endpoint.Address = new EndpointAddress(ConditionalConfiguration.LyncServiceRefUrl);
-        }
-    }
+    //public static class EndPointConfig
+    //{
+    //    public  static void UpdateAddress(ServiceEndpoint endpoint)
+    //    {
+    //        endpoint.Address = new EndpointAddress(ConditionalConfiguration.LyncServiceRefUrl);
+    //    }
+    //}
 
     public static class ConditionalConfiguration
     {
 
     
-#if DEBUGLOCAL
+#if DEBUGTEST
      public static string BuildType = "DEBUG-LOCAL";
      public const string apiUrl = "http://localhost:19938/api/";
      public const string rootUrl = "http://localhost:19938/";
-     public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic";
+     public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic/basic";
      public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";
-#elif DEBUGTEST
+#elif DEBUGTESTXX
      public static string BuildType = "DEBUG-TEST";
      public static string apiUrl = "http://cc-app.reckner.com/inbound/api/";
      public static string rootUrl = "http://cc-app.reckner.com/inbound/";
-     public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic";
+     public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic/basic";
      public const string RecknerCallAppGuid = "{EF327138-E9C6-4E5D-8BB3-F505DAB0F567}";
         
 #elif DEBUGPROD

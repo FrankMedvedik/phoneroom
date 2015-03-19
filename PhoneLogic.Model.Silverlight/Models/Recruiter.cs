@@ -5,11 +5,11 @@ namespace PhoneLogic.Model
     using System.ComponentModel.DataAnnotations;
 
 
-#if SILVERLIGHT
-    public class Recruiter : INotifyPropertyChanged
-#else
+//#if SILVERLIGHT
+//    public class Recruiter : INotifyPropertyChanged
+//#else
     public class Recruiter
-#endif
+//#endif
     {
         [Display(Name = "SIP")]
         public string sip

@@ -212,7 +212,12 @@
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="MVVM Base Types\CollectionViewModelBase.cs" />
-    <Compile Include="Service References\ServiceReference\Reference.cs">
+    <Compile Include="Service References\AppServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProdServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -409,18 +414,81 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.ActiveCall.datasource">
+    <None Include="Service References\AppServiceReference\PhoneLogic.Core.AppServiceReference.ActiveCall.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.JobSummary.datasource">
+    <None Include="Service References\AppServiceReference\PhoneLogic.Core.AppServiceReference.JobSummary.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.QueueDetail.datasource">
+    <None Include="Service References\AppServiceReference\PhoneLogic.Core.AppServiceReference.QueueDetail.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.QueueSummary.datasource">
+    <None Include="Service References\AppServiceReference\PhoneLogic.Core.AppServiceReference.QueueSummary.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic.disco" />
+    <None Include="Service References\AppServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\AppServiceReference\configuration.svcinfo" />
+    <None Include="Service References\AppServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.ActiveCall.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.JobSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.QueueDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.QueueSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.disco" />
+    <None Include="Service References\ProdServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ProdServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ProdServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\AppServiceReference\PhoneLogic.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogicService.wsdl" />
+    <None Include="Service References\ProdServiceReference\PhoneLogic.wsdl" />
+    <None Include="Service References\ProdServiceReference\PhoneLogic.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogicService.wsdl" />
     <Resource Include="Images\RingingPhone.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -428,37 +496,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\MagnifyingGlass.png" />
-    <None Include="Service References\ServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\ServiceReference\configuration.svcinfo" />
-    <None Include="Service References\ServiceReference\PhoneLogic.wsdl" />
-    <None Include="Service References\ServiceReference\PhoneLogic5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic51.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic52.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic53.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic54.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic55.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogicService1.wsdl" />
-    <None Include="Service References\ServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic1.disco" />
-    <Content Include="ServiceReferences.ClientConfig">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Phonelogic.Model.Silverlight\PhoneLogic.Model.Silverlight.csproj">
@@ -480,7 +517,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference\" />
+    <WCFMetadataStorage Include="Service References\AppServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ProdServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

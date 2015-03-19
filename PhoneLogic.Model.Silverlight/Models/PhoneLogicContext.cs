@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System;
     using System.Collections.Generic;
-    public class Phone : INotifyPropertyChanged
+    public class PhoneLogicContext : INotifyPropertyChanged
 #else
     using System;
     using System.Collections.Generic;

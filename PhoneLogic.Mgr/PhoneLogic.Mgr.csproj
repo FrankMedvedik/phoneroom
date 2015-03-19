@@ -224,9 +224,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
-    <Content Include="ServiceReferences.ClientConfig">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

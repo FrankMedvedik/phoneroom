@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
-using PhoneLogic.Core.ServiceReference;
+#if DEBUGTEST
+using PhoneLogic.Core.AppServiceReference;
+#elif DEBUGPROD
+using PhoneLogic.Core.ProdServiceReference;
+#endif
 using PhoneLogic.Model;
 using QueueSummary = PhoneLogic.Model.QueueSummary;
 

@@ -6,7 +6,13 @@ using System.Windows;
 using Microsoft.Lync.Model;
 using System.Collections.Generic;
 using PhoneLogic.Core;
-using PhoneLogic.Core.ServiceReference;
+#if DEBUGTEST
+using sr = PhoneLogic.Core.AppServiceReference;
+using PhoneLogic.Core.AppServiceReference;
+#elif DEBUGPROD
+using sr= PhoneLogic.Core.ProdServiceReference;
+using PhoneLogic.Core.ProdServiceReference;
+#endif
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 using QueueSummary = PhoneLogic.Model.QueueSummary;
@@ -39,11 +45,10 @@ namespace PhoneLogic.Core.Services
         public async static Task<ObservableCollection<QueueSummary>> GetMyQueueSummary()
         {
             var wqs = new ObservableCollection<QueueSummary>();
-                var proxy = new PhoneLogicServiceClient( );
-                EndPointConfig.UpdateAddress(proxy.Endpoint);
+                var proxy = new PhoneLogicServiceClient();
                 Object state = "test";
                 var channel = proxy.ChannelFactory.CreateChannel();
-                var t = await Task<List<PhoneLogic.Core.ServiceReference.QueueSummary>>.Factory.FromAsync(channel.BeginGetMyQueueSummary,
+                var t = await Task<List<sr.QueueSummary>>.Factory.FromAsync(channel.BeginGetMyQueueSummary,
                     channel.EndGetMyQueueSummary, LyncClient.GetClient().Self.Contact.Uri, state);
             if (t.Count > 0)
             {
@@ -70,7 +75,6 @@ namespace PhoneLogic.Core.Services
         public static List<JobSummary> GetJobSummary()
         {
                 var proxy = new PhoneLogicServiceClient();
-                EndPointConfig.UpdateAddress(proxy.Endpoint);
                 Object state = "test";
                 var channel = proxy.ChannelFactory.CreateChannel();
                 var t = Task<List<JobSummary>>.Factory.FromAsync(channel.BeginGetJobSummary, 
@@ -95,7 +99,6 @@ namespace PhoneLogic.Core.Services
         public async static Task<List<String>> GetRecruiters(RecruiterStatus status)
         {
             var proxy = new PhoneLogicServiceClient();
-            EndPointConfig.UpdateAddress(proxy.Endpoint);
             Object state = "test";
             var channel = proxy.ChannelFactory.CreateChannel();
             var l = new List<String>();
