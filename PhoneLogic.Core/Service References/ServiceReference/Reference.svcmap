@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e48ce78a-058e-492b-99a3-e412ccab5797" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f06d2068-0cd3-4921-973b-96eb6c255e37" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -23,15 +23,15 @@
     <MetadataSource Address="http://cc-prod.reckner.com:1255/PhoneLogic" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="PhoneLogic.wsdl" MetadataType="Wsdl" ID="582eae2e-55fa-4672-92c2-4a47094ae0c4" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?wsdl=wsdl0" />
-    <MetadataFile FileName="PhoneLogic5.xsd" MetadataType="Schema" ID="77ab6257-797e-415b-8fd0-c78ac423dbff" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd0" />
-    <MetadataFile FileName="PhoneLogic1.disco" MetadataType="Disco" ID="d19ed767-f310-48c3-b4dd-a335c45981fa" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?disco" />
-    <MetadataFile FileName="PhoneLogic51.xsd" MetadataType="Schema" ID="52f88baa-50b0-4f5e-9fec-a384239939af" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd1" />
-    <MetadataFile FileName="PhoneLogic52.xsd" MetadataType="Schema" ID="d18bd630-549f-42dc-a356-2ba8c569cd6e" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd3" />
-    <MetadataFile FileName="PhoneLogic53.xsd" MetadataType="Schema" ID="b56de172-b88d-49a3-bc3c-1b0844cdf3e8" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd2" />
-    <MetadataFile FileName="PhoneLogic54.xsd" MetadataType="Schema" ID="44568aa2-a397-4ae0-8ecd-bdd05c3b77b0" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd4" />
-    <MetadataFile FileName="PhoneLogicService1.wsdl" MetadataType="Wsdl" ID="ff0813f9-740a-46b2-bec5-3a4796fdd5c6" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?wsdl" />
-    <MetadataFile FileName="PhoneLogic.xsd" MetadataType="Schema" ID="991af345-83a9-4656-ae42-203e6d5b7a93" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd5" />
+    <MetadataFile FileName="PhoneLogic.wsdl" MetadataType="Wsdl" ID="2a77d375-0d1f-4b2b-a7cb-aac7d4bb485e" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?wsdl=wsdl0" />
+    <MetadataFile FileName="PhoneLogic5.xsd" MetadataType="Schema" ID="94f7831d-95da-4627-ab5d-90adc850afe3" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd0" />
+    <MetadataFile FileName="PhoneLogic1.disco" MetadataType="Disco" ID="c696a01c-acfa-4240-af06-084bfa5cafb8" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?disco" />
+    <MetadataFile FileName="PhoneLogic51.xsd" MetadataType="Schema" ID="9a9a9397-35ec-41ea-b8e8-e278b57709fc" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd1" />
+    <MetadataFile FileName="PhoneLogic52.xsd" MetadataType="Schema" ID="b4f414cb-2709-445b-99b3-0f8dee4212ba" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd3" />
+    <MetadataFile FileName="PhoneLogic53.xsd" MetadataType="Schema" ID="862f792e-f216-4764-99c5-392b2062d4a5" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd2" />
+    <MetadataFile FileName="PhoneLogic54.xsd" MetadataType="Schema" ID="080b1b24-127f-4ea6-a81b-45a620cfdc72" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd4" />
+    <MetadataFile FileName="PhoneLogicService1.wsdl" MetadataType="Wsdl" ID="72ac3591-5a9f-4962-8033-477f60223036" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?wsdl" />
+    <MetadataFile FileName="PhoneLogic55.xsd" MetadataType="Schema" ID="9be7225f-0228-4c29-8d20-42a84828645e" SourceId="1" SourceUrl="http://cc-prod.reckner.com:1255/PhoneLogic?xsd=xsd5" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

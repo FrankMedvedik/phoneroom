@@ -9,7 +9,7 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="http://cc-prod.reckner.com:1255/PhoneLogic"
+      <endpoint address="http://cc-app.reckner.com:1255/PhoneLogic"
         binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPhoneLogicService"
         contract="ServiceReference.IPhoneLogicService" name="BasicHttpBinding_IPhoneLogicService" />
     </client>

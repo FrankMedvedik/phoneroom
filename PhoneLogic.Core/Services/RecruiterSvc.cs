@@ -14,7 +14,7 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ApiWebSite.urlRoot + "AgentLogs?sip=" + sip + "&startDate=" + startDate
+                new Uri(ConditionalConfiguration.apiUrl + "AgentLogs?sip=" + sip + "&startDate=" + startDate
                         + "&endDate=" + endDate));
             try
             {
@@ -36,7 +36,7 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ApiWebSite.urlRoot + "recruiter"));
+                new Uri(ConditionalConfiguration.apiUrl + "recruiter"));
             try
             {
                 var z = JsonConvert.DeserializeObject<List<Recruiter>>(data);

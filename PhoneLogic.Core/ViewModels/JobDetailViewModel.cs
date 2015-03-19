@@ -16,7 +16,7 @@ namespace PhoneLogic.Core.ViewModels
         public async void GetPhoneLogicTask(string jobNum, string taskid)
         {
             if (ConversationContext.Instance.PhoneLogicContext == null) return;
-            //if (ConversationContext.Instance.PhoneLogicContext.jobNumber.Length != 8) return;
+            if (string.IsNullOrEmpty(ConversationContext.Instance.PhoneLogicContext.jobNumber)) return;
             PhoneLogicTask = await PhoneLogicTaskSvc.GetTask(jobNum,taskid);
         }
 

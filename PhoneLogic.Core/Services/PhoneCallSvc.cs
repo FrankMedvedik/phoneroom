@@ -17,7 +17,7 @@ namespace PhoneLogic.Core.Services
 
         private static async Task Post(PhoneCall p)
         {
-            string url = ApiWebSite.urlRoot + "PhoneCalls/";
+            string url = ConditionalConfiguration.apiUrl + "PhoneCalls/";
             string postRequest = JsonConvert.SerializeObject(p);
             var uri = new Uri(url, UriKind.Absolute);
             var client = new WebClient();

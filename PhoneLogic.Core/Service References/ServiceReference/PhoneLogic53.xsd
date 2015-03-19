@@ -49,4 +49,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="QueueSummary" nillable="true" type="tns:QueueSummary" />
+  <xs:complexType name="ArrayOfActiveCall">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ActiveCall" nillable="true" type="tns:ActiveCall" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfActiveCall" nillable="true" type="tns:ArrayOfActiveCall" />
+  <xs:complexType name="ActiveCall">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ConferenceUri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JobNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecruiterUri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeIn" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ActiveCall" nillable="true" type="tns:ActiveCall" />
 </xs:schema>

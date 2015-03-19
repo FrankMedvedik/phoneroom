@@ -44,6 +44,12 @@
   <wsdl:message name="IPhoneLogicService_GetRecruitersAvailable_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRecruitersAvailableResponse" />
   </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_GetActiveCalls_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveCalls" />
+  </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_GetActiveCalls_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveCallsResponse" />
+  </wsdl:message>
   <wsdl:message name="IPhoneLogicService_SilentMonitorCall_InputMessage">
     <wsdl:part name="parameters" element="tns:SilentMonitorCall" />
   </wsdl:message>
@@ -86,6 +92,10 @@
     <wsdl:operation name="GetRecruitersAvailable">
       <wsdl:input wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetRecruitersAvailable" message="tns:IPhoneLogicService_GetRecruitersAvailable_InputMessage" />
       <wsdl:output wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetRecruitersAvailableResponse" message="tns:IPhoneLogicService_GetRecruitersAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveCalls">
+      <wsdl:input wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetActiveCalls" message="tns:IPhoneLogicService_GetActiveCalls_InputMessage" />
+      <wsdl:output wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetActiveCallsResponse" message="tns:IPhoneLogicService_GetActiveCalls_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SilentMonitorCall">
       <wsdl:input wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCall" message="tns:IPhoneLogicService_SilentMonitorCall_InputMessage" />

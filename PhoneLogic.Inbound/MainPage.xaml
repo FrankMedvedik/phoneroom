@@ -13,9 +13,11 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Views:JobDetailView Name="JobDetail" Grid.Column="0" Margin="3" VerticalAlignment="Top"  HorizontalAlignment="Left" />
-        <Views:LyncSearchView  Margin="3" Grid.Column="1" VerticalAlignment="Top"  HorizontalAlignment="Left" />
-        <Views:RespondentSearchView Margin="3" Grid.Column="2" VerticalAlignment="Top"  HorizontalAlignment="Left" />
+        <Views:JobDetailView  Name="JobDetail" Grid.Row="0" Grid.Column="0" Margin="3" VerticalAlignment="Top"  HorizontalAlignment="Left" />
+        <Views:LyncSearchView  Margin="3" Grid.Column="1" Grid.Row="0"  VerticalAlignment="Top"  HorizontalAlignment="Left" />
+        <Views:RespondentSearchView Margin="3" Grid.Column="2" Grid.Row="0" VerticalAlignment="Top"  HorizontalAlignment="Left" />
+        <Views:BuildInformationView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"/>
     </Grid>
 </UserControl>

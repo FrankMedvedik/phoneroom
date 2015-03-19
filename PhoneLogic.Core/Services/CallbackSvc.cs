@@ -39,7 +39,7 @@ namespace PhoneLogic.Core.Services
 
         private static async Task Put(CallbackDto cb)
         {
-            string uriTemplate = ApiWebSite.urlRoot + "Callbacks/{0}";
+            string uriTemplate = ConditionalConfiguration.apiUrl + "Callbacks/{0}";
             var postRequest = JsonConvert.SerializeObject(cb);
             var url = string.Format(uriTemplate, cb.callbackID);
             var uri = new Uri(url, UriKind.Absolute);
@@ -53,14 +53,14 @@ namespace PhoneLogic.Core.Services
         public  static async Task<List<myCallback>> GetMyCallbacks(string sip)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ApiWebSite.urlRoot + "Callbacks?SIP=" + sip));
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "Callbacks?SIP=" + sip));
             return JsonConvert.DeserializeObject<List<myCallback>>(data);
         }
 
         public static async Task<CallbackDto> GetMyCallback(int id)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ApiWebSite.urlRoot + "Callbacks?id=" + id));
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "Callbacks?id=" + id));
             return JsonConvert.DeserializeObject<CallbackDto>(data);
         }
 

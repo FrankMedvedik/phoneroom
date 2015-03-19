@@ -45,6 +45,94 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'prod|AnyCPU' ">
+    <OutputPath>bin\cc-prod\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'app|AnyCPU' ">
+    <OutputPath>bin\cc-app\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEBUG-LOCAL|AnyCPU'">
+    <OutputPath>bin\DEBUG-LOCAL\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUGLOCAL</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE-TEST|AnyCPU'">
+    <OutputPath>bin\RELEASE-TEST\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE-PROD|AnyCPU'">
+    <OutputPath>bin\RELEASE-PROD\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEBUGLOCAL|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DEBUGLOCAL\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUGLOCAL</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEBUGPROD|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DEBUGPROD\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUGPROD</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEBUGTEST|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DEBUGTEST\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUGTEST</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator.NinjectAdapter">
       <HintPath>..\packages\Ninject.CommonServiceLocator.Silverlight.1.0\lib\CommonServiceLocator.NinjectAdapter.dll</HintPath>
@@ -118,8 +206,7 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiWebSite.cs" />
-    <Compile Include="CallContextApp.cs" />
+    <Compile Include="ConditionalConfiguration.cs" />
     <Compile Include="Commands\ThemeChangeCommand.cs" />
     <Compile Include="Configuration\NinjectConfiguration.cs" />
     <Compile Include="Converters\RadioButtonConverter.cs" />
@@ -151,6 +238,9 @@
     <Compile Include="ViewModels\RecruitersAvailableViewModel.cs" />
     <Compile Include="Views\ActiveJobsView.xaml.cs">
       <DependentUpon>ActiveJobsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuildInformationView.xaml.cs">
+      <DependentUpon>BuildInformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JobDetailView.xaml.cs">
       <DependentUpon>JobDetailView.xaml</DependentUpon>
@@ -232,6 +322,10 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BuildInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\JobDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,15 +370,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.JobSummary.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.QueueDetail.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.QueueSummary.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <Page Include="Views\RecruitersAvailableView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -324,18 +409,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.ActiveCall.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.JobSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.QueueDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference\PhoneLogic.Core.ServiceReference.QueueSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <Resource Include="Images\RingingPhone.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\voiceMail.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\MagnifyingGlass.png" />
     <None Include="Service References\ServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference\configuration.svcinfo" />
     <None Include="Service References\ServiceReference\PhoneLogic.wsdl" />
-    <None Include="Service References\ServiceReference\PhoneLogic.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceReference\PhoneLogic5.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -351,15 +446,18 @@
     <None Include="Service References\ServiceReference\PhoneLogic54.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference\PhoneLogic55.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\PhoneLogicService1.wsdl" />
     <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\ServiceReference\PhoneLogic1.disco" />
-    <Resource Include="Images\MagnifyingGlass.png" />
     <Content Include="ServiceReferences.ClientConfig">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

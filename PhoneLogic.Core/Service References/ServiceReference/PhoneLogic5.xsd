@@ -80,6 +80,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetActiveCalls">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveCallsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/PhoneLogic.DataContracts" minOccurs="0" name="GetActiveCallsResult" nillable="true" type="q6:ArrayOfActiveCall" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SilentMonitorCall">
     <xs:complexType>
       <xs:sequence>

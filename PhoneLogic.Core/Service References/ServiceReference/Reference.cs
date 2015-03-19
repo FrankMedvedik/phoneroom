@@ -300,6 +300,111 @@ namespace PhoneLogic.Core.ServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ActiveCall", Namespace="http://schemas.datacontract.org/2004/07/PhoneLogic.DataContracts")]
+    public partial class ActiveCall : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string CallerIdField;
+        
+        private string ConferenceUriField;
+        
+        private string IdField;
+        
+        private string JobNumberField;
+        
+        private string RecruiterUriField;
+        
+        private string TimeInField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CallerId {
+            get {
+                return this.CallerIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CallerIdField, value) != true)) {
+                    this.CallerIdField = value;
+                    this.RaisePropertyChanged("CallerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ConferenceUri {
+            get {
+                return this.ConferenceUriField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConferenceUriField, value) != true)) {
+                    this.ConferenceUriField = value;
+                    this.RaisePropertyChanged("ConferenceUri");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JobNumber {
+            get {
+                return this.JobNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JobNumberField, value) != true)) {
+                    this.JobNumberField = value;
+                    this.RaisePropertyChanged("JobNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RecruiterUri {
+            get {
+                return this.RecruiterUriField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RecruiterUriField, value) != true)) {
+                    this.RecruiterUriField = value;
+                    this.RaisePropertyChanged("RecruiterUri");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TimeIn {
+            get {
+                return this.TimeInField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TimeInField, value) != true)) {
+                    this.TimeInField = value;
+                    this.RaisePropertyChanged("TimeIn");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://reckner.phonelogic.windowsservice", ConfigurationName="ServiceReference.IPhoneLogicService")]
     public interface IPhoneLogicService {
@@ -340,6 +445,12 @@ namespace PhoneLogic.Core.ServiceReference {
         System.IAsyncResult BeginGetRecruitersAvailable(System.AsyncCallback callback, object asyncState);
         
         System.Collections.Generic.List<string> EndGetRecruitersAvailable(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetActiveCalls", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetActiveCallsRespons" +
+            "e")]
+        System.IAsyncResult BeginGetActiveCalls(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall> EndGetActiveCalls(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCall", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCallResp" +
             "onse")]
@@ -480,6 +591,25 @@ namespace PhoneLogic.Core.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetActiveCallsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetActiveCallsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class PhoneLogicServiceClient : System.ServiceModel.ClientBase<PhoneLogic.Core.ServiceReference.IPhoneLogicService>, PhoneLogic.Core.ServiceReference.IPhoneLogicService {
         
         private BeginOperationDelegate onBeginGetJobSummaryDelegate;
@@ -517,6 +647,12 @@ namespace PhoneLogic.Core.ServiceReference {
         private EndOperationDelegate onEndGetRecruitersAvailableDelegate;
         
         private System.Threading.SendOrPostCallback onGetRecruitersAvailableCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetActiveCallsDelegate;
+        
+        private EndOperationDelegate onEndGetActiveCallsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetActiveCallsCompletedDelegate;
         
         private BeginOperationDelegate onBeginSilentMonitorCallDelegate;
         
@@ -600,6 +736,8 @@ namespace PhoneLogic.Core.ServiceReference {
         public event System.EventHandler<GetRecruitersOnlineCompletedEventArgs> GetRecruitersOnlineCompleted;
         
         public event System.EventHandler<GetRecruitersAvailableCompletedEventArgs> GetRecruitersAvailableCompleted;
+        
+        public event System.EventHandler<GetActiveCallsCompletedEventArgs> GetActiveCallsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SilentMonitorCallCompleted;
         
@@ -879,6 +1017,50 @@ namespace PhoneLogic.Core.ServiceReference {
                 this.onGetRecruitersAvailableCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetRecruitersAvailableCompleted);
             }
             base.InvokeAsync(this.onBeginGetRecruitersAvailableDelegate, null, this.onEndGetRecruitersAvailableDelegate, this.onGetRecruitersAvailableCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneLogic.Core.ServiceReference.IPhoneLogicService.BeginGetActiveCalls(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetActiveCalls(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall> PhoneLogic.Core.ServiceReference.IPhoneLogicService.EndGetActiveCalls(System.IAsyncResult result) {
+            return base.Channel.EndGetActiveCalls(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetActiveCalls(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((PhoneLogic.Core.ServiceReference.IPhoneLogicService)(this)).BeginGetActiveCalls(callback, asyncState);
+        }
+        
+        private object[] OnEndGetActiveCalls(System.IAsyncResult result) {
+            System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall> retVal = ((PhoneLogic.Core.ServiceReference.IPhoneLogicService)(this)).EndGetActiveCalls(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetActiveCallsCompleted(object state) {
+            if ((this.GetActiveCallsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetActiveCallsCompleted(this, new GetActiveCallsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetActiveCallsAsync() {
+            this.GetActiveCallsAsync(null);
+        }
+        
+        public void GetActiveCallsAsync(object userState) {
+            if ((this.onBeginGetActiveCallsDelegate == null)) {
+                this.onBeginGetActiveCallsDelegate = new BeginOperationDelegate(this.OnBeginGetActiveCalls);
+            }
+            if ((this.onEndGetActiveCallsDelegate == null)) {
+                this.onEndGetActiveCallsDelegate = new EndOperationDelegate(this.OnEndGetActiveCalls);
+            }
+            if ((this.onGetActiveCallsCompletedDelegate == null)) {
+                this.onGetActiveCallsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetActiveCallsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetActiveCallsDelegate, null, this.onEndGetActiveCallsDelegate, this.onGetActiveCallsCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1170,6 +1352,18 @@ namespace PhoneLogic.Core.ServiceReference {
             public System.Collections.Generic.List<string> EndGetRecruitersAvailable(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.Generic.List<string> _result = ((System.Collections.Generic.List<string>)(base.EndInvoke("GetRecruitersAvailable", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetActiveCalls(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetActiveCalls", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall> EndGetActiveCalls(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall> _result = ((System.Collections.Generic.List<PhoneLogic.Core.ServiceReference.ActiveCall>)(base.EndInvoke("GetActiveCalls", _args, result)));
                 return _result;
             }
             

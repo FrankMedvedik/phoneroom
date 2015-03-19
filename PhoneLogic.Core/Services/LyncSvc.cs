@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Lync.Model;
 using System.Collections.Generic;
+using PhoneLogic.Core;
 using PhoneLogic.Core.ServiceReference;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
@@ -38,7 +39,8 @@ namespace PhoneLogic.Core.Services
         public async static Task<ObservableCollection<QueueSummary>> GetMyQueueSummary()
         {
             var wqs = new ObservableCollection<QueueSummary>();
-                var proxy = new PhoneLogicServiceClient();
+                var proxy = new PhoneLogicServiceClient( );
+                EndPointConfig.UpdateAddress(proxy.Endpoint);
                 Object state = "test";
                 var channel = proxy.ChannelFactory.CreateChannel();
                 var t = await Task<List<PhoneLogic.Core.ServiceReference.QueueSummary>>.Factory.FromAsync(channel.BeginGetMyQueueSummary,
@@ -68,9 +70,10 @@ namespace PhoneLogic.Core.Services
         public static List<JobSummary> GetJobSummary()
         {
                 var proxy = new PhoneLogicServiceClient();
+                EndPointConfig.UpdateAddress(proxy.Endpoint);
                 Object state = "test";
                 var channel = proxy.ChannelFactory.CreateChannel();
-                var t = Task<List<JobSummary>>.Factory.FromAsync(channel.BeginGetJobSummary,
+                var t = Task<List<JobSummary>>.Factory.FromAsync(channel.BeginGetJobSummary, 
                     channel.EndGetJobSummary, state);
                 var x = t.Result;
                 MessageBox.Show(x.ToString());
@@ -92,6 +95,7 @@ namespace PhoneLogic.Core.Services
         public async static Task<List<String>> GetRecruiters(RecruiterStatus status)
         {
             var proxy = new PhoneLogicServiceClient();
+            EndPointConfig.UpdateAddress(proxy.Endpoint);
             Object state = "test";
             var channel = proxy.ChannelFactory.CreateChannel();
             var l = new List<String>();

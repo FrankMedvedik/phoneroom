@@ -16,7 +16,7 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                     new Uri(ApiWebSite.urlRoot + "JobActivityRpt?startDate="+startDate
+                     new Uri(ConditionalConfiguration.apiUrl + "JobActivityRpt?startDate=" + startDate
                             + "&endDate="+ endDate));
             return JsonConvert.DeserializeObject<List<RptJobActivity>>(data);
         }
@@ -25,7 +25,7 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                     new Uri(ApiWebSite.urlRoot + "TodayRpt"));
+                     new Uri(ConditionalConfiguration.apiUrl + "TodayRpt"));
             return JsonConvert.DeserializeObject<List<RptTodayCallLogSummary>>(data);
         }
 
@@ -33,7 +33,7 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                     new Uri(ApiWebSite.urlRoot + "InboundCallRpt?StartDate=" + startDate + "&EndDate="+endDate));
+                     new Uri(ConditionalConfiguration.apiUrl + "InboundCallRpt?StartDate=" + startDate + "&EndDate=" + endDate));
             return JsonConvert.DeserializeObject<List<RptInboundCallByHour>>(data);
         }
 

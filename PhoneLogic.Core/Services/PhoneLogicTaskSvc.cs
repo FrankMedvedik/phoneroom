@@ -17,7 +17,7 @@ namespace PhoneLogic.Core.Services
             var data =
                 await
                     client.DownloadStringTaskAsync(
-                        new Uri(ApiWebSite.urlRoot + "PhoneLogicTasks?jobNum=" + jobNum + "&taskId=" + task));
+                        new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasks?jobNum=" + jobNum + "&taskId=" + task));
             var c = JsonConvert.DeserializeObject<List<PhoneLogicTask>>(data);
             var t = c[0];
             return t;
@@ -26,7 +26,7 @@ namespace PhoneLogic.Core.Services
         public static async Task<List<PhoneLogicTask>> GetMyTasks(string sip)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ApiWebSite.urlRoot + "PhoneLogicTasks?SIP=" + sip));
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasks?SIP=" + sip));
             return JsonConvert.DeserializeObject<List<PhoneLogicTask>>(data);
         }
 

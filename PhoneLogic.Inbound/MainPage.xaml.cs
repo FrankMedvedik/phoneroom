@@ -35,7 +35,7 @@ namespace PhoneLogic.Inbound
 
                 else
                 {
-                    string appData = conversation.GetApplicationData(CallContextApp.RecknerCallAppGuid);
+                    string appData = conversation.GetApplicationData(ConditionalConfiguration.RecknerCallAppGuid);
                     // no app data means we did not come from either an inbound call or a callback message 
                     if (appData == null)
                     {

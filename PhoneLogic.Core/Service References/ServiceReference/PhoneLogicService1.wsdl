@@ -89,6 +89,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetActiveCalls">
+      <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetActiveCalls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SilentMonitorCall">
       <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCall" style="document" />
       <wsdl:input>

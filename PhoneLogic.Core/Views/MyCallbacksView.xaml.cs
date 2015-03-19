@@ -94,7 +94,7 @@ namespace PhoneLogic.Core.Views
             var participantUri = new List<string> {_vm.SelectedMyCallback.callbackNum};
             var modalitySettings = new Dictionary<AutomationModalitySettings, object>
             {
-                {AutomationModalitySettings.ApplicationId, CallContextApp.RecknerCallAppGuid},
+                {AutomationModalitySettings.ApplicationId, ConditionalConfiguration.RecknerCallAppGuid},
                 {AutomationModalitySettings.Subject, _vm.SelectedMyCallback.callbackNum},
                 {AutomationModalitySettings.ApplicationData, _vm.SelectedAppData}
             };
@@ -125,7 +125,7 @@ namespace PhoneLogic.Core.Views
                     {
                         ConversationWindow newWindow = LyncClient.GetAutomation().EndStartConversation(ar);
                         newWindow.BeginOpenExtensibilityWindow(
-                            CallContextApp.RecknerCallAppGuid,
+                            ConditionalConfiguration.RecknerCallAppGuid,
                             newWindow.EndOpenExtensibilityWindow,
                             null);
                     }
@@ -144,7 +144,7 @@ namespace PhoneLogic.Core.Views
             _vm.CanRefresh = true;
             msgPlayback.Stop();
             if (_vm.SelectedMyCallback == null) return;
-            msgPlayback.Source = new Uri("/messages/" + _vm.SelectedMyCallback.msgScr, UriKind.Relative);
+            msgPlayback.Source = new Uri(ConditionalConfiguration.rootUrl + "ClientBin/messages/" + _vm.SelectedMyCallback.msgScr, UriKind.Absolute);
             msgPlayback.Stop();
             SliderPosition.Value = 0;
             msgPlayback.Stop();
