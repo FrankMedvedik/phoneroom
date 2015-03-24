@@ -17,8 +17,8 @@ namespace PhoneLogic.Core.ViewModels
             GetRecruiters();
             PhoneRooms = PhoneRoomSvc.GetAll();
             SelectedPhoneRoomName = PhoneRoomSvc.GetDefault();
-            LyncStatusRanges = LyncStatusRangeSvc.GetAll();
-            SelectedLyncStatusRange = LyncStatusRangeSvc.GetDefault();
+            StartRptDate = DateTime.Now.AddDays(-1);
+            EndRptDate = DateTime.Now;
         }
 
 
@@ -46,17 +46,6 @@ namespace PhoneLogic.Core.ViewModels
             }
         }
 
-        private LyncStatusRange _selectedLyncStatusRange;
-        public LyncStatusRange SelectedLyncStatusRange
-        {
-            get { return _selectedLyncStatusRange; }
-            set
-            {
-                _selectedLyncStatusRange = value;
-                NotifyPropertyChanged();
-                RefreshFilteredData();
-            }
-        }
 
         private string _selectedPhoneRoomName;
         public string SelectedPhoneRoomName
@@ -82,16 +71,6 @@ namespace PhoneLogic.Core.ViewModels
         }
 
 
-        private ObservableCollection<LyncStatusRange> _lyncStatusRanges = new ObservableCollection<LyncStatusRange>();
-        public ObservableCollection<LyncStatusRange> LyncStatusRanges
-        {
-            get { return _lyncStatusRanges; }
-            set
-            {
-                _lyncStatusRanges = value;
-                NotifyPropertyChanged();
-            }
-        }
 
         #endregion
 
@@ -110,94 +89,6 @@ namespace PhoneLogic.Core.ViewModels
         private void RefreshFilteredData()
         {
             FilterByPhoneRoom();
-            FilterByLyncStatus();
-        }
-
-        private void FilterByLyncStatus()
-        {
-            if ((SelectedLyncStatusRange == null) || (SelectedLyncStatusRange.Name == "All")) return;
-
-            List<Recruiter> fr = FilteredRecruiters.ToList();
-            if (SelectedLyncStatusRange.Name == "Availible")
-            {
-                foreach (var r in fr)
-                {
-                    var p = new PresenceIndicator() { Source = r.sip };
-                    switch (p.AvailabilityState)
-                    {
-                        case ContactAvailability.Invalid:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.None:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.Free:
-                            break;
-                        case ContactAvailability.FreeIdle:
-                            break;
-                        case ContactAvailability.Busy:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.BusyIdle:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.DoNotDisturb:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.TemporarilyAway:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.Away:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.Offline:
-                            fr.Remove(r);
-                            break;
-                        default:
-                            fr.Remove(r);
-                            break;
-                    }
-                }
-            }
-            else if (SelectedLyncStatusRange.Name == "Online")
-            {
-                foreach (var r in fr)
-                {
-                    var p = new PresenceIndicator() { Source = r.sip };
-                    switch (p.AvailabilityState)
-                    {
-                        case ContactAvailability.Invalid:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.None:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.Free:
-                            break;
-                        case ContactAvailability.FreeIdle:
-                            break;
-                        case ContactAvailability.Busy:
-                            break;
-                        case ContactAvailability.BusyIdle:
-                            break;
-                        case ContactAvailability.DoNotDisturb:
-                            break;
-                        case ContactAvailability.TemporarilyAway:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.Away:
-                            fr.Remove(r);
-                            break;
-                        case ContactAvailability.Offline:
-                            fr.Remove(r);
-                            break;
-                        default:
-                            fr.Remove(r);
-                            break;
-                    }
-                }
-            }
-            FilteredRecruiters = new ObservableCollection<Recruiter>(fr);
         }
 
         private void FilterByPhoneRoom()
@@ -226,8 +117,6 @@ namespace PhoneLogic.Core.ViewModels
 
         #region Recruiters
 
-
-
         private ObservableCollection<Recruiter> _recruiters = new ObservableCollection<Recruiter>();
 
         public ObservableCollection<Recruiter> Recruiters
@@ -249,15 +138,10 @@ namespace PhoneLogic.Core.ViewModels
             try
             {
                 var ro = await RecruiterSvc.GetRecruiters();
-                var r = new ObservableCollection<Recruiter>();
                 if (ro.Count > 0)
                 {
-                    foreach (var x in ro)
-                    {
-                        r.Add(x);
-                    }
                     ShowGridData = true;
-                    Recruiters = r;
+                    Recruiters = new ObservableCollection<Recruiter>(ro);
                 }
                 else
                     ShowGridData = false;

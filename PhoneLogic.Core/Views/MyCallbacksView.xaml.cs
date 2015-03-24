@@ -81,7 +81,7 @@ namespace PhoneLogic.Core.Views
             }
             if (_vm.SelectedMyCallback.SIP != null)
             {
-                // inhibit them from calling someon already in a call
+                // inhibit them from calling someone already in a call
                 if (_vm.SelectedMyCallback.SIP.Substring(0, 4) == "sip:")
                 {
                     MessageBoxResult result = MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",

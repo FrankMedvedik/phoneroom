@@ -3,12 +3,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
-    
-    <Grid x:Name="LayoutRoot" Background="White">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Name="ReleaseInfo"  FontSize="9" FontWeight="Light" ></TextBlock>
+    xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
+    mc:Ignorable="d">
+    <Control.Resources>
+        <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
+        <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
+    </Control.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToggleButton x:Name="tbtnShowDebug"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                      Checked="tbtnTest_Checked" Unchecked="tbtnTest_Unchecked" Grid.Row="0" Content="(i)" FontSize="10"  Width="Auto"></ToggleButton>
+            <StackPanel Orientation="Horizontal" Name="InfoStackPanel" Visibility="Collapsed" Grid.Row="1">
+            <Border BorderThickness="1">
+            <TextBlock Name="ReleaseInfo"  FontSize="9" FontWeight="Black" Grid.Row="1"></TextBlock>
+            </Border>
         </StackPanel>
     </Grid>
 </UserControl>

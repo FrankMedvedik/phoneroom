@@ -204,6 +204,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="ToggleSwitch">
+      <HintPath>..\packages\ToggleSwitch.1.1.1\lib\sl40\ToggleSwitch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConditionalConfiguration.cs" />
@@ -280,21 +283,6 @@
     <Compile Include="Views\DebugEventsView.xaml.cs">
       <DependentUpon>DebugEventsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RecruitersAvailableView.xaml.cs">
-      <DependentUpon>RecruitersAvailableView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RecruitersOnlineView.xaml.cs">
-      <DependentUpon>RecruitersOnlineView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RecruitersView.xaml.cs">
-      <DependentUpon>RecruitersView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SoundPlayer.xaml.cs">
-      <DependentUpon>SoundPlayer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ThemeControl.xaml.cs">
-      <DependentUpon>ThemeControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\BooleanToVisibility.cs" />
     <Compile Include="Converters\NotBooleanToVisibility.cs" />
     <Compile Include="MVVM Base Types\DelegateCommand.cs" />
@@ -356,8 +344,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RespondentSearchView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TodaysCallLogRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -374,26 +362,6 @@
     <Page Include="Views\DebugEventsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RecruitersAvailableView.xaml">
-      <SubType>Form</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RecruitersOnlineView.xaml">
-      <SubType>Form</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RecruitersView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SoundPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ThemeControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="resources\ButtonTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>

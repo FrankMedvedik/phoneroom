@@ -17,6 +17,8 @@ using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 using QueueSummary = PhoneLogic.Model.QueueSummary;
 
+//using QueueSummary = PhoneLogic.Model.QueueSummary;
+
 
 namespace PhoneLogic.Core.Services
 {
@@ -42,9 +44,9 @@ namespace PhoneLogic.Core.Services
 
         }
       
-        public async static Task<ObservableCollection<QueueSummary>> GetMyQueueSummary()
+        public async static Task<ObservableCollection<PhoneLogic.Model.QueueSummary>> GetMyQueueSummary()
         {
-            var wqs = new ObservableCollection<QueueSummary>();
+            var wqs = new ObservableCollection<PhoneLogic.Model.QueueSummary>();
                 var proxy = new PhoneLogicServiceClient();
                 Object state = "test";
                 var channel = proxy.ChannelFactory.CreateChannel();
@@ -54,7 +56,7 @@ namespace PhoneLogic.Core.Services
             {
                 var lqs = t;
                 foreach (var s in lqs)
-                    wqs.Add(new QueueSummary()
+                    wqs.Add(new PhoneLogic.Model.QueueSummary()
                         {JobNumber = s.JobNumber,
                          InQueue = s.InQueue});
             }

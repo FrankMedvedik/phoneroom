@@ -53,6 +53,6 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+        <!--<Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>-->
     </Grid>
 </UserControl>

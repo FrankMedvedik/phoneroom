@@ -52,8 +52,7 @@ namespace PhoneLogic.Core.ViewModels
                 MyCallbacks.Clear();
                 if (mcb.Count > 0)
                 {
-                    foreach (var p in mcb)
-                        MyCallbacks.Add(p);
+                    MyCallbacks = new ObservableCollection<myCallback>(mcb);
                     ShowGridData = true;
                     if(s != null) 
                         SelectedMyCallback = (myCallback) MyCallbacks.FirstOrDefault(x => x.callbackID == s.callbackID);

@@ -17,17 +17,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition MaxHeight="650"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-            <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the report" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
-            <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-            <Toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the report" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
-            <Button Click="btnRefresh_Click" Margin="6">Refresh Report</Button>
-        </StackPanel>
-        <Grid Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Top">
+        <Grid Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -38,6 +31,14 @@
             <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="2" Margin="6" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="3" Margin="6" VerticalAlignment="Center"/>
         </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
+            <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the report" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
+            <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
+            <Toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the report" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
+            <Button Click="btnRefresh_Click" Margin="6">Refresh Report</Button>
+        </StackPanel>
         <sdk:DataGrid x:Name="DGrid" Grid.Row="2" AutoGenerateColumns="True"  ClipboardCopyMode="IncludeHeader" SelectionMode="Extended"
            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 
                           ItemsSource="{Binding Rpt}" Margin="6"   

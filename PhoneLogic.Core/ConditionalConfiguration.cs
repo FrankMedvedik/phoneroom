@@ -25,13 +25,13 @@ namespace PhoneLogic.Core
     {
 
     
-#if DEBUGTEST
+#if DEBUGLOCAL
      public static string BuildType = "DEBUG-LOCAL";
      public const string apiUrl = "http://localhost:19938/api/";
      public const string rootUrl = "http://localhost:19938/";
      public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic/basic";
      public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";
-#elif DEBUGTESTXX
+#elif DEBUGTEST
      public static string BuildType = "DEBUG-TEST";
      public static string apiUrl = "http://cc-app.reckner.com/inbound/api/";
      public static string rootUrl = "http://cc-app.reckner.com/inbound/";

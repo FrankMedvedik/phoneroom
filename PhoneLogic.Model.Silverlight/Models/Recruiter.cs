@@ -27,9 +27,9 @@ namespace PhoneLogic.Model
         public String EmailAddress { get; set; }
         [Display(Name = "Title")]
         public String Description { get; set; }
-        [Display(Name = "Outbound Call Cnt")]
+        [Display(Name = "Out")]
         public int OutboundCallCnt{ get; set; }
-        [Display(Name = "Inbound Call Cnt")]
+        [Display(Name = "In")]
         public int InboundCallCnt { get; set; }
         [Display(Name = "Total Idle Time")]
         public Double TotalIdleTime { get; set; }

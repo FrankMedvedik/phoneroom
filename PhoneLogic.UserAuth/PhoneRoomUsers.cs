@@ -70,7 +70,7 @@ namespace PhoneLogic.UserAuth
                MKEUsers = cache["MKEUsers"] as IEnumerable<UserPrincipal> ;
                AllUsers = cache["Allsers"] as IEnumerable<UserPrincipal> ;
         }
-        #if DEBUG
+        #if DEBUGLOCAL
                 private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","~solar~53");
         #else
                 private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);

@@ -12,10 +12,10 @@
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
     </Control.Resources>
-    <Grid x:Name="LayoutRoot" Margin="3" VerticalAlignment="Top" HorizontalAlignment="Left" Height="750">
+    <Grid x:Name="LayoutRoot" Margin="3" VerticalAlignment="Top" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="650"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top" >

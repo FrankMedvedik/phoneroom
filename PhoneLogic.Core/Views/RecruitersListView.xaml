@@ -9,7 +9,6 @@
         xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
         mc:Ignorable="d" d:DesignWidth="568" d:DesignHeight="245" VerticalAlignment="Top"  HorizontalAlignment="Left">
     <Control.Resources>
-        <converters:RadioButtonConverter x:Key="RadioButtonConverter" />
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
         <DataTemplate x:Key="RecruiterStatusTemplate" >
@@ -26,7 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition  MaxHeight="800" Height="700"/>
+            <RowDefinition  Height="650"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1">
             <Grid >
@@ -39,6 +38,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Recruiters" FontSize="14" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
                     <TextBlock Text="Location" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
                     <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
                            Name="comboBox1" VerticalAlignment="Top" Width="100" 
@@ -46,36 +46,9 @@
                                 SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}" 
                   DisplayMemberPath="Name" 
                   SelectedValuePath="Name"  />
-                    <StackPanel Orientation="Horizontal" Visibility="Collapsed">
-                        <TextBlock Margin="5 0" VerticalAlignment="Center" 
-                       Text="Availability" Width="80" />
-                        <ComboBox Margin="5" VerticalAlignment="Center"  Visibility="Collapsed"
-                      Name="availabilityComboBox" Width="140"  ItemsSource="{Binding Path=LyncStatusRanges, Mode=OneWay}"  
-                                SelectedValue="{Binding Path=SelectedLyncStatusRange, Mode=TwoWay}" 
-                  DisplayMemberPath="Name" SelectedValuePath="Name"/>
-                    </StackPanel>
-                    <!--<StackPanel Margin="6" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-                        <RadioButton Content="All" Margin="0 0 10 0" GroupName="Availibility" 
-                                     IsChecked="{Binding SelectedRecruiterLyncStatus, Mode=TwoWay, ConverterParameter=All, Converter={StaticResource RadioButtonConverter}}" />
-                        <RadioButton Content="Available" Margin="0 0 10 0" GroupName="Availibility" IsChecked="{Binding SelectedRecruiterLyncStatus, Mode=TwoWay, 
-                                        ConverterParameter=Available, Converter={StaticResource RadioButtonConverter}}" />
-                        <RadioButton Content="Online" Margin="0 0 10 0" 
-                                    GroupName="Availibility"
-                                    IsChecked="{Binding SelectedRecruiterLyncStatus, Mode=TwoWay, ConverterParameter=Online, 
-                                    Converter={StaticResource RadioButtonConverter}}" />
-                    </StackPanel>-->
-                    <StackPanel Orientation="Horizontal" >
-                        <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-                        <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the report" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
-                        <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-                        <Toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the report" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
-                        <Button Click="btnRefreshClick" Margin="6">Refresh Report</Button>
-                    </StackPanel>
                 </StackPanel>
-
             </Grid>
         </Border>
-        <TextBlock Text="Recruiters" FontSize="14" FontWeight="Bold"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6"/>
         <sdk:DataGrid x:Name="RecruiterDG" AutoGenerateColumns="False"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                     Grid.Row="2"  Grid.Column="0" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="RecruiterDG_SelectionChanged" 
                     ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
@@ -87,9 +60,9 @@
                 <sdk:DataGridTextColumn Binding="{Binding PhoneRoom}" />
                 <sdk:DataGridTextColumn Binding="{Binding OutboundCallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding InboundCallCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding TotalIdleTime}" />
+                <!--<sdk:DataGridTextColumn Binding="{Binding TotalIdleTime}" />
                 <sdk:DataGridTextColumn Binding="{Binding AvgIdleTime}" />
-                <sdk:DataGridTextColumn Binding="{Binding MaxIdleTime}" />
+                <sdk:DataGridTextColumn Binding="{Binding MaxIdleTime}" />-->
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
         <StackPanel  Margin="6" Grid.Row="2" Grid.Column="0"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
@@ -103,10 +76,18 @@
         <Grid Grid.Row="2" Grid.Column="1" Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition  MaxHeight="600" Height="600"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition  MaxHeight="500" />
             </Grid.RowDefinitions>
-            <controls:ContactCard  Source="{Binding SelectedRecruiter.sip}" Grid.Row="0" />
-            <sdk:DataGrid AutoGenerateColumns="False"  Grid.Row="1"
+            <controls:ContactCard  Source="{Binding SelectedRecruiter.sip}" Grid.Row="0" Margin="6" />
+            <StackPanel Orientation="Horizontal" Grid.Row="1" >
+                <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
+                <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the call report" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
+                <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
+                <Toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the call report" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
+                <Button Click="btnRefreshClick" Margin="6">Show Calls</Button>
+            </StackPanel>
+            <sdk:DataGrid AutoGenerateColumns="False"  Grid.Row="2"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
                     ItemsSource="{Binding RecruiterLogs}"  VerticalAlignment="Top"  
                     ToolTipService.ToolTip="Call Log" Margin="6" HorizontalAlignment="Left" >

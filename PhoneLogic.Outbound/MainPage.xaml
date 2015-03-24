@@ -18,7 +18,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <lyncControls:MyStatusArea Background="Transparent" Margin="3" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <lyncControls:MyStatusArea Background="Transparent" Margin="3" Grid.Column="0" Grid.Row="0"   HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <views:CallsInQueueView Margin="3" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <views:MyCallbacksView  Margin="3" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top"  HorizontalAlignment="Left" />
         <views:MyTasksView Margin="3" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top"  HorizontalAlignment="Left"  />
