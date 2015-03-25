@@ -52,8 +52,10 @@
                             <TextBlock Text="Caller's current time: " Margin="6"/>
                             <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
                             <StackPanel Name="playControlsPanel" Orientation="Horizontal">
-                                <Button Name="PlayMsg" Margin="6,6,3,6" Click="PlayMsg_Click" >Play</Button>
-                                <Button Name="StopMsg" Margin="3,6,6,6" Click="StopMsg_Click" >Stop</Button>
+                            <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                            Checked="PlayMsg_Click" Unchecked="StopMsg_Click" Width="Auto">Play</ToggleButton>
+                            <!--<Button Name="PlayMsg" Margin="6,6,3,6" Click="PlayMsg_Click" >Play</Button>
+                                <Button Name="StopMsg" Margin="3,6,6,6" Click="StopMsg_Click" >Stop</Button>-->
                             </StackPanel>
                             <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
                             <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Close</Button>

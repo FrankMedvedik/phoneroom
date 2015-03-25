@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Lync.Model;
@@ -57,12 +58,6 @@ namespace PhoneLogic.Core.Views
             }
         }
 
-        private void PlayMsg_Click(object sender, RoutedEventArgs e)
-        {
-            _vm.CanRefresh = false;
-            msgPlayback.Play();
-            timer.Start();
-        }
 
         private async void Call_Click(object sender, RoutedEventArgs e)
         {
@@ -159,7 +154,21 @@ namespace PhoneLogic.Core.Views
         }
 
         #region msgPlayback controls
-
+        
+        private void PlayMsg_Click(object sender, RoutedEventArgs e)
+        
+        {
+            (sender as ToggleButton).Content = "Stop";
+            _vm.CanRefresh = false;
+            msgPlayback.Play();
+            timer.Start();
+        }
+        private void StopMsg_Click(object sender, RoutedEventArgs e)
+        {
+           (sender as ToggleButton).Content = "Play";
+            msgPlayback.Stop();
+            SliderPosition.Value=0;
+        }
         private void media_MediaOpened(object sender, RoutedEventArgs e)
         {
             SliderPosition.Maximum = msgPlayback.NaturalDuration.TimeSpan.TotalSeconds;
@@ -193,11 +202,7 @@ namespace PhoneLogic.Core.Views
             lblStatus.Text = msgPlayback.CurrentState.ToString();
         }
 
-        private void StopMsg_Click(object sender, RoutedEventArgs e)
-        {
-            msgPlayback.Stop();
-            SliderPosition.Value=0;
-        }
+        
         #endregion
 
 

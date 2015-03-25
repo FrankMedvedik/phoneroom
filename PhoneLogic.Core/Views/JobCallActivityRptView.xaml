@@ -10,11 +10,11 @@
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
     </Control.Resources>
-    <Grid x:Name="LayoutRoot" Margin="6" VerticalAlignment="Top" HorizontalAlignment="Left">
+    <Grid x:Name="LayoutRoot" Margin="0,6" VerticalAlignment="Top" HorizontalAlignment="Left" Height="650">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="650"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top" >
@@ -37,9 +37,9 @@
             <Button Click="btnRefreshClick" Margin="6">Refresh Report</Button>
         </StackPanel>
 
-        <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-           Grid.Row="2" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" ItemsSource="{Binding Rpt}" Margin="6"  
-                          ToolTipService.ToolTip="Call Activity by Job"
+        <sdk:DataGrid x:Name="DGrid" Grid.Row="2" AutoGenerateColumns="False"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+           Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" ItemsSource="{Binding Rpt}" Margin="6"  
+                          ToolTipService.ToolTip="Call Activity by Job" Height="550"
                       HorizontalAlignment="Left" IsReadOnly="True" SelectionMode="Extended">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
@@ -60,7 +60,7 @@
                 <sdk:DataGridTextColumn Binding="{Binding PhoneRoomClosed}" />
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
-        <StackPanel Grid.Row="2"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+        <StackPanel Grid.Row="2" Height="600" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
             <TextBlock FontSize="14" FontWeight="Bold" Text="No Jobs Found"/>
             <StackPanel  Orientation="Vertical"  Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>
@@ -68,6 +68,6 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+        <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Width="100" Click="Button_Click">Save To Excel</Button>
     </Grid>
 </UserControl>

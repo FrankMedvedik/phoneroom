@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PhoneLogic.Core.Views
@@ -8,8 +9,11 @@ namespace PhoneLogic.Core.Views
         public BuildInformationView()
         {
             InitializeComponent();
-            ReleaseInfo.Text = ConditionalConfiguration.apiUrl + " " + ConditionalConfiguration.LyncServiceRefUrl + " " +
-                               ConditionalConfiguration.RecknerCallAppGuid;
+            ReleaseInfo.Text = String.Format("API= {0}  LyncSvc= {1}  GUID = {2} BuildDate = {3} ",
+                ConditionalConfiguration.apiUrl,
+                ConditionalConfiguration.LyncServiceRefUrl,
+                ConditionalConfiguration.RecknerCallAppGuid,
+                ConditionalConfiguration.BuildDate);
 
         }
         private void tbtnTest_Checked(object sender, RoutedEventArgs e)

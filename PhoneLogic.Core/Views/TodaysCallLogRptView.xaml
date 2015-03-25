@@ -12,10 +12,10 @@
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
     </Control.Resources>
-    <Grid x:Name="LayoutRoot" Margin="3" VerticalAlignment="Top" HorizontalAlignment="Left">
+    <Grid x:Name="LayoutRoot" Margin="3" VerticalAlignment="Top"  Height="650" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="650"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top" >
@@ -29,11 +29,10 @@
             <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="2" Margin="6" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="3" Margin="6" VerticalAlignment="Center"/>
         </Grid>
-        <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False" 
-           Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 
-                          ItemsSource="{Binding Rpt}" Margin="6"  
-                          ToolTipService.ToolTip="Daily call summary"
-                      HorizontalAlignment="Left" IsReadOnly="True" SelectionMode="Extended">
+        <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False"  Height="550" Grid.Row="1" 
+            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 
+            ItemsSource="{Binding Rpt}" Margin="6"  ToolTipService.ToolTip="Daily call summary"
+            HorizontalAlignment="Left" IsReadOnly="True" SelectionMode="Extended">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding taskName}" />
@@ -47,8 +46,8 @@
                 <sdk:DataGridTextColumn Binding="{Binding CallBack}" />
                 <sdk:DataGridTextColumn Binding="{Binding PlacedCall}" />
             </sdk:DataGrid.Columns>
-        </sdk:DataGrid> 
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+        </sdk:DataGrid>
+        <StackPanel Grid.Row="1" Height="550" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
                 <TextBlock FontSize="14" FontWeight="Bold" Text="No Jobs Found"/>
             <StackPanel  Orientation="Vertical"  Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>

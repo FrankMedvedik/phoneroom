@@ -3,10 +3,10 @@ using PhoneLogic.Core.ViewModels;
 
 namespace PhoneLogic.Core.Views
 {
-    public partial class RecruitersListView : UserControl
+    public partial class RecruitersRptView : UserControl
     {
         private RecruitersViewModel _vm = null;
-        public RecruitersListView()
+        public RecruitersRptView()
         {
             InitializeComponent();
             _vm = new RecruitersViewModel();

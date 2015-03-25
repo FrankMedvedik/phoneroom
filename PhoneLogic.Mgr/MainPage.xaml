@@ -8,35 +8,30 @@
     x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" >
         <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                   <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <sdk:TabControl  Width="Auto"  >
+        <sdk:TabControl  Width="Auto" Grid.Row="0">
             <sdk:TabItem  Header="Today's Call Log Summary">
                 <views:TodaysCallLogRptView />
             </sdk:TabItem>
             <sdk:TabItem  Header="Recruiters">
-                <views:RecruitersListView />
+                <views:RecruitersRptView />
             </sdk:TabItem>
-            <!--<sdk:TabItem  Header="Available Recruiters">
-                <views:RecruitersAvailableView />
-            </sdk:TabItem>
-            <sdk:TabItem  Header="Online Recruiters">
-                <views:RecruitersOnlineView />
-            </sdk:TabItem>-->
             <sdk:TabItem  Header="Job Call Activity">
                 <views:JobCallActivityRptView />
             </sdk:TabItem>
             <sdk:TabItem  Header="Inbound Calls By Hour">
                 <views:InboundCallsByHrRptView />
             </sdk:TabItem>
-            <sdk:TabItem  Header="Queued Calls">
-                <views:CallsInQueueView />
+            <sdk:TabItem  Header="Active Calls by Job">
+            <views:JobCallQueueSummaryView/>
             </sdk:TabItem>
         </sdk:TabControl>
+        <views:BuildInformationView Grid.Row="1"/>
     </Grid>
 </UserControl>
 

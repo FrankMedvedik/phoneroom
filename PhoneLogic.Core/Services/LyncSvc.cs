@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,10 @@ using PhoneLogic.Core.AppServiceReference;
 #elif DEBUGPROD
 using sr= PhoneLogic.Core.ProdServiceReference;
 using PhoneLogic.Core.ProdServiceReference;
+#else
+using sr = PhoneLogic.Core.ProdServiceReference;
+using PhoneLogic.Core.ProdServiceReference;
+
 #endif
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
@@ -36,11 +41,11 @@ namespace PhoneLogic.Core.Services
 
         public async static void testAll()
         {
-            
-            var x = GetMyQueueSummary();
-            List<string> la = await GetAvailableRecruiters();
-            List<string> lo = await GetOnlineRecruiters();
-            List<QueueDetail> lqd = GetQueueDetail("20140001:1");
+            //var x = GetMyQueueSummary();
+            //List<string> la = await GetAvailableRecruiters();
+            //List<string> lo = await GetOnlineRecruiters();
+            //List<QueueDetail> lqd = GetQueueDetail("20140001:1");
+            var t = GetJobSummary();
 
         }
       
@@ -54,8 +59,7 @@ namespace PhoneLogic.Core.Services
                     channel.EndGetMyQueueSummary, LyncClient.GetClient().Self.Contact.Uri, state);
             if (t.Count > 0)
             {
-                var lqs = t;
-                foreach (var s in lqs)
+                foreach (var s in t)
                     wqs.Add(new PhoneLogic.Model.QueueSummary()
                         {JobNumber = s.JobNumber,
                          InQueue = s.InQueue});
@@ -74,16 +78,36 @@ namespace PhoneLogic.Core.Services
             return await GetRecruiters(RecruiterStatus.Online);
         }
 
-        public static List<JobSummary> GetJobSummary()
+        public async static Task<ObservableCollection<JobCallSummary>> GetJobSummary()
         {
-                var proxy = new PhoneLogicServiceClient();
-                Object state = "test";
-                var channel = proxy.ChannelFactory.CreateChannel();
-                var t = Task<List<JobSummary>>.Factory.FromAsync(channel.BeginGetJobSummary, 
+            var tc = new ObservableCollection<JobCallSummary>();
+            var proxy = new PhoneLogicServiceClient();
+            var channel = proxy.ChannelFactory.CreateChannel();
+            Object state = "test";
+            try
+            {
+                var t = await Task<List<JobSummary>>.Factory.FromAsync(channel.BeginGetJobSummary,
                     channel.EndGetJobSummary, state);
-                var x = t.Result;
-                MessageBox.Show(x.ToString());
-                return t.Result;
+                foreach (var s in t)
+                    tc.Add(new JobCallSummary()
+                    {
+                        JobNumber = s.JobNumber,
+                        InQueue = s.InQueue,
+                        Abandoned = s.Abandoned,
+                        Callback = s.Callback,
+                        InboundCalls = s.InboundCalls,
+                        LeftMessage = s.LeftMessage,
+                        NoAgents = s.NoAgents,
+                        OutboundCall = s.OutboundCall,
+                        PlacedCall = s.PlacedCall,
+                        TollFreeNumber = s.TollFreeNumber
+                    });
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            return tc;
         }
 
         public static List<QueueDetail> GetQueueDetail(string jobNum)

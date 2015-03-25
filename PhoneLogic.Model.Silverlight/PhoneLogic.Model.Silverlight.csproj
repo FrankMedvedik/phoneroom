@@ -116,7 +116,7 @@
       <Link>Models\RptTodayCallLogSummary.cs</Link>
     </Compile>
     <Compile Include="Models\CallbackDto.cs" />
-    <Compile Include="Models\LyncStatusRange.cs" />
+    <Compile Include="Models\JobCallSummary.cs" />
     <Compile Include="Models\PhoneRoom.cs" />
     <Compile Include="Models\QueueSummary.cs" />
     <Compile Include="Models\PhoneLogicTask.cs" />
@@ -128,6 +128,7 @@
     <Compile Include="Models\person.cs" />
     <Compile Include="Models\PhoneCall.cs" />
     <Compile Include="Models\returnedCall.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConfig.cs" />
   </ItemGroup>

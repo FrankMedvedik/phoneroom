@@ -229,12 +229,12 @@
     <Compile Include="Services\LyncSvc.cs" />
     <Compile Include="Services\PeopleSvc.cs" />
     <Compile Include="Services\PhoneCallSvc.cs" />
-    <Compile Include="Services\LyncStatusRangeSvc.cs" />
     <Compile Include="Services\PhoneRoomSvc.cs" />
     <Compile Include="Services\RecruiterSvc.cs" />
     <Compile Include="Services\RptSvc.cs" />
     <Compile Include="Services\PhoneLogicTaskSvc.cs" />
     <Compile Include="Services\CallbackSvc.cs" />
+    <Compile Include="ViewModels\JobCallQueueSummaryViewModel.cs" />
     <Compile Include="ViewModels\DebugEventsViewModel.cs" />
     <Compile Include="ViewModels\InboundCallsByHrRptViewModel.cs" />
     <Compile Include="ViewModels\JobCallActivityRptViewModel.cs" />
@@ -249,6 +249,9 @@
     </Compile>
     <Compile Include="Views\BuildInformationView.xaml.cs">
       <DependentUpon>BuildInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JobCallQueueSummaryView.xaml.cs">
+      <DependentUpon>JobCallQueueSummaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JobDetailView.xaml.cs">
       <DependentUpon>JobDetailView.xaml</DependentUpon>
@@ -265,8 +268,8 @@
     <Compile Include="Views\JobCallActivityRptView.xaml.cs">
       <DependentUpon>JobCallActivityRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RecruitersListView.xaml.cs">
-      <DependentUpon>RecruitersListView.xaml</DependentUpon>
+    <Compile Include="Views\RecruitersRptView.xaml.cs">
+      <DependentUpon>RecruitersRptView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RespondentSearchView.xaml.cs">
       <DependentUpon>RespondentSearchView.xaml</DependentUpon>
@@ -319,6 +322,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\JobCallQueueSummaryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\JobDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -339,7 +346,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\RecruitersListView.xaml">
+    <Page Include="Views\RecruitersRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
