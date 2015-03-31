@@ -23,14 +23,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="My Jobs/Tasks"  FontWeight="Bold"  Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="2" Margin="6" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="3" Margin="6" VerticalAlignment="Center"/>
+            <TextBlock Text="My Jobs/Tasks"  FontWeight="Bold"  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="6"/>
+            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="1" Margin="6" />
+            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="2" Margin="6" />
         </Grid>
             
-          <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False" 
+          <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False" MaxHeight="250"
            Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 
                           ItemsSource="{Binding PhoneLogicTasks}" Margin="6"  
                           ToolTipService.ToolTip="My current Job tasks"
@@ -46,9 +45,9 @@
                 </sdk:DataGrid.Columns> 
         </sdk:DataGrid> 
         <StackPanel Grid.Row="1"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-                <TextBlock FontSize="14" FontWeight="Bold" Text="No Jobs Found"/>
+                <TextBlock FontSize="14" FontWeight="Bold" Text="No Jobs Found" HorizontalAlignment="Center"/>
             <StackPanel  Orientation="Vertical"  Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
-                <TextBlock Text="Error during load"/>
+                <TextBlock Text="Error during load" HorizontalAlignment="Center"/>
                 <TextBlock Text="{Binding LoadMethod}" />
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>

@@ -215,6 +215,7 @@
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="MVVM Base Types\CollectionViewModelBase.cs" />
+    <Compile Include="Service References\AppServiceReference\ActiveCallDetail.cs" />
     <Compile Include="Service References\AppServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -234,6 +235,7 @@
     <Compile Include="Services\RptSvc.cs" />
     <Compile Include="Services\PhoneLogicTaskSvc.cs" />
     <Compile Include="Services\CallbackSvc.cs" />
+    <Compile Include="ViewModels\ActiveCallsViewModel.cs" />
     <Compile Include="ViewModels\JobCallQueueSummaryViewModel.cs" />
     <Compile Include="ViewModels\DebugEventsViewModel.cs" />
     <Compile Include="ViewModels\InboundCallsByHrRptViewModel.cs" />
@@ -244,11 +246,17 @@
     <Compile Include="ViewModels\JobDetailViewModel.cs" />
     <Compile Include="ViewModels\PeopleViewModel.cs" />
     <Compile Include="ViewModels\RecruitersAvailableViewModel.cs" />
+    <Compile Include="Views\ActiveCallsView.xaml.cs">
+      <DependentUpon>ActiveCallsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActiveJobsView.xaml.cs">
       <DependentUpon>ActiveJobsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BuildInformationView.xaml.cs">
       <DependentUpon>BuildInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InboundCallsByHrChartView.xaml.cs">
+      <DependentUpon>InboundCallsByHrChartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JobCallQueueSummaryView.xaml.cs">
       <DependentUpon>JobCallQueueSummaryView.xaml</DependentUpon>
@@ -314,6 +322,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ActiveCallsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ActiveJobsView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -321,6 +333,10 @@
     <Page Include="Views\BuildInformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InboundCallsByHrChartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\JobCallQueueSummaryView.xaml">
       <Generator>MSBuild:Compile</Generator>

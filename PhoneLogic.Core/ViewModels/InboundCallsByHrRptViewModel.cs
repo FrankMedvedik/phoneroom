@@ -1,4 +1,5 @@
-﻿using PhoneLogic.Core.MVVM_Base_Types;
+﻿using System.Collections.Generic;
+using PhoneLogic.Core.MVVM_Base_Types;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 using System.Collections.ObjectModel;
@@ -23,15 +24,9 @@ namespace PhoneLogic.Core.ViewModels
             try
             {
                 var jr = await RptSvc.GetInboundCallsByHour(StartRptDate, EndRptDate);
-                Rpt.Clear();
-                if (jr.Count > 0)
-                {
-                    foreach (var j in jr)
-                        Rpt.Add(j);
-                    ShowGridData = true;
-                }
-                else
-                    ShowGridData = false;
+                Rpt = new ObservableCollection<RptInboundCallByHour>(jr);
+                GetAllRptsSeries();
+                ShowGridData = (jr.Count > 0); 
                 LoadedOk = true;
 
             }
@@ -40,6 +35,119 @@ namespace PhoneLogic.Core.ViewModels
                 LoadFailed(e);
 
             }
+        }
+
+        //public List<DataPoint> Series1
+        //{
+        //    get
+        //    {
+        //        var a = ChartSeriesCollection[0].Elements; 
+        //        return a;
+        //    }
+        //}
+
+        private ObservableCollection<RptSeries> _chartSeriesCollection = new ObservableCollection<RptSeries>();
+        public ObservableCollection<RptSeries> ChartSeriesCollection 
+        {
+            get { return _chartSeriesCollection;; }
+            set
+            {
+                _chartSeriesCollection = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void GetAllRptsSeries()
+        {
+            var rs = new ObservableCollection<RptSeries>();
+            foreach (var r in Rpt)
+            {
+                var a = new RptSeries(){ Name = r.WorkDate };
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "<9am",
+                    DependentValue = r.Before_9am.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "9",
+                    DependentValue = r.C9_am.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "10",
+                    DependentValue = r.C10_am.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "11",
+                    DependentValue = r.C11_am.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "12pm",
+                    DependentValue = r.C12_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "1",
+                    DependentValue = r.C1_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "2",
+                    DependentValue = r.C2_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "3",
+                    DependentValue = r.C3_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "4",
+                    DependentValue = r.C4_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "5",
+                    DependentValue = r.C5_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "6",
+                    DependentValue = r.C6_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "7",
+                    DependentValue = r.C7_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "8",
+                    DependentValue = r.C8_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "9",
+                    DependentValue = r.C9_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = "10",
+                    DependentValue = r.C10_pm.GetValueOrDefault()
+                });
+                a.Elements.Add(new DataPoint()
+                {
+                    IndependentValue = ">10pm",
+                    DependentValue = r.after_10pm.GetValueOrDefault()
+                });
+
+                rs.Add(a);
+            }
+
+            ChartSeriesCollection = rs;
         }
 
         protected override void RefreshAll(object sender, EventArgs e)

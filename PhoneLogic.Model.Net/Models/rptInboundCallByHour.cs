@@ -41,3 +41,5 @@ namespace PhoneLogic.Model
         public int? after_10pm { get; set; }
     }
 }
+
+

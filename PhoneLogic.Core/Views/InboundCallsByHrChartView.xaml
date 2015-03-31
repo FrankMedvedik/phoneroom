@@ -1,5 +1,5 @@
 ﻿<UserControl xmlns:Toolkit="clr-namespace:MM.Toolkit;assembly=MM.Toolkit"  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
-    x:Class="PhoneLogic.Core.Views.InboundCallsByHrRptView"
+    x:Class="PhoneLogic.Core.Views.InboundCallsByHrChartView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,6 +8,8 @@
     xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:toolkit1="clr-namespace:MM.Toolkit;assembly=MM.Toolkit"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:helpers="clr-namespace:PhoneLogic.Core.Helpers"
     mc:Ignorable="d" d:DesignWidth="900" Margin="6" >
     <Control.Resources>
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
@@ -18,8 +20,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition MaxHeight="650"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition MaxHeight="650"/>
+            <RowDefinition MaxHeight="650"/>
         </Grid.RowDefinitions>
+
         <Grid Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -31,21 +35,24 @@
             <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="2" Margin="6" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="3" Margin="6" VerticalAlignment="Center"/>
         </Grid>
-
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
             <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the report" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
             <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
             <Toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the report" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
-            <Button Click="btnRefresh_Click" Margin="6">Refresh Report</Button>
+            <Button Click="LoadData" Margin="6">Refresh Report</Button>
+            
         </StackPanel>
-        <sdk:DataGrid x:Name="DGrid" Grid.Row="2" AutoGenerateColumns="True"  ClipboardCopyMode="IncludeHeader" SelectionMode="Extended"
+        <toolkit:Chart Grid.Row="2" Title="Calls By Hour" x:Name="LineChart" />
+        <Button Grid.Row="3"  Click="LoadChart" Margin="6">Refresh Report</Button>
+
+        <sdk:DataGrid x:Name="DGrid" Grid.Row="4" AutoGenerateColumns="True"  ClipboardCopyMode="IncludeHeader" SelectionMode="Extended"
            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 
                           ItemsSource="{Binding Rpt}" Margin="6"   
                           ToolTipService.ToolTip="Calls by Hour"
                       HorizontalAlignment="Left" IsReadOnly="True">
         </sdk:DataGrid>
-            <StackPanel Grid.Row="2"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+        <StackPanel Grid.Row="4"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
             <TextBlock FontSize="14" FontWeight="Bold" Text="No Jobs Found"/>
             <StackPanel  Orientation="Vertical"  Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>
@@ -53,6 +60,5 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="btnExport_Click" >Save To Excel</Button>
     </Grid>
 </UserControl>

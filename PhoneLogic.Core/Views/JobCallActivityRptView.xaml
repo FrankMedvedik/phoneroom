@@ -10,25 +10,18 @@
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
     </Control.Resources>
-    <Grid x:Name="LayoutRoot" Margin="0,6" VerticalAlignment="Top" HorizontalAlignment="Left" Height="650">
+    <Grid x:Name="LayoutRoot" Margin="6" VerticalAlignment="Top" HorizontalAlignment="Left" MaxHeight="650">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Job Call Activity"  FontWeight="Bold"  Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="2" Margin="6" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="3" Margin="6" VerticalAlignment="Center"/>
-        </Grid>
-
+        <StackPanel Orientation="Horizontal" Grid.Row="0" >
+            <TextBlock Text="Job Call Activity"  FontWeight="Bold"  HorizontalAlignment="Left" Margin="6"/>
+            <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
+            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
+        </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
             <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the report" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
@@ -39,17 +32,17 @@
 
         <sdk:DataGrid x:Name="DGrid" Grid.Row="2" AutoGenerateColumns="False"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" ItemsSource="{Binding Rpt}" Margin="6"  
-                          ToolTipService.ToolTip="Call Activity by Job" Height="550"
+                          ToolTipService.ToolTip="Call Activity by Job" MaxHeight="550"
                       HorizontalAlignment="Left" IsReadOnly="True" SelectionMode="Extended">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding taskName}" />
-                <sdk:DataGridTextColumn Binding="{Binding taskDscr}" Width="80" />
+                <sdk:DataGridTextColumn Binding="{Binding taskDscr}" Width="90" />
                 <sdk:DataGridTextColumn Binding="{Binding taskTypeID}" />
                 <sdk:DataGridTextColumn Binding="{Binding ProjMgr}" />
                 <sdk:DataGridTextColumn Binding="{Binding InboundCall}" />
                 <sdk:DataGridTextColumn Binding="{Binding DirectCall}" />
-                <sdk:DataGridTextColumn Binding="{Binding QueuedCall}" />
+                <!--<sdk:DataGridTextColumn Binding="{Binding QueuedCall}" />-->
                 <sdk:DataGridTextColumn Binding="{Binding PlaceQueuedCall}" />
                 <sdk:DataGridTextColumn Binding="{Binding Callback}" />
                 <sdk:DataGridTextColumn Binding="{Binding SuccessfullCallback}" />
@@ -60,12 +53,12 @@
                 <sdk:DataGridTextColumn Binding="{Binding PhoneRoomClosed}" />
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
-        <StackPanel Grid.Row="2" Height="600" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <TextBlock FontSize="14" FontWeight="Bold" Text="No Jobs Found"/>
+        <StackPanel Grid.Row="2" MaxHeight="550" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+            <TextBlock FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Text="No Jobs Found"/>
             <StackPanel  Orientation="Vertical"  Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
-                <TextBlock Text="Error during load"/>
-                <TextBlock Text="{Binding LoadMethod}" />
-                <TextBlock Text="{Binding LoadError}" />
+                <TextBlock Text="Error during load" HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding LoadMethod}" HorizontalAlignment="Left" />
+                <TextBlock Text="{Binding LoadError}" HorizontalAlignment="Left" />
             </StackPanel>
         </StackPanel>
         <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Width="100" Click="Button_Click">Save To Excel</Button>

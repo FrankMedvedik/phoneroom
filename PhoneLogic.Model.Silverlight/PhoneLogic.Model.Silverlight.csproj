@@ -115,6 +115,7 @@
     <Compile Include="..\PhoneLogic.Model.Net\Models\RptTodayCallLogSummary.cs">
       <Link>Models\RptTodayCallLogSummary.cs</Link>
     </Compile>
+    <Compile Include="Models\ActiveCallDetail.cs" />
     <Compile Include="Models\CallbackDto.cs" />
     <Compile Include="Models\JobCallSummary.cs" />
     <Compile Include="Models\PhoneRoom.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Models\person.cs" />
     <Compile Include="Models\PhoneCall.cs" />
     <Compile Include="Models\returnedCall.cs" />
+    <Compile Include="Models\RptSeries.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConfig.cs" />

@@ -13,9 +13,9 @@ namespace PhoneLogic.Core.Views
             DataContext = _vm;
         }
 
-        private void btnRefreshClick(object sender, System.Windows.RoutedEventArgs e)
+        private void btnGetLogsClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            _vm.GetRecruiters();
+            _vm.GetRecruiterLogs();
         }
 
         private void RecruiterDG_SelectionChanged(object sender, SelectionChangedEventArgs e)

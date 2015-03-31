@@ -17,7 +17,7 @@
             </Grid>
         </DataTemplate>
     </Control.Resources>
-    <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top" Height="650">
+    <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top" MaxHeight="600">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.25*" />
             <ColumnDefinition Width=".75*" />
@@ -25,7 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition  Height="600"/>
+            <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1">
             <Grid >
@@ -49,8 +49,8 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <sdk:DataGrid x:Name="RecruiterDG" AutoGenerateColumns="False" Height="550"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
-                    Grid.Row="2"  Grid.Column="0" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="RecruiterDG_SelectionChanged" 
+        <sdk:DataGrid Grid.Row="2"  Grid.Column="0" x:Name="RecruiterDG" AutoGenerateColumns="False" MaxHeight="500"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="RecruiterDG_SelectionChanged" 
                     ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Phone Room Recuiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
             <sdk:DataGrid.Columns>
@@ -73,21 +73,24 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <Grid Grid.Row="2" Grid.Column="1" Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}">
+        <StackPanel  Margin="6" Grid.Row="2" Grid.Column="1"  Visibility="{Binding ShowSelectedRecruiter, Converter={StaticResource NotBoolToVisConverter}}">
+            <TextBlock  HorizontalAlignment="Left" Text="Select a recruiter to view their details and call history"/>
+        </StackPanel>
+        <Grid Grid.Row="2" Grid.Column="1" Visibility="{Binding ShowSelectedRecruiter, Converter={StaticResource BoolToVisConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition  MaxHeight="450" />
+                <RowDefinition  MaxHeight="400" />
             </Grid.RowDefinitions>
             <controls:ContactCard  Source="{Binding SelectedRecruiter.sip}" Grid.Row="0" Margin="6" />
             <StackPanel Orientation="Horizontal" Grid.Row="1" >
                 <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-                <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the call report" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
+                <Toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for call history" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
                 <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-                <Toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the call report" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
-                <Button Click="btnRefreshClick" Margin="6">Show Calls</Button>
+                <Toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for call history" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
+                <Button Click="btnGetLogsClick" Margin="6">Get Calls</Button>
             </StackPanel>
-            <sdk:DataGrid AutoGenerateColumns="False"  Grid.Row="2"
+                <sdk:DataGrid AutoGenerateColumns="False"  Grid.Row="2" Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
                     ItemsSource="{Binding RecruiterLogs}"  VerticalAlignment="Top"  
                     ToolTipService.ToolTip="Call Log" Margin="6" HorizontalAlignment="Left" >
@@ -100,6 +103,9 @@
                     <sdk:DataGridTextColumn Binding="{Binding eventdscr}" />
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
+            <StackPanel  Margin="6" Grid.Row="2" Visibility="{Binding ShowLogData, Converter={StaticResource NotBoolToVisConverter}}">
+                <TextBlock  HorizontalAlignment="Left" Text="No calls in this time frame"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

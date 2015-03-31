@@ -109,6 +109,34 @@ namespace PhoneLogic.Core.Services
             }
             return tc;
         }
+        
+        public async static Task<ObservableCollection<ActiveCallDetail>> GetActiveCallsDetail()
+        {
+            var tc = new ObservableCollection<ActiveCallDetail>();
+            var proxy = new PhoneLogicServiceClient();
+            var channel = proxy.ChannelFactory.CreateChannel();
+            Object state = "test";
+            try
+            {
+                var t = await Task<List<ActiveCall>>.Factory.FromAsync(channel.BeginGetActiveCalls,
+                    channel.EndGetActiveCalls, state);
+                foreach (var s in t)
+                    tc.Add(new ActiveCallDetail()
+                    {
+                        CallerId = s.CallerId,
+                        ConferenceUri = s.ConferenceUri,
+                        Id = s.Id,
+                        JobNumber = s.JobNumber,
+                        RecruiterUri = s.RecruiterUri,
+                        TimeIn = s.TimeIn
+                    });
+                }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            return tc;
+        }
 
         public static List<QueueDetail> GetQueueDetail(string jobNum)
         {
@@ -146,3 +174,4 @@ namespace PhoneLogic.Core.Services
             return l.OrderBy(q => q.Substring(5)).ToList();
         }
     }
+

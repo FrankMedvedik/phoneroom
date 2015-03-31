@@ -10,25 +10,24 @@ namespace PhoneLogic.Model
         public int taskID { get; set; }
         [Display(Name = "Topic")]
         public string taskName { get; set; }
-        [Display(Name = "Topic Description")]
+        [Display(Name = "Description")]
         public string taskDscr { get; set; }
         [Display(Name = "Task Type")]
         public string taskTypeID { get; set; }
         public string taskStatusID { get; set; }
         public string tollfreenumber { get; set; }
 
-        [Display(Name = "Inbound")]
+        [Display(Name = "In")]
         public Nullable<int> InboundCalls { get; set; }
-        [Display(Name = "No Recruiters")]
+        [Display(Name = "No Answer")]
         public Nullable<int> NoAgents { get; set; }
-        
-        [Display(Name = "Abandoned")]
+        [Display(Name = "Hung up")]
         public Nullable<int> Abandoned { get; set; }
-        [Display(Name = "Left Message")]
+        [Display(Name = "Message")]
         public Nullable<int> LeftMessage { get; set; }
-        [Display(Name = "Callback")]
+        [Display(Name = "CallBack")]
         public Nullable<int> CallBack { get; set; }
-        [Display(Name = "OutBound")]
+        [Display(Name = "Out")]
         public Nullable<int> PlacedCall { get; set; }
         [Display(Name = "Job")]
         public string jobFormatted

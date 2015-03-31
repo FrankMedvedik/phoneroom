@@ -111,8 +111,13 @@ namespace PhoneLogic.Core.ViewModels
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
+            var sr = SelectedRecruiter;
             GetRecruiters();
-            SelectedRecruiter = Recruiters.FirstOrDefault();
+            if (sr != null)
+            {
+                SelectedRecruiter = Recruiters.FirstOrDefault(x => x.sip == sr.sip);
+                GetRecruiterLogs();
+            }
         }
 
         #region Recruiters
@@ -168,6 +173,7 @@ namespace PhoneLogic.Core.ViewModels
             set
             {
                 _selectedRecruiter = value;
+                ShowSelectedRecruiter= (_selectedRecruiter != null);
                 NotifyPropertyChanged();
                 GetRecruiterLogs();
             }
@@ -204,6 +210,19 @@ namespace PhoneLogic.Core.ViewModels
                 NotifyPropertyChanged();
             }
         }
+        private Boolean _showSelectedRecruiter = false;
+        public Boolean ShowSelectedRecruiter
+        {
+            get
+            {
+                return _showSelectedRecruiter;
+            }
+            set
+            {
+                _showSelectedRecruiter = value;
+                NotifyPropertyChanged();
+            }
+        }
 
 
         public async void GetRecruiterLogs()
@@ -217,13 +236,9 @@ namespace PhoneLogic.Core.ViewModels
                 try
                 {
                     var ro = await RecruiterSvc.GetRecruiterLog(SelectedRecruiter.sip, StartRptDate, EndRptDate);
-                    var r = new ObservableCollection<RecruiterLog>();
+                    var r = new ObservableCollection<RecruiterLog>(ro);
                     if (ro.Count > 0)
                     {
-                        foreach (var c in ro)
-                        {
-                            r.Add(c);
-                        }
                         ShowLogData = true;
                         RecruiterLogs = r;
                     }

@@ -14,7 +14,7 @@
     <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition  MaxHeight="450" Height="400"/>
+            <RowDefinition  Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -23,48 +23,45 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Phone Messages " FontWeight="Bold"  Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="2" Margin="6" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="3" Margin="6" VerticalAlignment="Center"/>
+            <TextBlock Text="Phone Messages " FontWeight="Bold" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Left" Margin="6"/>
+            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="1" Margin="6" />
+            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="2" Margin="6" />
         </Grid>
-            <sdk:DataGrid x:Name="callbackGrid" AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
+        <sdk:DataGrid x:Name="callbackGrid" MaxHeight="400"  Grid.Row="1"    AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
                           Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
-                          Loaded="callbackGrid_Loaded"  Grid.Row="1"   VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
+                          Loaded="callbackGrid_Loaded"  VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
                           ItemsSource="{Binding MyCallbacks}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"  
-         ToolTipService.ToolTip="Voice Mail Messages to be returned" Margin="6" HorizontalAlignment="Left" 
-          SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected" >
-                <sdk:DataGrid.Columns>
-                    <sdk:DataGridTextColumn Binding="{Binding phoneFormatted}" />
-                    <sdk:DataGridTextColumn Binding="{Binding timeEntered}" />
-                    <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
-                    <sdk:DataGridTextColumn Binding="{Binding taskID}" />
-                    <sdk:DataGridTextColumn Binding="{Binding taskName}" />
-                    <sdk:DataGridTextColumn Binding="{Binding TaskTypeId}" />
-                    <sdk:DataGridTextColumn Binding="{Binding tollFreeFormatted}"/>
-                    <sdk:DataGridTextColumn Binding="{Binding Region}"/>
-                    <sdk:DataGridTextColumn Binding="{Binding MsgStatus}"  Foreground="DeepPink" />
-                </sdk:DataGrid.Columns>
-                <sdk:DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Caller's current time: " Margin="6"/>
-                            <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
-                            <StackPanel Name="playControlsPanel" Orientation="Horizontal">
+                        ToolTipService.ToolTip="Voice Mail Messages to be returned" Margin="6" HorizontalAlignment="Left" 
+                        SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected" >
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding phoneFormatted}" />
+                <sdk:DataGridTextColumn Binding="{Binding timeEntered}" />
+                <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
+                <sdk:DataGridTextColumn Binding="{Binding taskID}" />
+                <sdk:DataGridTextColumn Binding="{Binding taskName}" />
+                <sdk:DataGridTextColumn Binding="{Binding TaskTypeId}" />
+                <sdk:DataGridTextColumn Binding="{Binding tollFreeFormatted}"/>
+                <sdk:DataGridTextColumn Binding="{Binding Region}"/>
+                <sdk:DataGridTextColumn Binding="{Binding MsgStatus}"  Foreground="Red" />
+            </sdk:DataGrid.Columns>
+            <sdk:DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Caller's current time: " Margin="6"/>
+                        <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
+                        <StackPanel Name="playControlsPanel" Orientation="Horizontal">
                             <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
                             Checked="PlayMsg_Click" Unchecked="StopMsg_Click" Width="Auto">Play</ToggleButton>
-                            <!--<Button Name="PlayMsg" Margin="6,6,3,6" Click="PlayMsg_Click" >Play</Button>
-                                <Button Name="StopMsg" Margin="3,6,6,6" Click="StopMsg_Click" >Stop</Button>-->
-                            </StackPanel>
-                            <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
-                            <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Close</Button>
                         </StackPanel>
-                    </DataTemplate>
-                </sdk:DataGrid.RowDetailsTemplate>
-            </sdk:DataGrid>
+                        <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
+                        <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Close</Button>
+                    </StackPanel>
+                </DataTemplate>
+            </sdk:DataGrid.RowDetailsTemplate>
+        </sdk:DataGrid>
         <StackPanel Grid.Row="2" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
-        <Grid Margin="6" Name="PlaybackControls" >
+            <Grid Margin="6" Name="PlaybackControls" >
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>

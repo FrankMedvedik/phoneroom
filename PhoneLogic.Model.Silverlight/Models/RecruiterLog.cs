@@ -27,7 +27,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return jobnum.Substring(0, 4) + "-" + jobnum.Substring(4);
+                return (String.IsNullOrWhiteSpace(jobnum)) ? jobnum : jobnum.Substring(0, 4) + "-" + jobnum.Substring(4);
             }
         }
         
@@ -35,8 +35,8 @@ namespace PhoneLogic.Model
         public string phoneFormatted
         {
             get
-            {
-                return String.Format("{0:(###) ###-####}", double.Parse(callerid));
+            {   
+                return (String.IsNullOrWhiteSpace(callerid)) ? callerid : String.Format("{0:(###) ###-####}", double.Parse(callerid));
             }
         }
     }

@@ -7,31 +7,38 @@
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" >
         <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <sdk:TabControl  Width="Auto" Grid.Row="0">
-            <sdk:TabItem  Header="Today's Call Log Summary">
-                <views:TodaysCallLogRptView />
-            </sdk:TabItem>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        <sdk:TabControl  Width="Auto" Grid.Row="0" Grid.Column="0">
             <sdk:TabItem  Header="Recruiters">
                 <views:RecruitersRptView />
             </sdk:TabItem>
             <sdk:TabItem  Header="Job Call Activity">
                 <views:JobCallActivityRptView />
             </sdk:TabItem>
+            <sdk:TabItem  Header="Today's Call Log Summary">
+                <views:TodaysCallLogRptView />
+            </sdk:TabItem>
+
             <sdk:TabItem  Header="Inbound Calls By Hour">
-                <views:InboundCallsByHrRptView />
+                <StackPanel Orientation="Vertical">
+                <!--<views:InboundCallsByHrRptView />-->
+                <views:InboundCallsByHrChartView />
+                </StackPanel>
             </sdk:TabItem>
-            <sdk:TabItem  Header="Active Calls by Job">
+            <!--<sdk:TabItem  Header="Active Calls by Job">
             <views:JobCallQueueSummaryView/>
-            </sdk:TabItem>
+            </sdk:TabItem>-->
         </sdk:TabControl>
-        <views:BuildInformationView Grid.Row="1"/>
+        <views:ActiveCallsView  Grid.Row="0" Grid.Column="1" />
+        <views:BuildInformationView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+        
     </Grid>
 </UserControl>
 

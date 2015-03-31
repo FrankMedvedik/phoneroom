@@ -15,21 +15,21 @@ namespace PhoneLogic.Model
             }
         }
         public string JobNumber {get; set;}
-        [Display(Name = "Abandoned")]
+        [Display(Name = "Hung up")]
         public int Abandoned {get; set;}
         [Display(Name = "Callbacks")]
         public int Callback {get; set;}
         [Display(Name = "InQueue")]
         public int InQueue {get; set;}
-        [Display(Name = "InboundCalls")]
+        [Display(Name = "In")]
         public int InboundCalls { get; set; }
-        [Display(Name = "LeftMessage ")]
+        [Display(Name = "Left Message ")]
         public int LeftMessage { get; set; }
-        [Display(Name = "NoAgentsAvail")]
+        [Display(Name = "No Answer")]
         public int NoAgents { get; set; }
-        [Display(Name = "OutboundCalls")]
+        [Display(Name = "Out")]
         public int OutboundCall { get; set; }
-        [Display(Name = "PlacedCalls")]
+        [Display(Name = "Placed")]
         public int PlacedCall { get; set; }
         [Display(Name = "TollFreeNumber")]
         public string TollFreeNumber {get; set;}
