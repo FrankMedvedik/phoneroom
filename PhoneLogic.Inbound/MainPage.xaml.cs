@@ -3,9 +3,12 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Lync.Model;
 using Microsoft.Lync.Model.Conversation;
+using Microsoft.Lync.Model.Extensibility;
 using Newtonsoft.Json;
 using PhoneLogic.Core;
+using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
+using PhoneLogic.Core.Views;
 using PhoneLogic.Model;
 
 namespace PhoneLogic.Inbound
@@ -15,7 +18,6 @@ namespace PhoneLogic.Inbound
         public MainPage()
         {
             DataContext = ConversationContext.Instance;
-
             try
             {
                 LyncClient lyncClient = LyncClient.GetClient();
@@ -43,7 +45,7 @@ namespace PhoneLogic.Inbound
                     }
                     else
                     {
-                     //   MessageBox.Show(appData);
+                        //   MessageBox.Show(appData);
                         // we have a call and it has app data meaning we should know the job info
                         ConversationContext.Instance.PhoneLogicContext =
                             JsonConvert.DeserializeObject<PhoneLogicContext>(appData);
@@ -58,29 +60,74 @@ namespace PhoneLogic.Inbound
                         }
 
                         ConversationContext.Instance.ShowJobDetailView = true;
+                        conversation.StateChanged += conversation_StateChanged;
+                        
+                        #region debug
                         //MessageBox.Show(ConversationContext.Instance.PhoneLogicContext.jobNumber + " " + 
                         //    ConversationContext.Instance.PhoneLogicContext.TaskID);
 
                         //MessageBox.Show(String.Format("Job {0}  Task {1}",
                         //    ConversationContext.Instance.PhoneLogicContext.jobNumber,
                         //    ConversationContext.Instance.PhoneLogicContext.TaskID));
-                    
-                    }
+
                         // a callback comes from a message if it is not a call back you can't close the callback.
-                        ConversationContext.Instance.ShowCallbackButtons =
-                            ConversationContext.Instance.PhoneLogicContext.callbackId != 0;
+
+                        //if (ConversationContext.Instance.PhoneLogicContext.callbackId > 0)
+                        //{
+                        //    ConversationContext.Instance.ShowCallbackButtons = true;
+                        //    ConversationContext.Instance.KeepCallback = fa;
+                        //}
+                        #endregion
                     }
+                }
             }
-            catch (Exception e)
+
+            catch
+                (Exception e)
             {
-                MessageBox.Show("JobDetailViewConstructor Exception: " + e.Message);
+                MessageBox.Show(e.Message +
+                                (e.InnerException != null ? e.InnerException.Message : " - no inner exception"));
             }
             finally
             {
                 InitializeComponent();
+                //ConversationContext.Instance.PhoneLogicContext.callbackId = 312400;
+                //MessageBox.Show("test Callback id =" + ConversationContext.Instance.PhoneLogicContext.callbackId);
             }
         }
 
+        
+    private void conversation_StateChanged(object sender, ConversationStateChangedEventArgs e)
+    {
+        //MessageBox.Show("Conversation State:" + e.NewState.ToString());
+
+        if (e.NewState == ConversationState.Inactive)
+        {
+
+            var waitingWindow = new WaitingWindow();
+            waitingWindow.Closed += new EventHandler(waitingWindow_Closed);
+            waitingWindow.Show();
+        }
+    }
+        private async void waitingWindow_Closed(object sender, EventArgs e)
+            {
+                WaitingWindow ww = (WaitingWindow)sender;
+                    var cb = new CallbackDto()
+                    {
+                        callbackID = ConversationContext.Instance.PhoneLogicContext.callbackId,
+                        SIP = LyncClient.GetClient().Self.Contact.Uri
+                    };
+                    if (ConversationContext.Instance.KeepCallback)
+                        await CallbackSvc.EndCall(cb);
+                    else
+                        await CallbackSvc.Close(cb);
+                    var conversation = (Conversation) LyncClient.GetHostingConversation();
+                    var myAutomation = Microsoft.Lync.Model.LyncClient.GetAutomation();
+                    conversation.End();
+                    ConversationWindow cw = myAutomation.GetConversationWindow(conversation);
+                    cw.Close();
+            }
+        
 
         private void test()
         {
@@ -99,18 +146,7 @@ namespace PhoneLogic.Inbound
                     taskId = 1
                 };
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ConversationContext.Instance.ShowJobDetailView = !ConversationContext.Instance.ShowJobDetailView;
-            MessageBox.Show(ConversationContext.Instance.ShowJobDetailView.ToString());
-        }
-
-        private void Button_Click2(object sender, RoutedEventArgs e)
-        {
-            ConversationContext.Instance.ShowCallbackButtons = !ConversationContext.Instance.ShowCallbackButtons;
-            MessageBox.Show(ConversationContext.Instance.ShowCallbackButtons.ToString()
-                );
         }
     }
-}
+
+

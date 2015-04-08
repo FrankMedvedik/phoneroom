@@ -30,7 +30,7 @@ namespace PhoneLogic.Core
      public const string apiUrl = "http://localhost:19938/api/";
      public const string rootUrl = "http://localhost:19938/";
      public static string LyncServiceRefUrl = "http://cc-prod.reckner.com:1255/PhoneLogic/basic";
-     public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";
+     public const string RecknerCallAppGuid = "{49475055-F87F-4C67-96B4-154B05B19484}";
 #elif DEBUGTEST
      public static string BuildType = "DEBUG-TEST";
      public static string apiUrl = "http://cc-app.reckner.com/inbound/api/";

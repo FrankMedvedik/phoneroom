@@ -7,7 +7,6 @@ namespace PhoneLogic.Core.ViewModels
     {
         private static volatile ConversationContext instance;
         private static object syncRoot = new Object();
-
         private ConversationContext() { }
 
         public static ConversationContext Instance
@@ -45,6 +44,16 @@ namespace PhoneLogic.Core.ViewModels
             set
             {
                 instance._ShowJobDetailView = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private Boolean _keepCallback;
+        public Boolean KeepCallback
+        {
+            get { return (instance._keepCallback); }
+            set
+            {
+                instance._keepCallback = value;
                 NotifyPropertyChanged();
             }
         }

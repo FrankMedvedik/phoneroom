@@ -214,6 +214,14 @@
     <Compile Include="Configuration\NinjectConfiguration.cs" />
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
+    <Compile Include="ViewModels\TimerViewModel.cs" />
+    <Compile Include="Views\TimerView.xaml.cs">
+      <DependentUpon>TimerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WaitingWindow.xaml.cs">
+      <DependentUpon>WaitingWindow.xaml</DependentUpon>
+    </Compile>
+    <None Include="Helpers\SupervisorJoin.cs.xxxx" />
     <Compile Include="MVVM Base Types\CollectionViewModelBase.cs" />
     <Compile Include="Service References\AppServiceReference\ActiveCallDetail.cs" />
     <Compile Include="Service References\AppServiceReference\Reference.cs">
@@ -322,6 +330,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TimerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ActiveCallsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -401,6 +413,10 @@
     <Page Include="ToastNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WaitingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

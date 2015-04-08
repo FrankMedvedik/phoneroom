@@ -17,6 +17,7 @@
             <StackPanel Orientation="Horizontal">
                 <controls:PresenceIndicator x:Name="Presence" Source="{Binding RecruiterUri}" PhotoDisplayMode="Small" />
                 <TextBlock Text="{Binding DisplayName, ElementName=Presence}" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                        <Button Name="btnJoinCall" Margin="3,6,6,6" Click="btnJoinCall_Click">Join</Button>
             </StackPanel>
         </DataTemplate>
     </Control.Resources>
@@ -31,9 +32,8 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Active Calls" Grid.Row="0" FontSize="14" FontWeight="Bold"  HorizontalAlignment="Center" Margin="6"/>
         <sdk:DataGrid Grid.Row="1"  x:Name="ActiveCallsDG" AutoGenerateColumns="False" MaxHeight="550"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="ActiveCallsDG_SelectionChanged" 
-                    ItemsSource="{Binding ActiveCalls}"  SelectedItem="{Binding SelectedActiveCall, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="current converstaionss between recruiters and respondents" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding ActiveCalls}"  SelectedItem="{Binding SelectedActiveCall, Mode=TwoWay}"  
+                    ToolTipService.ToolTip="current conversationss between recruiters and respondents" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Recruiter" CellTemplate="{StaticResource RecruiterStatusTemplate}"/>
                 <sdk:DataGridTextColumn Binding="{Binding TimeIn}" />

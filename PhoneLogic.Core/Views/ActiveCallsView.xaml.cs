@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Lync.Model;
+using Microsoft.Lync.Model.Conversation;
+using Microsoft.Lync.Model.Extensibility;
 using PhoneLogic.Core.ViewModels;
 
 namespace PhoneLogic.Core.Views
@@ -17,17 +20,31 @@ namespace PhoneLogic.Core.Views
             DataContext = _vm;
         }
 
-        private void ActiveCallsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnJoinCall_Click(object sender, RoutedEventArgs e)
         {
-
+            var automation = LyncClient.GetAutomation();
+            //ConversationWindow window = automation.GetConversationWindow()
+            IAsyncResult ar = automation.BeginStartConversation(_vm.SelectedActiveCall.ConferenceUri, 0, StartConversationCallback, null);
         }
 
-//        IAsyncResult ar = LyncClient.GetAutomation().BeginStartConversation(
-//    _vm.SelectedActiveCall.
-//    this.Handle.ToInt32(),
-//    null,
-//    null);
-//_Automation.EndStartConversation(ar);
-//    }
+        private void StartConversationCallback(IAsyncResult result)
+        {
+            try
+            {
+                ConversationWindow cw = LyncClient.GetAutomation().EndStartConversation(result);
+            }
+            catch (LyncClientException lyncClientException)
+            {
+                MessageBox.Show("Join Failed.");
+                Console.WriteLine(lyncClientException);
+            }
+            catch (SystemException systemException)
+            {
+                    MessageBox.Show("Call failed.");
+                    Console.WriteLine("Error: " + systemException);
+            }
+        }
+
+
     }
 }

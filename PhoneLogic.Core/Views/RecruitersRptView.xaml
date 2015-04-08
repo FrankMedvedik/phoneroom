@@ -19,8 +19,8 @@
     </Control.Resources>
     <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top" MaxHeight="600">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.25*" />
-            <ColumnDefinition Width=".75*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="500" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

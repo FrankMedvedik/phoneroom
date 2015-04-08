@@ -42,8 +42,8 @@ namespace PhoneLogic.Core.ViewModels
 
         #region SelectedActiveCall
 
-        private Recruiter _selectedActiveCall;
-        public Recruiter SelectedActiveCall
+        private ActiveCallDetail _selectedActiveCall;
+        public ActiveCallDetail SelectedActiveCall
         {
             get
             {
@@ -52,24 +52,10 @@ namespace PhoneLogic.Core.ViewModels
             set
             {
                 _selectedActiveCall = value;
-                ShowSelectedActiveCall = (_selectedActiveCall != null);
                 NotifyPropertyChanged();
             }
         }
         
-        private Boolean _showSelectedActiveCall = false;
-        public Boolean ShowSelectedActiveCall
-        {
-            get
-            {
-                return _showSelectedActiveCall;
-            }
-            set
-            {
-                _showSelectedActiveCall = value;
-                NotifyPropertyChanged();
-            }
-        }
         #endregion
 
         public async void GetActiveCalls()

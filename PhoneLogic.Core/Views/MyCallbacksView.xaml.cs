@@ -74,17 +74,16 @@ namespace PhoneLogic.Core.Views
                 MessageBox.Show("Select A Callback");
                 return;
             }
-            if (_vm.SelectedMyCallback.SIP != null)
-            {
-                // inhibit them from calling someone already in a call
-                if (_vm.SelectedMyCallback.SIP.Substring(0, 4) == "sip:")
-                {
-                    MessageBoxResult result = MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",
-                        MessageBoxButton.OKCancel);
-                    if (result != MessageBoxResult.OK)
-                        return;
-                }
-            }
+            //if (_vm.SelectedMyCallback.SIP != null)
+            //{
+            //    // inhibit them from calling someone already in a call
+            //    if (_vm.SelectedMyCallback.SIP.Substring(0, 4) == "sip:")
+            //    {
+            //        if ( MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",
+            //            MessageBoxButton.OKCancel) != MessageBoxResult.OK );
+            //            return;
+            //    }
+            //}
             /* setup making the call  */
             var participantUri = new List<string> {_vm.SelectedMyCallback.callbackNum};
             var modalitySettings = new Dictionary<AutomationModalitySettings, object>
