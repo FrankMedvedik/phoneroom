@@ -11,6 +11,13 @@
     public class PhoneLogicContext 
 #endif
     {
+        public string ToString()
+        {
+            return
+                string.Format("PhonelogicContext: ConversationId {0} | DialedNumber {1} | CallerId {2} | callbackId {3} | jobNumber {4} |TaskID {5} | taskId{6} | TimeReceived  {7} "
+                , conversationId, dialedNumber, callerId, callbackId, jobNumber, TaskID, taskId, timeReceived);
+                
+        }
         private string _conversationId;
         public string conversationId
         {

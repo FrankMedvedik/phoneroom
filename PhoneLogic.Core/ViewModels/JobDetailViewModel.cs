@@ -6,21 +6,22 @@ namespace PhoneLogic.Core.ViewModels
 {
     public class JobDetailViewModel : ViewModelBase
     {
-        public JobDetailViewModel()
-        {   
-
-            GetPhoneLogicTask(ConversationContext.Instance.PhoneLogicContext.jobNumber,
-                               ConversationContext.Instance.PhoneLogicContext.TaskID);
-        }
        
         public async void GetPhoneLogicTask(string jobNum, string taskid)
         {
-            if (ConversationContext.Instance.PhoneLogicContext == null) return;
-            if (string.IsNullOrEmpty(ConversationContext.Instance.PhoneLogicContext.jobNumber)) return;
-            PhoneLogicTask = await PhoneLogicTaskSvc.GetTask(jobNum,taskid);
+               PhoneLogicTask = await PhoneLogicTaskSvc.GetTask(jobNum,taskid);
         }
 
-        private PhoneLogicTask _phoneLogicTask = new PhoneLogicTask();
+        private static string msg = "Bad Job Detail Data";
+        private PhoneLogicTask _phoneLogicTask = new PhoneLogicTask()
+                {
+                    JobNum = "00000000",
+                    call_cnt = 0,
+                    taskDscr = msg,
+                    taskName = msg,
+                    taskTypeID = msg
+                };
+
         public PhoneLogicTask  PhoneLogicTask
         {
             get { return _phoneLogicTask; }

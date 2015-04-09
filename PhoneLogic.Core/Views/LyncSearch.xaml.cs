@@ -9,9 +9,7 @@ namespace PhoneLogic.Core.Views
 
         public LyncSearchView()
         {
-
             InitializeComponent();
-            DataContext = ConversationContext.Instance.PhoneLogicContext;
         }
 
     }

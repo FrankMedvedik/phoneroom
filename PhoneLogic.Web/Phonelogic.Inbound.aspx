@@ -2,17 +2,7 @@
 <%@ Import Namespace="System.Web.Services"%>
 
 <!DOCTYPE html>
-<script runat="server">
 
-	[WebMethod]
-	[System.Web.Script.Services.ScriptMethod] 
-	public static void SignOff(string identifier)
-	{
-		/* Update your list of signed in users here. */
-		System.Diagnostics.Debug.WriteLine("*** Signing Off: " + identifier);
-	}
-	
-</script>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 
 <head runat="server">

@@ -4,20 +4,30 @@ using System.Windows.Threading;
 
 namespace PhoneLogic.Core.ViewModels
 {
-    public class TimerViewModel : INotifyPropertyChanged
+    public class TimerViewModel : ViewModelBase 
     {
         public TimerViewModel()
+        {
+            Start();
+        }
+
+        public void Start()
         {
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
             startTime = DateTime.Now;
+            
+        }
+
+        public void Stop()
+        {
+            timer.Stop();
         }
 
         private DispatcherTimer timer;
         private DateTime startTime;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public TimeSpan TimeFromStart
         {
@@ -27,15 +37,9 @@ namespace PhoneLogic.Core.ViewModels
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            RaisePropertyChanged("TimeFromStart");
+            NotifyPropertyChanged("TimeFromStart");
         }
 
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        
     }
 }

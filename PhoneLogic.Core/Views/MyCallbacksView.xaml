@@ -28,7 +28,7 @@
             <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="1" Margin="6" />
             <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="2" Margin="6" />
         </Grid>
-        <sdk:DataGrid x:Name="callbackGrid" MaxHeight="400"  Grid.Row="1"    AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
+        <sdk:DataGrid x:Name="callbackGrid" MaxHeight="300"  Grid.Row="1"    AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
                           Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                           Loaded="callbackGrid_Loaded"  VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
                           ItemsSource="{Binding MyCallbacks}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"  

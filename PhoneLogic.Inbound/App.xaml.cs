@@ -14,9 +14,6 @@ namespace PhoneLogic.Inbound
 	public partial class App : Application
    {
 	   
-	   Guid guid = Guid.NewGuid();
-	   private ICloseHandler _handler;
-
 	   public App()
 	   {
 		   this.Startup += this.Application_Startup;
@@ -29,8 +26,6 @@ namespace PhoneLogic.Inbound
 	   void Application_Startup(object sender, StartupEventArgs e)
 	   {
 		   this.RootVisual = new MainPage();
-           ConversationContext.Instance.KeepCallback = false;   
-		   
 	   }
 
        void Application_Exit(object sender, EventArgs e)

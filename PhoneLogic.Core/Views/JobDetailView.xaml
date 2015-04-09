@@ -19,22 +19,16 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Job Details" HorizontalAlignment="Center" Margin="6"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <TextBlock Text="Job Information" HorizontalAlignment="Center" Margin="6"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
                 <TextBlock Text="Job Number" HorizontalAlignment="Right" Margin="6"  Grid.Column="0" Grid.Row="1" FontWeight="Medium"/>
-                <TextBox Width="120" Text="{Binding PhoneLogicTask.jobFormatted}" HorizontalAlignment="Left" FontWeight="Bold" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="1"/>
+                <TextBox Width="150" Text="{Binding PhoneLogicTask.jobFormatted}" HorizontalAlignment="Left" FontWeight="Bold" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="1"/>
                 <TextBlock Text="Topic" HorizontalAlignment="Right" Margin="6" Grid.Column="0" Grid.Row="2" FontWeight="Medium"/>
-                <TextBox Width="120" Text="{Binding PhoneLogicTask.taskName}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="2" FontWeight="Bold"/>
-                <TextBlock Text="Topic Desc" HorizontalAlignment="Right" Margin="6" Grid.Column="0" Grid.Row="3" FontWeight="Medium"/>
-                <TextBox Width="120" Text="{Binding PhoneLogicTask.taskDesc}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="3" FontWeight="Bold"/>
+                <TextBox Width="150" Text="{Binding PhoneLogicTask.taskName}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="2" FontWeight="Bold"/>
+                <TextBlock Text="Topic Description" HorizontalAlignment="Right" Margin="6" Grid.Column="0" Grid.Row="3" FontWeight="Medium"/>
+                <TextBox Width="150" Text="{Binding PhoneLogicTask.taskDesc}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="3" FontWeight="Bold"/>
                 <TextBlock Text="Task Type" HorizontalAlignment="Right" Margin="6" Grid.Column="0" Grid.Row="4" FontWeight="Medium"/>
-                <TextBox Width="120" Text="{Binding PhoneLogicTask.taskTypeID}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="4" FontWeight="Bold"/>
+                <TextBox Width="150" Text="{Binding PhoneLogicTask.taskTypeID}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="4" FontWeight="Bold"/>
             </Grid>
-            <StackPanel  Name="CallbackButtons" HorizontalAlignment="Center" Orientation="Horizontal" Margin="6">
-                <TextBlock Text="Keep voice mail on Exit? " Margin="6"  VerticalAlignment="Center"/>
-                <CheckBox IsChecked="{Binding Path=KeepCallback, Mode=TwoWay}" VerticalAlignment="Center"/>
-                <!--<Button Click="BtnCloseCall_Click"  Margin="6" >Close Call</Button>
-                <Button Click="BtnKeepOpen_Click"  Margin="6" IsEnabled="True">Keep Call Open</Button>-->
-            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

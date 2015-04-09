@@ -57,45 +57,10 @@
         }
     </script>
 
-    <script type="text/javascript">
-        function OnClose() {
-            var plugin = document.getElementById("silverlightControlHost");
-            var shutdownManager = plugin.content.ShutdownManager;
-            var shutdownResult = shutdownManager.Shutdown();
-            if (shutdownResult) {
-                event.returnValue = shutdownResult;
-            }
-            else {
-                var answer = confirm("Close application?");
-                if (!answer) {
-                    event.returnValue = "To prevent closing the application select Cancel";
-                }
-            }
-        }
-
-        function NotifyWebserviceOnClose(identifier) {
-            window.PageMethods.SignOff(identifier, OnSignOffComplete);
-        }
-
-        function OnSignOffComplete(result) {
-            var answer = confirm("Close application?");
-                if (!answer) {
-                    event.returnValue = "To prevent closing the application select Cancel";
-                }
-            }
-
-        function OnShutdownComplete(result) {
-        }
-    </script>
 </head>
-<body onbeforeunload="OnClose()">
+<body>
     <form id="form1" runat="server" style="height:100%">
         <div id="silverlightControlHost">
-            <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
-                <services>
-                    <asp:servicereference path="ShutdownService.svc" />
-                </services>
-            </asp:ScriptManager>
         <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
             <param name="source" value="ClientBin/PhoneLogic.Inbound.xap" />
             <param name="onError" value="onSilverlightError" />

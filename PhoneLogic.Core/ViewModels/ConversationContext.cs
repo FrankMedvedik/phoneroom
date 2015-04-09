@@ -26,48 +26,16 @@ namespace PhoneLogic.Core.ViewModels
             }
         }
 
-        private Boolean _IsCWE;
-        public Boolean IsCWE
-        {
-            get { return (instance._IsCWE); }
-            set
-            {
-                instance._IsCWE = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private Boolean _ShowJobDetailView;
-        public Boolean ShowJobDetailView
-        {
-            get { return (instance._ShowJobDetailView); }
-            set
-            {
-                instance._ShowJobDetailView = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private Boolean _keepCallback;
-        public Boolean KeepCallback
-        {
-            get { return (instance._keepCallback); }
-            set
-            {
-                instance._keepCallback = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private Boolean _ShowCallbackButtons;
-        public Boolean ShowCallbackButtons
-        {
-            get { return (instance._ShowCallbackButtons); }
-            set
-            {
-                instance._ShowCallbackButtons = value;
-                NotifyPropertyChanged();
-            }
-        }
+        //private Boolean _ShowJobDetailView;
+        //public Boolean ShowJobDetailView
+        //{
+        //    get { return (instance._ShowJobDetailView); }
+        //    set
+        //    {
+        //        instance._ShowJobDetailView = value;
+        //        NotifyPropertyChanged();
+        //    }
+        //}
         private PhoneLogicContext _PhoneLogicContext = new PhoneLogicContext()
         {
             callerId = "",

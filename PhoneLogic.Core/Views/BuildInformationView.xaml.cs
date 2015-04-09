@@ -13,7 +13,7 @@ namespace PhoneLogic.Core.Views
                 ConditionalConfiguration.apiUrl,
                 ConditionalConfiguration.LyncServiceRefUrl,
                 ConditionalConfiguration.RecknerCallAppGuid,
-                ConditionalConfiguration.BuildDate);
+                ConditionalConfiguration.BuildDate.ToString());
 
         }
         private void tbtnTest_Checked(object sender, RoutedEventArgs e)

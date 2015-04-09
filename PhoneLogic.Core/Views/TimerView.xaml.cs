@@ -6,7 +6,7 @@ namespace PhoneLogic.Core.Views
 
     public partial class TimerView : UserControl
     {
-        private TimerViewModel _vm;
+        public TimerViewModel _vm;
 
         public TimerView()
         {

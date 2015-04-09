@@ -8,16 +8,21 @@
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top"> 
     <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Views:JobDetailView  Name="JobDetail" Grid.Row="0" Grid.Column="0" Margin="3" VerticalAlignment="Top"  HorizontalAlignment="Left" />
-        <Views:LyncSearchView  Margin="3" Grid.Column="1" Grid.Row="0"  VerticalAlignment="Top"  HorizontalAlignment="Left" />
-        <!--<Views:RespondentSearchView Margin="3" Grid.Column="2" Grid.Row="0" VerticalAlignment="Top"  HorizontalAlignment="Left" />-->
-        <Views:BuildInformationView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"/>
+            
+        <Border x:Name="brdTest" BorderBrush="Black" BorderThickness="4, 4, 8 ,10">
+                <StackPanel Orientation="Vertical" >
+                <StackPanel Orientation="Horizontal" Background="White" >
+        <Views:JobDetailView  Name="JobDetail" Margin="6" />
+        <Views:TimerView x:Name="timer" Margin="3" VerticalAlignment="Top"  HorizontalAlignment="Center" MinHeight="188" Height="181" />
+        <Views:LyncSearchView  Margin="3" VerticalAlignment="Top"  HorizontalAlignment="Center" Background="White" MinHeight="202" />
+            </StackPanel>
+            <Views:BuildInformationView />
+                <!--<Button Click="Button_Click">Close</Button>-->
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

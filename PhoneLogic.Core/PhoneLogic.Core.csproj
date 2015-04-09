@@ -214,12 +214,13 @@
     <Compile Include="Configuration\NinjectConfiguration.cs" />
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
+    <Compile Include="Timestamp.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
     <Compile Include="Views\TimerView.xaml.cs">
       <DependentUpon>TimerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WaitingWindow.xaml.cs">
-      <DependentUpon>WaitingWindow.xaml</DependentUpon>
+    <Compile Include="Views\CallCloseWindow.xaml.cs">
+      <DependentUpon>CallCloseWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Helpers\SupervisorJoin.cs.xxxx" />
     <Compile Include="MVVM Base Types\CollectionViewModelBase.cs" />
@@ -414,7 +415,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WaitingWindow.xaml">
+    <Page Include="Views\CallCloseWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -459,6 +460,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="resources\BuildDate.txt" />
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\AppServiceReference\PhoneLogic.xsd">
       <SubType>Designer</SubType>
@@ -535,6 +537,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>"C:\Program Files\GenerateTimeStampFile\GenerateTimeStampFile.exe" "$(ProjectDir)Timestamp.cs" "/N:PhoneLogic.Core"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
