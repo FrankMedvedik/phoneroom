@@ -6,11 +6,12 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <Grid x:Name="LayoutRoot" Margin="6">
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Margin="6">
+
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Margin="10">
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -19,15 +20,11 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Job Information" HorizontalAlignment="Center" Margin="6"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <TextBlock Text="Job Number" HorizontalAlignment="Right" Margin="6"  Grid.Column="0" Grid.Row="1" FontWeight="Medium"/>
-                <TextBox Width="150" Text="{Binding PhoneLogicTask.jobFormatted}" HorizontalAlignment="Left" FontWeight="Bold" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="1"/>
-                <TextBlock Text="Topic" HorizontalAlignment="Right" Margin="6" Grid.Column="0" Grid.Row="2" FontWeight="Medium"/>
-                <TextBox Width="150" Text="{Binding PhoneLogicTask.taskName}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="2" FontWeight="Bold"/>
-                <TextBlock Text="Topic Description" HorizontalAlignment="Right" Margin="6" Grid.Column="0" Grid.Row="3" FontWeight="Medium"/>
-                <TextBox Width="150" Text="{Binding PhoneLogicTask.taskDesc}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="3" FontWeight="Bold"/>
-                <TextBlock Text="Task Type" HorizontalAlignment="Right" Margin="6" Grid.Column="0" Grid.Row="4" FontWeight="Medium"/>
-                <TextBox Width="150" Text="{Binding PhoneLogicTask.taskTypeID}" HorizontalAlignment="Left" IsReadOnly="True"   Margin="6" Grid.Column="1" Grid.Row="4" FontWeight="Bold"/>
+                <TextBlock Text="Job" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <TextBlock  Text="{Binding PhoneLogicTask.jobFormatted}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
+                <TextBlock  Text="{Binding PhoneLogicTask.taskName}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" />
+                <TextBlock  Text="{Binding PhoneLogicTask.taskDesc}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" />
+                <TextBlock  Text="{Binding PhoneLogicTask.taskTypeID}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" />
             </Grid>
         </StackPanel>
     </Grid>

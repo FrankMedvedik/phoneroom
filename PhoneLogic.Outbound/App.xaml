@@ -21,10 +21,38 @@
              x:Class="PhoneLogic.Outbound.App" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              d1p1:Ignorable="d" 
-             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
-  <Application.Resources>
-        <ResourceDictionary>
-      <!--<vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:PhoneLogic.Outbound.ViewModel" />-->
-    </ResourceDictionary>
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Microsoft.Lync.Controls.Internal.Converters;assembly=Microsoft.Lync.Controls">
+              <Application.Resources>
+                <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
+                <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
+                <Style TargetType="Control" x:Key="DefaultStyle">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontFamily" Value="Ariel Bold"  />
+                    <Setter Property="Margin" Value="8" />
+                </Style>
+
+                <!--<Style  x:Key="Basic"  TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="6"/>
+            </Style>
+
+            <Style  x:Key="Heading"  BasedOn="{StaticResource Basic}" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
+            <Style BasedOn="{StaticResource Basic}" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>-->
+            <!--<vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:PhoneLogic.Outbound.ViewModel" />-->
   </Application.Resources>
 </Application>

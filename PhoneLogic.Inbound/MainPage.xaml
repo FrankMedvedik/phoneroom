@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d" >
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top"> 
+    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" > 
     <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
@@ -13,15 +13,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
             
-        <Border x:Name="brdTest" BorderBrush="Black" BorderThickness="4, 4, 8 ,10">
+        <Border x:Name="brdTest" BorderBrush="Black" BorderThickness="4, 4, 8 ,10" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1">
                 <StackPanel Orientation="Vertical" >
                 <StackPanel Orientation="Horizontal" Background="White" >
-        <Views:JobDetailView  Name="JobDetail" Margin="6" />
-        <Views:TimerView x:Name="timer" Margin="3" VerticalAlignment="Top"  HorizontalAlignment="Center" MinHeight="188" Height="181" />
-        <Views:LyncSearchView  Margin="3" VerticalAlignment="Top"  HorizontalAlignment="Center" Background="White" MinHeight="202" />
-            </StackPanel>
-            <Views:BuildInformationView />
-                <!--<Button Click="Button_Click">Close</Button>-->
+                    <Views:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" />
+                    <Views:LyncSearchView Margin="20,5,20,10"/>
+                     <Views:TimerView x:Name="timer" Margin="20,15,40,10"/>
+                </StackPanel>
+                <Views:BuildInformationView />
+                <!--<Button Click="Button_Click" >Close</Button>-->
             </StackPanel>
         </Border>
     </Grid>

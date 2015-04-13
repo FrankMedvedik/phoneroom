@@ -5,10 +5,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="PhoneLogic.Core.Views.LyncSearchView"
     mc:Ignorable="d" >
-    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6">
-        <StackPanel Grid.Row="0" Orientation="Vertical"  >
-            <TextBlock Text="Staff Lookup" HorizontalAlignment="Center" Margin="6"/>
-            <controls:ContactSearch HorizontalAlignment="Center" Margin="6"/>
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <StackPanel Grid.Row="0" Orientation="Vertical"  >
+            <TextBlock Text="Staff Lookup" HorizontalAlignment="Center" />
+            <controls:ContactSearch HorizontalAlignment="Center" />
         </StackPanel>
     </Grid>
 </UserControl>

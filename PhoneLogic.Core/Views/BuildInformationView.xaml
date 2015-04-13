@@ -9,17 +9,18 @@
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
     </Control.Resources>
-    <Grid x:Name="LayoutRoot" Background="White" Margin="6">
+    <Grid x:Name="LayoutRoot" Background="White" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ToggleButton x:Name="tbtnShowDebug"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
-                      Checked="tbtnTest_Checked" Unchecked="tbtnTest_Unchecked" Grid.Row="0" Content="(i)" FontSize="10"  Width="Auto"></ToggleButton>
+        <Button Click="tbtnTest_Checked" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Height="Auto" Margin="10"  FontSize="12" Content="?"/>
+        <!--<ToggleButton x:Name="tbtnShowDebug"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                      Checked="tbtnTest_Checked" Unchecked="tbtnTest_Unchecked" Grid.Row="0" Content="(i)" Width="Auto"></ToggleButton>
             <StackPanel Orientation="Horizontal" Name="InfoStackPanel" Visibility="Collapsed" Grid.Row="1">
             <Border BorderThickness="1">
-            <TextBlock Name="ReleaseInfo"  FontSize="9" FontWeight="Black" Grid.Row="1"></TextBlock>
+            <TextBlock Name="ReleaseInfo" />
             </Border>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>

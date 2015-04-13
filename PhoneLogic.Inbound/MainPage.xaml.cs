@@ -109,7 +109,7 @@ namespace PhoneLogic.Inbound
                 KeepCallback = false,
                 CallDuration = timer._vm.TimeFromStart
             };
-//           MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}", cw.IsCallback, cw.KeepCallback, cw.CallDuration));
+         //  MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}", cw.IsCallback, cw.KeepCallback, cw.CallDuration));
             cw.Closed += CallCloseWindow_Closed;
             cw.Show();
         }
@@ -120,7 +120,7 @@ namespace PhoneLogic.Inbound
                 c.Closed -= CallCloseWindow_Closed;
                 //MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}",
                 //    c.IsCallback, c.KeepCallback, c.CallDuration));
-                //if (c.IsCallback)
+                if (c.IsCallback)
                 {
                     var cb = new CallbackDto()
                     {
@@ -137,6 +137,29 @@ namespace PhoneLogic.Inbound
                 myCW.Close();
             }
 
+ 
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var cw = new CallCloseWindow();
+        //    cw.Closed += testCallCloseWindow_Closed;
+        //    cw.IsCallback = true;
+        //    cw.KeepCallback = true;
+        //    cw.CallDuration = new TimeSpan(10, 20, 08);
+            
+        //    //MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}", cw.IsCallback, cw.KeepCallback, cw.CallDuration));
+
+        //    cw.Show();
+
+        //}
+
+        //private async void testCallCloseWindow_Closed(object sender, EventArgs e)
+        //{
+        //    var c = (CallCloseWindow)sender;
+        //    c.Closed -= testCallCloseWindow_Closed;
+        //    MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}",
+        //        c.IsCallback, c.KeepCallback, c.CallDuration));
+        //}
         }
     }
 

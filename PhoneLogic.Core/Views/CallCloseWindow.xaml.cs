@@ -9,15 +9,8 @@ namespace PhoneLogic.Core.Views
         public CallCloseWindow()
         {
             InitializeComponent();
-            CallTime.Text = CallDuration.ToString();
+            DataContext = this;
 
-            if (IsCallback)
-            {
-                CallbackStackPanel.Visibility = Visibility.Visible;
-                SaveCallback.IsChecked = KeepCallback;
-            }
-            else
-                CallbackStackPanel.Visibility = Visibility.Collapsed;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         
@@ -35,6 +28,7 @@ namespace PhoneLogic.Core.Views
             set
             {
                 SetValue(CallDurationProperty, value);
+                //CallTime.Text = CallDuration.ToString();
                 RaisePropertyChanged("CallDuration");
             }
         }
@@ -49,6 +43,7 @@ namespace PhoneLogic.Core.Views
             set
             {
                 SetValue(KeepCallbackProperty, value);
+                //SaveCallback.IsChecked = KeepCallback;
                 RaisePropertyChanged("KeepCallback");
             }
         }
@@ -63,8 +58,9 @@ namespace PhoneLogic.Core.Views
             get { return (Boolean)GetValue(IsCallbackProperty); }
             set
             {
-                SetValue(IsCallbackProperty, value);
-                RaisePropertyChanged("IsCallback");
+               SetValue(IsCallbackProperty, value);
+               CallbackStackPanel.Visibility = IsCallback ? Visibility.Visible : Visibility.Collapsed;
+               RaisePropertyChanged("IsCallback");
             }
         }
 
