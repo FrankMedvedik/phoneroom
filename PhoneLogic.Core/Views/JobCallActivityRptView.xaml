@@ -19,8 +19,10 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" >
             <TextBlock Text="Job Call Activity"  FontWeight="Bold"  HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
+            <StackPanel Orientation="Horizontal"  Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" >
+                <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
+                <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>

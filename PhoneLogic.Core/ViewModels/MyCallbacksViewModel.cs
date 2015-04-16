@@ -19,6 +19,18 @@ namespace PhoneLogic.Core.ViewModels
           StartAutoRefresh(ApiRefreshFrequency.UserDB);
         }
 
+        private TimeSpan _callDuration;
+        public TimeSpan CallDuration
+        {
+            get { return _callDuration; }
+            set
+            {
+                _callDuration = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
         private Boolean _canRefresh = true;
 
         public Boolean CanRefresh{

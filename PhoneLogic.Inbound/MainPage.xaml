@@ -13,12 +13,13 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
             
-        <Border x:Name="brdTest" BorderBrush="Black" BorderThickness="4, 4, 8 ,10" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1">
+        <Border BorderBrush="Black" BorderThickness="4, 4, 8 ,10" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1">
                 <StackPanel Orientation="Vertical" >
                 <StackPanel Orientation="Horizontal" Background="White" >
                     <Views:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" />
                     <Views:LyncSearchView Margin="20,5,20,10"/>
                      <Views:TimerView x:Name="timer" Margin="20,15,40,10"/>
+                    <Views:MyCallsInQueueView />
                 </StackPanel>
                 <Views:BuildInformationView />
                 <!--<Button Click="Button_Click" >Close</Button>-->

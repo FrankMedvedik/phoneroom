@@ -13,6 +13,7 @@ namespace PhoneLogic.Core.Views
             InitializeComponent();
             _vm = new TodaysCallLogRptViewModel();
             DataContext = _vm;
+            _vm.ShowLoadDatetimeHeading = true;
         }
 
        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

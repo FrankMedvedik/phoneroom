@@ -25,8 +25,10 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Phone Messages " FontWeight="Bold" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="1" Margin="6" />
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="2" Margin="6" />
+            <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1"  Grid.ColumnSpan="2">
+                <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
+                <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
+            </StackPanel>
         </Grid>
         <sdk:DataGrid x:Name="callbackGrid" MaxHeight="300"  Grid.Row="1"    AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
                           Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
@@ -62,18 +64,17 @@
         </sdk:DataGrid>
         <StackPanel Grid.Row="2" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
             <Grid Margin="6" Name="PlaybackControls" >
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="6" Text="Seek To: "/>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="6" >
+                    <TextBlock Margin="3" Text="Seek To: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
+                        Text="{Binding CallDuration, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}"/>
+                </StackPanel>
                 <Slider Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0"  IsHitTestVisible="True" Margin="6"  x:Name="SliderPosition" ValueChanged="sliderPosition_ValueChanged" />
-                <Slider Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" Minimum="0" IsHitTestVisible="False" x:Name="sliderPositionBackground" Opacity="0.5"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="6" HorizontalAlignment="Left"  Width="500" x:Name="lblStatus"/>
+                <Slider Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" Minimum="0" IsHitTestVisible="False" x:Name="sliderPositionBackground" Opacity="0.5" Margin="6"  />
             </Grid>
             <MediaElement Name="msgPlayback"  CurrentStateChanged="media_CurrentStateChanged"  MediaOpened="media_MediaOpened" AutoPlay="False"/>
         </StackPanel>

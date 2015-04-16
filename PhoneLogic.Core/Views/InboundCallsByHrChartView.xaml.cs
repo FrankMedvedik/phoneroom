@@ -17,17 +17,17 @@ namespace PhoneLogic.Core.Views
             InitializeComponent();
             _vm = new InboundCallsByHrRptViewModel();
             DataContext = _vm;
-           LineChart.DataContext = _vm;
+            LineChart.DataContext = _vm;
 
         }
 
         private async void LoadData(object sender, RoutedEventArgs e)
         {
             _vm.GetRpt();
+            LoadChart();
         }
- 
 
-        private async void LoadChart(object sender, RoutedEventArgs e)
+        private void LoadChart()
         {
 
             LineChart.Series.Clear();

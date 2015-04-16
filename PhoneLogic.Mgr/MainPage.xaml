@@ -5,40 +5,60 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-    x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" >
-        <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
+    <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-        <sdk:TabControl  Width="Auto" Grid.Row="0" Grid.Column="0">
-            <sdk:TabItem  Header="Recruiters">
-                <views:RecruitersRptView />
-            </sdk:TabItem>
-            <sdk:TabItem  Header="Job Call Activity">
-                <views:JobCallActivityRptView />
-            </sdk:TabItem>
-            <sdk:TabItem  Header="Today's Call Log Summary">
-                <views:TodaysCallLogRptView />
-            </sdk:TabItem>
+        <Border BorderBrush="Black" BorderThickness="2" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" Grid.Row="0" Grid.Column="0">
+            <sdk:TabControl  Width="Auto" >
+                <sdk:TabItem  Header="Recruiters">
+                    <views:RecruitersRptView />
+                </sdk:TabItem>
+                <sdk:TabItem  Header="Job Call Activity">
+                    <views:JobCallActivityRptView />
+                </sdk:TabItem>
+                <sdk:TabItem  Header="Today's Call Log Summary">
+                    <views:TodaysCallLogRptView />
+                </sdk:TabItem>
 
-            <sdk:TabItem  Header="Inbound Calls By Hour">
-                <StackPanel Orientation="Vertical">
-                <!--<views:InboundCallsByHrRptView />-->
-                <views:InboundCallsByHrChartView />
-                </StackPanel>
-            </sdk:TabItem>
-            <!--<sdk:TabItem  Header="Active Calls by Job">
-            <views:JobCallQueueSummaryView/>
-            </sdk:TabItem>-->
-        </sdk:TabControl>
-        <views:ActiveCallsView  Grid.Row="0" Grid.Column="1" />
+                <sdk:TabItem  Header="Inbound Calls By Hour">
+                    <StackPanel Orientation="Vertical">
+                        <!--<views:InboundCallsByHrRptView />-->
+                        <views:InboundCallsByHrChartView />
+                    </StackPanel>
+                </sdk:TabItem>
+            </sdk:TabControl>
+
+        </Border>
+
+
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Width="6" Fill="#FFEAEAEA"/>
+        <sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left" 
+                Width="6" BorderBrush="#FFD6D6D6" BorderThickness="1,0" Opacity="0.715">
+            <sdk:GridSplitter.Background>
+                <ImageBrush Stretch="None" ImageSource="SplitterHandle.png"/>
+            </sdk:GridSplitter.Background>
+        </sdk:GridSplitter>
+
+        <!--<sdk:GridSplitter Grid.Column="1" Grid.Row="0" Height="Auto" HorizontalAlignment="Center" 
+           VerticalAlignment="Stretch" Background="Gray"   ShowsPreview="True" Width="5" Margin="5" />
+       <Image Source="views:Images/GridSplitter" Grid.Column="1" Grid.Row="0"   />
+        <ImageBrush Stretch="None" ImageSource="SplitterHandle.png"/>-->
+        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
+            <StackPanel Orientation="Vertical">
+                <views:ActiveCallsView  />
+                <views:CallsInQueueView />
+            </StackPanel>
+        </Border>
         <views:BuildInformationView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-        
     </Grid>
 </UserControl>
 

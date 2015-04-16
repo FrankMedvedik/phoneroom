@@ -24,9 +24,11 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="My Jobs/Tasks"  FontWeight="Bold"  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="1" Margin="6" />
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="2" Margin="6" />
+            <TextBlock Text="My Jobs"  FontWeight="Bold"  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="6"/>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1"  Grid.ColumnSpan="2">
+                <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
+                <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
+            </StackPanel>
         </Grid>
             
           <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False" MaxHeight="250"

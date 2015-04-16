@@ -209,13 +209,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConditionalConfiguration.cs" />
+    <Compile Include="Services\ColorMapping.cs" />
+    <Compile Include="Configuration\ConditionalConfiguration.cs" />
     <Compile Include="Commands\ThemeChangeCommand.cs" />
     <Compile Include="Configuration\NinjectConfiguration.cs" />
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="Timestamp.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
+    <Compile Include="Views\MyCallsInQueueView.xaml.cs">
+      <DependentUpon>MyCallsInQueueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhoneroomStatusView.xaml.cs">
+      <DependentUpon>PhoneroomStatusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TimerView.xaml.cs">
       <DependentUpon>TimerView.xaml</DependentUpon>
     </Compile>
@@ -254,7 +261,6 @@
     <Compile Include="ViewModels\TodaysCallLogRptViewModel.cs" />
     <Compile Include="ViewModels\JobDetailViewModel.cs" />
     <Compile Include="ViewModels\PeopleViewModel.cs" />
-    <Compile Include="ViewModels\RecruitersAvailableViewModel.cs" />
     <Compile Include="Views\ActiveCallsView.xaml.cs">
       <DependentUpon>ActiveCallsView.xaml</DependentUpon>
     </Compile>
@@ -315,7 +321,6 @@
     <Compile Include="ViewModels\CallsInQueueViewModel.cs" />
     <Compile Include="ViewModels\MyTasksViewModel.cs" />
     <Compile Include="ViewModels\MyCallbacksViewModel.cs" />
-    <Compile Include="ViewModels\RecruitersOnlineViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="ResourceDictionaries\CWEStyle.xaml">
@@ -328,6 +333,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionaries\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyCallsInQueueView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PhoneroomStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -460,6 +473,11 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Resource Include="Images\SplitterHandle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Sleep PC.png" />
+    <Resource Include="Images\Sleeping-Medical-Staff.png" />
     <Content Include="resources\BuildDate.txt" />
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\AppServiceReference\PhoneLogic.xsd">
@@ -504,7 +522,9 @@
     <Resource Include="Images\voiceMail.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\MagnifyingGlass.png" />
+    <Resource Include="Images\MagnifyingGlass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Phonelogic.Model.Silverlight\PhoneLogic.Model.Silverlight.csproj">

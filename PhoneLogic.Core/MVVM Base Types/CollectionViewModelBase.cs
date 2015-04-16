@@ -77,6 +77,18 @@ namespace PhoneLogic.Core.MVVM_Base_Types
             }
         }
 
+        private Boolean _showLoadDatetimeHeading = false;
+
+        public Boolean ShowLoadDatetimeHeading
+        {
+            get { return _showLoadDatetimeHeading; }
+            set
+            {
+                _showLoadDatetimeHeading = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         private Boolean _loadedOk;
         public Boolean LoadedOk
         {

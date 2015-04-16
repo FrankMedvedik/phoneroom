@@ -13,7 +13,7 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Views
 {
-    public partial class MyCallbacksView
+    public partial class MyCallbacksView 
     {
         private readonly MyCallBacksViewModel _vm;
 
@@ -32,7 +32,7 @@ namespace PhoneLogic.Core.Views
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            lblStatus.Text = msgPlayback.Position.ToString().TrimEnd(new[] {'0'});
+            _vm.CallDuration = msgPlayback.Position;
             sliderPositionBackground.Value = msgPlayback.Position.TotalSeconds;
         }
 
@@ -198,7 +198,7 @@ namespace PhoneLogic.Core.Views
                     PlaybackControls.Visibility = Visibility.Collapsed;
                     break;
             }
-            lblStatus.Text = msgPlayback.CurrentState.ToString();
+            //lblStatus.Text = msgPlayback.CurrentState.ToString();
         }
 
         

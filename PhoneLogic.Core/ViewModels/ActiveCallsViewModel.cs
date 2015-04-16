@@ -1,6 +1,7 @@
 ﻿using PhoneLogic.Core.MVVM_Base_Types;
 using System.Collections.ObjectModel;
 using System;
+using PhoneLogic.Core.Services;
 using QueueSummary = PhoneLogic.Model.QueueSummary;
 using PhoneLogic.Model;
 
@@ -18,8 +19,13 @@ namespace PhoneLogic.Core.ViewModels
             get { return _activeCalls; }
             set
             {
-                _activeCalls = value;
-                NotifyPropertyChanged();
+                if (_activeCalls != value)
+                {
+                    _activeCalls = value;
+                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("Background");
+                    NotifyPropertyChanged("Foreground");
+                }
             }
         }
 
@@ -78,6 +84,49 @@ namespace PhoneLogic.Core.ViewModels
                 LoadFailed(e);
             }
         }
+        #region DisplayColors
+
+
+
+
+        public string TheBackground
+        {
+            get
+            {
+                var callCnt = 0;
+                try
+                {
+                    callCnt = ActiveCalls.Count;
+                }
+                catch (Exception e)
+                {
+                    callCnt = 0;
+                }
+
+                return ColorMapping.GetBackground(callCnt);
+            }
+        }
+
+        public string TheForeground
+        {
+            get {
+                var callCnt = 0;
+                try
+                {
+                    callCnt = ActiveCalls.Count;
+                }
+                catch (Exception e)
+                {
+                    callCnt = 0;
+                }
+
+                return ColorMapping.GetForeground(callCnt);
+            }
+        }
+        #endregion
+
+
+
 
     }
 }

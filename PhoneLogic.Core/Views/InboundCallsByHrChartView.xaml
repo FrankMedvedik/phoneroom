@@ -31,9 +31,11 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Inbound Calls By Hour"  FontWeight="Bold"  Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Grid.Column="2" Margin="6" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Grid.Column="3" Margin="6" VerticalAlignment="Center"/>
+            <TextBlock Text="Inbound Calls By Hour"  FontWeight="Bold"  Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" Grid.Column="2"  Grid.ColumnSpan="2">
+                <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
@@ -44,7 +46,7 @@
             
         </StackPanel>
         <toolkit:Chart Grid.Row="2" Title="Calls By Hour" x:Name="LineChart" />
-        <Button Grid.Row="3"  Click="LoadChart" Margin="6">Refresh Report</Button>
+        <!--<Button Grid.Row="3"  Click="LoadChart" Margin="6">Refresh Report</Button>-->
 
         <sdk:DataGrid x:Name="DGrid" Grid.Row="4" AutoGenerateColumns="True"  ClipboardCopyMode="IncludeHeader" SelectionMode="Extended"
            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 

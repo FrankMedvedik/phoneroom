@@ -23,9 +23,11 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <TextBlock Text="Today's Call Summary"  FontWeight="Bold"  HorizontalAlignment="Left" Margin="6"/>
-            <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
+                <TextBlock Text="Today's Call Summary"  FontWeight="Bold"  HorizontalAlignment="Left" Margin="6"/>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" >
+                        <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
+                        <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
+                </StackPanel>
             </StackPanel>
         </Grid>
         <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False"  MaxHeight="500" Grid.Row="1" 

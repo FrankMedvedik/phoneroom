@@ -1,5 +1,6 @@
 ﻿using PhoneLogic.Core.MVVM_Base_Types;
 using System.Collections.ObjectModel;
+using PhoneLogic.Core.Services;
 using System;
 using QueueSummary = PhoneLogic.Model.QueueSummary;
 
@@ -76,11 +77,50 @@ namespace PhoneLogic.Core.ViewModels
              get { return _CallsInQueue; }
              set
              {
-                 _CallsInQueue = value;
-                 NotifyPropertyChanged();
+
+                 if (value != _CallsInQueue)
+                 {
+                     _CallsInQueue = value;
+                     NotifyPropertyChanged("TheBackground");
+                     NotifyPropertyChanged("TheForeground");
+                     NotifyPropertyChanged();
+                 }
              }
          }
+        #endregion
 
+         #region DisplayColors
+
+         public  string TheBackground
+        {
+            get
+            {
+                int callCnt = 0;
+
+                foreach (var c in CallsInQueue)
+                {
+                    callCnt += c.InQueue;
+                }
+
+                return ColorMapping.GetBackground(callCnt);
+            }
+        }
+
+        public string TheForeground
+        {
+            get {
+                int callCnt = 0;
+
+                foreach (var c in CallsInQueue)
+                {
+                    callCnt += c.InQueue;
+                }
+
+                return ColorMapping.GetForeground(callCnt);
+            }
+        }
+
+ 
         #endregion
 
 

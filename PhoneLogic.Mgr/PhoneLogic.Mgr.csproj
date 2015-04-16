@@ -223,6 +223,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Resource Include="SplitterHandle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <None Include="app.config" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>

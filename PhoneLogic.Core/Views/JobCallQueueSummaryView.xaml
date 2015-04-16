@@ -22,8 +22,10 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="6" >
             <TextBlock Text="Current Calls by Job" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBlock Text=" As of " HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" >
+                <TextBlock Text=" As of " HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            </StackPanel>
         </StackPanel>
         <sdk:DataGrid Grid.Row="1" AutoGenerateColumns="False" 
                       ItemsSource="{Binding JobCallSummaries}"  HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto"  Height="550">
