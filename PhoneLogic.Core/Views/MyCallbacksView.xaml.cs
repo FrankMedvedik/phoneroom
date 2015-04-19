@@ -42,7 +42,7 @@ namespace PhoneLogic.Core.Views
             _vm.CanRefresh = false;
 
             if (_vm.SelectedMyCallback == null) return;
-            MessageBoxResult result = MessageBox.Show("Close this Message?", "Confirm", MessageBoxButton.OKCancel);
+            MessageBoxResult result = MessageBox.Show("Delete this Message?", "Confirm", MessageBoxButton.OKCancel);
 
             if (result == MessageBoxResult.OK)
             {

@@ -14,7 +14,7 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ConditionalConfiguration.apiUrl + "AgentLogs?sip=" + sip + "&startDate=" + startDate
+                new Uri(ConditionalConfiguration.apiUrl + "RecruiterLogs?sip=" + sip + "&startDate=" + startDate
                         + "&endDate=" + endDate));
             try
             {

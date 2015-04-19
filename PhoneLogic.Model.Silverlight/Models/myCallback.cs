@@ -23,7 +23,7 @@ namespace PhoneLogic.Model
         public string phoneNum { get; set; }
         [Display(Name = "UTC")]
         public int? UTC_code { get; set; }
-        [Display(Name = "Region")]
+        [Display(Name = "State")]
         public string Region { get; set; }
         [Display(Name = "Status Date")]
         public DateTime? statusDate { get; set; }
@@ -136,7 +136,7 @@ namespace PhoneLogic.Model
         }
         [Display(Name = "Topic")]
         public string taskName { get; set; }
-        [Display(Name = "Topic Type")]
+        [Display(Name = "Type")]
         public string TaskTypeId { get; set; }
     }
 }

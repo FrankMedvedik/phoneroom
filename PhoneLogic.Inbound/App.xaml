@@ -6,8 +6,8 @@
             <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
             <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
         <Style TargetType="Control" x:Key="DefaultStyle">
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="FontFamily" Value="Ariel Bold"  />
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Ariel"  />
             <Setter Property="Margin" Value="8" />
         </Style>
 

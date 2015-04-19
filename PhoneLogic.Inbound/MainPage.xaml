@@ -6,24 +6,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" > 
-    <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-            
-        <Border BorderBrush="Black" BorderThickness="4, 4, 8 ,10" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1">
-                <StackPanel Orientation="Vertical" >
-                <StackPanel Orientation="Horizontal" Background="White" >
+        <Border BorderBrush="Black" BorderThickness="4, 4, 8 ,10" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" >
                     <Views:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" />
                     <Views:LyncSearchView Margin="20,5,20,10"/>
-                     <Views:TimerView x:Name="timer" Margin="20,15,40,10"/>
-                    <Views:MyCallsInQueueView />
+                    <Views:TimerView x:Name="timer" Margin="20,15,40,10"/>
                 </StackPanel>
-                <Views:BuildInformationView />
+                <Views:MyCallsInQueueView Grid.Row="1"/>
+                <Views:BuildInformationView Grid.Row="2"/>
                 <!--<Button Click="Button_Click" >Close</Button>-->
-            </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

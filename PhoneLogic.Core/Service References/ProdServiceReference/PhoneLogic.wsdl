@@ -20,6 +20,12 @@
   <wsdl:message name="IPhoneLogicService_GetQueueDetail_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetQueueDetailResponse" />
   </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_GetAllCallsInQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCallsInQueue" />
+  </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_GetAllCallsInQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCallsInQueueResponse" />
+  </wsdl:message>
   <wsdl:message name="IPhoneLogicService_GetMyQueuedCalls_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMyQueuedCalls" />
   </wsdl:message>
@@ -76,6 +82,10 @@
     <wsdl:operation name="GetQueueDetail">
       <wsdl:input wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetQueueDetail" message="tns:IPhoneLogicService_GetQueueDetail_InputMessage" />
       <wsdl:output wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetQueueDetailResponse" message="tns:IPhoneLogicService_GetQueueDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCallsInQueue">
+      <wsdl:input wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetAllCallsInQueue" message="tns:IPhoneLogicService_GetAllCallsInQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetAllCallsInQueueResponse" message="tns:IPhoneLogicService_GetAllCallsInQueue_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetMyQueuedCalls">
       <wsdl:input wsaw:Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetMyQueuedCalls" message="tns:IPhoneLogicService_GetMyQueuedCalls_InputMessage" />

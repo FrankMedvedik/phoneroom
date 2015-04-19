@@ -37,13 +37,13 @@
                           ToolTipService.ToolTip="My current Job tasks"
                       HorizontalAlignment="Left" IsReadOnly="True" SelectionMode="Single">
                 <sdk:DataGrid.Columns>
-                   <sdk:DataGridTextColumn Binding="{Binding jobFormatted}"  />
-                    <sdk:DataGridTextColumn Binding="{Binding taskName}"  />
-                    <sdk:DataGridTextColumn Binding="{Binding taskDscr}"  />
-                   <sdk:DataGridTextColumn Binding="{Binding taskTypeID}"  />
-                    <sdk:DataGridTextColumn Binding="{Binding oldest_call}" />
-                    <sdk:DataGridTextColumn Binding="{Binding newest_call}"/> 
-                    <sdk:DataGridTextColumn Binding="{Binding call_cnt}" />
+                        <sdk:DataGridTextColumn Binding="{Binding jobFormatted}"  />
+                        <sdk:DataGridTextColumn Binding="{Binding taskName}"  />
+                        <sdk:DataGridTextColumn Binding="{Binding taskTypeID}"  />
+                        <sdk:DataGridTextColumn Binding="{Binding taskDscr}"  />
+                <sdk:DataGridTextColumn Binding="{Binding call_cnt}"  />
+                        <!--<sdk:DataGridTextColumn Binding="{Binding oldest_call}" />
+                        <sdk:DataGridTextColumn Binding="{Binding newest_call}"/>--> 
                 </sdk:DataGrid.Columns> 
         </sdk:DataGrid> 
         <StackPanel Grid.Row="1"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">

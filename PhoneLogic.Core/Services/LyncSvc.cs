@@ -67,6 +67,27 @@ namespace PhoneLogic.Core.Services
             return wqs;
         }
 
+        public async static Task<ObservableCollection<PhoneLogic.Model.QueueSummary>> GetAllQueueSummary()
+        {
+            var proxy = new PhoneLogicServiceClient();
+            Object state = "test";
+            var channel = proxy.ChannelFactory.CreateChannel();
+            var t = await Task<List<sr.QueueDetail>>.Factory.FromAsync(channel.BeginGetAllCallsInQueue,
+                channel.EndGetAllCallsInQueue, state);
+            var lst = new List<PhoneLogic.Model.QueueSummary>();
+            if (t.Count > 0)
+            {
+                lst = t
+                    .GroupBy(n => n.JobNumber)
+                    .Select(n => new PhoneLogic.Model.QueueSummary
+                    {
+                        JobNumber = n.Key,
+                        InQueue = n.Count()
+                    }).ToList();
+            }
+            return new ObservableCollection<PhoneLogic.Model.QueueSummary>(lst);
+        }
+
         public async static Task<List<String>> GetAvailableRecruiters()
         {
             return await GetRecruiters(RecruiterStatus.Available);

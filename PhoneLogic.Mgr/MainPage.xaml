@@ -20,8 +20,12 @@
         <Border BorderBrush="Black" BorderThickness="2" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" Grid.Row="0" Grid.Column="0">
             <sdk:TabControl  Width="Auto" >
                 <sdk:TabItem  Header="Recruiters">
-                    <views:RecruitersRptView />
+                    <views:AllRecruitersRptView />
                 </sdk:TabItem>
+                <!--<sdk:TabItem  Header="Recruiter">
+                    <views:RecruiterDetailRptView />
+                </sdk:TabItem>-->
+                
                 <sdk:TabItem  Header="Job Call Activity">
                     <views:JobCallActivityRptView />
                 </sdk:TabItem>
@@ -36,9 +40,7 @@
                     </StackPanel>
                 </sdk:TabItem>
             </sdk:TabControl>
-
         </Border>
-
 
         <Rectangle Grid.Column="1" HorizontalAlignment="Left" Width="6" Fill="#FFEAEAEA"/>
         <sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left" 
@@ -48,14 +50,10 @@
             </sdk:GridSplitter.Background>
         </sdk:GridSplitter>
 
-        <!--<sdk:GridSplitter Grid.Column="1" Grid.Row="0" Height="Auto" HorizontalAlignment="Center" 
-           VerticalAlignment="Stretch" Background="Gray"   ShowsPreview="True" Width="5" Margin="5" />
-       <Image Source="views:Images/GridSplitter" Grid.Column="1" Grid.Row="0"   />
-        <ImageBrush Stretch="None" ImageSource="SplitterHandle.png"/>-->
         <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
             <StackPanel Orientation="Vertical">
-                <views:ActiveCallsView  />
                 <views:CallsInQueueView />
+                <views:ActiveCallsView  />
             </StackPanel>
         </Border>
         <views:BuildInformationView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>

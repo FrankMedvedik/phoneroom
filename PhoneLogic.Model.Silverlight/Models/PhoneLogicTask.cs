@@ -30,9 +30,9 @@ public class PhoneLogicTask
     }
         [Display(Name = "Topic")]
         public string taskName { get; set; }
-        [Display(Name = "Topic Desc")]
+        [Display(Name = "Description")]
         public string taskDscr { get; set; }
-        [Display(Name = "Task Type")]
+        [Display(Name = "Type")]
         public string taskTypeID { get; set; }
         [Display(Name = "Oldest Call")]
         public DateTime? oldest_call { get; set; }

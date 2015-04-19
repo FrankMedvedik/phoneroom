@@ -8,18 +8,18 @@ using QueueSummary = PhoneLogic.Model.QueueSummary;
 namespace PhoneLogic.Core.ViewModels
     
 {
-    public class CallsInQueueViewModel : CollectionViewModelBase
+    public class MyCallsInQueueViewModel : CollectionViewModelBase
     {
   
         // sets up the 
-        public CallsInQueueViewModel()
+        public MyCallsInQueueViewModel()
         {
          StartAutoRefresh(ApiRefreshFrequency.LyncApi);
         }
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-           GetQueuedCalls();
+           GetMyQueuedCalls();
         }
 
         public void testGetMyQueuedCalls()
@@ -47,12 +47,12 @@ namespace PhoneLogic.Core.ViewModels
             LoadFailed(new Exception("Nothing wrong just testing..."));
         }
 
-        public async void GetQueuedCalls()
+        public async void GetMyQueuedCalls()
         {
             try
             {
                 LoadDate = DateTime.Now;
-                var cq = await LyncSvc.GetAllQueueSummary();
+                var cq = await LyncSvc.GetMyQueueSummary();
                 if (cq.Count > 0)
                 {
                   CallsInQueue = cq;
@@ -77,11 +77,10 @@ namespace PhoneLogic.Core.ViewModels
              get { return _CallsInQueue; }
              set
              {
-
                      _CallsInQueue = value;
-                     NotifyPropertyChanged();
-                     NotifyPropertyChanged("TheBackground");
-                     NotifyPropertyChanged("TheForeground");
+                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("TheBackground");
+                    NotifyPropertyChanged("TheForeground");
              }
          }
         #endregion

@@ -10,9 +10,9 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.ViewModels
 {
-    public class RecruitersViewModel : CollectionViewModelBase
+    public class AllRecruitersViewModel : CollectionViewModelBase
     {
-        public RecruitersViewModel()
+        public AllRecruitersViewModel()
         {
             GetRecruiters();
             PhoneRooms = PhoneRoomSvc.GetAll();
@@ -196,6 +196,25 @@ namespace PhoneLogic.Core.ViewModels
                 NotifyPropertyChanged();
             }
         }
+
+        #region SelectedRecruiterLog
+
+        private RecruiterLog _selectedRecruiterLog;
+        public RecruiterLog SelectedRecruiterLog
+        {
+            get
+            {
+                return _selectedRecruiterLog;
+            }
+            set
+            {
+                _selectedRecruiterLog = value;
+                //ShowSelectedRecruiterLog = (_selectedRecruiterLog != null);
+                NotifyPropertyChanged();
+            }
+        }
+        #endregion
+
         
         private Boolean _showLogData = false;
         public Boolean ShowLogData

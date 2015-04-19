@@ -185,6 +185,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="recruiterLogDTO.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RespModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -216,6 +219,9 @@
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="rpt_GetCallLog_Result.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_GetRecruiterLog_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\AgentUtils.cs" />

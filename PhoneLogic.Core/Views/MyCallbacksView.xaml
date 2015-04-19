@@ -39,12 +39,12 @@
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding phoneFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding timeEntered}" />
-                <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
-                <sdk:DataGridTextColumn Binding="{Binding taskID}" />
-                <sdk:DataGridTextColumn Binding="{Binding taskName}" />
-                <sdk:DataGridTextColumn Binding="{Binding TaskTypeId}" />
-                <sdk:DataGridTextColumn Binding="{Binding tollFreeFormatted}"/>
                 <sdk:DataGridTextColumn Binding="{Binding Region}"/>
+                <!--<sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />-->
+                <!--<sdk:DataGridTextColumn Binding="{Binding taskID}" />-->
+                <!--<sdk:DataGridTextColumn Binding="{Binding taskName}" />
+                <sdk:DataGridTextColumn Binding="{Binding TaskTypeId}" />-->
+                <sdk:DataGridTextColumn Binding="{Binding tollFreeFormatted}"/>
                 <sdk:DataGridTextColumn Binding="{Binding MsgStatus}"  Foreground="Red" />
             </sdk:DataGrid.Columns>
             <sdk:DataGrid.RowDetailsTemplate>
@@ -57,7 +57,7 @@
                             Checked="PlayMsg_Click" Unchecked="StopMsg_Click" Width="Auto">Play</ToggleButton>
                         </StackPanel>
                         <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
-                        <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Close</Button>
+                        <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Delete</Button>
                     </StackPanel>
                 </DataTemplate>
             </sdk:DataGrid.RowDetailsTemplate>

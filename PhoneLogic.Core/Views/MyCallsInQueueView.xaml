@@ -10,7 +10,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     mc:Ignorable="d" >
     <Control.DataContext>
-        <viewModels:CallsInQueueViewModel/>
+        <viewModels:MyCallsInQueueViewModel/>
     </Control.DataContext>
     <Control.Resources>
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />

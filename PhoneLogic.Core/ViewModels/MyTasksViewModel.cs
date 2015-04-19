@@ -16,7 +16,7 @@ namespace PhoneLogic.Core.ViewModels
             StartAutoRefresh(ApiRefreshFrequency.UserDB);
             GetMyTasks();
         }
-
+    
         public async void GetMyTasks()
         {
 

@@ -216,12 +216,20 @@
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="Timestamp.cs" />
+    <Compile Include="ViewModels\MyCallsInQueueViewModel.cs" />
+    <Compile Include="ViewModels\RecruiterViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
+    <Compile Include="Views\AudioPlaybackView.xaml.cs">
+      <DependentUpon>AudioPlaybackView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MyCallsInQueueView.xaml.cs">
       <DependentUpon>MyCallsInQueueView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PhoneroomStatusView.xaml.cs">
       <DependentUpon>PhoneroomStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecruiterRptView.xaml.cs">
+      <DependentUpon>RecruiterRptView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TimerView.xaml.cs">
       <DependentUpon>TimerView.xaml</DependentUpon>
@@ -257,7 +265,7 @@
     <Compile Include="ViewModels\InboundCallsByHrRptViewModel.cs" />
     <Compile Include="ViewModels\JobCallActivityRptViewModel.cs" />
     <Compile Include="ViewModels\ConversationContext.cs" />
-    <Compile Include="ViewModels\RecruitersViewModel.cs" />
+    <Compile Include="ViewModels\AllRecruitersViewModel.cs" />
     <Compile Include="ViewModels\TodaysCallLogRptViewModel.cs" />
     <Compile Include="ViewModels\JobDetailViewModel.cs" />
     <Compile Include="ViewModels\PeopleViewModel.cs" />
@@ -291,8 +299,8 @@
     <Compile Include="Views\JobCallActivityRptView.xaml.cs">
       <DependentUpon>JobCallActivityRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RecruitersRptView.xaml.cs">
-      <DependentUpon>RecruitersRptView.xaml</DependentUpon>
+    <Compile Include="Views\AllRecruitersRptView.xaml.cs">
+      <DependentUpon>AllRecruitersRptView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RespondentSearchView.xaml.cs">
       <DependentUpon>RespondentSearchView.xaml</DependentUpon>
@@ -336,6 +344,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AudioPlaybackView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MyCallsInQueueView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -343,6 +355,10 @@
     <Page Include="Views\PhoneroomStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecruiterRptView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TimerView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -388,7 +404,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\RecruitersRptView.xaml">
+    <Page Include="Views\AllRecruitersRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

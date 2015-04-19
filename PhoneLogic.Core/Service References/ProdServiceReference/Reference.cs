@@ -421,6 +421,12 @@ namespace PhoneLogic.Core.ProdServiceReference {
         
         System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> EndGetQueueDetail(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetAllCallsInQueue", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetAllCallsInQueueRes" +
+            "ponse")]
+        System.IAsyncResult BeginGetAllCallsInQueue(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> EndGetAllCallsInQueue(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetMyQueuedCalls", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetMyQueuedCallsRespo" +
             "nse")]
         System.IAsyncResult BeginGetMyQueuedCalls(string sipAddress, System.AsyncCallback callback, object asyncState);
@@ -501,6 +507,25 @@ namespace PhoneLogic.Core.ProdServiceReference {
         private object[] results;
         
         public GetQueueDetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllCallsInQueueCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllCallsInQueueCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -624,6 +649,12 @@ namespace PhoneLogic.Core.ProdServiceReference {
         
         private System.Threading.SendOrPostCallback onGetQueueDetailCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetAllCallsInQueueDelegate;
+        
+        private EndOperationDelegate onEndGetAllCallsInQueueDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllCallsInQueueCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetMyQueuedCallsDelegate;
         
         private EndOperationDelegate onEndGetMyQueuedCallsDelegate;
@@ -728,6 +759,8 @@ namespace PhoneLogic.Core.ProdServiceReference {
         public event System.EventHandler<GetJobSummaryCompletedEventArgs> GetJobSummaryCompleted;
         
         public event System.EventHandler<GetQueueDetailCompletedEventArgs> GetQueueDetailCompleted;
+        
+        public event System.EventHandler<GetAllCallsInQueueCompletedEventArgs> GetAllCallsInQueueCompleted;
         
         public event System.EventHandler<GetMyQueuedCallsCompletedEventArgs> GetMyQueuedCallsCompleted;
         
@@ -837,6 +870,50 @@ namespace PhoneLogic.Core.ProdServiceReference {
             }
             base.InvokeAsync(this.onBeginGetQueueDetailDelegate, new object[] {
                         jobNumber}, this.onEndGetQueueDetailDelegate, this.onGetQueueDetailCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.BeginGetAllCallsInQueue(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllCallsInQueue(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.EndGetAllCallsInQueue(System.IAsyncResult result) {
+            return base.Channel.EndGetAllCallsInQueue(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllCallsInQueue(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((PhoneLogic.Core.ProdServiceReference.IPhoneLogicService)(this)).BeginGetAllCallsInQueue(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllCallsInQueue(System.IAsyncResult result) {
+            System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> retVal = ((PhoneLogic.Core.ProdServiceReference.IPhoneLogicService)(this)).EndGetAllCallsInQueue(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllCallsInQueueCompleted(object state) {
+            if ((this.GetAllCallsInQueueCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllCallsInQueueCompleted(this, new GetAllCallsInQueueCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllCallsInQueueAsync() {
+            this.GetAllCallsInQueueAsync(null);
+        }
+        
+        public void GetAllCallsInQueueAsync(object userState) {
+            if ((this.onBeginGetAllCallsInQueueDelegate == null)) {
+                this.onBeginGetAllCallsInQueueDelegate = new BeginOperationDelegate(this.OnBeginGetAllCallsInQueue);
+            }
+            if ((this.onEndGetAllCallsInQueueDelegate == null)) {
+                this.onEndGetAllCallsInQueueDelegate = new EndOperationDelegate(this.OnEndGetAllCallsInQueue);
+            }
+            if ((this.onGetAllCallsInQueueCompletedDelegate == null)) {
+                this.onGetAllCallsInQueueCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllCallsInQueueCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllCallsInQueueDelegate, null, this.onEndGetAllCallsInQueueDelegate, this.onGetAllCallsInQueueCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1302,6 +1379,18 @@ namespace PhoneLogic.Core.ProdServiceReference {
             public System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> EndGetQueueDetail(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> _result = ((System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail>)(base.EndInvoke("GetQueueDetail", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetAllCallsInQueue(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetAllCallsInQueue", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> EndGetAllCallsInQueue(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail> _result = ((System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.QueueDetail>)(base.EndInvoke("GetAllCallsInQueue", _args, result)));
                 return _result;
             }
             

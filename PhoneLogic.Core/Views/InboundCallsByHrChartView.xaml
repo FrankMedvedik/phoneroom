@@ -19,9 +19,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition MaxHeight="650"/>
-            <RowDefinition MaxHeight="650"/>
-            <RowDefinition MaxHeight="650"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Top">
@@ -45,7 +45,7 @@
             <Button Click="LoadData" Margin="6">Refresh Report</Button>
             
         </StackPanel>
-        <toolkit:Chart Grid.Row="2" Title="Calls By Hour" x:Name="LineChart" />
+        <toolkit:Chart Grid.Row="2" Title="Calls By Hour" x:Name="LineChart"  Height="700" Width="800" />
         <!--<Button Grid.Row="3"  Click="LoadChart" Margin="6">Refresh Report</Button>-->
 
         <sdk:DataGrid x:Name="DGrid" Grid.Row="4" AutoGenerateColumns="True"  ClipboardCopyMode="IncludeHeader" SelectionMode="Extended"

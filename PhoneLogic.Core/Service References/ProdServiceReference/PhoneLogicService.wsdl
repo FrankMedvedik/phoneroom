@@ -53,6 +53,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllCallsInQueue">
+      <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetAllCallsInQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetMyQueuedCalls">
       <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetMyQueuedCalls" style="document" />
       <wsdl:input>

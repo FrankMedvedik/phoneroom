@@ -14,11 +14,16 @@
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
         <DataTemplate x:Key="RecruiterStatusTemplate" >
-            <StackPanel Orientation="Horizontal">
-                <controls:PresenceIndicator x:Name="Presence" Source="{Binding RecruiterUri}" PhotoDisplayMode="Small" />
-                <TextBlock Text="{Binding DisplayName, ElementName=Presence}" Margin="4,0,0,0" VerticalAlignment="Center"/>
-                        <Button Name="btnJoinCall" Margin="3,6,6,6" Click="btnJoinCall_Click">Join</Button>
-            </StackPanel>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <controls:PresenceIndicator x:Name="Presence" Margin="6" Source="{Binding RecruiterUri}" PhotoDisplayMode="Small" Grid.Column="0"/>
+                <TextBlock Text="{Binding DisplayName, ElementName=Presence}" Margin="6" VerticalAlignment="Center" Grid.Column="1"/>
+                <Button Name="btnJoinCall" Grid.Column="2" Margin="6,6,6,6" Click="btnJoinCall_Click"  IsEnabled="False" >Join</Button>
+            </Grid>
         </DataTemplate>
     </Control.Resources>
     <Grid  HorizontalAlignment="Left" >
@@ -44,7 +49,7 @@
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
         <StackPanel  Margin="6" Grid.Row="0" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <Image HorizontalAlignment="Center" Stretch="None" Source="Images/Sleep PC.png" />
+            <Image HorizontalAlignment="Center" Stretch="None" Source="../Images/Sleep PC.png" />
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load" HorizontalAlignment="Center"/>
                 <TextBlock Text="{Binding LoadMethod}" HorizontalAlignment="Left"/>
