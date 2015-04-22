@@ -23,7 +23,7 @@ namespace PhoneLogic.Core.Services
             return t;
         }
 
-        public static async Task<List<PhoneLogicTask>> GetMyTasks(string sip)
+        public static async Task<List<PhoneLogicTask>> GetMyJobs(string sip)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasks?SIP=" + sip));

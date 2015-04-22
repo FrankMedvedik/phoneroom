@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using PhoneLogic.Core.MVVM_Base_Types;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;

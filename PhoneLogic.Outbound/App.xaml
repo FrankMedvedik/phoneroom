@@ -31,8 +31,26 @@
                     <Setter Property="FontFamily" Value="Ariel Bold"  />
                     <Setter Property="Margin" Value="8" />
                 </Style>
+        <Style TargetType="Control" x:Key="NoActivity">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="White" />
+        </Style>
+        
+        <Style TargetType="Control" x:Key="LowActivity">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="Yellow" />
+        </Style>
 
-                <!--<Style  x:Key="Basic"  TargetType="TextBlock">
+        <Style TargetType="Control" x:Key="MediumActivity">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="Orange" />
+        </Style>
+
+        <Style TargetType="Control" x:Key="HighActivity">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="Red" />
+        </Style>
+        <!--<Style  x:Key="Basic"  TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontWeight" Value="Bold"/>

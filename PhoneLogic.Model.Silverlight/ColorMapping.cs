@@ -1,8 +1,8 @@
-﻿namespace PhoneLogic.Core.Services
+﻿namespace PhoneLogic.Model
 {
-    public class ColorMapping
+    public static class ColorMapping
     {
-        public static string GetForeground(int cnt)
+        public static string GetForeground(int? cnt)
         {
             const string noActivity = "Black";
             const string low = "Black";
@@ -20,7 +20,7 @@
             return low;
         }
 
-        public static string GetBackground(int cnt)
+        public static string GetBackground(int ?cnt)
         {
             const string noActivity = "White";
             const string low = "Yellow";

@@ -9,14 +9,15 @@ namespace PhoneLogic.Core.Views
     public partial class RecruiterRptView : UserControl
     {
         private RecruiterViewModel _vm;
-        
+        private ToggleButton _selectedButton = new ToggleButton();
 
         public RecruiterRptView()
         {
             _vm = new RecruiterViewModel();
             DataContext = _vm;
             InitializeComponent();
-            CallPlayer.Visibility = Visibility.Collapsed;
+            AudioPlayer.Visibility = Visibility.Collapsed;
+            AudioPlayer.AudioPlayback.MediaEnded += ResetPlaybackState;
         }
 
 
@@ -36,6 +37,28 @@ namespace PhoneLogic.Core.Views
             }
         }
 
+        private void tbtnPlay_Checked(object sender, RoutedEventArgs e)
+        {
+            AudioPlayer.Visibility = Visibility.Visible;
+            _selectedButton = (sender as ToggleButton);
+            _selectedButton.Content = "Stop";
+            AudioPlayer.Play();
+
+        }
+
+        private void tbtnPlay_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _selectedButton = (sender as ToggleButton);
+            _selectedButton.Content = "Play";
+            AudioPlayer.Stop();
+            AudioPlayer.Visibility = Visibility.Collapsed;
+        }
+
+        private void ResetPlaybackState(object o, RoutedEventArgs e)
+        {
+            _selectedButton.Content = "Play";
+            AudioPlayer.Visibility = Visibility.Collapsed;
+        }
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RecruiterSipProperty =
             DependencyProperty.Register("RecruiterSip", typeof(string), typeof(RecruiterRptView), new PropertyMetadata(""));
@@ -45,8 +68,8 @@ namespace PhoneLogic.Core.Views
 
             // set up the audio playback
             if (_vm.RecruiterSip == null) return;
-            CallPlayer.PlaybackFileName = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" + _vm.SelectedRecruiterLog.callId + ".wma";
-            CallPlayer.Visibility = Visibility.Visible;
+            AudioPlayer.PlaybackFileName = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" + _vm.SelectedRecruiterLog.callId + ".wma";
+            AudioPlayer.Visibility = Visibility.Visible;
         }
 
     }

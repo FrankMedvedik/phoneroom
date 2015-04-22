@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Views" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,10 +7,6 @@
     x:Class="PhoneLogic.Core.Views.MyCallbacksView"
     xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
     mc:Ignorable="d" d:DesignWidth="186.667" d:DesignHeight="123" VerticalAlignment="Top"  HorizontalAlignment="Left">
-    <Control.Resources>
-        <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
-        <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
-    </Control.Resources>
     <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,23 +20,26 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Phone Messages " FontWeight="Bold" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Left" Margin="6"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Left" >
+                <TextBlock Text="{Binding SelectedJob}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,6"/>
+                <TextBlock Text="Messages " FontWeight="Bold" HorizontalAlignment="Left" Margin="0,6,6,6"/>
+                </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1"  Grid.ColumnSpan="2">
                 <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
                 <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
             </StackPanel>
         </Grid>
-        <sdk:DataGrid x:Name="callbackGrid" MaxHeight="300"  Grid.Row="1"    AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
+        <sdk:DataGrid x:Name="callbackGrid" MaxHeight="300"  Grid.Row="1" AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
                           Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                           Loaded="callbackGrid_Loaded"  VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
                           ItemsSource="{Binding MyCallbacks}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"  
                         ToolTipService.ToolTip="Voice Mail Messages to be returned" Margin="6" HorizontalAlignment="Left" 
                         SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected" >
             <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding phoneFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding timeEntered}" />
                 <sdk:DataGridTextColumn Binding="{Binding Region}"/>
-                <!--<sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />-->
                 <!--<sdk:DataGridTextColumn Binding="{Binding taskID}" />-->
                 <!--<sdk:DataGridTextColumn Binding="{Binding taskName}" />
                 <sdk:DataGridTextColumn Binding="{Binding TaskTypeId}" />-->
@@ -54,7 +53,7 @@
                         <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
                         <StackPanel Name="playControlsPanel" Orientation="Horizontal">
                             <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
-                            Checked="PlayMsg_Click" Unchecked="StopMsg_Click" Width="Auto">Play</ToggleButton>
+                            Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked" Width="Auto">Play</ToggleButton>
                         </StackPanel>
                         <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
                         <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Delete</Button>
@@ -62,22 +61,7 @@
                 </DataTemplate>
             </sdk:DataGrid.RowDetailsTemplate>
         </sdk:DataGrid>
-        <StackPanel Grid.Row="2" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
-            <Grid Margin="6" Name="PlaybackControls" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="6" >
-                    <TextBlock Margin="3" Text="Seek To: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
-                        Text="{Binding CallDuration, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}"/>
-                </StackPanel>
-                <Slider Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0"  IsHitTestVisible="True" Margin="6"  x:Name="SliderPosition" ValueChanged="sliderPosition_ValueChanged" />
-                <Slider Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" Minimum="0" IsHitTestVisible="False" x:Name="sliderPositionBackground" Opacity="0.5" Margin="6"  />
-            </Grid>
-            <MediaElement Name="msgPlayback"  CurrentStateChanged="media_CurrentStateChanged"  MediaOpened="media_MediaOpened" AutoPlay="False"/>
-        </StackPanel>
+        <Views:AudioPlaybackView Grid.Row="3" Name="AudioPlayer"   />
         <StackPanel  Margin="6" Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
             <TextBlock  HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text="No Messages Found"/>
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >

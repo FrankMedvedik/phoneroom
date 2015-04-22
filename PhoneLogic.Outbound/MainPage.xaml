@@ -20,10 +20,8 @@
         </Grid.RowDefinitions>
         <lyncControls:MyStatusArea Background="Transparent" Margin="3" Grid.Column="0" Grid.Row="0"   HorizontalAlignment="Left" />
         <views:MyCallsInQueueView Margin="3" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" />
-        <views:MyTasksView Margin="3" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"  />
-        <views:MyCallbacksView  Margin="3" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" />
-
-        <views:BuildInformationView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <views:MyWorkView  Margin="6" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Left" />
+        <views:BuildInformationView Grid.Row="3" Grid.Column="0" />
     </Grid>
 </UserControl>
 

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media;
-using System.Windows.Threading;
 using Microsoft.Lync.Model;
 using Microsoft.Lync.Model.Extensibility;
 using PhoneLogic.Core.Services;
@@ -16,8 +14,8 @@ namespace PhoneLogic.Core.Views
     public partial class MyCallbacksView 
     {
         private readonly MyCallBacksViewModel _vm;
+        private ToggleButton _selectedButton = new ToggleButton();
 
-        private readonly DispatcherTimer timer = new DispatcherTimer();
 
         public MyCallbacksView()
         {
@@ -25,15 +23,9 @@ namespace PhoneLogic.Core.Views
             _vm = new MyCallBacksViewModel();
             DataContext = _vm;
             _vm.RefreshAll();
-            timer.Interval = TimeSpan.FromSeconds(0.1);
-            timer.Tick += timer_Tick;
-            PlaybackControls.Visibility = Visibility.Collapsed;
-        }
+            AudioPlayer.Visibility = Visibility.Collapsed;
+            AudioPlayer.AudioPlayback.MediaEnded += ResetPlaybackState;
 
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            _vm.CallDuration = msgPlayback.Position;
-            sliderPositionBackground.Value = msgPlayback.Position.TotalSeconds;
         }
 
         private async void CloseCallback_Click(object sender, RoutedEventArgs e)
@@ -58,7 +50,6 @@ namespace PhoneLogic.Core.Views
             }
         }
 
-
         private async void Call_Click(object sender, RoutedEventArgs e)
         {
             
@@ -74,16 +65,13 @@ namespace PhoneLogic.Core.Views
                 MessageBox.Show("Select A Callback");
                 return;
             }
-            //if (_vm.SelectedMyCallback.SIP != null)
-            //{
-            //    // inhibit them from calling someone already in a call
-            //    if (_vm.SelectedMyCallback.SIP.Substring(0, 4) == "sip:")
-            //    {
-            //        if ( MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",
-            //            MessageBoxButton.OKCancel) != MessageBoxResult.OK );
-            //            return;
-            //    }
-            //}
+
+            if (!String.IsNullOrEmpty(_vm.SelectedMyCallback.status))
+            {
+                if (MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",
+                    MessageBoxButton.OKCancel) != MessageBoxResult.OK) 
+                    return;
+            }
             /* setup making the call  */
             var participantUri = new List<string> {_vm.SelectedMyCallback.callbackNum};
             var modalitySettings = new Dictionary<AutomationModalitySettings, object>
@@ -135,13 +123,9 @@ namespace PhoneLogic.Core.Views
 
         private void callbackGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _vm.CanRefresh = true;
-            msgPlayback.Stop();
+          
             if (_vm.SelectedMyCallback == null) return;
-            msgPlayback.Source = new Uri(ConditionalConfiguration.rootUrl + "ClientBin/messages/" + _vm.SelectedMyCallback.msgScr, UriKind.Absolute);
-            msgPlayback.Stop();
-            SliderPosition.Value = 0;
-            msgPlayback.Stop();
+            AudioPlayer.PlaybackFileName = ConditionalConfiguration.rootUrl + "ClientBin/messages/" + _vm.SelectedMyCallback.msgScr + ".wma";
         }
 
         private void callbackGrid_Loaded(object sender, RoutedEventArgs e)
@@ -152,58 +136,29 @@ namespace PhoneLogic.Core.Views
                 callbackGrid.SelectedIndex = 0;
         }
 
-        #region msgPlayback controls
-        
-        private void PlayMsg_Click(object sender, RoutedEventArgs e)
-        
+        private void tbtnPlay_Checked(object sender, RoutedEventArgs e)
         {
-            (sender as ToggleButton).Content = "Stop";
+            AudioPlayer.Visibility = Visibility.Visible;
+            _selectedButton = (sender as ToggleButton);
+            _selectedButton.Content = "Stop";
+            AudioPlayer.Play();
             _vm.CanRefresh = false;
-            msgPlayback.Play();
-            timer.Start();
-        }
-        private void StopMsg_Click(object sender, RoutedEventArgs e)
-        {
-           (sender as ToggleButton).Content = "Play";
-            msgPlayback.Stop();
-            SliderPosition.Value=0;
-        }
-        private void media_MediaOpened(object sender, RoutedEventArgs e)
-        {
-            SliderPosition.Maximum = msgPlayback.NaturalDuration.TimeSpan.TotalSeconds;
-            msgPlayback.Position = TimeSpan.FromSeconds(0);
+
         }
 
-        private void sliderPosition_ValueChanged(object sender, RoutedEventArgs e)
+        private void tbtnPlay_Unchecked(object sender, RoutedEventArgs e)
         {
-            msgPlayback.Pause();
-            msgPlayback.Position = TimeSpan.FromSeconds(SliderPosition.Value);
-            msgPlayback.Play();
+            _selectedButton = (sender as ToggleButton);
+            _selectedButton.Content = "Play";
+            AudioPlayer.Stop();
+            _vm.CanRefresh = true;
+            AudioPlayer.Visibility = Visibility.Collapsed;
         }
-
-        private void media_CurrentStateChanged(object sender, RoutedEventArgs e)
-        {
-            switch (msgPlayback.CurrentState)
-            {
-                case MediaElementState.Playing:
-                    _vm.CanRefresh = false;
-                    PlaybackControls.Visibility = Visibility.Visible;
-                    break;
-                case MediaElementState.Opening:
-                    _vm.CanRefresh = false;
-                    PlaybackControls.Visibility = Visibility.Visible;
-                    break;
-                default:
-                    _vm.CanRefresh = true;
-                    PlaybackControls.Visibility = Visibility.Collapsed;
-                    break;
-            }
-            //lblStatus.Text = msgPlayback.CurrentState.ToString();
-        }
-
         
-        #endregion
-
-
+        private void ResetPlaybackState(object o, RoutedEventArgs e)
+        {
+            _selectedButton.Content = "Play";
+            AudioPlayer.Visibility = Visibility.Collapsed;
+        }
     }
 }

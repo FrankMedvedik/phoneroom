@@ -10,33 +10,27 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Services
 {
-    public static class RptSvc
+    public static class QuoteSrv
     {
-        public static async Task<List<RptJobActivity>> GetJobActivityRpt(DateTime startDate, DateTime endDate)
+        private static string _swansonUrl = "http://ron-swanson-quotes.herokuapp.com/quotes";
+
+        public static async Task<QuotableQuote> GetQuote()
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                     new Uri(ConditionalConfiguration.apiUrl + "JobActivityRpt?startDate=" + startDate
-                            + "&endDate="+ endDate));
-            return JsonConvert.DeserializeObject<List<RptJobActivity>>(data);
+                new Uri(_swansonUrl));
+            var q = JsonConvert.DeserializeObject<QuotableQuote>(data);
+            q.Author = "Ron Swanson";
+            q.Source = _swansonUrl;
+            return q;
         }
-
-        public static async Task<List<RptTodayCallLogSummary>> GetTodaysCallLogSummary()
-        {
-            var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(
-                     new Uri(ConditionalConfiguration.apiUrl + "TodayRpt"));
-            return JsonConvert.DeserializeObject<List<RptTodayCallLogSummary>>(data);
-        }
-
-        public static async Task<List<RptInboundCallByHour>> GetInboundCallsByHour(DateTime startDate,DateTime endDate)
-        {
-            var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(
-                     new Uri(ConditionalConfiguration.apiUrl + "InboundCallRpt?StartDate=" + startDate + "&EndDate=" + endDate));
-            return JsonConvert.DeserializeObject<List<RptInboundCallByHour>>(data);
-        }
-
-
     }
+
+    public class QuotableQuote  
+    {
+        public string Author{ get; set; }
+        public string Quote { get; set; }
+        public string Source { get; set; }
+    }
+
 }

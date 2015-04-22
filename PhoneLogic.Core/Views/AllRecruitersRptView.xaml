@@ -15,10 +15,10 @@
             </Grid>
         </DataTemplate>
     </Control.Resources>
-    <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top" MaxHeight="600">
+    <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top" MaxHeight="700">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

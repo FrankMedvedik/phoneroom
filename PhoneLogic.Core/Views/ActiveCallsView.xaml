@@ -4,15 +4,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ignore="http://www.ignore.com"
-             xmlns:viewModels="clr-namespace:PhoneLogic.Core.ViewModels"
-             xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
              mc:Ignorable="d ignore">
     <Control.Resources>
-        <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
-        <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
         <DataTemplate x:Key="RecruiterStatusTemplate" >
             <Grid >
                 <Grid.ColumnDefinitions>
@@ -22,7 +17,7 @@
                 </Grid.ColumnDefinitions>
                 <controls:PresenceIndicator x:Name="Presence" Margin="6" Source="{Binding RecruiterUri}" PhotoDisplayMode="Small" Grid.Column="0"/>
                 <TextBlock Text="{Binding DisplayName, ElementName=Presence}" Margin="6" VerticalAlignment="Center" Grid.Column="1"/>
-                <Button Name="btnJoinCall" Grid.Column="2" Margin="6,6,6,6" Click="btnJoinCall_Click"  IsEnabled="False" >Join</Button>
+                <!--<Button Name="btnJoinCall" Grid.Column="2" Margin="6,6,6,6" Click="btnJoinCall_Click"  IsEnabled="False" >Join</Button>-->
             </Grid>
         </DataTemplate>
     </Control.Resources>

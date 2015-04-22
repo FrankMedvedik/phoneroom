@@ -1,19 +1,20 @@
 ﻿using System.Windows.Controls;
+using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.ViewModels;
 
 namespace PhoneLogic.Core.Views
 {
-
-    public partial class ActiveCallsView : UserControl
+   public partial class MyJobsView : UserControl
     {
-        private ActiveCallsViewModel _vm;
-
-        public ActiveCallsView()
+       private MyJobsViewModel _vm;
+       public MyJobsView()
         {
             InitializeComponent();
-            _vm = new ActiveCallsViewModel();
+            _vm = new MyJobsViewModel();
             DataContext = _vm;
         }
 
+       
     }
 }
+

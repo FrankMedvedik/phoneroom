@@ -14,23 +14,18 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <!--<RowDefinition/>-->
-                </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="6" >
                     <TextBlock Margin="3" Text="Seek To: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
-                        Text="{Binding PlaybackDuration, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Name="TbPlaybackDuration"/>
                 </StackPanel>
                 <Slider Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0"  IsHitTestVisible="True" Margin="6"  x:Name="SliderPosition" ValueChanged="sliderPosition_ValueChanged" />
                 <Slider Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" Minimum="0" IsHitTestVisible="False" x:Name="SliderPositionBackground" Opacity="0.5" Margin="6"  />
-                <StackPanel Name="playControlsPanel" Orientation="Horizontal" Grid.Row="0" Grid.Column="2" >
+                <!--<StackPanel Name="PlayControlsPanel" Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Visibility="Collapsed" >
                     <ToggleButton x:Name="tbtnListen" Margin="6"  HorizontalAlignment="Center" VerticalAlignment="Center" 
                     Checked="tbtnListen_Checked" Unchecked="tbtnListen_Unchecked" Width="Auto" >Listen</ToggleButton>
-                </StackPanel>
+                </StackPanel>-->
             </Grid>
-            <MediaElement Name="AudioPlayback"  MediaOpened="media_MediaOpened"  CurrentStateChanged="media_CurrentStateChanged" AutoPlay="False"/>
+            <MediaElement Name="AudioPlayback" AutoPlay="False"/>
         </StackPanel>
     </Grid>
 </UserControl>

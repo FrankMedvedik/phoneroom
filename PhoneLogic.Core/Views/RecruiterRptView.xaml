@@ -8,6 +8,8 @@
         xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
         xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
         mc:Ignorable="d" d:DesignWidth="568" d:DesignHeight="245" VerticalAlignment="Top"  HorizontalAlignment="Left">
+    <Control.Resources>
+    </Control.Resources>
     <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top" MaxHeight="600">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -30,23 +32,33 @@
                 <Toolkit:DateTimeBox ToolTipService.ToolTip="start date and time for call history" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
                 <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
                 <Toolkit:DateTimeBox ToolTipService.ToolTip="end date and time for call history" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
-                <Button Click="btnGetLogsClick" Margin="6">Get Calls</Button>
+                <Button Click="btnGetLogsClick" Margin="8">Get Calls</Button>
             </StackPanel>
                 <sdk:DataGrid AutoGenerateColumns="False"  Grid.Row="2" Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  MaxHeight="250"  SelectionChanged="RecruiterLogDG_SelectionChanged"
                     ItemsSource="{Binding RecruiterLogs}"  VerticalAlignment="Top"  Name="RecruiterLogDG" SelectedItem="{Binding SelectedRecruiterLog, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="Call Log" Margin="6" HorizontalAlignment="Left" >
+                    ToolTipService.ToolTip="Call Log" Margin="6" HorizontalAlignment="Center" >
                 <sdk:DataGrid.Columns>
-                    <sdk:DataGridTextColumn Binding="{Binding eventTime}" />
                     <sdk:DataGridTextColumn Binding="{Binding jobFormatted }" />
-                    <sdk:DataGridTextColumn Binding="{Binding tollFreeNumberFormatted}" />
                     <sdk:DataGridTextColumn Binding="{Binding phoneFormatted }" />
-                    </sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding eventTime}" />
+                    <sdk:DataGridTextColumn Binding="{Binding tollFreeNumberFormatted}" />
+                    <sdk:DataGridTemplateColumn Width="100">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate >
+                                <StackPanel Name="playControlsPanel" Orientation="Horizontal">
+                                    <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                            Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked" Width="Auto">Play</ToggleButton>
+                                </StackPanel>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
             </sdk:DataGrid>
             <StackPanel  Margin="6" Grid.Row="2" Visibility="{Binding ShowLogData, Converter={StaticResource NotBoolToVisConverter}}">
                 <TextBlock  HorizontalAlignment="Left" Text="No calls in this time frame"/>
             </StackPanel>
         </Grid>
-        <Views:AudioPlaybackView Name="CallPlayer" Grid.Row="3" Visibility="Collapsed" />
+        <Views:AudioPlaybackView Name="AudioPlayer" Grid.Row="3" Visibility="Collapsed" />
     </Grid>
 </UserControl>

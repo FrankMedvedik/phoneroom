@@ -209,18 +209,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\ColorMapping.cs" />
     <Compile Include="Configuration\ConditionalConfiguration.cs" />
     <Compile Include="Commands\ThemeChangeCommand.cs" />
     <Compile Include="Configuration\NinjectConfiguration.cs" />
+    <Compile Include="Converters\IntToColorConverter.cs" />
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
+    <Compile Include="Services\QuoteSvc.cs" />
     <Compile Include="Timestamp.cs" />
+    <Compile Include="ViewModels\QuotableQuoteViewModel.cs" />
     <Compile Include="ViewModels\MyCallsInQueueViewModel.cs" />
     <Compile Include="ViewModels\RecruiterViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
+    <Compile Include="Views\QuotableQuoteView.xaml.cs">
+      <DependentUpon>QuotableQuoteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AudioPlaybackView.xaml.cs">
       <DependentUpon>AudioPlaybackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyWork.xaml.cs">
+      <DependentUpon>MyWork.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MyCallsInQueueView.xaml.cs">
       <DependentUpon>MyCallsInQueueView.xaml</DependentUpon>
@@ -308,8 +316,8 @@
     <Compile Include="Views\TodaysCallLogRptView.xaml.cs">
       <DependentUpon>TodaysCallLogRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MyTasksView.xaml.cs">
-      <DependentUpon>MyTasksView.xaml</DependentUpon>
+    <Compile Include="Views\MyJobsView.xaml.cs">
+      <DependentUpon>MyJobsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CallsInQueueView.xaml.cs">
       <DependentUpon>CallsInQueueView.xaml</DependentUpon>
@@ -327,7 +335,7 @@
     </Compile>
     <Compile Include="MVVM Base Types\ViewModelBase.cs" />
     <Compile Include="ViewModels\CallsInQueueViewModel.cs" />
-    <Compile Include="ViewModels\MyTasksViewModel.cs" />
+    <Compile Include="ViewModels\MyJobsViewModel.cs" />
     <Compile Include="ViewModels\MyCallbacksViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -344,9 +352,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\QuotableQuoteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AudioPlaybackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyWork.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MyCallsInQueueView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -416,7 +432,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MyTasksView.xaml">
+    <Page Include="Views\MyJobsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -11,7 +11,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
              mc:Ignorable="d ignore">
     <Control.DataContext>
-        <viewModels:MyTasksViewModel/>
+        <viewModels:MyJobsViewModel/>
     </Control.DataContext>
         <Control.Resources>
             <converters:BooleanToVisibility x:Key="BoolToVisConverter" />

@@ -1,4 +1,5 @@
-﻿using Microsoft.Lync.Model;
+﻿using System.Linq;
+using Microsoft.Lync.Model;
 using PhoneLogic.Core.MVVM_Base_Types;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
@@ -8,27 +9,27 @@ using System;
 
 namespace PhoneLogic.Core.ViewModels
 {
-    public class MyTasksViewModel : CollectionViewModelBase
+    public class MyJobsViewModel : CollectionViewModelBase
     {
 
-        public MyTasksViewModel()
+        public MyJobsViewModel()
         {
             StartAutoRefresh(ApiRefreshFrequency.UserDB);
-            GetMyTasks();
         }
     
-        public async void GetMyTasks()
+        public async void GetMyJobs()
         {
+            PhoneLogicTask s = SelectedPhoneLogicTask;
 
             LoadDate = DateTime.Now;
             try
             {
-                var mcb = await PhoneLogicTaskSvc.GetMyTasks(LyncClient.GetClient().Self.Contact.Uri);
-                PhoneLogicTasks.Clear();
-                if (mcb.Count > 0)
+                var mcb = await PhoneLogicTaskSvc.GetMyJobs(LyncClient.GetClient().Self.Contact.Uri);
+                PhoneLogicTasks = new ObservableCollection<PhoneLogicTask>(mcb);
+                if (PhoneLogicTasks.Count > 0)
                 {
-                    foreach (var p in mcb)
-                        PhoneLogicTasks.Add(p);
+                    if (s.JobNum != null)
+                         SelectedPhoneLogicTask = PhoneLogicTasks.FirstOrDefault(x => x.JobNum == s.JobNum);
                     ShowGridData = true;
                 }
                 else
@@ -45,11 +46,11 @@ namespace PhoneLogic.Core.ViewModels
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-            GetMyTasks();
+            GetMyJobs();
         }
 
-        #region MyTasks
-
+        #region MyJobs
+        
         
         private ObservableCollection<PhoneLogicTask> _phoneLogicTask = new ObservableCollection<PhoneLogicTask>();
 
@@ -60,6 +61,20 @@ namespace PhoneLogic.Core.ViewModels
             {
                 _phoneLogicTask = value;
                 NotifyPropertyChanged();
+            }
+        }
+
+        private PhoneLogicTask _selectedPhoneLogicTask = new PhoneLogicTask();
+        public PhoneLogicTask SelectedPhoneLogicTask
+        {
+            get { return _selectedPhoneLogicTask; }
+            set
+            {
+                if (_selectedPhoneLogicTask != value)
+                {
+                    _selectedPhoneLogicTask = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         #endregion

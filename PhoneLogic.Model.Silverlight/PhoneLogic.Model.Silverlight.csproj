@@ -115,6 +115,7 @@
     <Compile Include="..\PhoneLogic.Model.Net\Models\RptTodayCallLogSummary.cs">
       <Link>Models\RptTodayCallLogSummary.cs</Link>
     </Compile>
+    <Compile Include="ColorMapping.cs" />
     <Compile Include="Models\ActiveCallDetail.cs" />
     <Compile Include="Models\CallbackDto.cs" />
     <Compile Include="Models\JobCallSummary.cs" />

@@ -47,7 +47,8 @@ namespace PhoneLogic.Model
             {
                 if (SIP == null) return "";
                 if(SIP.Substring(0,4) != "sip:") return "";
-                return SIP.Substring(4).Trim() + " - Currently In Call ";
+                //if it has been longer than an hour we should call anyway
+                return (statusDate > DateTime.Now.AddHours(-1)) ? SIP.Substring(4).Trim() + " - Currently In Call " : "";
             }
         }
         
