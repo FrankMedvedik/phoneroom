@@ -239,6 +239,9 @@
     <Compile Include="Views\RecruiterRptView.xaml.cs">
       <DependentUpon>RecruiterRptView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CallerInfoView.xaml.cs">
+      <DependentUpon>CallerInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TimerView.xaml.cs">
       <DependentUpon>TimerView.xaml</DependentUpon>
     </Compile>
@@ -373,6 +376,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecruiterRptView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CallerInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

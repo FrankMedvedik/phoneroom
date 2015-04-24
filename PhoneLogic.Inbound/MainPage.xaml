@@ -16,7 +16,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" >
+                <Views:CallerInfoView Name="cinfoView" Grid.Row="0" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <Views:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" />
                     <Views:LyncSearchView Margin="20,5,20,10"/>
                     <Views:TimerView x:Name="timer" Margin="20,15,40,10"/>

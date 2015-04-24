@@ -70,10 +70,11 @@ namespace PhoneLogic.UserAuth
                MKEUsers = cache["MKEUsers"] as IEnumerable<UserPrincipal> ;
                AllUsers = cache["Allsers"] as IEnumerable<UserPrincipal> ;
         }
-                private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","(manos)3k");
-        //#else
-        //        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
-        //#endif
+
+        //        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","(manos)3k");
+        
+        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+        
 
         public Boolean IsSupervisor(string userName)
         {
