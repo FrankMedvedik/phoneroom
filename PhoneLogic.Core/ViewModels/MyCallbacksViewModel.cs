@@ -169,8 +169,24 @@ namespace PhoneLogic.Core.ViewModels
                     _selectedJobNum = value;
                     NotifyPropertyChanged();
                     FilterCallbacks();
+                    NotifyPropertyChanged("JobHeadingText");
+                    
                 }
             } }
+
+        public string JobHeadingText
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(SelectedJobNum)) return "";
+                else
+                    return String.Format("Job {0}-{1} has {2} messages", 
+                        SelectedJobNum.Substring(0, 4),
+                        SelectedJobNum.Substring(4),
+                        FilteredCallbacks.Count);
+            }
+        }
+
 
     }
 }

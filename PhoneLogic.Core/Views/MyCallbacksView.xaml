@@ -21,8 +21,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Left" >
-                <!--<TextBlock Text="{Binding SelectedJobNum}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>-->
-                <TextBlock Text="Messages" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>
+                <TextBlock Text="{Binding JobHeadingText}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>
                 </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1"  Grid.ColumnSpan="2">
                 <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
@@ -36,7 +35,7 @@
             ToolTipService.ToolTip="Voice Mail Messages" Margin="6" HorizontalAlignment="Left" 
             SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected"  IsReadOnly="True" >
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
+                <!--<sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />-->
                 <sdk:DataGridTextColumn Binding="{Binding phoneFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding timeEntered}" />
                 <sdk:DataGridTextColumn Binding="{Binding Region}"/>

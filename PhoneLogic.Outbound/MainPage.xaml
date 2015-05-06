@@ -5,8 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lyncControls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
-    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" d:Width="543" >
-    <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" Background="WhiteSmoke" >
+    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" d:Width="543" Background="WhiteSmoke">
+    <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

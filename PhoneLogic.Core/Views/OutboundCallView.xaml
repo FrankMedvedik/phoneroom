@@ -6,7 +6,7 @@
     mc:Ignorable="d" >
     <Grid x:Name="LayoutRoot">
         <Border BorderThickness="1,1,3,4" BorderBrush="Black" HorizontalAlignment="Center"  VerticalAlignment="Center" >
-            <Grid Background="PowderBlue">
+            <Grid Background="#a6dbed">
                     <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />

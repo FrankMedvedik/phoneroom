@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d"  >
+    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d"  Background="WhiteSmoke">
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" >
             <Border BorderBrush="Black" BorderThickness="4, 4, 8 ,10" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  >
