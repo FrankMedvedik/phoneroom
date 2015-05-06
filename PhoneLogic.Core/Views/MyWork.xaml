@@ -21,7 +21,7 @@
             <TextBlock Text="My Jobs" HorizontalAlignment="Left" Margin="6"  FontWeight="Bold"/>
             <!--<TextBlock Text="{Binding SelectedPhoneLogicTask.JobNum}" HorizontalAlignment="Center" Margin="6"/>-->
         </StackPanel>
-        <sdk:DataGrid x:Name="DGrid" Grid.Column="0" Grid.Row="1"  AutoGenerateColumns="False" MaxHeight="350"  
+        <sdk:DataGrid x:Name="DGrid" Grid.Column="0" Grid.Row="1"  AutoGenerateColumns="False" MaxHeight="350"  Grid.ColumnSpan="2"
              Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  IsEnabled="True"
              ItemsSource="{Binding PhoneLogicTasks, Mode=TwoWay}" Margin="6"  SelectedItem="{Binding SelectedPhoneLogicTask, Mode=TwoWay}"   
               VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   IsReadOnly="True"
@@ -45,8 +45,7 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <Views:MyCallbacksView Name="MyCallbacks" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" />
-        <Views:OutboundCallView Grid.Column="1" Name="OBCView" Grid.Row="1" Margin="10" FontSize="16" />
-
+        <Views:OutboundCallView Grid.Column="0" Name="OBCView" Grid.Row="2" Margin="10" FontSize="16"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Views:MyCallbacksView Name="MyCallbacks" Grid.Column="1" Grid.Row="2" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

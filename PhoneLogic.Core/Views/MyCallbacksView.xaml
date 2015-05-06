@@ -61,7 +61,7 @@
             </sdk:DataGrid.RowDetailsTemplate>
         </sdk:DataGrid>
         <StackPanel Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <TextBlock  HorizontalAlignment="Center" Text="No Messages Found"/>
+            <!--<TextBlock  HorizontalAlignment="Center" Text="No Messages Found"/>-->
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>
                 <TextBlock Text="{Binding LoadMethod}" />
