@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Silverlight.Base.MVVMBaseTypes;
 
-
-namespace PhoneLogic.Core.MVVM_Base_Types
+namespace PhoneLogic.Core.ViewModels
 {
     public abstract class CollectionViewModelBase : ViewModelBase
     {

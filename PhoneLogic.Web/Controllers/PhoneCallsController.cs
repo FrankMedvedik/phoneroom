@@ -81,7 +81,7 @@ namespace PhoneLogic.Web.Controllers
                 return BadRequest(ModelState);
             }
             var agentId = AgentUtils.GetAgentId(p.SIP);
-            db.InsertPlacedCall(agentId, p.job, p.phoneNum, p.EventDesc);
+            db.InsertPlacedCall(agentId, p.JobFormatted, p.phoneNum, p.EventDesc);
             await db.SaveChangesAsync();
             return CreatedAtRoute("DefaultApi", new { id = 0 }, p);
         }

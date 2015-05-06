@@ -1,27 +1,26 @@
-﻿<UserControl
+﻿<UserControl xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lyncControls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
-    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" d:Width="543" Style="{StaticResource DefaultStyle}" >
-
-        <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <lyncControls:MyStatusArea Background="Transparent" Margin="3" Grid.Column="0" Grid.Row="0"   HorizontalAlignment="Left" />
-        <views:MyCallsInQueueView Margin="3" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" />
-        <views:MyWorkView  Margin="6" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Left" />
-        <views:BuildInformationView Grid.Row="3" Grid.Column="0" />
+    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" d:Width="543" >
+    <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        <lyncControls:MyStatusArea  Background="Transparent" Margin="3" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left"  FontSize="16"/>
+        <views:MyCallsInQueueView  Margin="3" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="16"/>
+        <views:MyWorkView Margin="6" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Left" FontSize="16"/>
+        <views:BuildInformationView  Grid.Row="3" Grid.Column="0"  FontSize="16"/>
     </Grid>
 </UserControl>
 

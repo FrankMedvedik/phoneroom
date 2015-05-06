@@ -12,7 +12,7 @@
     <Control.DataContext>
         <viewModels:CallsInQueueViewModel/>
     </Control.DataContext>
-    <Grid  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Grid  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" >
         <StackPanel Grid.Row="0" Grid.Column="0"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  
                     Background="{Binding TheBackground}" >
             <!--<TextBlock Text="Incoming Call: Become Available in Lync to Accept" FontWeight="Bold" Foreground="{Binding TheForeground}" Margin="6" />-->
@@ -27,7 +27,7 @@
         </StackPanel>
         <StackPanel Grid.Column="0"  Grid.Row="0" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}" Margin="6" >
             <!--<TextBlock Text="No Incoming Calls" HorizontalAlignment="Center"/>-->
-            <Image HorizontalAlignment="Center" Stretch="None" Source="../Images/Sleeping-Medical-Staff.png" />
+            <Image HorizontalAlignment="Center" Stretch="None" Source="../Images/Sleeping-Medical-Staff.png"  ToolTipService.ToolTip="no incoming phone calls "/>
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>
                 <TextBlock Text="{Binding LoadMethod}" />

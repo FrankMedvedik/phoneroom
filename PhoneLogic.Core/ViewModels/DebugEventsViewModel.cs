@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Silverlight.Base.MVVMBaseTypes;
 
 namespace PhoneLogic.Core.ViewModels
 {

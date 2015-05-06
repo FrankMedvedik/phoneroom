@@ -36,6 +36,9 @@ namespace PhoneLogic.Core.Views
                 _vm.RecruiterSip = value;
             }
         }
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RecruiterSipProperty =
+            DependencyProperty.Register("RecruiterSip", typeof(string), typeof(RecruiterRptView), new PropertyMetadata(""));
 
         private void tbtnPlay_Checked(object sender, RoutedEventArgs e)
         {
@@ -59,9 +62,6 @@ namespace PhoneLogic.Core.Views
             _selectedButton.Content = "Play";
             AudioPlayer.Visibility = Visibility.Collapsed;
         }
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RecruiterSipProperty =
-            DependencyProperty.Register("RecruiterSip", typeof(string), typeof(RecruiterRptView), new PropertyMetadata(""));
 
         private void RecruiterLogDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

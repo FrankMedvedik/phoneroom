@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using PhoneLogic.Core.MVVM_Base_Types;
+﻿using System;
+using System.Collections.ObjectModel;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
-using System.Collections.ObjectModel;
-using System;
 
 
 namespace PhoneLogic.Core.ViewModels

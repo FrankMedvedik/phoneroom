@@ -3,11 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-#if SILVERLIGHT
-    public class QueueSummary : INotifyPropertyChanged
-#else
     public class QueueSummary
-#endif
     {
         [Display(Name = "Job")]
         public string jobFormatted

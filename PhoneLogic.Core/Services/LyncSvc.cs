@@ -7,6 +7,7 @@ using System.Windows;
 using Microsoft.Lync.Model;
 using System.Collections.Generic;
 using PhoneLogic.Core;
+using PhoneLogic.Core.Models;
 #if DEBUGTEST
 using sr = PhoneLogic.Core.AppServiceReference;
 using PhoneLogic.Core.AppServiceReference;
@@ -88,16 +89,7 @@ namespace PhoneLogic.Core.Services
             return new ObservableCollection<PhoneLogic.Model.QueueSummary>(lst);
         }
 
-        public async static Task<List<String>> GetAvailableRecruiters()
-        {
-            return await GetRecruiters(RecruiterStatus.Available);
-        }
-
-
-        public async static Task<List<String>> GetOnlineRecruiters()
-        {
-            return await GetRecruiters(RecruiterStatus.Online);
-        }
+        
 
         public async static Task<ObservableCollection<JobCallSummary>> GetJobSummary()
         {
@@ -171,28 +163,14 @@ namespace PhoneLogic.Core.Services
                 return t.Result;
         }
 
-        public async static Task<List<String>> GetRecruiters(RecruiterStatus status)
+        public async static Task RecruiterDialOut(String JobFormatted,  String PhoneNumber)
         {
             var proxy = new PhoneLogicServiceClient();
             Object state = "test";
             var channel = proxy.ChannelFactory.CreateChannel();
             var l = new List<String>();
-
-            switch (status)
-            {
-                case RecruiterStatus.Available:
-                    var t = await Task<List<String>>.Factory.FromAsync(channel.BeginGetRecruitersAvailable,
-                        channel.EndGetRecruitersAvailable, state);
-                    l = t;
-                    break;
-
-                case RecruiterStatus.Online:
-                    var x = await Task<List<String>>.Factory.FromAsync(channel.BeginGetRecruitersOnline,
-                        channel.EndGetRecruitersOnline, state);
-                    l = x;
-                    break;
-            }
-            return l.OrderBy(q => q.Substring(5)).ToList();
+            await Task.Factory.FromAsync(channel.BeginRecruiterDialOut,channel.EndRecruiterDialOut, LyncClient.GetClient().Self.Contact.Uri, JobFormatted,PhoneNumber,state);
+            
         }
     }
 

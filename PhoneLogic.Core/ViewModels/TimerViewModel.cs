@@ -1,6 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Threading;
+using Silverlight.Base.MVVMBaseTypes;
 
 namespace PhoneLogic.Core.ViewModels
 {

@@ -26,11 +26,32 @@
               <Application.Resources>
                 <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
                 <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
-                <Style TargetType="Control" x:Key="DefaultStyle">
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="FontFamily" Value="Ariel Bold"  />
-                    <Setter Property="Margin" Value="8" />
-                </Style>
+        <Style TargetType="Control" x:Key="CtrlDefaultStyle">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Ariel Bold"  />
+                <Setter Property="Margin" Value="8" />
+            </Style>
+            <Style TargetType="Button" >
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Ariel Bold"  />
+                <Setter Property="Margin" Value="8" />
+            </Style>
+          <Style TargetType="TextBlock" x:Key="DefaultStyle">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Ariel Bold"  />
+                <Setter Property="Margin" Value="8" />
+            </Style>
+            <Style TargetType="TextBox" >
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Ariel Bold"  />
+                <Setter Property="Margin" Value="8" />
+            </Style>
+        <Style TargetType="Button" x:Key="BigButton">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Ariel Bold"  />
+            <Setter Property="Margin" Value="8" />
+        </Style>
+
         <Style TargetType="Control" x:Key="NoActivity">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Background" Value="White" />

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="PhoneLogic.Core.Views.OutboundCallView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200">
+    <Grid x:Name="LayoutRoot"  Visibility="{Binding ViewVisible, Converter={StaticResource BoolToVisConverter}}" >
+        <Border BorderThickness="1,1,3,4" BorderBrush="Black" HorizontalAlignment="Center"  VerticalAlignment="Center" >
+            <StackPanel Orientation="Vertical" Margin="6">
+                <TextBlock Text="{Binding OutboundCall.JobFormatted}"  Margin="6" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" Margin="6">
+                <TextBlock Text="Phone Number"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6,6,3,3"/>
+                    <TextBox x:Name="tbOutboundPhone"  HorizontalAlignment="Left" Text="{Binding OutboundCall.PhoneNumber,Mode=TwoWay,ValidatesOnDataErrors=true}"  Width="150" Margin="6"/>
+                </StackPanel>
+                <Button Click="Call_Click"  Width="100" Name="btnCall">Call</Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

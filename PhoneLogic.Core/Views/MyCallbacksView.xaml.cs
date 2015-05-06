@@ -16,7 +16,6 @@ namespace PhoneLogic.Core.Views
         private readonly MyCallBacksViewModel _vm;
         private ToggleButton _selectedButton = new ToggleButton();
 
-
         public MyCallbacksView()
         {
             InitializeComponent();
@@ -27,6 +26,20 @@ namespace PhoneLogic.Core.Views
             AudioPlayer.AudioPlayback.MediaEnded += ResetPlaybackState;
 
         }
+
+        public string SelectedJobNum 
+        {
+            get { return _vm.SelectedJobNum; }
+            set
+            {
+                SetValue(SelectedJobNumProperty, value);
+                _vm.SelectedJobNum = value; }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedJobNumProperty =
+            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(MyCallbacksView), new PropertyMetadata(""));
+
 
         private async void CloseCallback_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +79,7 @@ namespace PhoneLogic.Core.Views
                 return;
             }
 
-            if (!String.IsNullOrEmpty(_vm.SelectedMyCallback.status))
+            if (!String.IsNullOrWhiteSpace(_vm.SelectedMyCallback.status))  
             {
                 if (MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",
                     MessageBoxButton.OKCancel) != MessageBoxResult.OK) 
@@ -89,7 +102,7 @@ namespace PhoneLogic.Core.Views
             });
 
 
-            await PhoneCallSvc.PlacePhoneCall(new PhoneCall()
+            await PhoneCallSvc.LogPhoneCall(new PhoneCall()
             {
                 callbackID = _vm.SelectedMyCallback.callbackID,
                 jobNum = _vm.SelectedMyCallback.jobNum,
@@ -98,34 +111,37 @@ namespace PhoneLogic.Core.Views
                 SIP = LyncClient.GetClient().Self.Contact.Uri
             });
             
-            LyncClient.GetAutomation().BeginStartConversation(
-                AutomationModalities.Audio,
-                participantUri,
-                modalitySettings, ar =>
-                {
-                    try
-                    {
-                        ConversationWindow newWindow = LyncClient.GetAutomation().EndStartConversation(ar);
-                        newWindow.BeginOpenExtensibilityWindow(
-                            ConditionalConfiguration.RecknerCallAppGuid,
-                            newWindow.EndOpenExtensibilityWindow,
-                            null);
-                    }
-                    catch (Exception oe)
-                    {
-                        MessageBox.Show("Can't Open Output Windows: Operation exception on start conversation " +
-                                        oe.Message);
-                        
-                    }
-                },
-                null);
+            String job = _vm.SelectedMyCallback.jobNum + ":0" + _vm.SelectedMyCallback.taskID;
+            await LyncSvc.RecruiterDialOut(job, _vm.SelectedMyCallback.phoneNum);
+
+            //LyncClient.GetAutomation().BeginStartConversation(
+            //    AutomationModalities.Audio,
+            //    participantUri,
+            //    modalitySettings, ar =>
+            //    {
+            //        try
+            //        {
+            //            ConversationWindow newWindow = LyncClient.GetAutomation().EndStartConversation(ar);
+            //            newWindow.BeginOpenExtensibilityWindow(
+            //                ConditionalConfiguration.RecknerCallAppGuid,
+            //                newWindow.EndOpenExtensibilityWindow,
+            //                null);
+            //        }
+            //        catch (Exception oe)
+            //        {
+            //            MessageBox.Show("Can't Open Output Windows: Operation exception on start conversation " +
+            //                            oe.Message);
+            //        }
+            //    },
+            //    null);
         }
 
         private void callbackGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
-            if (_vm.SelectedMyCallback == null) return;
-            AudioPlayer.PlaybackFileName = ConditionalConfiguration.rootUrl + "ClientBin/messages/" + _vm.SelectedMyCallback.msgScr + ".wma";
+            AudioPlayer.Visibility = Visibility.Collapsed;
+            if(_vm.SelectedMyCallback != null)
+                AudioPlayer.PlaybackFileName = ConditionalConfiguration.rootUrl + "ClientBin/messages/" + _vm.SelectedMyCallback.msgScr;
+           
         }
 
         private void callbackGrid_Loaded(object sender, RoutedEventArgs e)

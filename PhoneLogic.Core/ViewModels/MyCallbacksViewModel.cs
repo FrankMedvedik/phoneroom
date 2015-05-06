@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Data;
 using Microsoft.Lync.Model;
 using Newtonsoft.Json;
-using PhoneLogic.Core.MVVM_Base_Types;
-using PhoneLogic.Model;
 using PhoneLogic.Core.Services;
+using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.ViewModels
     
@@ -55,44 +53,39 @@ namespace PhoneLogic.Core.ViewModels
         public void FilterCallbacks()
         {
 
-            //if ((SelectedJobNum == null) || (SelectedJobNum == "All"))
+            if ((String.IsNullOrWhiteSpace(SelectedJobNum) ) || (SelectedJobNum == "All"))
                 FilteredCallbacks = MyCallbacks;
-            //else
-            //{
-            //    var fr = (from c in MyCallbacks.to
-            //              where c.jobNum == SelectedJobNum
-            //        select c);
-            //    var oc = new ObservableCollection<myCallback>(fr);
-            //    FilteredCallbacks = oc;
-            //}
-            GroupDataByColumnName("jobFormatted");
+            else
+            {
+                var fr = (from c in MyCallbacks
+                          where c.jobNum == SelectedJobNum
+                          select c);
+                
+                FilteredCallbacks  = new ObservableCollection<myCallback>(fr);
+                if (fr.Any()) 
+                    ShowGridData = true;
+                else
+                    ShowGridData = false;
+            }
+            
         }
 
-        public void GroupDataByColumnName(string groupName)
-        {
-            FilteredCallbacks.GroupDescriptions.Clear();
-            FilteredCallbacks.GroupDescriptions.Add(new PropertyGroupDescription(groupName));
-        }
-
+        
         public async void GetMyCallbacks()
         {
             myCallback s = SelectedMyCallback;
-
             LoadDate = DateTime.Now; 
             try{
-                var mcb  = new PagedCollectionView(await CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri));
+                var mcb = new ObservableCollection<myCallback>(await CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri));
                 MyCallbacks = mcb;
                 FilterCallbacks();
                 if (FilteredCallbacks.Count > 0)
                 {
-                    ShowGridData = true;
-                    //if(s != null)
-                    //    SelectedMyCallback = FilteredCallbacks..FirstOrDefault(x => x.callbackID == s.callbackID);
+                    if(s != null) 
+                        SelectedMyCallback = FilteredCallbacks.FirstOrDefault(x => x.callbackID == s.callbackID);
                 }
                 else
-                    ShowGridData = false;
                 LoadedOk = true;
-
             }
             catch (Exception e)
             {
@@ -103,8 +96,8 @@ namespace PhoneLogic.Core.ViewModels
 
         }
 
-        private PagedCollectionView _filteredCallbacks;
-        public PagedCollectionView FilteredCallbacks
+        private ObservableCollection<myCallback> _filteredCallbacks;
+        public ObservableCollection<myCallback> FilteredCallbacks
         {
             get { return _filteredCallbacks; }
             set
@@ -114,8 +107,8 @@ namespace PhoneLogic.Core.ViewModels
             }
         }
 
-        private PagedCollectionView _myCallbacks;
-        public PagedCollectionView MyCallbacks
+        private ObservableCollection<myCallback> _myCallbacks;
+        public ObservableCollection<myCallback> MyCallbacks
         {
             get { return _myCallbacks; }
             set
@@ -124,27 +117,6 @@ namespace PhoneLogic.Core.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        //private PagedCollectionView<myCallback> _filteredCallbacks = new PagedCollectionView<myCallback>();
-        //public PagedCollectionView<myCallback> FilteredCallbacks
-        //{
-        //    get { return _filteredCallbacks; }
-        //    set
-        //    {
-        //        _filteredCallbacks = value;
-        //        NotifyPropertyChanged();
-        //    }
-        //}
-
-        //private PagedCollectionView<myCallback> _myCallbacks = new PagedCollectionView<myCallback>();
-        //public PagedCollectionView<myCallback> MyCallbacks
-        //{
-        //    get { return _myCallbacks; }
-        //    set
-        //    {
-        //        _myCallbacks = value;
-        //        NotifyPropertyChanged();
-        //    }
-        //}
 
         #endregion
 
@@ -186,7 +158,7 @@ namespace PhoneLogic.Core.ViewModels
 
         #endregion
 
-        private string _selectedJobNum = "All";
+        private string _selectedJobNum; // = "All";
         public string SelectedJobNum
         {
             get { return _selectedJobNum; }
@@ -195,7 +167,7 @@ namespace PhoneLogic.Core.ViewModels
                 if (_selectedJobNum != value)
                 {
                     _selectedJobNum = value;
-//                    NotifyPropertyChanged();
+                    NotifyPropertyChanged();
                     FilterCallbacks();
                 }
             } }

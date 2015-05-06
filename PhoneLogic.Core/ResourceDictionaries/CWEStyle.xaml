@@ -6,6 +6,7 @@
             <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
             <Style  x:Key="Basic"  TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14"/>
+				<Setter Property="FontFamily" Value="Tacoma"/>
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Margin" Value="6"/>

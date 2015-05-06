@@ -1,17 +1,8 @@
-﻿
-namespace PhoneLogic.Model
+﻿namespace PhoneLogic.Model
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
-
-#if SILVERLIGHT
-    using Microsoft.Lync.Controls;
-    public class myCallback : INotifyPropertyChanged
-
-#else
     public class myCallback
-#endif
     {
         [Display(Name = "Callback ID")]
         public int callbackID { get; set; }
@@ -83,7 +74,7 @@ namespace PhoneLogic.Model
         }
 
         [Display(Name = "Job")]
-        public string jobFormatted
+        public string JobFormatted
         {
             get
             {
@@ -132,13 +123,14 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return String.Concat("Job: ", jobFormatted, " TollFreeNumber: ", tollFreeFormatted, "Caller ID:", phoneFormatted);
+                return String.Concat("Job: ", JobFormatted, " TollFreeNumber: ", tollFreeFormatted, "Caller ID:", phoneFormatted);
             }
         }
         [Display(Name = "Topic")]
         public string taskName { get; set; }
         [Display(Name = "Type")]
         public string TaskTypeId { get; set; }
+
     }
 }
 

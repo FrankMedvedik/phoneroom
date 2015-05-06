@@ -3,12 +3,7 @@ namespace PhoneLogic.Model
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
-#if SILVERLIGHT
-    public class RecruiterLog : INotifyPropertyChanged
-#else
     public class RecruiterLog
-#endif
     {
         
         public string recruiterSip { get; set; }

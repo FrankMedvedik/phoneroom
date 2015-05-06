@@ -4,11 +4,7 @@ namespace PhoneLogic.Model
     using System;
     using System.ComponentModel.DataAnnotations;
 
-#if SILVERLIGHT
-    public class PhoneRoom : INotifyPropertyChanged
-#else
     public class PhoneRoom
-#endif
     {
         private string _code;
         public string Code
@@ -17,9 +13,6 @@ namespace PhoneLogic.Model
             set
             {
                 _code = value;
-                #if SILVERLIGHT
-                NotifyPropertyChanged();
-                #endif
             }
         }
 
@@ -30,9 +23,6 @@ namespace PhoneLogic.Model
             set
             {
                 _name = value;
-                #if SILVERLIGHT
-                NotifyPropertyChanged();
-                #endif
             }
         }
 

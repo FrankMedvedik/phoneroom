@@ -4,28 +4,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
-    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" > 
-        <Border BorderBrush="Black" BorderThickness="4, 4, 8 ,10" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Views:CallerInfoView Name="cinfoView" Grid.Row="0" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <Views:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" />
-                    <Views:LyncSearchView Margin="20,5,20,10"/>
-                    <Views:TimerView x:Name="timer" Margin="20,15,40,10"/>
-                </StackPanel>
-                <Views:MyCallsInQueueView Grid.Row="1"/>
-                <Views:BuildInformationView Grid.Row="2"/>
-                <!--<Button Click="Button_Click" >Close</Button>-->
-            </Grid>
-        </Border>
+    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d"  >
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Border BorderBrush="Black" BorderThickness="4, 4, 8 ,10" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
+                <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Views:CallerInfoView Name="cinfoView" Grid.Row="0" HorizontalAlignment="Center" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <Views:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" FontSize="16"/>
+                    <Views:LyncSearchView Margin="20,5,20,10" FontSize="16"/>
+                    <Views:TimerView x:Name="timer" Margin="20,15,40,10" FontSize="16"/>
+                    </StackPanel>
+                <Views:MyCallsInQueueView Grid.Row="2" FontSize="16"/>
+                <Views:BuildInformationView Grid.Row="3" FontSize="16"/>
+                </Grid>
+            </Border>
     </Grid>
 </UserControl>

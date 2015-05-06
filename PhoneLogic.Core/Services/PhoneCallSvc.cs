@@ -9,7 +9,7 @@ namespace PhoneLogic.Core.Services
 {
     public static class PhoneCallSvc
     {
-        public static async Task PlacePhoneCall(PhoneCall p)
+        public static async Task LogPhoneCall(PhoneCall p)
         {
             await Post(p);
         }

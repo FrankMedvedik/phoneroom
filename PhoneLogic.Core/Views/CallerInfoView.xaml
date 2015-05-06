@@ -16,7 +16,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1,1,4,4" ></Border>
-            <TextBlock x:Name="txtCallerId" Text="PHONE NUMBER" Margin="10" HorizontalAlignment="Center"  FontWeight="Bold" VerticalAlignment="Center" ToolTipService.ToolTip="CallerID" />
+        <Border BorderBrush="Black" BorderThickness="1" ></Border>
+            <TextBlock x:Name="txtCallerId" Text="PHONE NUMBER" Margin="14" HorizontalAlignment="Center"  FontWeight="Bold" VerticalAlignment="Center" ToolTipService.ToolTip="CallerID" />
     </Grid>
 </UserControl>

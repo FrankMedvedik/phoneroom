@@ -17,6 +17,7 @@
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -143,6 +144,9 @@
     <Reference Include="GalaSoft.MvvmLight.Extras">
       <HintPath>..\packages\MvvmLightLibs.5.0.2.0\lib\SL5\GalaSoft.MvvmLight.Extras.dll</HintPath>
     </Reference>
+    <Reference Include="libphonenumber-csharp-portable">
+      <HintPath>..\packages\libphonenumber-csharp-portable.1.0.0.2\lib\libphonenumber-csharp-portable.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Silverlight5">
       <HintPath>..\Phonelogic.Web\packages\Microsoft.CompilerServices.AsyncTargetingPack.1.0.0\lib\sl50\Microsoft.CompilerServices.AsyncTargetingPack.Silverlight5.dll</HintPath>
     </Reference>
@@ -188,9 +192,13 @@
     <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Input.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Theming.BureauBlack, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Theming.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\Phonelogic.Web\packages\Unofficial.SilverlightToolkit-Theming.5.2011.11\lib\sl50\System.Windows.Controls.Theming.Toolkit.dll</HintPath>
     </Reference>
@@ -212,19 +220,35 @@
     <Compile Include="Configuration\ConditionalConfiguration.cs" />
     <Compile Include="Commands\ThemeChangeCommand.cs" />
     <Compile Include="Configuration\NinjectConfiguration.cs" />
-    <Compile Include="Converters\IntToColorConverter.cs" />
+    <Compile Include="Models\OutboundCall.cs" />
+    <Compile Include="Service References\AppServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ColorToBrushSvc.cs" />
+    <Compile Include="Services\DefaultButtonSvc.cs" />
+    <Compile Include="Services\StringToBrushSvc.cs" />
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="Services\QuoteSvc.cs" />
     <Compile Include="Timestamp.cs" />
+    <Compile Include="ViewModels\CollectionViewModelBase.cs" />
+    <Compile Include="ViewModels\OutboundCallViewModel.cs" />
     <Compile Include="ViewModels\QuotableQuoteViewModel.cs" />
     <Compile Include="ViewModels\MyCallsInQueueViewModel.cs" />
     <Compile Include="ViewModels\RecruiterViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
-    <Compile Include="Views\QuotableQuoteView.xaml.cs">
+    <Compile Include="Views\ChildWindows\MakeCallWindow.xaml.cs">
+      <DependentUpon>MakeCallWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutboundCallView.xaml.cs">
+      <DependentUpon>OutboundCallView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Utility\QuotableQuoteView.xaml.cs">
       <DependentUpon>QuotableQuoteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AudioPlaybackView.xaml.cs">
+    <Compile Include="Views\Utility\AudioPlaybackView.xaml.cs">
       <DependentUpon>AudioPlaybackView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MyWork.xaml.cs">
@@ -242,20 +266,13 @@
     <Compile Include="Views\CallerInfoView.xaml.cs">
       <DependentUpon>CallerInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TimerView.xaml.cs">
+    <Compile Include="Views\Utility\TimerView.xaml.cs">
       <DependentUpon>TimerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CallCloseWindow.xaml.cs">
+    <Compile Include="Views\ChildWindows\CallCloseWindow.xaml.cs">
       <DependentUpon>CallCloseWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Helpers\SupervisorJoin.cs.xxxx" />
-    <Compile Include="MVVM Base Types\CollectionViewModelBase.cs" />
-    <Compile Include="Service References\AppServiceReference\ActiveCallDetail.cs" />
-    <Compile Include="Service References\AppServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\ProdServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -286,7 +303,7 @@
     <Compile Include="Views\ActiveJobsView.xaml.cs">
       <DependentUpon>ActiveJobsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BuildInformationView.xaml.cs">
+    <Compile Include="Views\Utility\BuildInformationView.xaml.cs">
       <DependentUpon>BuildInformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InboundCallsByHrChartView.xaml.cs">
@@ -325,18 +342,15 @@
     <Compile Include="Views\CallsInQueueView.xaml.cs">
       <DependentUpon>CallsInQueueView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DebugEventsView.xaml.cs">
+    <Compile Include="Views\Utility\DebugEventsView.xaml.cs">
       <DependentUpon>DebugEventsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BooleanToVisibility.cs" />
     <Compile Include="Converters\NotBooleanToVisibility.cs" />
-    <Compile Include="MVVM Base Types\DelegateCommand.cs" />
-    <Compile Include="MVVM Base Types\ModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToastNotification.xaml.cs">
       <DependentUpon>ToastNotification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM Base Types\ViewModelBase.cs" />
     <Compile Include="ViewModels\CallsInQueueViewModel.cs" />
     <Compile Include="ViewModels\MyJobsViewModel.cs" />
     <Compile Include="ViewModels\MyCallbacksViewModel.cs" />
@@ -355,11 +369,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\QuotableQuoteView.xaml">
+    <Page Include="Views\ChildWindows\MakeCallWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AudioPlaybackView.xaml">
+    <Page Include="Views\OutboundCallView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Utility\QuotableQuoteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Utility\AudioPlaybackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -383,7 +405,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\TimerView.xaml">
+    <Page Include="Views\Utility\TimerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -395,7 +417,7 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BuildInformationView.xaml">
+    <Page Include="Views\Utility\BuildInformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -447,7 +469,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DebugEventsView.xaml">
+    <Page Include="Views\Utility\DebugEventsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -467,7 +489,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CallCloseWindow.xaml">
+    <Page Include="Views\ChildWindows\CallCloseWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -486,13 +508,22 @@
     <None Include="Service References\AppServiceReference\PhoneLogic.Core.AppServiceReference.QueueSummary.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\AppServiceReference\PhoneLogic.disco" />
-    <None Include="Service References\AppServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\AppServiceReference\configuration.svcinfo" />
-    <None Include="Service References\AppServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+    <None Include="Service References\AppServiceReference\PhoneLogic.xsd">
+      <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogic4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppServiceReference\PhoneLogicService.wsdl" />
     <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.ActiveCall.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -512,29 +543,38 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <BlendEmbeddedFont Include="Fonts\SegoeWP-Bold.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+      <Uppercase>True</Uppercase>
+      <Lowercase>True</Lowercase>
+      <Numbers>True</Numbers>
+      <Punctuation>True</Punctuation>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\SegoeWP.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+      <Uppercase>True</Uppercase>
+      <Lowercase>True</Lowercase>
+      <Numbers>True</Numbers>
+      <Punctuation>True</Punctuation>
+    </BlendEmbeddedFont>
     <Resource Include="Images\SplitterHandle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Sleep PC.png" />
     <Resource Include="Images\Sleeping-Medical-Staff.png" />
     <Content Include="resources\BuildDate.txt" />
+    <None Include="Service References\AppServiceReference\PhoneLogic.disco" />
+    <None Include="Service References\AppServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\AppServiceReference\configuration.svcinfo" />
+    <None Include="Service References\AppServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\AppServiceReference\PhoneLogic.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppServiceReference\PhoneLogic1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppServiceReference\PhoneLogic2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppServiceReference\PhoneLogic3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppServiceReference\PhoneLogic4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppServiceReference\PhoneLogicService.wsdl" />
     <None Include="Service References\ProdServiceReference\PhoneLogic.wsdl" />
     <None Include="Service References\ProdServiceReference\PhoneLogic.xsd">
       <SubType>Designer</SubType>
@@ -570,6 +610,10 @@
       <Project>{e4c37822-fcfa-431b-b373-a78fbd5136b3}</Project>
       <Name>PhoneLogic.Model.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Silverlight.Base\Silverlight.Base.csproj">
+      <Project>{9020fe33-555c-4a2c-9624-7b3962eb9d0e}</Project>
+      <Name>Silverlight.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\RecknerLogoLeft.jpg">
@@ -586,7 +630,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AppServiceReference\" />
-    <WCFMetadataStorage Include="Service References\ProdServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
@@ -599,6 +642,8 @@
   <PropertyGroup>
     <PreBuildEvent>"C:\Program Files\GenerateTimeStampFile\GenerateTimeStampFile.exe" "$(ProjectDir)Timestamp.cs" "/N:PhoneLogic.Core"</PreBuildEvent>
   </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\Silverlight\v5.0\Microsoft.Expression.Blend.Silverlight.targets" />
+  <Import Project="$(XamlSpyInstallPath)MSBuild\FirstFloor.XamlSpy.Silverlight.targets" Condition="'$(XamlSpyInstallPath)' != '' and '$(Configuration)' == 'DEBUG'" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

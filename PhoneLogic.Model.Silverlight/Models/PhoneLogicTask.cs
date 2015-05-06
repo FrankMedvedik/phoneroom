@@ -1,9 +1,18 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+#if SILVERLIGHT
+using Silverlight.Base.MVVMBaseTypes;
+#endif
 
 namespace PhoneLogic.Model 
 {
+    
+#if SILVERLIGHT
+    public class PhoneLogicTask : ViewModelBase
+#else
     public class PhoneLogicTask
+#endif
     {
         [Display(Name = "Job")]
         public string jobFormatted
@@ -14,20 +23,12 @@ namespace PhoneLogic.Model
                 return JobNum.Substring(0, 4) + "-" + JobNum.Substring(4);
             }
         }
+        [Display(Name = "Task ID")]
+        public int? taskID { get; set; }
 
-        private string _jobNum;
+        public string JobNum { get; set; }
 
-        public string JobNum
-        {
-            set
-            {
-                _jobNum = value;
-#if SILVERLIGHT
-                    NotifyPropertyChanged();
-        #endif
-            }
-            get { return _jobNum; }
-        }
+        public int TaskId;
 
         [Display(Name = "Topic")]
         public string taskName { get; set; }
@@ -44,15 +45,8 @@ namespace PhoneLogic.Model
         [Display(Name = "Most Recent Call")]
         public DateTime? newest_call { get; set; }
 
-        [Display(Name = "Call Cnt")]
+        [Display(Name = "# Messages")]
         public int? call_cnt { get; set; }
-#if SILVERLIGHT
-        [Display(Name = "ForegroundStyle")]
-        public string ForegroundStyle
-        {
-            get { return ColorMapping.GetForeground(call_cnt); }
-        }
-#endif
 
     }
 }

@@ -204,6 +204,8 @@
       <HintPath>..\Phonelogic.Web\packages\Unofficial.SilverlightToolkit-Input.5.2011.11\lib\sl50\System.Windows.Controls.Input.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Controls.Navigation" />
+    <Reference Include="System.Windows.Controls.Theming.BureauBlue, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Theming.ShinyBlue, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Theming.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\Phonelogic.Web\packages\Unofficial.SilverlightToolkit-Theming.5.2011.11\lib\sl50\System.Windows.Controls.Theming.Toolkit.dll</HintPath>
     </Reference>
@@ -276,4 +278,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(XamlSpyInstallPath)MSBuild\FirstFloor.XamlSpy.Silverlight.targets" Condition="'$(XamlSpyInstallPath)' != '' and '$(Configuration)' == 'DEBUG'" />
 </Project>

@@ -10,7 +10,7 @@ namespace System.Runtime.CompilerServices
     public sealed class CallerMemberNameAttribute : Attribute { }
 }
 
-namespace PhoneLogic.Core
+namespace Silverlight.Base.MVVMBaseTypes
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {

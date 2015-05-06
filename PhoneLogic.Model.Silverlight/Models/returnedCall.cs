@@ -2,15 +2,8 @@
 {
     using System.ComponentModel;
     using System;
-    using System.IO;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
-#if SILVERLIGHT
-    public class returnedCall : INotifyPropertyChanged
-#else
     public class returnedCall
-#endif
     {
         public int callbackID { get; set; }
         public string SIP { get; set; }

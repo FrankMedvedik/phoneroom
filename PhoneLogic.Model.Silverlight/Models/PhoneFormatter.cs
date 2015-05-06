@@ -5,12 +5,7 @@ namespace PhoneLogic.Model
     using System;
     using System.Collections.Generic;
 
-#if SILVERLIGHT
-    using System.ComponentModel;
-    public class Phone : INotifyPropertyChanged
-#else
     public class PhoneFormatter
-#endif
     {
         public static String StripPhoneNumber(string PhoneNumber)
         {
@@ -36,9 +31,6 @@ namespace PhoneLogic.Model
             set
             {
                 _inputPhoneNumber= StripPhoneNumber(value);
-#if SILVERLIGHT
-            NotifyPropertyChanged("inputPhoneNumber");
-#endif
             }
         }
         private string _outputPhoneNumber;
@@ -48,9 +40,6 @@ namespace PhoneLogic.Model
             set
             {
                 _outputPhoneNumber  = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged("outputPhoneNumber");
-#endif
             }   
         }
                 
@@ -61,9 +50,6 @@ namespace PhoneLogic.Model
             set
             {
                 _formatterType = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged("formatterType");
-#endif
             }
         }
     }

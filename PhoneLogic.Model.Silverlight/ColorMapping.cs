@@ -1,4 +1,6 @@
-﻿namespace PhoneLogic.Model
+﻿using System;
+
+namespace PhoneLogic.Model
 {
     public static class ColorMapping
     {
@@ -37,5 +39,9 @@
                 return high;
             return low;
         }
+
+
     }
+
+
 }

@@ -1,7 +1,5 @@
-﻿using PhoneLogic.Core.MVVM_Base_Types;
+﻿using System;
 using System.Collections.ObjectModel;
-using System;
-using QueueSummary = PhoneLogic.Model.QueueSummary;
 using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.ViewModels

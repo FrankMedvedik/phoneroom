@@ -7,12 +7,14 @@
     x:Class="PhoneLogic.Core.Views.MyCallbacksView"
     xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
     mc:Ignorable="d" d:DesignWidth="186.667" d:DesignHeight="123" VerticalAlignment="Top"  HorizontalAlignment="Left">
+    <!--<Control.Resources>
+    </Control.Resources>-->
     <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition  Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="Auto"/>-->
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -21,20 +23,20 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Left" >
-                <TextBlock Text="{Binding SelectedJob}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,6"/>
-                <TextBlock Text="Messages " FontWeight="Bold" HorizontalAlignment="Left" Margin="0,6,6,6"/>
+                <!--<TextBlock Text="{Binding SelectedJobNum}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>-->
+                <TextBlock Text=" Messages" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>
                 </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1"  Grid.ColumnSpan="2">
                 <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
                 <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
             </StackPanel>
         </Grid>
-        <sdk:DataGrid x:Name="callbackGrid" MaxHeight="300"  Grid.Row="1" AutoGenerateColumns="False"  SelectionChanged="callbackGrid_SelectionChanged"   
-                          Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
-                          Loaded="callbackGrid_Loaded"  VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
-                          ItemsSource="{Binding MyCallbacks}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"  
-                        ToolTipService.ToolTip="Voice Mail Messages to be returned" Margin="6" HorizontalAlignment="Left" 
-                        SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected" >
+        <sdk:DataGrid x:Name="callbackGrid" Grid.Row="1" AutoGenerateColumns="False"  
+            SelectionChanged="callbackGrid_SelectionChanged" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+            Loaded="callbackGrid_Loaded"  VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
+            ItemsSource="{Binding FilteredCallbacks}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"  
+            ToolTipService.ToolTip="Voice Mail Messages" Margin="6" HorizontalAlignment="Left" 
+            SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected"  IsReadOnly="True" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding phoneFormatted}" />
@@ -48,22 +50,22 @@
             </sdk:DataGrid.Columns>
             <sdk:DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Caller's current time: " Margin="6"/>
-                        <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
-                        <StackPanel Name="playControlsPanel" Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Caller's current time" Margin="6"/>
+                            <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
+                            <StackPanel Name="playControlsPanel" Orientation="Horizontal">
                             <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
                             Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked" Width="Auto">Play</ToggleButton>
-                        </StackPanel>
+                            </StackPanel>
                         <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
                         <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Delete</Button>
-                    </StackPanel>
+                        </StackPanel>
                 </DataTemplate>
             </sdk:DataGrid.RowDetailsTemplate>
         </sdk:DataGrid>
-        <Views:AudioPlaybackView Grid.Row="3" Name="AudioPlayer"   />
-        <StackPanel  Margin="6" Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <TextBlock  HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text="No Messages Found"/>
+        <Views:AudioPlaybackView Grid.Row="2" Name="AudioPlayer" Visibility="Collapsed"/>
+        <StackPanel  Orientation="Vertical" Margin="6" Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+            <TextBlock  HorizontalAlignment="Stretch" Text="No Messages Found" VerticalAlignment="Center" />
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>
                 <TextBlock Text="{Binding LoadMethod}" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
-using PhoneLogic.Core.MVVM_Base_Types;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 

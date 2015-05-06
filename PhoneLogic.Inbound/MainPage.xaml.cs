@@ -72,7 +72,7 @@ namespace PhoneLogic.Inbound
                 JsonConvert.DeserializeObject<PhoneLogicContext>(appData);
             if (ConversationContext.Instance.PhoneLogicContext.jobNumber.Length > 8)
             {
-                // get task id before we chop up the job number
+                // get task id before we chop up the JobFormatted number
                 ConversationContext.Instance.PhoneLogicContext.taskId =
                     Convert.ToInt32(ConversationContext.Instance.PhoneLogicContext.jobNumber.Substring(9));
                 ConversationContext.Instance.PhoneLogicContext.jobNumber =
@@ -87,7 +87,7 @@ namespace PhoneLogic.Inbound
 
         private void conversation_StateChanged(object sender, ConversationStateChangedEventArgs e)
     {
-        //MessageBox.Show("Conversation State:" + e.NewState.ToString());
+        MessageBox.Show("Conversation State:" + e.NewState.ToString());
 
         if (e.NewState == ConversationState.Active)
         {

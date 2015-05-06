@@ -1,15 +1,6 @@
 ﻿namespace PhoneLogic.Model
 {
-   #if SILVERLIGHT
-    using System.ComponentModel;
-    using System;
-    using System.Collections.Generic;
-    public class PhoneLogicContext : INotifyPropertyChanged
-#else
-    using System;
-    using System.Collections.Generic;
     public class PhoneLogicContext 
-#endif
     {
         public string ToString()
         {
@@ -25,9 +16,6 @@
             set
             {
                 _conversationId = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
                   }
         }
 
@@ -38,9 +26,6 @@
             set
             {
                 _dialedNumber  = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
                   }
         }
 
@@ -51,9 +36,6 @@
             set
             {
                 _callerId  = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
                   }
         }
 
@@ -64,9 +46,6 @@
             set
             {
                 _jobNumber  = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
                   }
         }
 
@@ -77,9 +56,6 @@
             set
             {
                 _taskId = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -97,9 +73,6 @@
             set
             {
                 _timeReceived  = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged("timeReceived");
-#endif
 
             }
         }
@@ -112,9 +85,6 @@
             set
             {
                 _callbackId = value;
-        #if SILVERLIGHT
-            NotifyPropertyChanged("callbackId");
-        #endif
             }
         }
 

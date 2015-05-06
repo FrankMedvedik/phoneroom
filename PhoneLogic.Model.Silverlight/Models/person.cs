@@ -4,13 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
-#if SILVERLIGHT
-
-    public class person : ViewModelBase
-#else
     public class person
-#endif
     {
         private string _last_name;
         [Display(Name = "Last")]
@@ -20,9 +14,7 @@
             set
             {
                 _last_name = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
+
             }
         }
 
@@ -34,9 +26,6 @@
             set
             {
                 _first_name = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -48,9 +37,6 @@
             set
             {
                 _middle_name = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
         
@@ -66,9 +52,6 @@
             set
             {
                 _name_prefix = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -81,9 +64,6 @@
             set
             {
                 _name_suffix = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -96,9 +76,6 @@
             set
             {
                 _title = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -110,9 +87,6 @@
             set
             {
                 _birth_date = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -124,9 +98,6 @@
             set
             {
                 _gender = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -138,9 +109,6 @@
             set
             {
                 _is_active = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -153,9 +121,6 @@
             set
             {
                 _contact_pref = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -168,9 +133,6 @@
             set
             {
                 _updated = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
         [Display(Name = "Created")]
@@ -181,9 +143,6 @@
             set
             {
                 _created = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged();
-#endif
             }
         }
 
@@ -195,9 +154,6 @@
             set
             {
                 _updated_user  = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged("updated_user");
-#endif
             }
         }
         [Display(Name = "Created By")]
@@ -208,9 +164,6 @@
             set
             {
                 _created_user  = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged("created_user");
-#endif
             }
         }
         private string _person_id;
@@ -222,9 +175,6 @@
             set
             {
                 _person_id = value;
-#if SILVERLIGHT
-            NotifyPropertyChanged("person_id");
-#endif
             }
         }
 

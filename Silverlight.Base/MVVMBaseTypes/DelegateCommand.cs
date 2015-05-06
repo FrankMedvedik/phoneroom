@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace PhoneLogic.Core
+namespace Silverlight.Base.MVVMBaseTypes
 {
     public class DelegateCommand : ICommand
     {

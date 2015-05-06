@@ -34,7 +34,7 @@
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding ActiveCalls}"  
                       SelectedItem="{Binding SelectedActiveCall, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="current conversationss between recruiters and respondents" 
+                    ToolTipService.ToolTip="active recruiter sessions" 
                       Margin="6" HorizontalAlignment="Left" SelectionMode="Single"
                       Foreground="{Binding TheForeground}" Background="{Binding TheBackground}">
             <sdk:DataGrid.Columns>
@@ -44,7 +44,7 @@
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
         <StackPanel  Margin="6" Grid.Row="0" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <Image HorizontalAlignment="Center" Stretch="None" Source="../Images/Sleep PC.png" />
+            <Image HorizontalAlignment="Center" Stretch="None" Source="../Images/Sleep PC.png"  ToolTipService.ToolTip="no recruiters currently active"/>
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load" HorizontalAlignment="Center"/>
                 <TextBlock Text="{Binding LoadMethod}" HorizontalAlignment="Left"/>

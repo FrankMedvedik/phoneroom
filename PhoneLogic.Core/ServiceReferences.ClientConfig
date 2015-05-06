@@ -10,6 +10,10 @@
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
+                <binding name="BasicHttpBinding_IPhoneLogicService2" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
             </basicHttpBinding>
         </bindings>
         <client>
@@ -19,6 +23,9 @@
             <endpoint address="http://cc-prod.reckner.com:1255/PhoneLogic"
                 binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPhoneLogicService1"
                 contract="ProdServiceReference.IPhoneLogicService" name="BasicHttpBinding_IPhoneLogicService1" />
+            <endpoint address="http://cc-app.reckner.com:1255/PhoneLogic/basic"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPhoneLogicService2"
+                contract="AppServiceReference.IPhoneLogicService" name="BasicHttpBinding_IPhoneLogicService2" />
         </client>
     </system.serviceModel>
 </configuration>

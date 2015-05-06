@@ -3,12 +3,7 @@
     using System;
 
 
-#if SILVERLIGHT
-    public class callback : INotifyPropertyChanged
-
-#else
-    public class CallbackDto
-#endif
+public class CallbackDto
 {
         public int callbackID { get; set; }
         public string jobNum { get; set; }
