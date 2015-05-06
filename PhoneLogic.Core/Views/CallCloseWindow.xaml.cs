@@ -28,7 +28,6 @@ namespace PhoneLogic.Core.Views
             set
             {
                 SetValue(CallDurationProperty, value);
-                //CallTime.Text = CallDuration.ToString();
                 RaisePropertyChanged("CallDuration");
             }
         }
@@ -43,7 +42,6 @@ namespace PhoneLogic.Core.Views
             set
             {
                 SetValue(KeepCallbackProperty, value);
-                //SaveCallback.IsChecked = KeepCallback;
                 RaisePropertyChanged("KeepCallback");
             }
         }
@@ -69,13 +67,13 @@ namespace PhoneLogic.Core.Views
 
 
 
-        public string NoticeText
-        {
-            set
-            {
-                TextBlock_Notice.Text = value;
-            }
-        }
+        //public string NoticeText
+        //{
+        //    set
+        //    {
+        //        TextBlock_Notice.Text = value;
+        //    }
+        //}
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {

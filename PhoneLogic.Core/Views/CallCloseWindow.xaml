@@ -3,11 +3,9 @@
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
            xmlns:converters="clr-namespace:Microsoft.Lync.Controls.Internal.Converters;assembly=Microsoft.Lync.Controls"
-           xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="PhoneLogic.Core.Views.MakeCallWindow"
-           Title="Outbound Call" HorizontalAlignment="Center"   >
-    <!--Style="{StaticResource DefaultStyle}"-->
+           xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="PhoneLogic.Core.Views.CallCloseWindow"
+           Title="Call Ended" HorizontalAlignment="Center" MinWidth="350" MinHeight="300" >
     <controls:ChildWindow.Resources >
-        
         <ControlTemplate x:Key="ValidationToolTipTemplate">
             <Grid x:Name="Root" RenderTransformOrigin="0,0" Opacity="0" Margin="5,0">
                 <VisualStateManager.VisualStateGroups>
@@ -165,7 +163,7 @@
                             </VisualStateManager.VisualStateGroups>
                             <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Rectangle x:Name="Background" Fill="#FFFFFFFF" Height="30" Margin="1" RadiusY="1" RadiusX="1"
-                                           Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Width="30"/>
+        							Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Width="30"/>
                                 <Rectangle x:Name="BackgroundOverlay" Fill="#FFC4DBEE" Height="30" Margin="1" Opacity="0" RadiusY="1" RadiusX="1" Stroke="#00000000" StrokeThickness="1" Width="30"/>
                                 <Rectangle x:Name="BoxMiddleBackground" Fill="{TemplateBinding Background}" Height="25" RadiusY="1" RadiusX="1" Stroke="#00000000" StrokeThickness="1" Width="25"/>
                                 <Rectangle x:Name="BoxMiddle" Height="20" RadiusY="1" RadiusX="1" StrokeThickness="1" Width="20">
@@ -188,7 +186,7 @@
                                 </Rectangle>
                                 <Rectangle x:Name="BoxMiddleLine" Height="25" Opacity=".2" RadiusY="1" RadiusX="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1" Width="25"/>
                                 <Path x:Name="CheckIcon" Data="M102.03442,598.79645 L105.22962,597.78918 L106.78825,600.42358 C106.78825,600.42358 108.51028,595.74304 110.21724,593.60419 C112.00967,591.35822 114.89314,591.42316 114.89314,591.42316 C114.89314,591.42316 112.67844,593.42645 111.93174,594.44464 C110.7449,596.06293 107.15683,604.13837 107.15683,604.13837 z" Fill="#FF333333" FlowDirection="LeftToRight" 
-                                      Height="25" Margin="1,1,0,1.5" Opacity="0" Stretch="Fill" Width="25"/>
+        							Height="25" Margin="1,1,0,1.5" Opacity="0" Stretch="Fill" Width="25"/>
                                 <Rectangle x:Name="IndeterminateIcon" Fill="#FF333333" Height="25" Opacity="0" Width="30"/>
                                 <Rectangle x:Name="DisabledVisualElement" Fill="#FFFFFFFF" Height="30" Opacity="0" RadiusY="1" RadiusX="1" Width="30"/>
                                 <Rectangle x:Name="ContentFocusVisualElement" Height="30" IsHitTestVisible="false" Opacity="0" RadiusY="2" RadiusX="2" Stroke="#FF6DBDD1" StrokeThickness="1" Width="32"/>
@@ -224,27 +222,30 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="Control" x:Key="DefaultStyle">
-            <Setter Property="FontSize" Value="30"/>
+        <Style TargetType="Control" >
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Ariel Bold"  />
             <Setter Property="Margin" Value="8" />
         </Style>
     </controls:ChildWindow.Resources>
-    <Grid x:Name="LayoutRoot" Background="White" Margin="2" MinWidth="300" MinHeight="200">
+    <Grid x:Name="LayoutRoot" Background="WhiteSmoke" Margin="2" Height="184" Width="293" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" Margin="6" Visibility="Visible">
-                <TextBlock Text="Phone Number"  VerticalAlignment="Center"/>
-            <TextBox Name="tbOutboundPhone" Width="150" ></TextBox>
-            <Button Click="Call_Click" >Call</Button>
+        <StackPanel  x:Name="ct" Orientation="Vertical"  HorizontalAlignment="Center" Margin="6" >
+            <TextBlock Text="Call Time" FontSize="16" FontWeight="Bold" />
+            <TextBlock Text="{Binding CallDuration, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}" FontSize="16" FontWeight="Bold" />
         </StackPanel>
-        <Button  HorizontalAlignment="Center" Click="Close_Click" Grid.Row="2" x:Name="Close" TabIndex="0"   Margin="10" Content="Close"/>
-        <StackPanel Orientation="Vertical" Grid.Row="2" Visibility="Collapsed">
+        <StackPanel x:Name="CallbackStackPanel" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Keep voice message? "  VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
+            <CheckBox FontFamily="Ariel Bold" IsChecked="{Binding KeepCallback, Mode=TwoWay}" VerticalAlignment="Center" Style="{StaticResource CheckBoxStyle1}" FontSize="16" FontWeight="Bold" />
+        </StackPanel>
+        <Button  VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="Close_Click" Grid.Row="2" x:Name="Close" TabIndex="0"   Margin="10" Content="Close" FontSize="16" FontWeight="Bold" />
+        <!--<StackPanel Orientation="Vertical" Grid.Row="2" Visibility="Collapsed">
             <TextBlock x:Name="TextBlock_Notice" />
             <ProgressBar Grid.Row="1" Width="250" Height="30" IsIndeterminate="True"/>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </controls:ChildWindow>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.Lync.Model;
 using Newtonsoft.Json;
@@ -12,53 +13,54 @@ namespace PhoneLogic.Core.ViewModels
 {
     public class OutboundCallViewModel : ViewModelBase
     {
-        private OutboundCall _outboundCall = new OutboundCall();
-        public OutboundCall OutboundCall
+        private string _phoneNumber;
+        [Display(Name = "Phone")]
+        public string PhoneNumber
         {
-            get { return _outboundCall; }
+            get { return _phoneNumber; }
             set
             {
-                _outboundCall = value;
-                NotifyPropertyChanged();
+                CanMakeCall = false;
+                if (value != _phoneNumber)
+                {
+                    if (String.IsNullOrWhiteSpace(value))
+                        throw new Exception("Phone number required");
+                    if ((value.Length != 10))
+                        throw new Exception("Phone number invalid");
+                    _phoneNumber = value;
+                    CanMakeCall = true;
+                    NotifyPropertyChanged();
+                }
             }
         }
-        private Boolean _canMakeCall = false;
+
+        private Boolean _canMakeCall;
         public Boolean CanMakeCall
         {
             get { return _canMakeCall; }
             set
             {
-                _canMakeCall = value;
-                NotifyPropertyChanged();
+                if (value != _canMakeCall)
+                {
+                    _canMakeCall = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
-
         private PhoneLogicTask _task;
         public PhoneLogicTask Task
         {
             get { return _task; }
             set
             {
-                ViewVisible =  (value != null ) ? true: false;
                 if (_task != value)
                 {
                     _task = value;
-                    OutboundCall.jobNum = _task.JobNum;
-                    OutboundCall.taskID = _task.taskID ?? default(int); 
                     NotifyPropertyChanged();
                 }
             }
         }
-        private Boolean _viewVisible = true;
-        public Boolean ViewVisible
-        {
-            get { return _viewVisible; }
-            set
-            {
-                _viewVisible = value;
-                NotifyPropertyChanged();
-            }
-        }
+      
 
     }
 }

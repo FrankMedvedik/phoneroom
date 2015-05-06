@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Lync.Model;
 using Microsoft.Lync.Model.Conversation;
-using Microsoft.Lync.Model.Extensibility;
 using Newtonsoft.Json;
 using PhoneLogic.Core;
 using PhoneLogic.Core.Services;
@@ -15,7 +14,7 @@ namespace PhoneLogic.Inbound
 {
     public partial class MainPage : UserControl
     {
-        private Conversation _myConversation = null;
+        private Conversation _myConversation;
 
         public MainPage()
         {
@@ -58,7 +57,7 @@ namespace PhoneLogic.Inbound
 
             catch(Exception e)
             {
-                MessageBox.Show(e.Message + (e.InnerException != null ? e.InnerException.Message : "") 
+                MessageBox.Show("Error initializing CallInfo " + e.Message + (e.InnerException != null ? e.InnerException.Message : "No Inner Exception") 
                     + ConversationContext.Instance.PhoneLogicContext.ToString());
             }
         }
@@ -86,8 +85,7 @@ namespace PhoneLogic.Inbound
 
 
         private void conversation_StateChanged(object sender, ConversationStateChangedEventArgs e)
-    {
-        MessageBox.Show("Conversation State:" + e.NewState.ToString());
+        {
 
         if (e.NewState == ConversationState.Active)
         {
@@ -119,8 +117,6 @@ namespace PhoneLogic.Inbound
             {
                 var c = (CallCloseWindow)sender;
                 c.Closed -= CallCloseWindow_Closed;
-                //MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}",
-                //    c.IsCallback, c.KeepCallback, c.CallDuration));
                 if (c.IsCallback)
                 {
                     var cb = new CallbackDto()
@@ -138,29 +134,10 @@ namespace PhoneLogic.Inbound
                 myCW.Close();
             }
 
- 
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var cw = new CallCloseWindow();
-        //    cw.Closed += testCallCloseWindow_Closed;
-        //    cw.IsCallback = true;
-        //    cw.KeepCallback = true;
-        //    cw.CallDuration = new TimeSpan(10, 20, 08);
-            
-        //    //MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}", cw.IsCallback, cw.KeepCallback, cw.CallDuration));
-
-        //    cw.Show();
-
-        //}
-
-        //private async void testCallCloseWindow_Closed(object sender, EventArgs e)
-        //{
-        //    var c = (CallCloseWindow)sender;
-        //    c.Closed -= testCallCloseWindow_Closed;
-        //    MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}",
-        //        c.IsCallback, c.KeepCallback, c.CallDuration));
-        //}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShutdownThisConversation();
+        }
         }
     }
 

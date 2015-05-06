@@ -162,15 +162,23 @@ namespace PhoneLogic.Core.Services
                 MessageBox.Show(x.ToString());
                 return t.Result;
         }
+        
 
-        public async static Task RecruiterDialOut(String JobFormatted,  String PhoneNumber)
+        public async static Task RecruiterDialOut(String JobFormatted,  String PhoneNumber, int CallbackId)
         {
             var proxy = new PhoneLogicServiceClient();
             Object state = "test";
             var channel = proxy.ChannelFactory.CreateChannel();
-            var l = new List<String>();
-            await Task.Factory.FromAsync(channel.BeginRecruiterDialOut,channel.EndRecruiterDialOut, LyncClient.GetClient().Self.Contact.Uri, JobFormatted,PhoneNumber,state);
-            
+            IAsyncResult result = channel.BeginRecruiterDialOut(LyncClient.GetClient().Self.Contact.Uri, JobFormatted, PhoneNumber,
+                            CallbackId, channel.EndRecruiterDialOut, state);
+
+
+            //var t = Task.Factory.StartNew(
+            //        () =>
+            //            channel.BeginRecruiterDialOut(LyncClient.GetClient().Self.Contact.Uri, JobFormatted, PhoneNumber,
+            //                CallbackId, channel.EndRecruiterDialOut, state));
+            //await t;
+           
         }
     }
 

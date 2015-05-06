@@ -239,9 +239,6 @@
     <Compile Include="ViewModels\MyCallsInQueueViewModel.cs" />
     <Compile Include="ViewModels\RecruiterViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
-    <Compile Include="Views\ChildWindows\MakeCallWindow.xaml.cs">
-      <DependentUpon>MakeCallWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\OutboundCallView.xaml.cs">
       <DependentUpon>OutboundCallView.xaml</DependentUpon>
     </Compile>
@@ -269,7 +266,7 @@
     <Compile Include="Views\Utility\TimerView.xaml.cs">
       <DependentUpon>TimerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChildWindows\CallCloseWindow.xaml.cs">
+    <Compile Include="Views\CallCloseWindow.xaml.cs">
       <DependentUpon>CallCloseWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Helpers\SupervisorJoin.cs.xxxx" />
@@ -368,10 +365,6 @@
     <Page Include="ResourceDictionaries\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ChildWindows\MakeCallWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OutboundCallView.xaml">
       <SubType>Designer</SubType>
@@ -489,7 +482,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ChildWindows\CallCloseWindow.xaml">
+    <Page Include="Views\CallCloseWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -630,6 +623,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AppServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\ChildWindows\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

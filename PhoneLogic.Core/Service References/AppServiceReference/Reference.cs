@@ -450,7 +450,7 @@ namespace PhoneLogic.Core.AppServiceReference {
         System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.ActiveCall> EndGetActiveCalls(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPhoneLogicService/RecruiterDialOut", ReplyAction="http://tempuri.org/IPhoneLogicService/RecruiterDialOutResponse")]
-        System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState);
         
         void EndRecruiterDialOut(System.IAsyncResult result);
         
@@ -1142,8 +1142,8 @@ namespace PhoneLogic.Core.AppServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult PhoneLogic.Core.AppServiceReference.IPhoneLogicService.BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginRecruiterDialOut(recruiterUri, jobNumber, numberToDial, callback, asyncState);
+        System.IAsyncResult PhoneLogic.Core.AppServiceReference.IPhoneLogicService.BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRecruiterDialOut(recruiterUri, jobNumber, numberToDial, callbackId, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1155,7 +1155,8 @@ namespace PhoneLogic.Core.AppServiceReference {
             string recruiterUri = ((string)(inValues[0]));
             string jobNumber = ((string)(inValues[1]));
             string numberToDial = ((string)(inValues[2]));
-            return ((PhoneLogic.Core.AppServiceReference.IPhoneLogicService)(this)).BeginRecruiterDialOut(recruiterUri, jobNumber, numberToDial, callback, asyncState);
+            int callbackId = ((int)(inValues[3]));
+            return ((PhoneLogic.Core.AppServiceReference.IPhoneLogicService)(this)).BeginRecruiterDialOut(recruiterUri, jobNumber, numberToDial, callbackId, callback, asyncState);
         }
         
         private object[] OnEndRecruiterDialOut(System.IAsyncResult result) {
@@ -1170,11 +1171,11 @@ namespace PhoneLogic.Core.AppServiceReference {
             }
         }
         
-        public void RecruiterDialOutAsync(string recruiterUri, string jobNumber, string numberToDial) {
-            this.RecruiterDialOutAsync(recruiterUri, jobNumber, numberToDial, null);
+        public void RecruiterDialOutAsync(string recruiterUri, string jobNumber, string numberToDial, int callbackId) {
+            this.RecruiterDialOutAsync(recruiterUri, jobNumber, numberToDial, callbackId, null);
         }
         
-        public void RecruiterDialOutAsync(string recruiterUri, string jobNumber, string numberToDial, object userState) {
+        public void RecruiterDialOutAsync(string recruiterUri, string jobNumber, string numberToDial, int callbackId, object userState) {
             if ((this.onBeginRecruiterDialOutDelegate == null)) {
                 this.onBeginRecruiterDialOutDelegate = new BeginOperationDelegate(this.OnBeginRecruiterDialOut);
             }
@@ -1187,7 +1188,8 @@ namespace PhoneLogic.Core.AppServiceReference {
             base.InvokeAsync(this.onBeginRecruiterDialOutDelegate, new object[] {
                         recruiterUri,
                         jobNumber,
-                        numberToDial}, this.onEndRecruiterDialOutDelegate, this.onRecruiterDialOutCompletedDelegate, userState);
+                        numberToDial,
+                        callbackId}, this.onEndRecruiterDialOutDelegate, this.onRecruiterDialOutCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1506,11 +1508,12 @@ namespace PhoneLogic.Core.AppServiceReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[3];
+            public System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[4];
                 _args[0] = recruiterUri;
                 _args[1] = jobNumber;
                 _args[2] = numberToDial;
+                _args[3] = callbackId;
                 System.IAsyncResult _result = base.BeginInvoke("RecruiterDialOut", _args, callback, asyncState);
                 return _result;
             }

@@ -31,7 +31,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <LinkedServerProject>
     </LinkedServerProject>
-    <ExpressionBlendVersion>12.0.50429.0</ExpressionBlendVersion>
+    <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
     <InBrowserSettingsFile>Properties\InBrowserSettings.xml</InBrowserSettingsFile>
     <RequireInBrowserElevation>false</RequireInBrowserElevation>
     <NuGetPackageImportStamp>75ffa6f5</NuGetPackageImportStamp>
@@ -199,6 +199,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data" />
+    <Reference Include="System.Windows.Controls.Data.Input" />
     <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Theming.BureauBlue, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Theming.ShinyBlue, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />

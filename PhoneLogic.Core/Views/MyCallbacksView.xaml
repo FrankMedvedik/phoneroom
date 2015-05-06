@@ -19,19 +19,17 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Left" >
                 <!--<TextBlock Text="{Binding SelectedJobNum}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>-->
-                <TextBlock Text=" Messages" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>
+                <TextBlock Text="Messages" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>
                 </StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding ShowLoadDatetimeHeading, Converter={StaticResource BoolToVisConverter}}" Grid.Column="1"  Grid.ColumnSpan="2">
                 <TextBlock Text="As of " HorizontalAlignment="Right" Margin="6" />
                 <TextBlock Text="{Binding LoadDate, StringFormat=t}" HorizontalAlignment="Left" Margin="6" />
             </StackPanel>
         </Grid>
-        <sdk:DataGrid x:Name="callbackGrid" Grid.Row="1" AutoGenerateColumns="False"  
+        <sdk:DataGrid x:Name="callbackGrid" Grid.Row="1" AutoGenerateColumns="False"   MaxHeight="350"
             SelectionChanged="callbackGrid_SelectionChanged" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
             Loaded="callbackGrid_Loaded"  VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
             ItemsSource="{Binding FilteredCallbacks}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"  
@@ -63,14 +61,14 @@
                 </DataTemplate>
             </sdk:DataGrid.RowDetailsTemplate>
         </sdk:DataGrid>
-        <Views:AudioPlaybackView Grid.Row="2" Name="AudioPlayer" Visibility="Collapsed"/>
-        <StackPanel  Orientation="Vertical" Margin="6" Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <TextBlock  HorizontalAlignment="Stretch" Text="No Messages Found" VerticalAlignment="Center" />
+        <StackPanel Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+            <TextBlock  HorizontalAlignment="Center" Text="No Messages Found"/>
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>
                 <TextBlock Text="{Binding LoadMethod}" />
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
+        <Views:AudioPlaybackView Grid.Row="2" Name="AudioPlayer" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

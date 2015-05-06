@@ -111,6 +111,7 @@
         <xs:element minOccurs="0" name="recruiterUri" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="jobNumber" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="numberToDial" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="callbackId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

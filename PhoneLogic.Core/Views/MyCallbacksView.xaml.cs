@@ -85,34 +85,34 @@ namespace PhoneLogic.Core.Views
                     MessageBoxButton.OKCancel) != MessageBoxResult.OK) 
                     return;
             }
-            /* setup making the call  */
-            var participantUri = new List<string> {_vm.SelectedMyCallback.callbackNum};
-            var modalitySettings = new Dictionary<AutomationModalitySettings, object>
-            {
-                {AutomationModalitySettings.ApplicationId, ConditionalConfiguration.RecknerCallAppGuid},
-                {AutomationModalitySettings.Subject, _vm.SelectedMyCallback.callbackNum},
-                {AutomationModalitySettings.ApplicationData, _vm.SelectedAppData}
-            };
+            ///* setup making the call  */
+            //var participantUri = new List<string> {_vm.SelectedMyCallback.callbackNum};
+            //var modalitySettings = new Dictionary<AutomationModalitySettings, object>
+            //{
+            //    {AutomationModalitySettings.ApplicationId, ConditionalConfiguration.RecknerCallAppGuid},
+            //    {AutomationModalitySettings.Subject, _vm.SelectedMyCallback.callbackNum},
+            //    {AutomationModalitySettings.ApplicationData, _vm.SelectedAppData}
+            //};
 
-            /* start of call */
-            await CallbackSvc.StartCall(new CallbackDto
-            {
-                SIP = LyncClient.GetClient().Self.Contact.Uri,
-                callbackID = _vm.SelectedMyCallback.callbackID
-            });
+            ///* start of call */
+            //await CallbackSvc.StartCall(new CallbackDto
+            //{
+            //    SIP = LyncClient.GetClient().Self.Contact.Uri,
+            //    callbackID = _vm.SelectedMyCallback.callbackID
+            //});
 
 
-            await PhoneCallSvc.LogPhoneCall(new PhoneCall()
-            {
-                callbackID = _vm.SelectedMyCallback.callbackID,
-                jobNum = _vm.SelectedMyCallback.jobNum,
-                taskID = _vm.SelectedMyCallback.taskID,
-                phoneNum = _vm.SelectedMyCallback.phoneNum,
-                SIP = LyncClient.GetClient().Self.Contact.Uri
-            });
+            //await PhoneCallSvc.LogPhoneCall(new PhoneCall()
+            //{
+            //    callbackID = _vm.SelectedMyCallback.callbackID,
+            //    jobNum = _vm.SelectedMyCallback.jobNum,
+            //    taskID = _vm.SelectedMyCallback.taskID,
+            //    phoneNum = _vm.SelectedMyCallback.phoneNum,
+            //    SIP = LyncClient.GetClient().Self.Contact.Uri
+            //});
             
             String job = _vm.SelectedMyCallback.jobNum + ":0" + _vm.SelectedMyCallback.taskID;
-            await LyncSvc.RecruiterDialOut(job, _vm.SelectedMyCallback.phoneNum);
+            await LyncSvc.RecruiterDialOut(job, _vm.SelectedMyCallback.phoneNum, _vm.SelectedMyCallback.callbackID);
 
             //LyncClient.GetAutomation().BeginStartConversation(
             //    AutomationModalities.Audio,

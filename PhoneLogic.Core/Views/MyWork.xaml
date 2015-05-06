@@ -14,8 +14,8 @@
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
          </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
             <TextBlock Text="My Jobs" HorizontalAlignment="Left" Margin="6"  FontWeight="Bold"/>
@@ -36,18 +36,8 @@
                 <!--<sdk:DataGridTextColumn Binding="{Binding oldest_call}" />
                   <sdk:DataGridTextColumn Binding="{Binding newest_call}"/>-->
             </sdk:DataGrid.Columns>
-            <!--<sdk:DataGrid.RowDetailsTemplate >
-                <DataTemplate >
-                        <StackPanel Orientation="Horizontal" Background="LightBlue"  HorizontalAlignment="Right">
-                        <TextBlock Text="Phone"  HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="6" />
-                        <TextBox Width="150"  TabIndex="0" Margin="6" GotFocus="TextBox_GotFocus" Text="{Binding PhoneNumber}" />
-                        <Button Name="btnCall"  Margin="8"  TabIndex="1" Click="Call_Click" >Call</Button>
-                        --><!--services:DefaultButtonSvc.DefaultButton="{Binding ElementName=btnCall}"--><!--
-                    </StackPanel>
-                </DataTemplate>
-            </sdk:DataGrid.RowDetailsTemplate>-->
         </sdk:DataGrid>
-        <StackPanel Grid.Column="1" Grid.Row="0"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+        <StackPanel Grid.Column="1" Grid.Row="1"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
             <TextBlock Text="No Jobs Found" HorizontalAlignment="Center"  />
             <StackPanel  Orientation="Vertical"  Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load" HorizontalAlignment="Center" />
@@ -55,8 +45,8 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <Views:OutboundCallView Grid.Column="1" Name="OBCView" Grid.Row="1" />
-        <Views:MyCallbacksView Name="MyCallbacks" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" />
-     
+        <Views:MyCallbacksView Name="MyCallbacks" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" />
+        <Views:OutboundCallView Grid.Column="1" Name="OBCView" Grid.Row="1" Margin="10" FontSize="14" />
+
     </Grid>
 </UserControl>

@@ -3,17 +3,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200">
-    <Grid x:Name="LayoutRoot"  Visibility="{Binding ViewVisible, Converter={StaticResource BoolToVisConverter}}" >
+    mc:Ignorable="d" >
+    <Grid x:Name="LayoutRoot">
         <Border BorderThickness="1,1,3,4" BorderBrush="Black" HorizontalAlignment="Center"  VerticalAlignment="Center" >
-            <StackPanel Orientation="Vertical" Margin="6">
-                <TextBlock Text="{Binding OutboundCall.JobFormatted}"  Margin="6" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" Margin="6">
-                <TextBlock Text="Phone Number"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6,6,3,3"/>
-                    <TextBox x:Name="tbOutboundPhone"  HorizontalAlignment="Left" Text="{Binding OutboundCall.PhoneNumber,Mode=TwoWay,ValidatesOnDataErrors=true}"  Width="150" Margin="6"/>
-                </StackPanel>
-                <Button Click="Call_Click"  Width="100" Name="btnCall">Call</Button>
-            </StackPanel>
-        </Border>
+            <Grid Background="PowderBlue">
+                    <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                <TextBlock Text="Make A Call"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Margin="6" FontSize="18"
+                           Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <TextBlock Text="Job"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6"
+                           Grid.Row="1" Grid.Column="0"/>   
+                <TextBlock Text="{Binding Task.jobFormatted}"  Margin="6" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Text="Phone Number"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6"
+                           Grid.Row="2" Grid.Column="0"/>
+                    <TextBox x:Name="tbOutboundPhone"  HorizontalAlignment="Left" Text="{Binding PhoneNumber, Mode=TwoWay,
+                        ValidatesOnExceptions=True}"  Width="150" Margin="6" Grid.Row="2" Grid.Column="1"/>
+                    <Button Click="Call_Click"  Width="100" Name="btnCall" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                            IsEnabled="{Binding CanMakeCall}">Call</Button>
+                </Grid>
+    </Border>
     </Grid>
 </UserControl>

@@ -11,9 +11,9 @@ namespace PhoneLogic.Core.ViewModels
 {
     public class MyJobsViewModel : CollectionViewModelBase
     {
-
         public MyJobsViewModel()
         {
+            RefreshAll();
             StartAutoRefresh(ApiRefreshFrequency.UserDB);
         }
     
@@ -79,79 +79,17 @@ namespace PhoneLogic.Core.ViewModels
             }
         }
 
-        private string _phoneNumber;
-        public string PhoneNumber
-        {
-            get { return _phoneNumber; }
-            set
-            {
-                if (_phoneNumber != value)
-                {
-                    _phoneNumber = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        private string _outBoundPhoneNumber = "2679540467";
-        public string OutBoundPhoneNumber
-        {
-            get { return _outBoundPhoneNumber; }
-            set
-            {
-                if (_outBoundPhoneNumber != value)
-                {
-                    _outBoundPhoneNumber = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-
-        public string SelectedAppData
-        {
-            get
-            {
-                if (SelectedPhoneLogicTask != null)
-                {
-                    var plc = new PhoneLogicContext()
-                    {
-                        callerId = PhoneNumber,
-                        conversationId = "",
-                        dialedNumber = OutBoundPhoneNumber,
-                        jobNumber = SelectedPhoneLogicTask.JobNum,
-                        //taskId = SelectedPhoneLogicTask..taskID,
-                        //timeReceived = DateTime.Now.ToLongDateString(),
-                        //callbackId = SelectedMyCallback.callbackID
-                    };
-                    return JsonConvert.SerializeObject(plc);
-                }
-                return "";
-            }
-        }
         private PhoneLogicTask _selectedPhoneLogicTask;
         public PhoneLogicTask SelectedPhoneLogicTask
         {
             get { return _selectedPhoneLogicTask; }
             set
             {
-                OutboundViewVisible =  (value != null ) ? true: false;
                 if (_selectedPhoneLogicTask != value)
                 {
                     _selectedPhoneLogicTask = value;
-                    
                     NotifyPropertyChanged();
                 }
-            }
-        }
-        private Boolean _outboundViewVisible = true;
-        public Boolean OutboundViewVisible
-        {
-            get { return _outboundViewVisible; }
-            set
-            {
-                _outboundViewVisible = value;
-                NotifyPropertyChanged();
             }
         }
         #endregion
