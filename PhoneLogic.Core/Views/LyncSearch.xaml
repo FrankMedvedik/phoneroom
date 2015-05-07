@@ -7,8 +7,8 @@
     mc:Ignorable="d" >
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
             <StackPanel Grid.Row="0" Orientation="Vertical"  >
-            <TextBlock Text="Staff Lookup" HorizontalAlignment="Center" />
-            <controls:ContactSearch HorizontalAlignment="Center" />
+            <TextBlock Text="Staff Lookup" HorizontalAlignment="Center" FontWeight="Bold" />
+            <controls:ContactSearch HorizontalAlignment="Center" MaxHeight="350"  Background="#a6dbed"/>
         </StackPanel>
     </Grid>
 </UserControl>

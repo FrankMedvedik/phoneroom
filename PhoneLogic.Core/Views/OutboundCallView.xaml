@@ -5,20 +5,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" >
     <Grid x:Name="LayoutRoot">
-        <Border BorderThickness="1,1,3,4" BorderBrush="Black" HorizontalAlignment="Center"  VerticalAlignment="Center" >
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Make A Call"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Margin="6" FontSize="18" Grid.Row="0"/>
+        <Border BorderThickness="1,1,3,4" BorderBrush="Black" HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.Row="1">
             <Grid Background="#a6dbed">
-                    <Grid.RowDefinitions>
+                <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                <TextBlock Text="Make A Call"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Margin="6" FontSize="18"
-                           Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="Job"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6"
                            Grid.Row="1" Grid.Column="0"/>   
                 <TextBlock Text="{Binding Task.jobFormatted}"  Margin="6" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>

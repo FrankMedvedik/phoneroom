@@ -43,8 +43,10 @@ namespace PhoneLogic.Core.ViewModels
         }
         protected override void RefreshAll(object sender, EventArgs e)
         {
-            if(CanRefresh)
+            if (CanRefresh)
+            {
                 GetMyCallbacks();
+            }
 
         }
 
@@ -92,8 +94,6 @@ namespace PhoneLogic.Core.ViewModels
                 LoadFailed(e);
 
             }
-
-
         }
 
         private ObservableCollection<myCallback> _filteredCallbacks;
@@ -104,6 +104,7 @@ namespace PhoneLogic.Core.ViewModels
             {
                 _filteredCallbacks = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("JobHeadingText");
             }
         }
 
@@ -169,8 +170,6 @@ namespace PhoneLogic.Core.ViewModels
                     _selectedJobNum = value;
                     NotifyPropertyChanged();
                     FilterCallbacks();
-                    NotifyPropertyChanged("JobHeadingText");
-                    
                 }
             } }
 
@@ -180,7 +179,7 @@ namespace PhoneLogic.Core.ViewModels
             {
                 if (String.IsNullOrEmpty(SelectedJobNum)) return "";
                 else
-                    return String.Format("Job {0}-{1} has {2} messages", 
+                    return String.Format("Job {0}-{1} has {2} voice mail messages", 
                         SelectedJobNum.Substring(0, 4),
                         SelectedJobNum.Substring(4),
                         FilteredCallbacks.Count);

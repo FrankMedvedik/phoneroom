@@ -226,6 +226,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ProdServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\ColorToBrushSvc.cs" />
     <Compile Include="Services\DefaultButtonSvc.cs" />
     <Compile Include="Services\StringToBrushSvc.cs" />
@@ -270,11 +275,6 @@
       <DependentUpon>CallCloseWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Helpers\SupervisorJoin.cs.xxxx" />
-    <Compile Include="Service References\ProdServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ServicesTest\LyncSvc.Mock.cs" />
     <Compile Include="Services\LyncSvc.cs" />
     <Compile Include="Services\PeopleSvc.cs" />
@@ -351,6 +351,38 @@
     <Compile Include="ViewModels\CallsInQueueViewModel.cs" />
     <Compile Include="ViewModels\MyJobsViewModel.cs" />
     <Compile Include="ViewModels\MyCallbacksViewModel.cs" />
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.ActiveCall.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.JobSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.QueueDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.QueueSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.wsdl" />
+    <None Include="Service References\ProdServiceReference\PhoneLogic.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogicService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="ResourceDictionaries\CWEStyle.xaml">
@@ -517,25 +549,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AppServiceReference\PhoneLogicService.wsdl" />
-    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.ActiveCall.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.JobSummary.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.QueueDetail.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.QueueSummary.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic.disco" />
-    <None Include="Service References\ProdServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\ProdServiceReference\configuration.svcinfo" />
-    <None Include="Service References\ProdServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <BlendEmbeddedFont Include="Fonts\SegoeWP-Bold.ttf">
       <IsSystemFont>True</IsSystemFont>
       <All>True</All>
@@ -567,27 +580,14 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ProdServiceReference\PhoneLogic.disco" />
+    <None Include="Service References\ProdServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ProdServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ProdServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\ProdServiceReference\PhoneLogic.wsdl" />
-    <None Include="Service References\ProdServiceReference\PhoneLogic.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogic5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProdServiceReference\PhoneLogicService.wsdl" />
     <Resource Include="Images\RingingPhone.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -623,6 +623,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AppServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ProdServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ChildWindows\" />

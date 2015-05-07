@@ -14,7 +14,7 @@
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Margin="6">
-            <TextBlock Text="Call Time" />
+            <TextBlock Text="Call Time" FontWeight="Bold"/>
             <TextBlock Text="{Binding TimeFromStart, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}"/>
         </StackPanel>
     </Grid>

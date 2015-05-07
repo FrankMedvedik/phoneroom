@@ -458,6 +458,12 @@ namespace PhoneLogic.Core.ProdServiceReference {
         
         System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.ActiveCall> EndGetActiveCalls(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/RecruiterDialOut", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/RecruiterDialOutRespo" +
+            "nse")]
+        System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState);
+        
+        void EndRecruiterDialOut(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCall", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCallResp" +
             "onse")]
         System.IAsyncResult BeginSilentMonitorCall(string id, string sipAddress, System.AsyncCallback callback, object asyncState);
@@ -685,6 +691,12 @@ namespace PhoneLogic.Core.ProdServiceReference {
         
         private System.Threading.SendOrPostCallback onGetActiveCallsCompletedDelegate;
         
+        private BeginOperationDelegate onBeginRecruiterDialOutDelegate;
+        
+        private EndOperationDelegate onEndRecruiterDialOutDelegate;
+        
+        private System.Threading.SendOrPostCallback onRecruiterDialOutCompletedDelegate;
+        
         private BeginOperationDelegate onBeginSilentMonitorCallDelegate;
         
         private EndOperationDelegate onEndSilentMonitorCallDelegate;
@@ -771,6 +783,8 @@ namespace PhoneLogic.Core.ProdServiceReference {
         public event System.EventHandler<GetRecruitersAvailableCompletedEventArgs> GetRecruitersAvailableCompleted;
         
         public event System.EventHandler<GetActiveCallsCompletedEventArgs> GetActiveCallsCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RecruiterDialOutCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SilentMonitorCallCompleted;
         
@@ -1141,6 +1155,57 @@ namespace PhoneLogic.Core.ProdServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRecruiterDialOut(recruiterUri, jobNumber, numberToDial, callbackId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.EndRecruiterDialOut(System.IAsyncResult result) {
+            base.Channel.EndRecruiterDialOut(result);
+        }
+        
+        private System.IAsyncResult OnBeginRecruiterDialOut(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string recruiterUri = ((string)(inValues[0]));
+            string jobNumber = ((string)(inValues[1]));
+            string numberToDial = ((string)(inValues[2]));
+            int callbackId = ((int)(inValues[3]));
+            return ((PhoneLogic.Core.ProdServiceReference.IPhoneLogicService)(this)).BeginRecruiterDialOut(recruiterUri, jobNumber, numberToDial, callbackId, callback, asyncState);
+        }
+        
+        private object[] OnEndRecruiterDialOut(System.IAsyncResult result) {
+            ((PhoneLogic.Core.ProdServiceReference.IPhoneLogicService)(this)).EndRecruiterDialOut(result);
+            return null;
+        }
+        
+        private void OnRecruiterDialOutCompleted(object state) {
+            if ((this.RecruiterDialOutCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.RecruiterDialOutCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void RecruiterDialOutAsync(string recruiterUri, string jobNumber, string numberToDial, int callbackId) {
+            this.RecruiterDialOutAsync(recruiterUri, jobNumber, numberToDial, callbackId, null);
+        }
+        
+        public void RecruiterDialOutAsync(string recruiterUri, string jobNumber, string numberToDial, int callbackId, object userState) {
+            if ((this.onBeginRecruiterDialOutDelegate == null)) {
+                this.onBeginRecruiterDialOutDelegate = new BeginOperationDelegate(this.OnBeginRecruiterDialOut);
+            }
+            if ((this.onEndRecruiterDialOutDelegate == null)) {
+                this.onEndRecruiterDialOutDelegate = new EndOperationDelegate(this.OnEndRecruiterDialOut);
+            }
+            if ((this.onRecruiterDialOutCompletedDelegate == null)) {
+                this.onRecruiterDialOutCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRecruiterDialOutCompleted);
+            }
+            base.InvokeAsync(this.onBeginRecruiterDialOutDelegate, new object[] {
+                        recruiterUri,
+                        jobNumber,
+                        numberToDial,
+                        callbackId}, this.onEndRecruiterDialOutDelegate, this.onRecruiterDialOutCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.BeginSilentMonitorCall(string id, string sipAddress, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginSilentMonitorCall(id, sipAddress, callback, asyncState);
         }
@@ -1454,6 +1519,21 @@ namespace PhoneLogic.Core.ProdServiceReference {
                 object[] _args = new object[0];
                 System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.ActiveCall> _result = ((System.Collections.Generic.List<PhoneLogic.Core.ProdServiceReference.ActiveCall>)(base.EndInvoke("GetActiveCalls", _args, result)));
                 return _result;
+            }
+            
+            public System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[4];
+                _args[0] = recruiterUri;
+                _args[1] = jobNumber;
+                _args[2] = numberToDial;
+                _args[3] = callbackId;
+                System.IAsyncResult _result = base.BeginInvoke("RecruiterDialOut", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndRecruiterDialOut(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("RecruiterDialOut", _args, result);
             }
             
             public System.IAsyncResult BeginSilentMonitorCall(string id, string sipAddress, System.AsyncCallback callback, object asyncState) {

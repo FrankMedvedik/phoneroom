@@ -6,7 +6,6 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
     <Grid x:Name="LayoutRoot" Margin="6">
-
             <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Margin="10">
             <Grid >
                 <Grid.ColumnDefinitions>
@@ -20,7 +19,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Job" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <TextBlock Text="Job" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"/>
                 <TextBlock  Text="{Binding PhoneLogicTask.jobFormatted}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
                 <TextBlock  Text="{Binding PhoneLogicTask.taskName}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" />
                 <TextBlock  Text="{Binding PhoneLogicTask.taskDesc}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" />

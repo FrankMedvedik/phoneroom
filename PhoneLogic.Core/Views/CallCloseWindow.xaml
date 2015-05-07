@@ -4,7 +4,7 @@
            xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
            xmlns:converters="clr-namespace:Microsoft.Lync.Controls.Internal.Converters;assembly=Microsoft.Lync.Controls"
            xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="PhoneLogic.Core.Views.CallCloseWindow"
-           Title="Call Ended" HorizontalAlignment="Center" MinWidth="350" MinHeight="300" >
+           Title="Call Ended" HorizontalAlignment="Center" MinWidth="350" MinHeight="300"  Background="#a6dbed">
     <controls:ChildWindow.Resources >
         <ControlTemplate x:Key="ValidationToolTipTemplate">
             <Grid x:Name="Root" RenderTransformOrigin="0,0" Opacity="0" Margin="5,0">
@@ -228,7 +228,7 @@
             <Setter Property="Margin" Value="8" />
         </Style>
     </controls:ChildWindow.Resources>
-    <Grid x:Name="LayoutRoot" Background="WhiteSmoke" Margin="2" Height="184" Width="293" >
+    <Grid x:Name="LayoutRoot" Margin="2" Height="184" Width="293" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
