@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:behaviors="clr-namespace:PhoneLogic.Core.Behaviors"
     mc:Ignorable="d" >
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -27,10 +29,14 @@
                 <TextBlock Text="{Binding Task.jobFormatted}"  Margin="6" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>
                 <TextBlock Text="Phone Number"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6"
                            Grid.Row="2" Grid.Column="0"/>
-                    <TextBox x:Name="tbOutboundPhone"  HorizontalAlignment="Left" Text="{Binding PhoneNumber, Mode=TwoWay,
-                        ValidatesOnExceptions=True}"  Width="150" Margin="6" Grid.Row="2" Grid.Column="1"/>
-                    <Button Click="Call_Click"  Width="100" Name="btnCall" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
-                            IsEnabled="{Binding CanMakeCall}">Call</Button>
+                <TextBox x:Name="tbOutboundPhone"  HorizontalAlignment="Left" Text="{Binding PhoneNumber, Mode=TwoWay,ValidatesOnExceptions=True}"  
+                         Width="150" Margin="6" Grid.Row="2" Grid.Column="1" > 
+                    <i:Interaction.Behaviors>
+                    <behaviors:DefaultButtonBehavior ButtonName="btnCall"/>
+                    </i:Interaction.Behaviors>
+                </TextBox>
+                <Button Click="Call_Click"  Width="100" Name="btnCall" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                            IsEnabled="true">Call</Button>
                 </Grid>
     </Border>
     </Grid>

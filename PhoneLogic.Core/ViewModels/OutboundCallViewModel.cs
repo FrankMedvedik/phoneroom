@@ -21,16 +21,13 @@ namespace PhoneLogic.Core.ViewModels
             set
             {
                 CanMakeCall = false;
-                if (value != _phoneNumber)
-                {
-                    if (String.IsNullOrWhiteSpace(value))
-                        throw new Exception("Phone number required");
-                    if ((value.Length != 10))
-                        throw new Exception("Phone number invalid");
-                    _phoneNumber = value;
-                    CanMakeCall = true;
-                    NotifyPropertyChanged();
-                }
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new Exception("Phone number required");
+                if ((value.Length != 10))
+                    throw new Exception("Phone number invalid");
+                _phoneNumber = value;
+                CanMakeCall = true;
+                NotifyPropertyChanged();
             }
         }
 

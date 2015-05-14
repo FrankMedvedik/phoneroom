@@ -217,6 +217,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\DefaultButtonBehavior.cs" />
     <Compile Include="Configuration\ConditionalConfiguration.cs" />
     <Compile Include="Commands\ThemeChangeCommand.cs" />
     <Compile Include="Configuration\NinjectConfiguration.cs" />
@@ -332,9 +333,6 @@
     </Compile>
     <Compile Include="Views\TodaysCallLogRptView.xaml.cs">
       <DependentUpon>TodaysCallLogRptView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MyJobsView.xaml.cs">
-      <DependentUpon>MyJobsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CallsInQueueView.xaml.cs">
       <DependentUpon>CallsInQueueView.xaml</DependentUpon>
@@ -483,10 +481,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TodaysCallLogRptView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MyJobsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

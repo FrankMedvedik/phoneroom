@@ -13,7 +13,7 @@ namespace PhoneLogic.Core
     public static class ApiRefreshFrequency
     {
         public static int Rpts = 30;
-        public static int UserDB = 10;
+        public static int UserDB = 60;
         public static int LyncApi = 1;
     }
 
