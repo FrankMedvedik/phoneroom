@@ -13,24 +13,7 @@ namespace PhoneLogic.Core.ViewModels
 {
     public class OutboundCallViewModel : ViewModelBase
     {
-        private string _phoneNumber;
-        [Display(Name = "Phone")]
-        public string PhoneNumber
-        {
-            get { return _phoneNumber; }
-            set
-            {
-                CanMakeCall = false;
-                if (String.IsNullOrWhiteSpace(value))
-                    throw new Exception("Phone number required");
-                if ((value.Length != 10))
-                    throw new Exception("Phone number invalid");
-                _phoneNumber = value;
-                CanMakeCall = true;
-                NotifyPropertyChanged();
-            }
-        }
-
+   
         private Boolean _canMakeCall;
         public Boolean CanMakeCall
         {

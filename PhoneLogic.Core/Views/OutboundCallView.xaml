@@ -29,13 +29,15 @@
                 <TextBlock Text="{Binding Task.jobFormatted}"  Margin="6" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>
                 <TextBlock Text="Phone Number"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6"
                            Grid.Row="2" Grid.Column="0"/>
-                <TextBox x:Name="tbOutboundPhone"  HorizontalAlignment="Left" Text="{Binding PhoneNumber, Mode=TwoWay,ValidatesOnExceptions=True}"  
-                         Width="150" Margin="6" Grid.Row="2" Grid.Column="1" > 
+                <TextBox Name="tbOutboundPhone"  HorizontalAlignment="Left"  
+                         Width="150" Margin="6" Grid.Row="2" Grid.Column="1" TabIndex="0" TabNavigation="Local" > 
                     <i:Interaction.Behaviors>
                     <behaviors:DefaultButtonBehavior ButtonName="btnCall"/>
                     </i:Interaction.Behaviors>
                 </TextBox>
-                <Button Click="Call_Click"  Width="100" Name="btnCall" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                <TextBlock Name="tbErrors"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6" Foreground="Red"
+                           Grid.Row="3" Grid.Column="0"/>
+                <Button Click="Call_Click"  Width="100" Name="btnCall" Grid.Row="3" Grid.Column="1"  
                             IsEnabled="true">Call</Button>
                 </Grid>
     </Border>
