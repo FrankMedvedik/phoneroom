@@ -38,7 +38,7 @@
                 <TextBlock Name="tbErrors"  VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" Margin="6" Foreground="Red"
                            Grid.Row="3" Grid.Column="0"/>
                 <Button Click="Call_Click"  Width="100" Name="btnCall" Grid.Row="3" Grid.Column="1"  
-                            IsEnabled="true">Call</Button>
+                            IsEnabled="{Binding CanMakeCall}">Call</Button>
                 </Grid>
     </Border>
     </Grid>

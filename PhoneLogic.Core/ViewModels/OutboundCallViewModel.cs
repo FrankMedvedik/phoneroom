@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Microsoft.Lync.Model;
-using Newtonsoft.Json;
-using PhoneLogic.Core.Models;
-using PhoneLogic.Core.Services;
+using System.Windows;
 using PhoneLogic.Model;
 using Silverlight.Base.MVVMBaseTypes;
 
@@ -13,7 +7,10 @@ namespace PhoneLogic.Core.ViewModels
 {
     public class OutboundCallViewModel : ViewModelBase
     {
-   
+        public OutboundCallViewModel()
+        {
+            CanMakeCall = true;
+        }
         private Boolean _canMakeCall;
         public Boolean CanMakeCall
         {
@@ -40,8 +37,8 @@ namespace PhoneLogic.Core.ViewModels
                 }
             }
         }
-      
-
+        
+        
     }
 }
 

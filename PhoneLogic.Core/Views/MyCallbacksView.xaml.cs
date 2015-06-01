@@ -65,6 +65,7 @@ namespace PhoneLogic.Core.Views
 
         private async void Call_Click(object sender, RoutedEventArgs e)
         {
+
             
             if (LyncClient.GetClient().State != ClientState.SignedIn)
             {
@@ -85,55 +86,14 @@ namespace PhoneLogic.Core.Views
                     MessageBoxButton.OKCancel) != MessageBoxResult.OK) 
                     return;
             }
-            ///* setup making the call  */
-            //var participantUri = new List<string> {_vm.SelectedMyCallback.callbackNum};
-            //var modalitySettings = new Dictionary<AutomationModalitySettings, object>
-            //{
-            //    {AutomationModalitySettings.ApplicationId, ConditionalConfiguration.RecknerCallAppGuid},
-            //    {AutomationModalitySettings.Subject, _vm.SelectedMyCallback.callbackNum},
-            //    {AutomationModalitySettings.ApplicationData, _vm.SelectedAppData}
-            //};
-
-            ///* start of call */
-            //await CallbackSvc.StartCall(new CallbackDto
-            //{
-            //    SIP = LyncClient.GetClient().Self.Contact.Uri,
-            //    callbackID = _vm.SelectedMyCallback.callbackID
-            //});
 
 
-            //await PhoneCallSvc.LogPhoneCall(new PhoneCall()
-            //{
-            //    callbackID = _vm.SelectedMyCallback.callbackID,
-            //    jobNum = _vm.SelectedMyCallback.jobNum,
-            //    taskID = _vm.SelectedMyCallback.taskID,
-            //    phoneNum = _vm.SelectedMyCallback.phoneNum,
-            //    SIP = LyncClient.GetClient().Self.Contact.Uri
-            //});
-            
+            _vm.CanCall = false;
+            _vm.ActionMsg = "Your call has been placed";
+            StartTimer();
+
             String job = _vm.SelectedMyCallback.jobNum + ":0" + _vm.SelectedMyCallback.taskID;
             await LyncSvc.RecruiterDialOut(job, _vm.SelectedMyCallback.phoneNum, _vm.SelectedMyCallback.callbackID);
-
-            //LyncClient.GetAutomation().BeginStartConversation(
-            //    AutomationModalities.Audio,
-            //    participantUri,
-            //    modalitySettings, ar =>
-            //    {
-            //        try
-            //        {
-            //            ConversationWindow newWindow = LyncClient.GetAutomation().EndStartConversation(ar);
-            //            newWindow.BeginOpenExtensibilityWindow(
-            //                ConditionalConfiguration.RecknerCallAppGuid,
-            //                newWindow.EndOpenExtensibilityWindow,
-            //                null);
-            //        }
-            //        catch (Exception oe)
-            //        {
-            //            MessageBox.Show("Can't Open Output Windows: Operation exception on start conversation " +
-            //                            oe.Message);
-            //        }
-            //    },
-            //    null);
         }
 
         private void callbackGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -176,5 +136,27 @@ namespace PhoneLogic.Core.Views
             _selectedButton.Content = "Play";
             AudioPlayer.Visibility = Visibility.Collapsed;
         }
+
+
+
+        public void StartTimer()
+        {
+            System.Windows.Threading.DispatcherTimer myDispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, 8, 0); // 5 seconds
+            myDispatcherTimer.Tick += new EventHandler(Each_Tick);
+            myDispatcherTimer.Start();
+        }
+
+        // A variable to count with.
+        int i = 0;
+
+        public void Each_Tick(object o, EventArgs sender)
+        {
+            _vm.CanCall = true;
+            _vm.ActionMsg = "";
+           
+        }
+
+
     }
 }

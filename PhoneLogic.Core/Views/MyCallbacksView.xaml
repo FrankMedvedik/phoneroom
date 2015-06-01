@@ -48,15 +48,16 @@
             <sdk:DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <TextBlock Text="Caller's current time" Margin="6"/>
-                            <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
+                        <TextBlock Text="Caller's current time" Margin="6"/>
+                        <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
                             <StackPanel Name="playControlsPanel" Orientation="Horizontal">
-                            <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
-                            Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked" Width="Auto">Play</ToggleButton>
+                            <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" Width="80" 
+                            Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked">Play</ToggleButton>
                             </StackPanel>
-                        <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
-                        <Button Name="CloseCallback" Margin="100,6,6,6"  HorizontalAlignment="Right" Click="CloseCallback_Click">Delete</Button>
-                        </StackPanel>
+                        <Button Name="Call"  Width="80" Margin="3,6,3,6" Click="Call_Click" IsEnabled="{Binding DataContext.CanCall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}">Call</Button>
+                        <TextBlock Text="{Binding DataContext.ActionMsg, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}" Foreground="Red"  Margin="6"/>
+                         <Button Name="CloseCallback" Margin="60,6,6,6"  HorizontalAlignment="Right" Click="CloseCallback_Click">Delete</Button>
+                    </StackPanel>
                 </DataTemplate>
             </sdk:DataGrid.RowDetailsTemplate>
         </sdk:DataGrid>

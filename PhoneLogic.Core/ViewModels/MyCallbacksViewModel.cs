@@ -186,6 +186,31 @@ namespace PhoneLogic.Core.ViewModels
             }
         }
 
+        private Boolean _canCall = true;
+
+        public Boolean CanCall
+        {
+            get { return _canCall; }
+            set
+            {
+                _canCall = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        private String _actionMsg ;
+
+        public String ActionMsg
+        {
+            get { return _actionMsg; }
+            set
+            {
+                _actionMsg = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
     }
 }
