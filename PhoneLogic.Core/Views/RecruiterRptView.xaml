@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Views"  xmlns:Toolkit="clr-namespace:MM.Toolkit;assembly=MM.Toolkit" 
+﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Views"  xmlns:toolkit="clr-namespace:MM.Toolkit;assembly=MM.Toolkit" 
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls" 
         x:Class="PhoneLogic.Core.Views.RecruiterRptView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -29,25 +29,27 @@
             <controls:ContactCard  Source="{Binding RecruiterSip}" Grid.Row="0" Margin="6" />
             <StackPanel Orientation="Horizontal" Grid.Row="1" >
                 <TextBlock Text="Start" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-                <Toolkit:DateTimeBox ToolTipService.ToolTip="start date and time for call history" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
+                <toolkit:DateTimeBox ToolTipService.ToolTip="start date and time for call history" SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" />
                 <TextBlock Text="End" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-                <Toolkit:DateTimeBox ToolTipService.ToolTip="end date and time for call history" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
+                <toolkit:DateTimeBox ToolTipService.ToolTip="end date and time for call history" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" />
                 <Button Click="btnGetLogsClick" Margin="8">Get Calls</Button>
+                <Canvas Width="100"/>
             </StackPanel>
                 <sdk:DataGrid AutoGenerateColumns="False"  Grid.Row="2" Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  MaxHeight="250"  SelectionChanged="RecruiterLogDG_SelectionChanged"
                     ItemsSource="{Binding RecruiterLogs}"  VerticalAlignment="Top"  Name="RecruiterLogDG" SelectedItem="{Binding SelectedRecruiterLog, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Call Log" Margin="6" HorizontalAlignment="Center" >
                 <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding recruiterConnectTime}" />
                     <sdk:DataGridTextColumn Binding="{Binding jobFormatted }" />
                     <sdk:DataGridTextColumn Binding="{Binding phoneFormatted }" />
-                    <sdk:DataGridTextColumn Binding="{Binding eventTime}" />
+                    <sdk:DataGridTextColumn Binding="{Binding recruiterCallDuration}" />
                     <sdk:DataGridTextColumn Binding="{Binding tollFreeNumberFormatted}" />
-                    <sdk:DataGridTemplateColumn Width="100">
+                    <sdk:DataGridTemplateColumn>
                         <sdk:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate >
                                 <StackPanel Name="playControlsPanel" Orientation="Horizontal">
-                                    <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                                    <ToggleButton x:Name="tbtnPlay" Margin="6,2,3,2"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" 
                             Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked" Width="Auto">Play</ToggleButton>
                                 </StackPanel>
                             </DataTemplate>

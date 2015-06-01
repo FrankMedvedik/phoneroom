@@ -23,7 +23,7 @@ namespace PhoneLogic.Core.Views
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            TbPlaybackDuration.Text = AudioPlayback.Position.TotalSeconds.ToString();
+            TbPlaybackDuration.Text = AudioPlayback.Position.Seconds.ToString();
             SliderPositionBackground.Value = AudioPlayback.Position.TotalSeconds;
         }
 
@@ -68,7 +68,7 @@ namespace PhoneLogic.Core.Views
         private void ResetPlayback()
         {
             AudioPlayback.Position = TimeSpan.FromSeconds(0);
-            TbPlaybackDuration.Text = AudioPlayback.NaturalDuration.TimeSpan.ToString();
+            TbPlaybackDuration.Text = AudioPlayback.NaturalDuration.TimeSpan.Seconds.ToString();
             SliderPosition.Value = 0;
             SliderPosition.Maximum = AudioPlayback.NaturalDuration.TimeSpan.TotalSeconds;
         }

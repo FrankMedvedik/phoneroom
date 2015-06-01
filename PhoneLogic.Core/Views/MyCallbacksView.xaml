@@ -55,7 +55,7 @@
                             Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked" Width="Auto">Play</ToggleButton>
                             </StackPanel>
                         <Button Name="Call" Margin="3,6,3,6" Click="Call_Click">Call</Button>
-                        <Button Name="CloseCallback" Margin="3,6,6,6" Click="CloseCallback_Click">Delete</Button>
+                        <Button Name="CloseCallback" Margin="100,6,6,6"  HorizontalAlignment="Right" Click="CloseCallback_Click">Delete</Button>
                         </StackPanel>
                 </DataTemplate>
             </sdk:DataGrid.RowDetailsTemplate>

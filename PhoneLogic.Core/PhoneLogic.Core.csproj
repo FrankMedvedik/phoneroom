@@ -163,9 +163,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CommonServiceLocator.Silverlight.1.0\lib\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="MM.Toolkit">
-      <HintPath>..\..\..\MM.Toolkit.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -593,6 +590,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MM.Toolkit\MM.Toolkit.csproj">
+      <Project>{49aa6ed4-61e7-4cdc-8f12-01c31a25cec3}</Project>
+      <Name>MM.Toolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Phonelogic.Model.Silverlight\PhoneLogic.Model.Silverlight.csproj">
       <Project>{e4c37822-fcfa-431b-b373-a78fbd5136b3}</Project>
       <Name>PhoneLogic.Model.Silverlight</Name>

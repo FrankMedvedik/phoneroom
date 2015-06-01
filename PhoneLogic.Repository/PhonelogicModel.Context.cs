@@ -164,7 +164,7 @@ namespace PhoneLogic.Repository
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<agentLogDTO>("rpt_GetAgentLog", sipParameter, startDateParameter, endDateParameter);
         }
     
-        public virtual ObjectResult<callLogDTO> rpt_GetCallLog(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        public virtual int rpt_GetCallLog(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
         {
             var startDateParameter = startDate.HasValue ?
                 new ObjectParameter("startDate", startDate) :
@@ -174,10 +174,10 @@ namespace PhoneLogic.Repository
                 new ObjectParameter("endDate", endDate) :
                 new ObjectParameter("endDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callLogDTO>("rpt_GetCallLog", startDateParameter, endDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("rpt_GetCallLog", startDateParameter, endDateParameter);
         }
     
-        public virtual ObjectResult<recruiterLogDTO> rpt_GetRecruiterLog(string sip, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        public virtual int rpt_GetRecruiterLog(string sip, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
         {
             var sipParameter = sip != null ?
                 new ObjectParameter("sip", sip) :
@@ -191,7 +191,24 @@ namespace PhoneLogic.Repository
                 new ObjectParameter("endDate", endDate) :
                 new ObjectParameter("endDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recruiterLogDTO>("rpt_GetRecruiterLog", sipParameter, startDateParameter, endDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("rpt_GetRecruiterLog", sipParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<recruiterLogDTO> rpt_GetRecruiterCallLog(string sip, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var sipParameter = sip != null ?
+                new ObjectParameter("sip", sip) :
+                new ObjectParameter("sip", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recruiterLogDTO>("rpt_GetRecruiterCallLog", sipParameter, startDateParameter, endDateParameter);
         }
     }
 }

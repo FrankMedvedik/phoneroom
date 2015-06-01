@@ -20,7 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False,{2E33113B-6EA1-4CB3-8057-964CC2040F8E}|..\PhoneLogic.MyCalls\PhoneLogic.MyCalls.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -214,7 +214,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\RecruiterLogsController.cs" />
+    <Compile Include="Controllers\RecruiterCallLogsController.cs" />
     <Compile Include="Controllers\CallbacksController.cs" />
     <Compile Include="Controllers\FormattedPhoneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -240,9 +240,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ClientBin\PhoneLogic.Mgr.xap" />
+    <Content Include="ClientBin\PhoneLogic.MyCalls.xap" />
     <Content Include="ClientBin\Phonelogic.Outbound.xap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ClientBin\PhoneLogic.PhoneRoomMonitor.xap" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -281,6 +283,8 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="PhoneLogic.MyCalls.aspx" />
+    <Content Include="PhoneLogic.MyCalls.html" />
     <Content Include="PhoneLogic.Mgr.aspx" />
     <Content Include="PhoneLogic.Mgr.html" />
     <Content Include="Phonelogic.Inbound.reg">
@@ -306,7 +310,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="ClientBin\System.Windows.Controls.zip" />
     <None Include="Properties\PublishProfiles\APP2012.pubxml" />
+    <Content Include="PhoneLogic.MyCallsTestPage.aspx" />
+    <Content Include="PhoneLogic.MyCallsTestPage.html" />
+    <Content Include="PhoneLogic.PhoneRoomMonitorTestPage.aspx" />
+    <Content Include="PhoneLogic.PhoneRoomMonitorTestPage.html" />
     <Content Include="v1.aspx" />
     <Resource Include="Images\RecknerLogoRight.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

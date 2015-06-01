@@ -13,12 +13,17 @@ namespace PhoneLogic.Repository
     
     public partial class recruiterLogDTO
     {
+        public int StartLogId { get; set; }
+        public string JobNumber { get; set; }
         public string callerId { get; set; }
         public string callId { get; set; }
-        public Nullable<System.DateTime> eventTime { get; set; }
-        public string jobNumber { get; set; }
-        public int logid { get; set; }
+        public Nullable<System.DateTime> callStartTime { get; set; }
+        public Nullable<System.DateTime> recruiterConnectTime { get; set; }
+        public string preconnectDuration { get; set; }
+        public string recruiterCallDuration { get; set; }
         public string recruiterSip { get; set; }
+        public string totalCallDuration { get; set; }
+        public Nullable<System.DateTime> callEndTime { get; set; }
         public string tollFreeNumber { get; set; }
     }
 }

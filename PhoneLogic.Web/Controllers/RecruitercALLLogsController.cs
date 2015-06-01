@@ -6,14 +6,14 @@ using PhoneLogic.Repository;
 
 namespace PhoneLogic.Web.Controllers
 {
-    public class RecruiterLogsController : ApiController
+    public class RecruiterCallLogsController : ApiController
     {
         private PhoneLogicEntities db = new PhoneLogicEntities();
 
         // GET: api/recruiterLogs?sip=1&startDate=2&endDate=3
-        public List<recruiterLogDTO> GetRecruiterLogs(string sip, DateTime startDate, DateTime endDate)
+        public List<recruiterLogDTO> GetRecruiterCallLogs(string sip, DateTime startDate, DateTime endDate)
         {
-            return db.rpt_GetRecruiterLog(sip,startDate,endDate).ToList();
+            return db.rpt_GetRecruiterCallLog(sip,startDate,endDate).ToList();
         }
    }
 }

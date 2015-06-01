@@ -139,9 +139,6 @@
     <Compile Include="callLog.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="callLogDTO.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="inboundCall.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
@@ -213,15 +210,6 @@
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="rptInboundCallByHourResult.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="rpt_GetAgentLog_Result.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="rpt_GetCallLog_Result.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="rpt_GetRecruiterLog_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\AgentUtils.cs" />

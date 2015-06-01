@@ -131,6 +131,11 @@
           <Parameter Name="Start" Type="datetime" Mode="In" />
           <Parameter Name="End" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="rpt_GetRecruiterCallLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sip" Type="nvarchar" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="rpt_GetRecruiterLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="sip" Type="nvarchar" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
@@ -199,11 +204,16 @@
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="rpt_GetCallLog" ReturnType="Collection(PhoneLogicModel.callLogDTO)">
+          <FunctionImport Name="rpt_GetCallLog">
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="rpt_GetRecruiterLog" ReturnType="Collection(PhoneLogicModel.recruiterLogDTO)">
+          <FunctionImport Name="rpt_GetRecruiterLog">
+            <Parameter Name="sip" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetRecruiterCallLog" ReturnType="Collection(PhoneLogicModel.recruiterLogDTO)">
             <Parameter Name="sip" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
@@ -386,38 +396,6 @@
           <Property Name="taskID" Type="Int32" Nullable="false" />
           <Property Name="eventDscr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
-        <ComplexType Name="rpt_GetAgentLog_Result">
-          <Property Type="String" Name="agentevent" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="agentid" Nullable="false" MaxLength="4" />
-          <Property Type="String" Name="callerid" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="eventdscr" Nullable="false" MaxLength="255" />
-          <Property Type="DateTime" Name="eventtime" Nullable="false" Precision="23" />
-          <Property Type="String" Name="jobnum" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="logid" Nullable="false" />
-          <Property Type="Int32" Name="taskid" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="rpt_GetCallLog_Result">
-          <Property Type="String" Name="callerid" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="callevent" Nullable="false" MaxLength="35" />
-          <Property Type="Int32" Name="callid" Nullable="false" />
-          <Property Type="String" Name="eventdscr" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="eventtime" Nullable="false" Precision="23" />
-          <Property Type="String" Name="implementationid" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="jobnum" Nullable="false" MaxLength="8" />
-          <Property Type="Int32" Name="taskid" Nullable="false" />
-          <Property Type="String" Name="tollfreenum" Nullable="false" MaxLength="10" />
-        </ComplexType>
-        <ComplexType Name="callLogDTO">
-          <Property Type="String" Name="callerid" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="callevent" Nullable="false" MaxLength="35" />
-          <Property Type="Int32" Name="callid" Nullable="false" />
-          <Property Type="String" Name="eventdscr" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="eventtime" Nullable="false" Precision="23" />
-          <Property Type="String" Name="implementationid" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="jobnum" Nullable="false" MaxLength="8" />
-          <Property Type="Int32" Name="taskid" Nullable="false" />
-          <Property Type="String" Name="tollfreenum" Nullable="false" MaxLength="10" />
-        </ComplexType>
         <ComplexType Name="agentLogDTO">
           <Property Type="String" Name="agentevent" Nullable="false" MaxLength="35" />
           <Property Type="String" Name="agentid" Nullable="false" MaxLength="4" />
@@ -428,22 +406,18 @@
           <Property Type="Int32" Name="logid" Nullable="false" />
           <Property Type="Int32" Name="taskid" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="rpt_GetRecruiterLog_Result">
-          <Property Type="String" Name="callerId" Nullable="true" MaxLength="22" />
-          <Property Type="String" Name="callId" Nullable="false" MaxLength="36" />
-          <Property Type="DateTime" Name="eventTime" Nullable="true" Precision="23" />
-          <Property Type="String" Name="jobNumber" Nullable="false" MaxLength="11" />
-          <Property Type="Int32" Name="logid" Nullable="false" />
-          <Property Type="String" Name="recruiterSip" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="tollFreeNumber" Nullable="false" MaxLength="10" />
-        </ComplexType>
         <ComplexType Name="recruiterLogDTO">
+          <Property Type="Int32" Name="StartLogId" Nullable="false" />
+          <Property Type="String" Name="JobNumber" Nullable="false" MaxLength="11" />
           <Property Type="String" Name="callerId" Nullable="true" MaxLength="22" />
           <Property Type="String" Name="callId" Nullable="false" MaxLength="36" />
-          <Property Type="DateTime" Name="eventTime" Nullable="true" Precision="23" />
-          <Property Type="String" Name="jobNumber" Nullable="false" MaxLength="11" />
-          <Property Type="Int32" Name="logid" Nullable="false" />
+          <Property Type="DateTime" Name="callStartTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="recruiterConnectTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="preconnectDuration" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="recruiterCallDuration" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="recruiterSip" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="totalCallDuration" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="callEndTime" Nullable="true" Precision="23" />
           <Property Type="String" Name="tollFreeNumber" Nullable="false" MaxLength="10" />
         </ComplexType>
       </Schema>
@@ -699,29 +673,23 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetCallLog" FunctionName="PhoneLogicModel.Store.rpt_GetCallLog">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="PhoneLogicModel.callLogDTO">
-                <ScalarProperty Name="callerid" ColumnName="callerid" />
-                <ScalarProperty Name="callevent" ColumnName="callevent" />
-                <ScalarProperty Name="callid" ColumnName="callid" />
-                <ScalarProperty Name="eventdscr" ColumnName="eventdscr" />
-                <ScalarProperty Name="eventtime" ColumnName="eventtime" />
-                <ScalarProperty Name="implementationid" ColumnName="implementationid" />
-                <ScalarProperty Name="jobnum" ColumnName="jobnum" />
-                <ScalarProperty Name="taskid" ColumnName="taskid" />
-                <ScalarProperty Name="tollfreenum" ColumnName="tollfreenum" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetRecruiterLog" FunctionName="PhoneLogicModel.Store.rpt_GetRecruiterLog">
-          <ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetRecruiterCallLog" FunctionName="PhoneLogicModel.Store.rpt_GetRecruiterCallLog" >
+            <ResultMapping>
               <ComplexTypeMapping TypeName="PhoneLogicModel.recruiterLogDTO">
+                <ScalarProperty Name="StartLogId" ColumnName="StartLogId" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
                 <ScalarProperty Name="callerId" ColumnName="callerId" />
                 <ScalarProperty Name="callId" ColumnName="callId" />
-                <ScalarProperty Name="eventTime" ColumnName="eventTime" />
-                <ScalarProperty Name="jobNumber" ColumnName="jobNumber" />
-                <ScalarProperty Name="logid" ColumnName="logid" />
+                <ScalarProperty Name="callStartTime" ColumnName="callStartTime" />
+                <ScalarProperty Name="recruiterConnectTime" ColumnName="recruiterConnectTime" />
+                <ScalarProperty Name="preconnectDuration" ColumnName="preconnectDuration" />
+                <ScalarProperty Name="recruiterCallDuration" ColumnName="recruiterCallDuration" />
                 <ScalarProperty Name="recruiterSip" ColumnName="recruiterSip" />
+                <ScalarProperty Name="totalCallDuration" ColumnName="totalCallDuration" />
+                <ScalarProperty Name="callEndTime" ColumnName="callEndTime" />
                 <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
               </ComplexTypeMapping>
             </ResultMapping>

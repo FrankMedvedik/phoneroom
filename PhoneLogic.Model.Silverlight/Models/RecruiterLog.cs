@@ -5,21 +5,28 @@ namespace PhoneLogic.Model
     using System.ComponentModel.DataAnnotations;
     public class RecruiterLog
     {
-        
-        public string recruiterSip { get; set; }
+        public int StartLogId { get; set; }
+        public string JobNumber { get; set; }
+        [Display(Name = "Caller ID")]
+        public string callerId { get; set; }
         public string callId { get; set; }
-        public string callerid { get; set; }
+        public System.DateTime callStartTime { get; set; }
+        public System.DateTime recruiterConnectTime { get; set; }
+        [Display(Name = "Wait Time")]
+        public string preconnectDuration { get; set; }
+        [Display(Name = "Call Length")]
+        public string recruiterCallDuration { get; set; }
+        public string recruiterSip { get; set; }
+        public string totalCallDuration { get; set; }
+        public System.DateTime callEndTime { get; set; }
         public string tollFreeNumber { get; set; }
-        [Display(Name = "Event Time")]
-        public System.DateTime eventTime { get; set; }
-        public string jobnumber { get; set; }
-        public int logid { get; set; }
+
         [Display(Name = "Job")]
         public string jobFormatted
         {
             get
             {
-                return (String.IsNullOrWhiteSpace(jobnumber)) ? jobnumber : jobnumber.Substring(0, 4) + "-" + jobnumber.Substring(4,4);
+                return (String.IsNullOrWhiteSpace(JobNumber)) ? JobNumber : JobNumber.Substring(0, 4) + "-" + JobNumber.Substring(4, 4);
             }
         }
  
@@ -35,8 +42,8 @@ namespace PhoneLogic.Model
         public string phoneFormatted
         {
             get
-            {   
-                return (String.IsNullOrWhiteSpace(callerid)) ? callerid : String.Format("{0:(###) ###-####}", double.Parse(callerid));
+            {
+                return (String.IsNullOrWhiteSpace(callerId)) ? callerId : String.Format("{0:(###) ###-####}", double.Parse(callerId));
             }
         }
     }
