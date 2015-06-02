@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Lync.Internal.Utilities.Interop;
 using Microsoft.Lync.Model;
 using Newtonsoft.Json;
 using PhoneLogic.Core.Services;
@@ -11,8 +12,7 @@ namespace PhoneLogic.Core.ViewModels
 {
     public class MyCallBacksViewModel : CollectionViewModelBase
     {
-        public DebugEventsViewModel de;
-
+     
         public MyCallBacksViewModel()
         {
           StartAutoRefresh(ApiRefreshFrequency.UserDB);
@@ -190,7 +190,10 @@ namespace PhoneLogic.Core.ViewModels
 
         public Boolean CanCall
         {
-            get { return _canCall; }
+            get
+            {
+                return _canCall;
+            }
             set
             {
                 _canCall = value;

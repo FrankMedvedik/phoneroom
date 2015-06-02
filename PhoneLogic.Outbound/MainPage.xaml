@@ -7,20 +7,23 @@
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
     x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" d:Width="543" Background="WhiteSmoke">
     <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <Grid.ColumnDefinitions>
+            <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions> -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-        <lyncControls:MyStatusArea  Background="Transparent" Margin="3" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left"  FontSize="16"/>
-        <views:MyCallsInQueueView  Margin="3" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="16"/>
-        <views:MyWorkView Margin="6" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Left" FontSize="16"/>
-        <views:BuildInformationView  Grid.Row="3" Grid.Column="0"  FontSize="16"/>
+            <toolkit:WrapPanel Orientation="Vertical">
+            <toolkit:WrapPanel Orientation="Horizontal" >
+                <lyncControls:MyStatusArea  Background="Transparent" MinWidth="300" Height="Auto"  Margin="12" HorizontalAlignment="Left"  FontSize="16"/>
+                <views:MyCallsInQueueView  Margin="12" MinWidth="300" Height="Auto" HorizontalAlignment="Right" FontSize="16"/>
+            </toolkit:WrapPanel>
+                <views:MyWorkView Margin="6" HorizontalAlignment="Left" FontSize="16"/>
+                <views:BuildInformationView  FontSize="16"/>
+            </toolkit:WrapPanel>
     </Grid>
 </UserControl>
 

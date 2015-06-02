@@ -15,7 +15,18 @@ namespace PhoneLogic.Core
         public static int Rpts = 30;
         public static int UserDB = 60;
         public static int LyncApi = 1;
+
     }
+
+    public static class UserInterfaceTimings
+    {
+        public static int OutboundCallButtonInactivateTime = 8;
+        public static int UserDB = 60;
+        public static int LyncApi = 1;
+
+    }
+
+
 
     //public static class EndPointConfig
     //{

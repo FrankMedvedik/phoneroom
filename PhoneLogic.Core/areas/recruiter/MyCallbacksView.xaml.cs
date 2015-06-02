@@ -72,13 +72,6 @@ namespace PhoneLogic.Core.Views
                 MessageBox.Show("Please Sign in to Lync first ");
                 return;
             }
-            
-            /* should never happen since have to have a row selected to show this button */
-            if (_vm.SelectedMyCallback == null)
-            {
-                MessageBox.Show("Select A Callback");
-                return;
-            }
 
             if (!String.IsNullOrWhiteSpace(_vm.SelectedMyCallback.status))  
             {
@@ -86,7 +79,6 @@ namespace PhoneLogic.Core.Views
                     MessageBoxButton.OKCancel) != MessageBoxResult.OK) 
                     return;
             }
-
 
             _vm.CanCall = false;
             _vm.ActionMsg = "Your call has been placed";
@@ -118,6 +110,8 @@ namespace PhoneLogic.Core.Views
             _selectedButton = (sender as ToggleButton);
             _selectedButton.Content = "Stop";
             AudioPlayer.Play();
+            _vm.ActionMsg = "..playing message...";
+ 
             _vm.CanRefresh = false;
 
         }
@@ -135,6 +129,7 @@ namespace PhoneLogic.Core.Views
         {
             _selectedButton.Content = "Play";
             AudioPlayer.Visibility = Visibility.Collapsed;
+            _vm.ActionMsg = "";
         }
 
 
@@ -142,7 +137,7 @@ namespace PhoneLogic.Core.Views
         public void StartTimer()
         {
             System.Windows.Threading.DispatcherTimer myDispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, 8, 0); // 5 seconds
+            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0); 
             myDispatcherTimer.Tick += new EventHandler(Each_Tick);
             myDispatcherTimer.Start();
         }
