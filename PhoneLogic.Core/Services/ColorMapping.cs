@@ -35,7 +35,7 @@ namespace PhoneLogic.Model
                 return low;
             if (cnt > 1 && cnt < 5)
                 return medium;
-            if (cnt > 5)
+            if (cnt >= 5)
                 return high;
             return low;
         }

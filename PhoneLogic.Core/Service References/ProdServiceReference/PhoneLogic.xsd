@@ -119,6 +119,19 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="TransferCall">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recruiterUri" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TransferCallResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SilentMonitorCall">
     <xs:complexType>
       <xs:sequence>

@@ -242,7 +242,7 @@
             <TextBlock Text="Keep voice message? "  VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
             <CheckBox FontFamily="Ariel Bold" IsChecked="{Binding KeepCallback, Mode=TwoWay}" VerticalAlignment="Center" Style="{StaticResource CheckBoxStyle1}" FontSize="16" FontWeight="Bold" />
         </StackPanel>
-        <Button  HorizontalAlignment="Center" Click="Close_Click" Grid.Row="2" x:Name="Close" TabIndex="0"   Margin="12" Content="Close" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" />
+        <Button  Width="100"  HorizontalAlignment="Center" Click="Close_Click" Grid.Row="2" x:Name="Close" TabIndex="0"   Margin="12" Content="Close" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" />
         <!--<StackPanel Orientation="Vertical" Grid.Row="2" Visibility="Collapsed">
             <TextBlock x:Name="TextBlock_Notice" />
             <ProgressBar Grid.Row="1" Width="250" Height="30" IsIndeterminate="True"/>

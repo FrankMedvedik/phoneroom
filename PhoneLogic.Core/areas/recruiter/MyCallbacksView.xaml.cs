@@ -24,8 +24,27 @@ namespace PhoneLogic.Core.Views
             _vm.RefreshAll();
             AudioPlayer.Visibility = Visibility.Collapsed;
             AudioPlayer.AudioPlayback.MediaEnded += ResetPlaybackState;
-
+            //SizeChanged += HandleResizeGrid;
         }
+
+        private void HandleResizeGrid(object sender, SizeChangedEventArgs e)
+        {
+            ResizeGrid();
+        }
+
+        public Boolean CanRefresh
+        {
+            get
+            {
+                return _vm.CanRefresh && _vm.CanCall; 
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for CanRefresh.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CanRefreshProperty =
+            DependencyProperty.Register("CanRefresh", typeof(Boolean), typeof(MyCallbacksView), new PropertyMetadata(false));
+
+
 
         public string SelectedJobNum 
         {
@@ -152,6 +171,23 @@ namespace PhoneLogic.Core.Views
            
         }
 
-
+        public void ResizeGrid()
+        {
+            
+            //tbGridSize.Text = String.Format("Width : {0}  Height : {1} ", BrowserInfoSvc.ClientWidth,
+            //    BrowserInfoSvc.ClientHeight);
+            if (BrowserInfoSvc.ClientWidth < UserInterfaceTimings.ResizeBoundryWidth)
+            {
+                callbackGrid.Columns[2].Visibility = Visibility.Collapsed;
+                callbackGrid.Columns[3].Visibility = Visibility.Collapsed;
+                callbackGrid.Columns[4].Visibility = Visibility.Collapsed;
+            }
+            if (BrowserInfoSvc.ClientWidth >= UserInterfaceTimings.ResizeBoundryWidth)
+            {
+                callbackGrid.Columns[2].Visibility = Visibility.Visible;
+                callbackGrid.Columns[3].Visibility = Visibility.Visible;
+                callbackGrid.Columns[4].Visibility = Visibility.Visible;
+            }
+        }
     }
 }

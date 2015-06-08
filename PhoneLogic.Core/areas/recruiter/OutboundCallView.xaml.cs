@@ -20,6 +20,16 @@ namespace PhoneLogic.Core.Views
             
         }
 
+        public Boolean CanRefresh
+        {
+            get { return _vm.CanMakeCall; } 
+        }
+
+        // Using a DependencyProperty as the backing store for CanRefresh.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CanRefreshProperty =
+            DependencyProperty.Register("CanRefresh", typeof(Boolean), typeof(MyCallbacksView), new PropertyMetadata(false));
+
+
         public PhoneLogicTask Task
         {
             get { return _vm.Task; }

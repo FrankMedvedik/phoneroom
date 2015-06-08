@@ -22,7 +22,7 @@
                 <TextBlock Text="Job" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"/>
                 <TextBlock  Text="{Binding PhoneLogicTask.jobFormatted}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
                 <TextBlock  Text="{Binding PhoneLogicTask.taskName}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" />
-                <TextBlock  Text="{Binding PhoneLogicTask.taskDesc}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" />
+                <TextBlock  Text="{Binding PhoneLogicTask.taskDscr}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" />
                 <TextBlock  Text="{Binding PhoneLogicTask.taskTypeID}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" />
             </Grid>
         </StackPanel>

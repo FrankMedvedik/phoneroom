@@ -22,10 +22,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converters="clr-namespace:Microsoft.Lync.Controls.Internal.Converters;assembly=Microsoft.Lync.Controls">
+             xmlns:converters="clr-namespace:PhoneLogic.Core.Converters;assembly=PhoneLogic.Core">
               <Application.Resources>
                 <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
                 <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
+                <converters:IntToBrush x:Key="IntToBrushConverter" />
         <Style TargetType="Control" x:Key="CtrlDefaultStyle">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="FontFamily" Value="Ariel Bold"  />

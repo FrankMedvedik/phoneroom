@@ -100,7 +100,7 @@ namespace PhoneLogic.Core.ViewModels
                     callCnt = 0;
                 }
 
-                return ColorMapping.GetBackground(callCnt);
+                return ColorMappingSvc.GetBackground(callCnt);
             }
         }
 
@@ -117,7 +117,7 @@ namespace PhoneLogic.Core.ViewModels
                     callCnt = 0;
                 }
 
-                return ColorMapping.GetForeground(callCnt);
+                return ColorMappingSvc.GetForeground(callCnt);
             }
         }
         #endregion

@@ -464,6 +464,11 @@ namespace PhoneLogic.Core.ProdServiceReference {
         
         void EndRecruiterDialOut(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/TransferCall", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/TransferCallResponse")]
+        System.IAsyncResult BeginTransferCall(string id, string recruiterUri, System.AsyncCallback callback, object asyncState);
+        
+        void EndTransferCall(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCall", ReplyAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/SilentMonitorCallResp" +
             "onse")]
         System.IAsyncResult BeginSilentMonitorCall(string id, string sipAddress, System.AsyncCallback callback, object asyncState);
@@ -697,6 +702,12 @@ namespace PhoneLogic.Core.ProdServiceReference {
         
         private System.Threading.SendOrPostCallback onRecruiterDialOutCompletedDelegate;
         
+        private BeginOperationDelegate onBeginTransferCallDelegate;
+        
+        private EndOperationDelegate onEndTransferCallDelegate;
+        
+        private System.Threading.SendOrPostCallback onTransferCallCompletedDelegate;
+        
         private BeginOperationDelegate onBeginSilentMonitorCallDelegate;
         
         private EndOperationDelegate onEndSilentMonitorCallDelegate;
@@ -785,6 +796,8 @@ namespace PhoneLogic.Core.ProdServiceReference {
         public event System.EventHandler<GetActiveCallsCompletedEventArgs> GetActiveCallsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RecruiterDialOutCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> TransferCallCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SilentMonitorCallCompleted;
         
@@ -1206,6 +1219,53 @@ namespace PhoneLogic.Core.ProdServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.BeginTransferCall(string id, string recruiterUri, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginTransferCall(id, recruiterUri, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.EndTransferCall(System.IAsyncResult result) {
+            base.Channel.EndTransferCall(result);
+        }
+        
+        private System.IAsyncResult OnBeginTransferCall(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string id = ((string)(inValues[0]));
+            string recruiterUri = ((string)(inValues[1]));
+            return ((PhoneLogic.Core.ProdServiceReference.IPhoneLogicService)(this)).BeginTransferCall(id, recruiterUri, callback, asyncState);
+        }
+        
+        private object[] OnEndTransferCall(System.IAsyncResult result) {
+            ((PhoneLogic.Core.ProdServiceReference.IPhoneLogicService)(this)).EndTransferCall(result);
+            return null;
+        }
+        
+        private void OnTransferCallCompleted(object state) {
+            if ((this.TransferCallCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.TransferCallCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void TransferCallAsync(string id, string recruiterUri) {
+            this.TransferCallAsync(id, recruiterUri, null);
+        }
+        
+        public void TransferCallAsync(string id, string recruiterUri, object userState) {
+            if ((this.onBeginTransferCallDelegate == null)) {
+                this.onBeginTransferCallDelegate = new BeginOperationDelegate(this.OnBeginTransferCall);
+            }
+            if ((this.onEndTransferCallDelegate == null)) {
+                this.onEndTransferCallDelegate = new EndOperationDelegate(this.OnEndTransferCall);
+            }
+            if ((this.onTransferCallCompletedDelegate == null)) {
+                this.onTransferCallCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnTransferCallCompleted);
+            }
+            base.InvokeAsync(this.onBeginTransferCallDelegate, new object[] {
+                        id,
+                        recruiterUri}, this.onEndTransferCallDelegate, this.onTransferCallCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult PhoneLogic.Core.ProdServiceReference.IPhoneLogicService.BeginSilentMonitorCall(string id, string sipAddress, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginSilentMonitorCall(id, sipAddress, callback, asyncState);
         }
@@ -1534,6 +1594,19 @@ namespace PhoneLogic.Core.ProdServiceReference {
             public void EndRecruiterDialOut(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 base.EndInvoke("RecruiterDialOut", _args, result);
+            }
+            
+            public System.IAsyncResult BeginTransferCall(string id, string recruiterUri, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = id;
+                _args[1] = recruiterUri;
+                System.IAsyncResult _result = base.BeginInvoke("TransferCall", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndTransferCall(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("TransferCall", _args, result);
             }
             
             public System.IAsyncResult BeginSilentMonitorCall(string id, string sipAddress, System.AsyncCallback callback, object asyncState) {

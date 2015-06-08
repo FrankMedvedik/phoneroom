@@ -18,8 +18,9 @@
     </Control.Resources>
     <Grid  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
         <StackPanel Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  
-                    Background="{Binding TheBackground}" >
-            <TextBlock Text="Incoming Call: Become Available in Lync to Accept" FontWeight="Bold" Foreground="{Binding TheForeground}" Margin="6" />
+                    Background="{Binding TheBackground}"  Orientation="Vertical">
+            <TextBlock Text="- Incoming Call - " FontWeight="Bold" HorizontalAlignment="Center" Foreground="{Binding TheForeground}" Margin="6" />
+            <TextBlock Text="Become Available in Lync to Accept" HorizontalAlignment="Center" FontWeight="Bold" Foreground="{Binding TheForeground}" Margin="6" />
             <sdk:DataGrid x:Name="callbackGrid" AutoGenerateColumns="False" FontWeight="Bold" Foreground="{Binding TheForeground}" 
          ItemsSource="{Binding CallsInQueue}"  VerticalAlignment="Top"  IsReadOnly="True" ToolTipService.ToolTip="incoming phone calls"
           HorizontalAlignment="Center" Margin="6" MinHeight="20">

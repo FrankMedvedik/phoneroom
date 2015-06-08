@@ -49,6 +49,7 @@ namespace PhoneLogic.Core.ViewModels
         protected override void RefreshAll(object sender, EventArgs e)
         {
             if(CanRefresh)
+
                 GetMyJobs();
         }
 

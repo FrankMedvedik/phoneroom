@@ -8,6 +8,7 @@ using Microsoft.Lync.Model;
 using System.Collections.Generic;
 using PhoneLogic.Core;
 using PhoneLogic.Core.Models;
+using PhoneNumbers;
 #if DEBUGTEST
 using sr = PhoneLogic.Core.AppServiceReference;
 using PhoneLogic.Core.AppServiceReference;
@@ -172,13 +173,16 @@ namespace PhoneLogic.Core.Services
             IAsyncResult result = channel.BeginRecruiterDialOut(LyncClient.GetClient().Self.Contact.Uri, JobFormatted, PhoneNumber,
                             CallbackId, channel.EndRecruiterDialOut, state);
 
-
-            //var t = Task.Factory.StartNew(
-            //        () =>
-            //            channel.BeginRecruiterDialOut(LyncClient.GetClient().Self.Contact.Uri, JobFormatted, PhoneNumber,
-            //                CallbackId, channel.EndRecruiterDialOut, state));
-            //await t;
-           
         }
+
+        public async static Task TransferCall(String callId, String sip)
+        {
+            var proxy = new PhoneLogicServiceClient();
+            Object state = "test";
+            var channel = proxy.ChannelFactory.CreateChannel();
+            IAsyncResult result = channel.BeginTransferCall(callId,sip,channel.EndTransferCall, state);
+
+        }
+
     }
 

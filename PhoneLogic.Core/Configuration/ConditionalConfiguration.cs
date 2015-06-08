@@ -23,6 +23,8 @@ namespace PhoneLogic.Core
         public static int OutboundCallButtonInactivateTime = 8;
         public static int UserDB = 60;
         public static int LyncApi = 1;
+        public static int ResizeBoundryWidth = 800;
+        public static int ResizeBoundryHeight = 800;
 
     }
 

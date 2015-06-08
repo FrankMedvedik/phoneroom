@@ -4,28 +4,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:services="clr-namespace:PhoneLogic.Core.Services"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     x:Class="PhoneLogic.Core.Views.MyWorkView"
-    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700" VerticalAlignment="Top"  HorizontalAlignment="Left">
-    <Grid  HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-         </Grid.ColumnDefinitions>
-        <toolkit:WrapPanel Orientation="Vertical">
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <toolkit:WrapPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" >
                 <TextBlock Text="My Jobs" HorizontalAlignment="Left" Margin="6"  FontWeight="Bold"/>
                 <!--<TextBlock Text="{Binding SelectedPhoneLogicTask.JobNum}" HorizontalAlignment="Center" Margin="6"/>-->
+                <TextBlock Name="tbGridSize" HorizontalAlignment="Center" Margin="6"/>
             </StackPanel>
-            <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False" MaxHeight="325" MinWidth="300" 
-             Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  IsEnabled="True"
+            <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False" MaxHeight="325"  
+                          Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  IsEnabled="True"
              ItemsSource="{Binding PhoneLogicTasks, Mode=TwoWay}" Margin="6"  SelectedItem="{Binding SelectedPhoneLogicTask, Mode=TwoWay}"   
               VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   IsReadOnly="True"
              RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DGrid_SelectionChanged"
-             ToolTipService.ToolTip="My current jobs" HorizontalAlignment="Left" SelectionMode="Single" LoadingRow="DGrid_LoadingRow">
+             ToolTipService.ToolTip="My current jobs" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionMode="Single" LoadingRow="DGrid_LoadingRow" >
                 <sdk:DataGrid.Columns>
                     <sdk:DataGridTextColumn Binding="{Binding jobFormatted}"  />
                     <sdk:DataGridTextColumn Binding="{Binding taskName}"  />
@@ -36,18 +39,16 @@
                   <sdk:DataGridTextColumn Binding="{Binding newest_call}"/>-->
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
-            <StackPanel MinWidth="300" Width="Auto" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-                <TextBlock Text="No Jobs Found" HorizontalAlignment="Center"  />
+            <StackPanel MinWidth="400" Width="Auto" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}" >
+                <TextBlock Text="No Jobs Found" HorizontalAlignment="Stretch"  />
                 <StackPanel  Orientation="Vertical"  Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
-                    <TextBlock Text="Error during load" HorizontalAlignment="Center" />
+                    <TextBlock Text="Error during load" HorizontalAlignment="Stretch" />
                     <TextBlock Text="{Binding LoadMethod}" />
                     <TextBlock Text="{Binding LoadError}" />
                 </StackPanel>
             </StackPanel>
-        <toolkit:WrapPanel Orientation="Horizontal">
-            <Views:OutboundCallView Name="OBCView" Margin="10" MinWidth="300" FontSize="16"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <Views:MyCallbacksView Name="MyCallbacks" Margin="10" MinWidth="300" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         </toolkit:WrapPanel>
-        </toolkit:WrapPanel>
+        <Views:OutboundCallView Name="OBCView" Margin="6" MinWidth="300" FontSize="16"  VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1" />
+        <Views:MyCallbacksView Name="MyCallbacks" Margin="6" MinWidth="300" FontSize="16" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </UserControl>

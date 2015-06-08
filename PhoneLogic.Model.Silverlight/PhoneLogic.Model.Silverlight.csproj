@@ -90,7 +90,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEBUGPROD|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DEBUGPROD\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -115,7 +115,7 @@
     <Compile Include="..\PhoneLogic.Model.Net\Models\RptTodayCallLogSummary.cs">
       <Link>Models\RptTodayCallLogSummary.cs</Link>
     </Compile>
-    <Compile Include="ColorMapping.cs" />
+    <Compile Include="ColorMappingSvc.cs" />
     <Compile Include="Models\ActiveCallDetail.cs" />
     <Compile Include="Models\CallbackDto.cs" />
     <Compile Include="Models\JobCallSummary.cs" />

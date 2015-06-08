@@ -20,32 +20,6 @@ namespace PhoneLogic.Core.ViewModels
         {
            GetMyQueuedCalls();
         }
-
-        public void testGetMyQueuedCalls()
-        {
-
-            CallsInQueue.Clear();
-            CallsInQueue.Add(new QueueSummary
-            {
-                InQueue = 100,
-                JobNumber = "9999-9999"
-            });
-            CallsInQueue.Add(new QueueSummary
-            {
-                InQueue = 0,
-                JobNumber = "1111-1111"
-            });
-            LoadDate = DateTime.Now; 
-            ShowGridData = true;
-            LoadedOk = true;
-        }
-
-        public void yGetMyQueuedCalls()
-        {
-            CallsInQueue.Clear();
-            LoadFailed(new Exception("Nothing wrong just testing..."));
-        }
-
         public async void GetMyQueuedCalls()
         {
             try
@@ -97,7 +71,7 @@ namespace PhoneLogic.Core.ViewModels
                     callCnt += c.InQueue;
                 }
 
-                return ColorMapping.GetBackground(callCnt);
+                return ColorMappingSvc.GetBackground(callCnt);
             }
         }
 
@@ -111,15 +85,11 @@ namespace PhoneLogic.Core.ViewModels
                     callCnt += c.InQueue;
                 }
 
-                return ColorMapping.GetForeground(callCnt);
+                return ColorMappingSvc.GetForeground(callCnt);
             }
         }
 
- 
         #endregion
-
-
-
         
     }
 }

@@ -63,6 +63,12 @@
   <wsdl:message name="IPhoneLogicService_RecruiterDialOut_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecruiterDialOutResponse" />
   </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_TransferCall_InputMessage">
+    <wsdl:part name="parameters" element="tns:TransferCall" />
+  </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_TransferCall_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TransferCallResponse" />
+  </wsdl:message>
   <wsdl:message name="IPhoneLogicService_SilentMonitorCall_InputMessage">
     <wsdl:part name="parameters" element="tns:SilentMonitorCall" />
   </wsdl:message>
@@ -123,6 +129,10 @@
     <wsdl:operation name="RecruiterDialOut">
       <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/RecruiterDialOut" message="tns:IPhoneLogicService_RecruiterDialOut_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPhoneLogicService/RecruiterDialOutResponse" message="tns:IPhoneLogicService_RecruiterDialOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferCall">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/TransferCall" message="tns:IPhoneLogicService_TransferCall_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPhoneLogicService/TransferCallResponse" message="tns:IPhoneLogicService_TransferCall_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SilentMonitorCall">
       <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/SilentMonitorCall" message="tns:IPhoneLogicService_SilentMonitorCall_InputMessage" />
@@ -219,6 +229,15 @@
     </wsdl:operation>
     <wsdl:operation name="RecruiterDialOut">
       <soap:operation soapAction="http://tempuri.org/IPhoneLogicService/RecruiterDialOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferCall">
+      <soap:operation soapAction="http://tempuri.org/IPhoneLogicService/TransferCall" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
