@@ -27,6 +27,18 @@ namespace PhoneLogic.Core.Views
             //SizeChanged += HandleResizeGrid;
         }
 
+        //private void DGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        //{
+        //    var c = (myCallback)e.Row.DataContext;
+        //    if (c.DisplayStatusContact)
+        //    {
+        //        callbackGrid.Columns[4].GetCellContent(e.Row);
+        //        //(ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
+        //    }
+
+
+
+        //}
         private void HandleResizeGrid(object sender, SizeChangedEventArgs e)
         {
             ResizeGrid();
@@ -84,8 +96,6 @@ namespace PhoneLogic.Core.Views
 
         private async void Call_Click(object sender, RoutedEventArgs e)
         {
-
-            
             if (LyncClient.GetClient().State != ClientState.SignedIn)
             {
                 MessageBox.Show("Please Sign in to Lync first ");
@@ -105,6 +115,7 @@ namespace PhoneLogic.Core.Views
 
             String job = _vm.SelectedMyCallback.jobNum + ":0" + _vm.SelectedMyCallback.taskID;
             await LyncSvc.RecruiterDialOut(job, _vm.SelectedMyCallback.phoneNum, _vm.SelectedMyCallback.callbackID);
+            _vm.UpdateCallBack(_vm.SelectedMyCallback.callbackID);
         }
 
         private void callbackGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -149,6 +160,7 @@ namespace PhoneLogic.Core.Views
             _selectedButton.Content = "Play";
             AudioPlayer.Visibility = Visibility.Collapsed;
             _vm.ActionMsg = "";
+            _vm.CanRefresh = true;
         }
 
 
@@ -180,13 +192,13 @@ namespace PhoneLogic.Core.Views
             {
                 callbackGrid.Columns[2].Visibility = Visibility.Collapsed;
                 callbackGrid.Columns[3].Visibility = Visibility.Collapsed;
-                callbackGrid.Columns[4].Visibility = Visibility.Collapsed;
+                //callbackGrid.Columns[4].Visibility = Visibility.Collapsed;
             }
             if (BrowserInfoSvc.ClientWidth >= UserInterfaceTimings.ResizeBoundryWidth)
             {
                 callbackGrid.Columns[2].Visibility = Visibility.Visible;
                 callbackGrid.Columns[3].Visibility = Visibility.Visible;
-                callbackGrid.Columns[4].Visibility = Visibility.Visible;
+                //callbackGrid.Columns[4].Visibility = Visibility.Visible;
             }
         }
     }

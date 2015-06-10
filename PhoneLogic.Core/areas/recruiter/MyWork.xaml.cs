@@ -29,7 +29,7 @@ namespace PhoneLogic.Core.Views
 
         private void DGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            var c = (PhoneLogicTask) e.Row.DataContext;
+            var c = (PhoneLogicTask)e.Row.DataContext;
             if (c.call_cnt > 0)
             {
                 FrameworkElement ele = DGrid.Columns[2].GetCellContent(e.Row);
@@ -37,7 +37,7 @@ namespace PhoneLogic.Core.Views
             }
 
 
-      
+
         }
 
         private void DGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

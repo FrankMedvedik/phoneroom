@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.Lync.Model;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using PhoneLogic.Model;
@@ -14,6 +15,7 @@ namespace PhoneLogic.Core.Services
     {
         public static async Task StartCall(CallbackDto cb)
         {
+            cb.SIP = LyncClient.GetClient().Self.Contact.Uri;
             cb.status = "Call In Progress";
             cb.statusDate = DateTime.Now;
             await Put(cb);

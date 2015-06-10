@@ -11,6 +11,7 @@ namespace PhoneLogic.Core.Views
             InitializeComponent();
             ViewModel = new JobDetailViewModel();
             DataContext = ViewModel;
+     
         }
 
     }

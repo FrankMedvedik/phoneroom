@@ -37,7 +37,7 @@ namespace PhoneLogic.Core.areas.recruiter
 
         }
 
-        private async void btnTransferCall_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void btnAddToCall_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if ((ContactAvailability)_vm.SelectedContact.Contact.GetContactInformation(ContactInformationType.Availability) != ContactAvailability.Free) 
                MessageBox.Show("The person must be Available (Green) to accept a transferred call");

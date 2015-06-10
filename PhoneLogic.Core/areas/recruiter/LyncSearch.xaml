@@ -16,7 +16,7 @@
                 </Grid.ColumnDefinitions>
                 <controls:PresenceIndicator x:Name="Presence" Margin="6" Source="{Binding Contact.Uri}" PhotoDisplayMode="Small" Grid.Column="0"/>
                 <TextBlock Text="{Binding DisplayName, ElementName=Presence}" Margin="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Width="175" />
-                <Button Name="btnTransferCall" HorizontalAlignment="Stretch" Grid.Column="2" Margin="6" Click="btnTransferCall_Click"   Width="90" IsEnabled="True">Transfer</Button>
+                <Button Name="btnAddToCall" HorizontalAlignment="Stretch" Grid.Column="2" Margin="6" Click="btnAddToCall_Click"   Width="90" IsEnabled="True">Add</Button>
             </Grid>
         </DataTemplate>
     </Control.Resources>
@@ -37,7 +37,7 @@
                     ToolTipService.ToolTip="Press the button next to the contact to tranfer this call." 
                       Margin="6" HorizontalAlignment="Left" SelectionMode="Single">
                 <sdk:DataGrid.Columns>
-                    <sdk:DataGridTemplateColumn Header="Recruiter" CellTemplate="{StaticResource TransferCallTemplate}"/>
+                    <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource TransferCallTemplate}" />
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
             <!--<TextBox Name="CmdParms" />-->

@@ -215,5 +215,13 @@ namespace PhoneLogic.Core.ViewModels
         }
 
 
+        public async void UpdateCallBack(int callbackId)
+        {
+            await CallbackSvc.StartCall(
+                new CallbackDto()
+                {
+                    callbackID = callbackId
+                });
+        }
     }
 }

@@ -26,23 +26,32 @@
         public string msgLength { get; set; }
         [Display(Name = "Status")]
         public string status { get; set; }
+
+        private String _sip; 
         [Display(Name = "Agent")]
-        public string SIP { get; set; }
+        public string SIP {
+            get
+            {
+                    return _sip;
+            }
+            set
+            { if(!String.IsNullOrWhiteSpace(value))
+                _sip = value.Trim();
+            }
+        }
         [Display(Name = "Toll Free")]
         public string tollFreeNumber { get; set; }
 
         [Display(Name = "Msg Status")]
-        public string MsgStatus
+        public Boolean DisplayStatusContact
         {
             get
             {
-                if (SIP == null) return "";
-                if(SIP.Substring(0,4) != "sip:") return "";
-                //if it has been longer than an hour we should call anyway
-                return (statusDate > DateTime.Now.AddHours(-1)) ? SIP.Substring(4).Trim() + " - Currently In Call " : "";
+                return (!String.IsNullOrWhiteSpace(SIP));
             }
         }
         
+
         [Display(Name = " MyTime Zone")]
         public string TZ
         {

@@ -49,15 +49,12 @@ namespace PhoneLogic.Core.ViewModels
         protected override void RefreshAll(object sender, EventArgs e)
         {
             if(CanRefresh)
-
                 GetMyJobs();
         }
 
         #region MyJobs
         
-        
         private ObservableCollection<PhoneLogicTask> _phoneLogicTask = new ObservableCollection<PhoneLogicTask>();
-
         public ObservableCollection<PhoneLogicTask> PhoneLogicTasks
         {
             get { return _phoneLogicTask; }

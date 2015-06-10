@@ -81,6 +81,7 @@ namespace PhoneLogic.Inbound
                 ConversationContext.Instance.PhoneLogicContext.TaskID);
             JobDetail.Visibility = Visibility.Visible;
             cinfoView.CallerId = ConversationContext.Instance.PhoneLogicContext.callerId;
+             
         }
 
 
