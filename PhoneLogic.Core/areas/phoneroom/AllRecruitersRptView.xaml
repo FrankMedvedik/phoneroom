@@ -49,10 +49,10 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <sdk:DataGrid Grid.Row="2"  Grid.Column="0" x:Name="RecruiterDG" AutoGenerateColumns="False" MaxHeight="500"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+        <sdk:DataGrid Grid.Row="2"  Grid.Column="0" x:Name="RecruiterDG" AutoGenerateColumns="False" MaxHeight="600"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="RecruiterDG_SelectionChanged" 
                     ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="Phone Room Recuiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
+                    ToolTipService.ToolTip="Phone Room Recuiters" Margin="6" HorizontalAlignment="Stretch" SelectionMode="Single" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource RecruiterStatusTemplate}"/>
                 <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />

@@ -67,11 +67,8 @@
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
             <StackPanel  Margin="6" Grid.Row="1" Grid.Column="0" Visibility="{Binding ShowLogData, Converter={StaticResource NotBoolToVisConverter}}">
-                    <TextBlock  HorizontalAlignment="Left" Text="No calls in this time frame"/>
-                </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="0"  Orientation="Horizontal">
-                <!--<Button HorizontalAlignment="Left"  Width="120" Click="btnExport_Click" >Save To Excel</Button>-->
-                <Views:AudioPlaybackView Name="AudioPlayer" Visibility="Collapsed" />
+                <TextBlock  HorizontalAlignment="Left" Text="No calls in this time frame"/>
             </StackPanel>
+            <Views:AudioPlaybackView Name="AudioPlayer" Visibility="Collapsed" Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2" />
         </Grid>
 </UserControl>
