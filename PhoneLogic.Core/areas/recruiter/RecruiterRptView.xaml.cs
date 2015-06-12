@@ -1,19 +1,19 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.ViewModels;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.recruiter
 {
     public partial class RecruiterRptView : UserControl
     {
-        private RecruiterViewModel _vm;
+        private RecruiterRptViewModel _vm;
         private ToggleButton _selectedButton = new ToggleButton();
 
         public RecruiterRptView()
         {
-            _vm = new RecruiterViewModel();
+            _vm = new RecruiterRptViewModel();
             DataContext = _vm;
             InitializeComponent();
             AudioPlayer.Visibility = Visibility.Collapsed;
@@ -25,7 +25,11 @@ namespace PhoneLogic.Core.Views
         {
             _vm.GetRecruiterLogs();
         }
-
+        
+        private void btnExport_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            RecruiterLogDG.Export();
+        }
 
         public string RecruiterSip
         {

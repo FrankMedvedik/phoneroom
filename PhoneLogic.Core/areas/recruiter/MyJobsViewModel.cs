@@ -2,12 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Lync.Model;
-using Newtonsoft.Json;
 using PhoneLogic.Core.Services;
+using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-
-namespace PhoneLogic.Core.ViewModels
+namespace PhoneLogic.Core.areas.recruiter
 {
     public class MyJobsViewModel : CollectionViewModelBase
     {

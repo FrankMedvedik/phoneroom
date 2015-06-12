@@ -13,7 +13,8 @@ namespace PhoneLogic.Web.Controllers
         // GET: api/recruiterLogs?sip=1&startDate=2&endDate=3
         public List<recruiterLogDTO> GetRecruiterCallLogs(string sip, DateTime startDate, DateTime endDate)
         {
-            return db.rpt_GetRecruiterCallLog(sip,startDate,endDate).ToList();
+            var x = db.rpt_GetRecruiterCallLog(sip,startDate,endDate).ToList();
+            return x;
         }
    }
 }

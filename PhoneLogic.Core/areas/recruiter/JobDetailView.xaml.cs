@@ -1,7 +1,6 @@
-﻿using System.Windows;
-using PhoneLogic.Core.ViewModels;
+﻿using PhoneLogic.Core.ViewModels;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.recruiter
 {
     public partial class JobDetailView 
     {

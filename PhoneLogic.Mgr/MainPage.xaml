@@ -6,6 +6,7 @@
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:phoneroom="clr-namespace:PhoneLogic.Core.areas.phoneroom;assembly=PhoneLogic.Core"
     x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
     <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -20,23 +21,23 @@
         <Border BorderBrush="Black" BorderThickness="2" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" Grid.Row="0" Grid.Column="0">
             <sdk:TabControl  Width="Auto" >
                 <sdk:TabItem  Header="Recruiters">
-                    <views:AllRecruitersRptView />
+                    <phoneroom:AllRecruitersRptView />
                 </sdk:TabItem>
                 <!--<sdk:TabItem  Header="Recruiter">
                     <views:RecruiterDetailRptView />
                 </sdk:TabItem>-->
                 
                 <sdk:TabItem  Header="Job Call Activity">
-                    <views:JobCallActivityRptView />
+                    <phoneroom:JobCallActivityRptView />
                 </sdk:TabItem>
                 <sdk:TabItem  Header="Today's Call Log Summary">
-                    <views:TodaysCallLogRptView />
+                    <phoneroom:TodaysCallLogRptView />
                 </sdk:TabItem>
 
                 <sdk:TabItem  Header="Inbound Calls By Hour">
                     <StackPanel Orientation="Vertical">
                         <!--<views:InboundCallsByHrRptView />-->
-                        <views:InboundCallsByHrChartView />
+                        <phoneroom:InboundCallsByHrChartView />
                     </StackPanel>
                 </sdk:TabItem>
             </sdk:TabControl>
@@ -52,8 +53,8 @@
 
         <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
             <StackPanel Orientation="Vertical">
-                <views:CallsInQueueView />
-                <views:ActiveCallsView  />
+                <phoneroom:CallsInQueueView />
+                <phoneroom:ActiveCallsView  />
             </StackPanel>
         </Border>
         <views:BuildInformationView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>

@@ -4,13 +4,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="PhoneLogic.Core.Views.CallsInQueueView"
+    x:Class="PhoneLogic.Core.areas.phoneroom.CallsInQueueView"
     xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
     xmlns:viewModels="clr-namespace:PhoneLogic.Core.ViewModels"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+    xmlns:phoneroom="clr-namespace:PhoneLogic.Core.areas.phoneroom"
     mc:Ignorable="d" >
     <Control.DataContext>
-        <viewModels:CallsInQueueViewModel/>
+        <phoneroom:CallsInQueueViewModel/>
     </Control.DataContext>
     <Grid  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" >
         <StackPanel Grid.Row="0" Grid.Column="0"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  

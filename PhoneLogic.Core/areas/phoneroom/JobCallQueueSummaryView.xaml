@@ -3,7 +3,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="PhoneLogic.Core.Views.JobCallQueueSummaryView"
+    x:Class="PhoneLogic.Core.areas.phoneroom.JobCallQueueSummaryView"
     xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     mc:Ignorable="d" >

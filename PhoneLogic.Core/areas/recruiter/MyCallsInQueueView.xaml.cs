@@ -1,7 +1,6 @@
 ﻿using System.Windows.Controls;
 
-
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.recruiter
 {
     public partial class MyCallsInQueueView : UserControl
     {

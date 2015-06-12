@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.ViewModels;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.recruiter
 {
     public partial class RespondentSearchView : UserControl
     {

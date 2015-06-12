@@ -5,7 +5,8 @@
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
-    x:Class="PhoneLogic.Core.Views.MyWorkView"
+    xmlns:recruiter="clr-namespace:PhoneLogic.Core.areas.recruiter"
+    x:Class="PhoneLogic.Core.areas.recruiter.MyWorkView"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
     <Grid>
         <Grid.RowDefinitions>
@@ -48,7 +49,7 @@
                 </StackPanel>
             </StackPanel>
         </toolkit:WrapPanel>
-        <Views:OutboundCallView Name="OBCView" Margin="6" MinWidth="300" FontSize="16"  VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1" />
-        <Views:MyCallbacksView Name="MyCallbacks" Margin="6" MinWidth="300" FontSize="16" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"/>
+        <recruiter:OutboundCallView Name="OBCView" Margin="6" MinWidth="300" FontSize="16"  VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1" />
+        <recruiter:MyCallbacksView Name="MyCallbacks" Margin="6" MinWidth="300" FontSize="16" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </UserControl>

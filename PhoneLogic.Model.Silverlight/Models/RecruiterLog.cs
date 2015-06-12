@@ -11,6 +11,7 @@ namespace PhoneLogic.Model
         public string callerId { get; set; }
         public string callId { get; set; }
         public System.DateTime callStartTime { get; set; }
+        [Display(Name = "Call Start")]
         public System.DateTime recruiterConnectTime { get; set; }
         [Display(Name = "Wait Time")]
         public string preconnectDuration { get; set; }
@@ -20,6 +21,17 @@ namespace PhoneLogic.Model
         public string totalCallDuration { get; set; }
         public System.DateTime callEndTime { get; set; }
         public string tollFreeNumber { get; set; }
+
+        public TimeSpan tsrecruiterCallDuration
+        {
+            get { return (callEndTime - recruiterConnectTime); }
+        }
+
+        public TimeSpan tstotalCallDuration
+        {
+            get { return (callEndTime - callStartTime); }
+        }
+
 
         [Display(Name = "Job")]
         public string jobFormatted

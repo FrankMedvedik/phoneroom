@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-namespace PhoneLogic.Core.ViewModels
+namespace PhoneLogic.Core.areas.phoneroom
 {
     public class ActiveCallsViewModel : CollectionViewModelBase
     {

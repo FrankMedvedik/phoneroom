@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="PhoneLogic.Core.Views.MyCallbacksView"
+    x:Class="PhoneLogic.Core.areas.recruiter.MyCallbacksView"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
     mc:Ignorable="d" d:DesignWidth="186.667" d:DesignHeight="123" VerticalAlignment="Top"  HorizontalAlignment="Left">

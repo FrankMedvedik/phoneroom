@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
-using QueueSummary = PhoneLogic.Model.QueueSummary;
 
-
-namespace PhoneLogic.Core.ViewModels
+namespace PhoneLogic.Core.areas.recruiter
     
 {
     public class MyCallsInQueueViewModel : CollectionViewModelBase

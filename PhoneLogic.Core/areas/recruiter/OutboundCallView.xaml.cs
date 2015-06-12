@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using Microsoft.Lync.Model;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.recruiter
 {
     public partial class OutboundCallView : UserControl
     {

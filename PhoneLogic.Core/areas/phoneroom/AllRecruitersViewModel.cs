@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using PhoneLogic.Core.Services;
+using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-
-namespace PhoneLogic.Core.ViewModels
+namespace PhoneLogic.Core.areas.phoneroom
 {
     public class AllRecruitersViewModel : CollectionViewModelBase
     {

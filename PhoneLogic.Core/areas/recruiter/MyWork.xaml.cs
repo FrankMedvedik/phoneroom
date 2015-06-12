@@ -1,12 +1,10 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using PhoneLogic.Core.Services;
-using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.recruiter
 {
     public partial class MyWorkView : UserControl
     {

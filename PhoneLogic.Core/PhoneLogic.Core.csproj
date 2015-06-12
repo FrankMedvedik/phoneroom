@@ -214,6 +214,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\recruiter\AvailabilityView.xaml.cs">
+      <DependentUpon>AvailabilityView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\recruiter\LyncSearchViewModel.cs" />
     <Compile Include="Behaviors\DefaultButtonBehavior.cs" />
     <Compile Include="Configuration\ConditionalConfiguration.cs" />
@@ -221,6 +224,7 @@
     <Compile Include="Configuration\NinjectConfiguration.cs" />
     <Compile Include="Converters\LyncAvailabilityToBoolean.cs" />
     <Compile Include="Converters\IntToBrush.cs" />
+    <Compile Include="Helpers\TimespanExtentions.cs" />
     <Compile Include="Models\OutboundCall.cs" />
     <Compile Include="Service References\AppServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -246,7 +250,7 @@
     <Compile Include="Areas\recruiter\OutboundCallViewModel.cs" />
     <Compile Include="ViewModels\QuotableQuoteViewModel.cs" />
     <Compile Include="Areas\recruiter\MyCallsInQueueViewModel.cs" />
-    <Compile Include="Areas\recruiter\RecruiterViewModel.cs" />
+    <Compile Include="Areas\recruiter\RecruiterRptViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
     <Compile Include="Areas\recruiter\OutboundCallView.xaml.cs">
       <DependentUpon>OutboundCallView.xaml</DependentUpon>
@@ -379,6 +383,10 @@
     <None Include="Service References\ProdServiceReference\PhoneLogicService.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Areas\recruiter\AvailabilityView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ResourceDictionaries\CWEStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -626,7 +634,6 @@
     <PreBuildEvent>"C:\Program Files\GenerateTimeStampFile\GenerateTimeStampFile.exe" "$(ProjectDir)Timestamp.cs" "/N:PhoneLogic.Core"</PreBuildEvent>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\Silverlight\v5.0\Microsoft.Expression.Blend.Silverlight.targets" />
-  <Import Project="$(XamlSpyInstallPath)MSBuild\FirstFloor.XamlSpy.Silverlight.targets" Condition="'$(XamlSpyInstallPath)' != '' and '$(Configuration)' == 'DEBUG'" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

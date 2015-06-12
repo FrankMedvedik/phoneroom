@@ -281,5 +281,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(XamlSpyInstallPath)MSBuild\FirstFloor.XamlSpy.Silverlight.targets" Condition="'$(XamlSpyInstallPath)' != '' and '$(Configuration)' == 'DEBUG'" />
 </Project>

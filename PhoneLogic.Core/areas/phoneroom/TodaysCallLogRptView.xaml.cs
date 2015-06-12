@@ -1,9 +1,7 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using PhoneLogic.Core.Helpers;
-using PhoneLogic.Core.ViewModels;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.phoneroom
 {
    public partial class TodaysCallLogRptView : UserControl
     {

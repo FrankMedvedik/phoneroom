@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Microsoft.Lync.Model;
-using Microsoft.Lync.Model.Extensibility;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.recruiter
 {
     public partial class MyCallbacksView 
     {

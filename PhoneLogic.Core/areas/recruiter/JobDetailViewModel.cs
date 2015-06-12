@@ -1,11 +1,8 @@
-﻿using System;
-using Microsoft.Lync.Model;
-using PhoneLogic.Core.Services;
+﻿using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 using Silverlight.Base.MVVMBaseTypes;
 
-
-namespace PhoneLogic.Core.ViewModels
+namespace PhoneLogic.Core.areas.recruiter
 {
     public class JobDetailViewModel : ViewModelBase
     {

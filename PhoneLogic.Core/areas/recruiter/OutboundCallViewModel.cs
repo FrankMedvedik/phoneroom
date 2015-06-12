@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Windows;
 using PhoneLogic.Model;
 using Silverlight.Base.MVVMBaseTypes;
 
-namespace PhoneLogic.Core.ViewModels
+namespace PhoneLogic.Core.areas.recruiter
 {
     public class OutboundCallViewModel : ViewModelBase
     {

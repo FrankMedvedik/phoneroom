@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using PhoneLogic.Core.Services;
+using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-
-namespace PhoneLogic.Core.ViewModels
+namespace PhoneLogic.Core.areas.recruiter
 {
-    public class RecruiterViewModel : CollectionViewModelBase
+    public class RecruiterRptViewModel : CollectionViewModelBase
     {
-        public RecruiterViewModel()
+        public RecruiterRptViewModel()
         {
     
         }
@@ -80,9 +81,29 @@ namespace PhoneLogic.Core.ViewModels
             {
                 _recruiterLogs = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("RecruiterJobTotals");
             }
         }
-        
+
+
+        public ObservableCollection<RecruiterLogJobSummary> RecruiterJobTotals
+        {
+            get
+            {
+                var result = RecruiterLogs.GroupBy(l => l.JobNumber)
+                .Select( j => new RecruiterLogJobSummary
+                    {
+                        JobNumber = j.First().JobNumber,
+                        recruiterCallDuration = new TimeSpan(j.Sum(c => c.tsrecruiterCallDuration.Ticks)),
+                        totalCallDuration  = new TimeSpan(j.Sum(c => c.tstotalCallDuration.Ticks)),
+                    }).ToList<RecruiterLogJobSummary>();
+
+                    var x = new ObservableCollection<RecruiterLogJobSummary>(result);
+                    return x ;
+            }
+        }
+
+
         private Boolean _showLogData = false;
         public Boolean ShowLogData
         {

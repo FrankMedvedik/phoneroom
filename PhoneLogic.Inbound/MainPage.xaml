@@ -18,13 +18,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Views:CallerInfoView Name="cinfoView" Grid.Row="0" HorizontalAlignment="Center" FontSize="16"/>
+                    <recruiter:CallerInfoView Name="cinfoView" Grid.Row="0" HorizontalAlignment="Center" FontSize="16"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <Views:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" FontSize="16"/>
+                    <recruiter:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" FontSize="16"/>
                     <recruiter:LyncSearchView Margin="20,5,20,10" FontSize="16"/>
                     <Views:TimerView x:Name="timer" Margin="20,15,40,10" FontSize="16"/>
                     </StackPanel>
-                <Views:MyCallsInQueueView Grid.Row="2" FontSize="16"/>
+                <recruiter:MyCallsInQueueView Grid.Row="2" FontSize="16"/>
                 <Views:BuildInformationView Grid.Row="3" FontSize="16"/>
                 </Grid>
             </Border>

@@ -129,6 +129,7 @@
     <Compile Include="Models\PhoneLogicContext.cs" />
     <Compile Include="Models\person.cs" />
     <Compile Include="Models\PhoneCall.cs" />
+    <Compile Include="Models\RecruiterLogJobSummary.cs" />
     <Compile Include="Models\returnedCall.cs" />
     <Compile Include="Models\RptSeries.cs" />
     <Compile Include="Properties\Annotations.cs" />

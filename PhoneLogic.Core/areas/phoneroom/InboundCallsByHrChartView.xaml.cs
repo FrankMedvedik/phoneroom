@@ -1,13 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.DataVisualization;
 using System.Windows.Controls.DataVisualization.Charting;
-using PhoneLogic.Core.Helpers;
-using PhoneLogic.Core.ViewModels;
-using PhoneLogic.Model;
 
-namespace PhoneLogic.Core.Views
+namespace PhoneLogic.Core.areas.phoneroom
 {
     public partial class InboundCallsByHrChartView : UserControl
     {
