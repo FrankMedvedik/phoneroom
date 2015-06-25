@@ -53,6 +53,7 @@ namespace PhoneLogic.Core.areas.phoneroom
             {
                 _selectedPhoneRoomName = value;
                 NotifyPropertyChanged();
+                SelectedRecruiter = null;
                 RefreshFilteredData();
             }
         }
@@ -171,9 +172,16 @@ namespace PhoneLogic.Core.areas.phoneroom
             set
             {
                 _selectedRecruiter = value;
-                ShowSelectedRecruiter= (_selectedRecruiter != null);
+                if (_selectedRecruiter != null)
+                {
+                    GetRecruiterLogs();
+                    ShowSelectedRecruiter = true;
+                }
+                else 
+                    ShowSelectedRecruiter = false;
+
                 NotifyPropertyChanged();
-                GetRecruiterLogs();
+
             }
         }
         #endregion

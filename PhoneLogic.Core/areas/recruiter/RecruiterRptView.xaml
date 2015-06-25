@@ -13,7 +13,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
            <StackPanel Grid.Column="0" Grid.Row="0" Visibility="{Binding ShowSelectedRecruiter, Converter={StaticResource NotBoolToVisConverter}}">
                 <TextBlock  HorizontalAlignment="Left" Text="Select a recruiter to view their details and call history"/>
             </StackPanel>
@@ -44,8 +45,8 @@
                 <sdk:DatePicker ToolTipService.ToolTip="end date and time for call history" Height="30" Width="130" SelectedDate="{Binding EndRptDate, Mode=TwoWay}"  />
                 <Button Click="btnGetLogsClick" Margin="8" Width="120">Show Calls</Button>
             </StackPanel>
-         <sdk:DataGrid  AutoGenerateColumns="False"  Grid.Row="1" Grid.Column="0"  Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  MaxHeight="400"  SelectionChanged="RecruiterLogDG_SelectionChanged"
+         <sdk:DataGrid  AutoGenerateColumns="False"  Grid.Row="2" Grid.Column="0"  Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}"
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  MaxHeight="375"  SelectionChanged="RecruiterLogDG_SelectionChanged"
                     ItemsSource="{Binding RecruiterLogs}"  VerticalAlignment="Top"  ClipboardCopyMode="IncludeHeader" Name="RecruiterLogDG" 
                      SelectedItem="{Binding SelectedRecruiterLog, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Call Log" Margin="6" HorizontalAlignment="Left" >
@@ -66,9 +67,9 @@
                         </sdk:DataGridTemplateColumn>
                     </sdk:DataGrid.Columns>
                 </sdk:DataGrid>
-            <StackPanel  Margin="6" Grid.Row="1" Grid.Column="0" Visibility="{Binding ShowLogData, Converter={StaticResource NotBoolToVisConverter}}">
+            <StackPanel  Margin="6" Grid.Row="2" Grid.Column="0" Visibility="{Binding ShowLogData, Converter={StaticResource NotBoolToVisConverter}}">
                 <TextBlock  HorizontalAlignment="Left" Text="No calls in this time frame"/>
             </StackPanel>
-            <Views:AudioPlaybackView Name="AudioPlayer" Visibility="Collapsed" Grid.Row="2" Grid.Column="0" />
+            <Views:AudioPlaybackView Name="AudioPlayer" Visibility="Collapsed" Grid.Row="3" Grid.Column="0" />
         </Grid>
 </UserControl>

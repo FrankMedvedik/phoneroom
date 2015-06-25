@@ -16,8 +16,14 @@ namespace PhoneLogic.Core.areas.phoneroom
 
         private void RecruiterDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RecDtl.RecruiterSip = _vm.SelectedRecruiter.sip;
-            _vm.GetRecruiterLogs();
+            if (_vm.SelectedRecruiter != null)
+            {
+                RecDtl.RecruiterSip = _vm.SelectedRecruiter.sip;
+                _vm.GetRecruiterLogs();
+            }
+            else
+                RecDtl.RecruiterSip = null;
+
         }
 
     }
