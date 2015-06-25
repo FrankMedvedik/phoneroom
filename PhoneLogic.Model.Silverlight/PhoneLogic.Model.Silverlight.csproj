@@ -137,11 +137,6 @@
     <Compile Include="TestConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight">
-      <HintPath>..\packages\MvvmLightLibs.5.0.2.0\lib\SL5\GalaSoft.MvvmLight.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Silverlight.Base\Silverlight.Base.csproj">
       <Project>{9020fe33-555c-4a2c-9624-7b3962eb9d0e}</Project>
       <Name>Silverlight.Base</Name>

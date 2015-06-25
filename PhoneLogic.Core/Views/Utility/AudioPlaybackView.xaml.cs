@@ -19,6 +19,7 @@ namespace PhoneLogic.Core.Views
             _timer.Tick += timer_Tick;
             InitializeComponent();
             TbPlaybackDuration.Text = "00:00";
+            SliderPosition.Maximum = AudioPlayback.NaturalDuration.TimeSpan.TotalSeconds;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -80,23 +81,28 @@ namespace PhoneLogic.Core.Views
             AudioPlayback.Play();
         }
 
-//        private void media_CurrentStateChanged(object sender, RoutedEventArgs e)
-//        {
-//            //MessageBox.Show(AudioPlayback.CurrentState.ToString());
-//            switch (AudioPlayback.CurrentState)
-//            {
-//                //case MediaElementState.Playing:
-//                //    break;
-//                case MediaElementState.Stopped:
-////                    tbtnListen.Content = "Stop";
-//                    ResetPlayback();
-//                    PlaybackStopped();
-//                    break;
-//                default:
-//                    //ResetPlayback();
-//                    break;
-//            }
-//        }
+        //private void media_CurrentStateChanged(object sender, RoutedEventArgs e)
+        //{
+        //    //MessageBox.Show(AudioPlayback.CurrentState.ToString());
+        //    switch (AudioPlayback.CurrentState)
+        //    {
+        //        //case MediaElementState.Playing:
+        //        //    break;
+        //        case MediaElementState.Opening:
+        //            ResetPlayback();
+        //            break;
+        //        default:
+        //            //ResetPlayback();
+        //            break;
+        //    }
+        //}
+
+        private void AudioPlayback_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            TbPlaybackDuration.Text = AudioPlayback.NaturalDuration.TimeSpan.Seconds.ToString();
+            SliderPosition.Value = 0;
+            SliderPosition.Maximum = AudioPlayback.NaturalDuration.TimeSpan.TotalSeconds;
+            }
      
         //public delegate void PlaybackStoppedEventHandler();
         //public event PlaybackStoppedEventHandler PlaybackStopped;

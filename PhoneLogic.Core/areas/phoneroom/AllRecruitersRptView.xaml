@@ -56,8 +56,8 @@
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource RecruiterStatusTemplate}"/>
                 <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
-                <sdk:DataGridTextColumn Binding="{Binding Description}" />
-                <sdk:DataGridTextColumn Binding="{Binding PhoneRoom}" />
+                <!--<sdk:DataGridTextColumn Binding="{Binding Description}" />
+                <sdk:DataGridTextColumn Binding="{Binding PhoneRoom}" />-->
                 <!--<sdk:DataGridTextColumn Binding="{Binding OutboundCallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding InboundCallCnt}" />-->
                 <!--<sdk:DataGridTextColumn Binding="{Binding TotalIdleTime}" />
@@ -73,6 +73,6 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <recruiter:RecruiterRptView Grid.Row="2"  Grid.Column="1" Name="RecDtl" />
+        <recruiter:RecruiterRptView Grid.Row="2"  Grid.Column="1" Name="RecDtl" MaxHeight="600" />
     </Grid>
 </UserControl>

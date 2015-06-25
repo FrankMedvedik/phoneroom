@@ -23,26 +23,19 @@
                 <sdk:TabItem  Header="Recruiters">
                     <phoneroom:AllRecruitersRptView />
                 </sdk:TabItem>
-                <!--<sdk:TabItem  Header="Recruiter">
-                    <views:RecruiterDetailRptView />
-                </sdk:TabItem>-->
-                
                 <sdk:TabItem  Header="Job Call Activity">
                     <phoneroom:JobCallActivityRptView />
                 </sdk:TabItem>
                 <sdk:TabItem  Header="Today's Call Log Summary">
                     <phoneroom:TodaysCallLogRptView />
                 </sdk:TabItem>
-
                 <sdk:TabItem  Header="Inbound Calls By Hour">
                     <StackPanel Orientation="Vertical">
-                        <!--<views:InboundCallsByHrRptView />-->
                         <phoneroom:InboundCallsByHrChartView />
                     </StackPanel>
                 </sdk:TabItem>
             </sdk:TabControl>
         </Border>
-
         <Rectangle Grid.Column="1" HorizontalAlignment="Left" Width="6" Fill="#FFEAEAEA"/>
         <sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left" 
                 Width="6" BorderBrush="#FFD6D6D6" BorderThickness="1,0" Opacity="0.715">
@@ -50,7 +43,6 @@
                 <ImageBrush Stretch="None" ImageSource="SplitterHandle.png"/>
             </sdk:GridSplitter.Background>
         </sdk:GridSplitter>
-
         <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
             <StackPanel Orientation="Vertical">
                 <phoneroom:CallsInQueueView />

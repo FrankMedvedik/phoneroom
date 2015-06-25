@@ -10,9 +10,6 @@
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:recruiter="clr-namespace:PhoneLogic.Core.areas.recruiter"
     mc:Ignorable="d" >
-    <Control.DataContext>
-        <recruiter:MyCallsInQueueViewModel/>
-    </Control.DataContext>
     <Control.Resources>
         <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
         <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />

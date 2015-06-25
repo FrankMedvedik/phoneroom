@@ -560,10 +560,18 @@
     <Resource Include="Images\SplitterHandle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Sleep PC.png" />
-    <Resource Include="Images\Sleeping-Medical-Staff.png" />
-    <Resource Include="Images\arrowLeft.png" />
-    <Resource Include="Images\arrowRight.png" />
+    <Resource Include="Images\Sleep PC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Sleeping-Medical-Staff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\arrowLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\arrowRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="resources\BuildDate.txt" />
     <None Include="Service References\AppServiceReference\PhoneLogic.disco" />
     <None Include="Service References\AppServiceReference\configuration91.svcinfo" />

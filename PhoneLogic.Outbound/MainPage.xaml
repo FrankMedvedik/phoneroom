@@ -6,9 +6,10 @@
     xmlns:lyncControls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
     xmlns:recruiter="clr-namespace:PhoneLogic.Core.areas.recruiter;assembly=PhoneLogic.Core"
-    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="WhiteSmoke" >
+    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
     <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
-    <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <!--Background="{Binding  ElementName=MyCallsInQ, Path=TheBackground}"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

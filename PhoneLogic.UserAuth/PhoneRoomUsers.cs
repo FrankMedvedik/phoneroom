@@ -68,12 +68,12 @@ namespace PhoneLogic.UserAuth
                };
                ChalfontUsers = cache["ChalfontUsers"] as IEnumerable<UserPrincipal> ;
                MKEUsers = cache["MKEUsers"] as IEnumerable<UserPrincipal> ;
-               AllUsers = cache["Allsers"] as IEnumerable<UserPrincipal> ;
+               AllUsers = cache["AllUsers"] as IEnumerable<UserPrincipal> ;
         }
 
-        //        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","(manos)3k");
+        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","(manos)3k");
         
-        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+        //private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
         
 
         public Boolean IsSupervisor(string userName)

@@ -36,8 +36,10 @@ namespace PhoneLogic.Core.areas.recruiter
             get { return (string)GetValue(RecruiterSipProperty); }
             set
             {
+                AudioPlayer.Stop();
                 SetValue(RecruiterSipProperty, value);
                 _vm.RecruiterSip = value;
+
             }
         }
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...

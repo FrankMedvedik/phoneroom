@@ -25,7 +25,7 @@
                     Checked="tbtnListen_Checked" Unchecked="tbtnListen_Unchecked" Width="Auto" >Listen</ToggleButton>
                 </StackPanel>-->
             </Grid>
-            <MediaElement Name="AudioPlayback" AutoPlay="False"/>
+            <MediaElement Name="AudioPlayback" AutoPlay="False" MediaOpened="AudioPlayback_MediaOpened"/>
         </StackPanel>
     </Grid>
 </UserControl>
