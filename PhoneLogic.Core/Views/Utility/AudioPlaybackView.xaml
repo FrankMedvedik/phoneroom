@@ -5,27 +5,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="50" d:DesignWidth="400">
-    
-    <Grid x:Name="LayoutRoot" Background="White">
-        <StackPanel>
-            <Grid Margin="6" Name="PlaybackControls" >
+    <Grid Margin="6" Name="PlaybackControls" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="6" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="6" >
                     <TextBlock Margin="3" Text="Seek To: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Name="TbPlaybackDuration"/>
+            <TextBlock Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" Name="TbPlaybackDuration"/>
                 </StackPanel>
-                <Slider Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Minimum="0"  IsHitTestVisible="True" Margin="6"  x:Name="SliderPosition" ValueChanged="sliderPosition_ValueChanged" />
-                <Slider Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" Minimum="0" IsHitTestVisible="False" x:Name="SliderPositionBackground" Opacity="0.5" Margin="6"  />
+                <Slider Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Minimum="0"  IsHitTestVisible="True" Margin="6"  x:Name="SliderPosition" ValueChanged="sliderPosition_ValueChanged" />
+                <Slider Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Minimum="0" IsHitTestVisible="False" x:Name="SliderPositionBackground" Opacity="0.5" Margin="6"  />
                 <!--<StackPanel Name="PlayControlsPanel" Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Visibility="Collapsed" >
                     <ToggleButton x:Name="tbtnListen" Margin="6"  HorizontalAlignment="Center" VerticalAlignment="Center" 
                     Checked="tbtnListen_Checked" Unchecked="tbtnListen_Unchecked" Width="Auto" >Listen</ToggleButton>
                 </StackPanel>-->
-            </Grid>
-            <MediaElement Name="AudioPlayback" AutoPlay="False" MediaOpened="AudioPlayback_MediaOpened"/>
-        </StackPanel>
+        <MediaElement Name="AudioPlayback" Grid.Row="1" AutoPlay="False" MediaOpened="AudioPlayback_MediaOpened" Grid.Column="0" />
     </Grid>
 </UserControl>

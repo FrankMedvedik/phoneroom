@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="AudioPlayer.SimplePlayer"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:my="clr-namespace:AudioPlayer"
+    Width="350" Height="30">
+    <Canvas x:Name="parentCanvas"
+        Loaded="Page_Loaded">
+            <Canvas.Resources>
+            <SolidColorBrush x:Key="rightCanvasBrush" Color="#CCCCCC" />
+            <SolidColorBrush x:Key="iconBrush" Color="#666666" />
+            <SolidColorBrush x:Key="midCanvasBrush" Color="#E9E6DF" />
+            <SolidColorBrush x:Key="leftCanvasBrush" Color="#EEEEEE" />
+            <Storyboard x:Name="expandPlayer">
+                <DoubleAnimation 
+                    Storyboard.TargetName="rightCanvas" 
+                    Storyboard.TargetProperty="(Canvas.Left)"
+                    To="250" 
+                    Duration="0:0:0.5" />
+                <PointAnimation 
+                    Storyboard.TargetName="seg2" 
+                    Storyboard.TargetProperty="point"
+                    To="250,0" 
+                    Duration="0:0:0.5" />
+                <PointAnimation 
+                    Storyboard.TargetName="seg3" 
+                    Storyboard.TargetProperty="point"
+                    To="250,30" 
+                    Duration="0:0:0.5" />
+                <DoubleAnimation
+                    Storyboard.TargetName="animatedSpeaker"
+                    Storyboard.TargetProperty="(Canvas.Left)"
+                    To="4"
+                    Duration="0:0:0.5" />
+                <DoubleAnimation
+                    Storyboard.TargetName="animatedSpeaker"
+                    Storyboard.TargetProperty="Opacity"
+                    To="0"
+                    Duration="0:0:0.5" />
+                <DoubleAnimation
+                    Storyboard.TargetName="volumeSlider"
+                    Storyboard.TargetProperty="Opacity"
+                    To="1"
+                    Duration="0:0:0.5" />
+            </Storyboard>
+
+            <Storyboard x:Name="collapsePlayer">
+                <DoubleAnimation 
+                    Storyboard.TargetName="rightCanvas" 
+                    Storyboard.TargetProperty="(Canvas.Left)"
+                    To="35" 
+                    Duration="0:0:0.5" />
+                <PointAnimation 
+                    x:Name="pa3" 
+                    Storyboard.TargetName="seg2" 
+                    Storyboard.TargetProperty="point"
+                    To="25,0" 
+                    Duration="0:0:0.5" />
+                <PointAnimation 
+                    x:Name="pa4" 
+                    Storyboard.TargetName="seg3" 
+                    Storyboard.TargetProperty="point"
+                    To="25,30" 
+                    Duration="0:0:0.5" />
+                <DoubleAnimation
+                    x:Name="da11"
+                    Storyboard.TargetName="animatedSpeaker"
+                    Storyboard.TargetProperty="(Canvas.Left)"
+                    To="12"
+                    Duration="0:0:0.5" />
+                <DoubleAnimation
+                    Storyboard.TargetName="animatedSpeaker"
+                    Storyboard.TargetProperty="Opacity"
+                    To="1"
+                    Duration="0:0:0.5" />
+                <DoubleAnimation
+                    Storyboard.TargetName="volumeSlider"
+                    Storyboard.TargetProperty="Opacity"
+                    To="0"
+                    Duration="0:0:0.5" />
+            </Storyboard>
+
+            <Storyboard x:Name="positionUpdate">
+                <DoubleAnimation 
+                    x:Name="da3" 
+                    Duration="0:0:0.5" 
+                    Storyboard.TargetName="hiddenRect" 
+                    Storyboard.TargetProperty="Width" />
+            </Storyboard>
+        </Canvas.Resources>
+
+        <MediaElement x:Name="mediaElement" AutoPlay="False" />
+        
+        <Rectangle x:Name="hiddenRect" Visibility="Collapsed" />
+
+        <Canvas 
+            x:Name="MidCanvas" 
+            Background="{StaticResource midCanvasBrush}" 
+            Canvas.Top="0" 
+            Canvas.Left="30" 
+            Width="250" 
+            Height="30">
+            <Canvas.Clip>
+                <!-- A little bit overkill, but there really seems to be no way of
+                    animating the size of a clip rectangle (i.e. no RectAnimation) -->
+                <PathGeometry>
+                    <!-- we are starting off in the collapsed position -->
+                    <PathFigure IsClosed="True">
+                        <LineSegment x:Name="seg1" Point="0,0"/>
+                        <LineSegment x:Name="seg2" Point="25,0"/>
+                        <LineSegment x:Name="seg3" Point="25,30"/>
+                        <LineSegment x:Name="seg4" Point="0,30"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Canvas.Clip>
+            <my:TextScroller 
+                x:Name="trackNameTextBlock" 
+                Canvas.Left="30" 
+                Canvas.Top="1" 
+                Width="140"
+                FontSize="10"
+                FontFamily="Verdana" />
+            <TextBlock 
+                x:Name="timeTextBlock" 
+                Canvas.Left="175" 
+                Canvas.Top="1" 
+                FontSize="10" 
+                FontFamily="Verdana" />
+            <my:ProgressSlider
+                x:Name="audioPositionSlider" 
+                Canvas.Left="28" 
+                Canvas.Top="16" 
+                Width="185" 
+                Height="10"/>
+        </Canvas>
+
+        <Canvas x:Name="LeftCanvas" Canvas.Top="0" Canvas.Left="0" >
+            <Path x:Name="LeftSection" 
+                  Fill="{StaticResource leftCanvasBrush}"
+                  Data="M 5 0 h 30 l 10 15 l -10 15 h -30 a 5,5 0 0 1 -5,-5 v -20 a 5,5 0 0 1 5,-5" />
+            
+            <my:AnimatedSpeaker 
+                x:Name="animatedSpeaker" 
+                Canvas.Left="4" 
+                Canvas.Top="3">
+                <my:AnimatedSpeaker.RenderTransform>
+                    <ScaleTransform ScaleX="0.4" ScaleY="0.4" />
+                </my:AnimatedSpeaker.RenderTransform>
+            </my:AnimatedSpeaker>
+            <my:VolumeSlider 
+                Opacity="0"
+                Width="45" Height="25"
+                x:Name="volumeSlider"
+                Canvas.Left="4"
+                Canvas.Top="3" />
+        </Canvas>
+        
+        <!-- we are starting off in the collapsed position -->
+        <Canvas x:Name="rightCanvas" Canvas.Top="0" Canvas.Left="35" Width="100" Height="30">
+            <Path x:Name="rightSection" 
+                  Fill="{StaticResource rightCanvasBrush}"
+                  Data="M 0 0 h 40 a 5,5 0 0 1 5,5 v 20 a 5,5 0 0 1 -5,5 h -40 l 10,-15 Z"/>
+            <Canvas 
+                Canvas.Left="22" 
+                Canvas.Top="6" >     
+                <Path 
+                    x:Name="playIcon"
+                    Visibility="Collapsed"
+                    Fill="{StaticResource iconBrush}"
+                    Data="M 0 0 l 9,9 l -9,9 Z"/>
+            </Canvas>
+            <Canvas Canvas.Left="22" Canvas.Top="5">
+                <Path 
+                    x:Name="pauseIcon" 
+                    Fill="{StaticResource iconBrush}"
+                    Data="M 0 2 h 4 v 15 h -4 Z M 8 2 h 4 v 15 h -4 Z"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+</UserControl>

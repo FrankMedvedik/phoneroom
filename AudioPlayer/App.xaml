@@ -1,0 +1,265 @@
+﻿<Application xmlns="http://schemas.microsoft.com/client/2007"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+             x:Class="AudioPlayer.App"
+             >
+    <Application.Resources>
+        <Color x:Key="OctwelveDarkGreen">#41803B</Color>
+        <Color x:Key="OctwelveLightGreen">#A7C494</Color>
+        <Color x:Key="OctwelvePaleGreen">#BCD3CD</Color>
+        <Color x:Key="OctwelvePaleYellow">#F4DD83</Color>
+        <Color x:Key="OctwelveBrown">#923224</Color>
+        
+        <SolidColorBrush x:Key="ListBoxBackgroundBrush" Color="DarkGray" />
+        <Color x:Key="ListBoxItemBackgroundColor">#F0F0F0</Color>
+        <Color x:Key="ListBoxItemSelectedBackgroundColor">#FFC080</Color>
+        <Color x:Key="ListBoxItemHoverBackgroundColor">#FFFFE0</Color>
+        <SolidColorBrush x:Key="BrownBrush" Color="{StaticResource OctwelveBrown}"/>
+
+
+        <Style x:Key="VolumeThumbStyle" 
+               TargetType="Thumb">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Grid x:Name="RootElement">
+                            <vsm:VisualStateManager.VisualStateGroups>
+
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualStateGroup.Transitions>
+                                        <vsm:VisualTransition To="MouseOver" GeneratedDuration="0:0:0.1" />
+                                    </vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualState x:Name="Normal" />
+                                    <vsm:VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0"
+                                            Storyboard.TargetName="PointerStrokeBrush"
+                                            Storyboard.TargetProperty="Color"
+                                            To="RoyalBlue" />
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
+
+                            <Path 
+                                  Data="M 5,0 l 5,5 v 15 h -10 v -15 z" 
+                                  Stretch="Fill" 
+                                  StrokeThickness="2"
+                                  Margin="3,0,3,0">
+                                <Path.Stroke>
+                                    <SolidColorBrush x:Name="PointerStrokeBrush" Color="CadetBlue" />
+                                </Path.Stroke>
+                                <Path.Fill>
+                                    <SolidColorBrush x:Name="PointerFillBrush" Color="AliceBlue" />
+                                </Path.Fill>
+                            </Path>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Slider" 
+               x:Key="VolumeSliderStyle">
+            <!-- Any other properties you want to set -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid x:Name="Root">
+                            <!-- States -->
+                            <Grid.Resources>
+                                <!-- RepeatButton Templates -->
+                                <ControlTemplate x:Key="RepeatButtonTemplate">
+                                    <Grid x:Name="RootElement" Background="Transparent" Opacity="0" />
+                                </ControlTemplate>
+                            </Grid.Resources>
+
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualStateGroup.Transitions>
+                                        
+                                    </vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualState x:Name="Normal" />
+                                    <vsm:VisualState x:Name="MouseOver" />
+                                    <vsm:VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Opacity" To="0.5" />
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
+                            
+                            <!-- Horizontal Template -->
+                            <Grid x:Name="HorizontalTemplate">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Path Fill="LightGray" Data="M 0,10 h 50 v -10 z" Margin="5,0,5,0" Grid.Column="0" Grid.ColumnSpan="3" Stretch="Fill" />
+
+                                <!-- need the Repeat buttons for the thumb to be positioned correctly -->
+                                <RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" Grid.Column="0" Template="{StaticResource RepeatButtonTemplate}" IsTabStop="False" />
+                                <Thumb x:Name="HorizontalThumb" Width="18" Grid.Column="1" Style="{StaticResource VolumeThumbStyle}" />
+                                <RepeatButton x:Name="HorizontalTrackLargeChangeIncreaseRepeatButton" Grid.Column="2" Template="{StaticResource RepeatButtonTemplate}" IsTabStop="False" />
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+		<Style TargetType="ScrollViewer" x:Key="ScrollViewerStyle1">
+		    <Setter Property="IsEnabled" Value="true" />
+		    <Setter Property="Foreground" Value="#FF000000" />
+		    <Setter Property="BorderBrush" Value="#FFA4A4A4" />
+		    <Setter Property="BorderThickness" Value="1" />
+		    <Setter Property="HorizontalContentAlignment" Value="Left" />
+		    <Setter Property="VerticalContentAlignment" Value="Top" />
+		    <Setter Property="Cursor" Value="Arrow" />
+		    <!-- Cannot currently parse FontFamily type in XAML so it's being set in code -->
+		    <!-- <Setter Property="FontFamily" Value="Trebuchet MS" /> -->
+		    <Setter Property="FontSize" Value="11" />
+		    <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+		    <Setter Property="Template">
+		        <Setter.Value>
+		            <ControlTemplate TargetType="ScrollViewer">
+		                <Grid Background="{TemplateBinding Background}">
+		                    <Grid.ColumnDefinitions>
+		                        <ColumnDefinition Width="*"/>
+		                        <ColumnDefinition Width="Auto"/>
+		                    </Grid.ColumnDefinitions>
+		                    <Grid.RowDefinitions>
+		                        <RowDefinition Height="*"/>
+		                        <RowDefinition Height="Auto"/>
+		                    </Grid.RowDefinitions>
+		                    <!-- Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" -->
+		                    <ScrollContentPresenter
+		                      x:Name="ScrollContentPresenter"
+		                      Grid.Column="0"
+		                      Grid.Row="0"
+		                      Content="{TemplateBinding Content}"
+		                      ContentTemplate="{TemplateBinding ContentTemplate}"
+		                      Cursor="{TemplateBinding Cursor}"
+		                      Margin="{TemplateBinding Padding}" />
+		                    <ScrollBar
+		                      x:Name="VerticalScrollBar"
+		                      Grid.Column="1"
+		                      Grid.Row="0"
+		                      Orientation="Vertical"
+		                      Cursor="Arrow"
+		                      Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+		                      ViewportSize="{TemplateBinding ViewportHeight}"
+		                      Minimum="0"
+		                      Maximum="{TemplateBinding ScrollableHeight}"
+		                      Value="{TemplateBinding VerticalOffset}" 
+		                      Width="18"/>
+		                    <ScrollBar
+		                      x:Name="HorizontalScrollBar"
+		                      Grid.Column="0"
+		                      Grid.Row="1"
+		                      Orientation="Horizontal"
+		                      Cursor="Arrow"
+		                      Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+		                      ViewportSize="{TemplateBinding ViewportWidth}"
+		                      Minimum="0"
+		                      Maximum="{TemplateBinding ScrollableWidth}"
+		                      Value="{TemplateBinding HorizontalOffset}" 
+		                      Height="18"/>
+		                </Grid>
+		            </ControlTemplate>
+		        </Setter.Value>
+		    </Setter>
+		</Style>
+
+        <Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="#FF000000" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid x:Name="Root">
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="SelectionStates">
+                                    <vsm:VisualState x:Name="Unselected" />
+                                    <vsm:VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                                     Storyboard.TargetName="SelectedBorderBackgroundBrush"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     Duration="0"
+                                                     To="1.0"/>
+                                            </Storyboard>
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualState x:Name="Normal" />
+                                    <vsm:VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation
+                                                  Storyboard.TargetName="HoverBorderBackgroundBrush"
+                                                  Storyboard.TargetProperty="Color"
+                                                  Duration="0"
+                                                  To="{StaticResource ListBoxItemHoverBackgroundColor}"/>
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
+
+                            <Border Margin="1"
+                                x:Name="HoverBorder">
+                                <Border.Background>
+                                    <SolidColorBrush
+                                        x:Name="HoverBorderBackgroundBrush"
+                                        Color="{StaticResource ListBoxItemBackgroundColor}" />
+                                </Border.Background>
+                            </Border>
+
+                            <Border Margin="1"
+                                  x:Name="SelectedBorder">
+                                <Border.Background>
+                                    <SolidColorBrush
+                                        x:Name="SelectedBorderBackgroundBrush"
+                                        Opacity="0"
+                                        Color="{StaticResource ListBoxItemSelectedBackgroundColor}" />
+                                </Border.Background>
+                            </Border>
+
+                            <ContentPresenter
+							    Margin="2"
+							    Content="{TemplateBinding Content}" />
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        
+        <Style x:Key="ListBoxStyle1" TargetType="ListBox">
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ListBoxItemStyle1}" />
+		 	<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+                        <Grid x:Name="Root">
+						<Border Padding="1" Background="{StaticResource ListBoxBackgroundBrush}" CornerRadius="0">
+						    <ScrollViewer x:Name="ScrollViewer" 
+								Style="{StaticResource ScrollViewerStyle1}"
+								Padding="{TemplateBinding Padding}">
+						        <ItemsPresenter />
+						    </ScrollViewer>
+						</Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+    </Application.Resources>
+</Application>

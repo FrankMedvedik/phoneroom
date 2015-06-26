@@ -33,6 +33,12 @@ namespace PhoneLogic.Core.areas.recruiter
                 FrameworkElement ele = DGrid.Columns[2].GetCellContent(e.Row);
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
             }
+            else
+            {
+                FrameworkElement ele = DGrid.Columns[2].GetCellContent(e.Row);
+                (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
+            }
+
 
 
 

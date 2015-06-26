@@ -15,7 +15,7 @@ namespace PhoneLogic.Core.Views
 
         public AudioPlaybackView()
         {
-            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Interval = TimeSpan.FromSeconds(10);
             _timer.Tick += timer_Tick;
             InitializeComponent();
             TbPlaybackDuration.Text = "00:00";
@@ -24,7 +24,8 @@ namespace PhoneLogic.Core.Views
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            TbPlaybackDuration.Text = AudioPlayback.Position.ToString().TrimEnd(new char[] { '0' });
+            //TbPlaybackDuration.Text = AudioPlayback.Position.ToString().TrimEnd(new char[] { '0:g' });
+            TbPlaybackDuration.Text = String.Format("{0:g}", AudioPlayback.Position);
             SliderPositionBackground.Value = AudioPlayback.Position.TotalSeconds;
         }
 
@@ -69,7 +70,8 @@ namespace PhoneLogic.Core.Views
         private void ResetPlayback()
         {
             AudioPlayback.Position = TimeSpan.FromSeconds(0);
-            TbPlaybackDuration.Text = AudioPlayback.Position.ToString().TrimEnd(new char[] { '0' });
+            // TbPlaybackDuration.Text = AudioPlayback.Position.ToString().TrimEnd(new char[] { '0' });
+            TbPlaybackDuration.Text = String.Format("{0:g}", AudioPlayback.Position);
             SliderPosition.Value = 0;
             SliderPosition.Maximum = AudioPlayback.NaturalDuration.TimeSpan.TotalSeconds;
         }
@@ -99,7 +101,8 @@ namespace PhoneLogic.Core.Views
 
         private void AudioPlayback_MediaOpened(object sender, RoutedEventArgs e)
         {
-            TbPlaybackDuration.Text = AudioPlayback.Position.ToString().TrimEnd(new char[] { '0' });
+            //TbPlaybackDuration.Text = AudioPlayback.Position.ToString().TrimEnd(new char[] { '0' });
+            TbPlaybackDuration.Text = String.Format("{0:g}", AudioPlayback.Position);
             SliderPosition.Value = 0;
             SliderPosition.Maximum = AudioPlayback.NaturalDuration.TimeSpan.TotalSeconds;
             }

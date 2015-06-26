@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Views"  xmlns:toolkit="clr-namespace:MM.Toolkit;assembly=MM.Toolkit" 
+﻿<UserControl xmlns:AudioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer"  xmlns:Views="clr-namespace:PhoneLogic.Core.Views"  xmlns:toolkit="clr-namespace:MM.Toolkit;assembly=MM.Toolkit" 
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls" 
         x:Class="PhoneLogic.Core.areas.recruiter.RecruiterRptView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -48,28 +48,30 @@
          <sdk:DataGrid  AutoGenerateColumns="False"  Grid.Row="2" Grid.Column="0"  Visibility="{Binding ShowLogData, Converter={StaticResource BoolToVisConverter}}"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  MaxHeight="375"  SelectionChanged="RecruiterLogDG_SelectionChanged"
                     ItemsSource="{Binding RecruiterLogs}"  VerticalAlignment="Top"  ClipboardCopyMode="IncludeHeader" Name="RecruiterLogDG" 
-                     SelectedItem="{Binding SelectedRecruiterLog, Mode=TwoWay}"  
+                     SelectedItem="{Binding SelectedRecruiterLog, Mode=TwoWay}"   
                     ToolTipService.ToolTip="Call Log" Margin="6" HorizontalAlignment="Left" >
                     <sdk:DataGrid.Columns>
                         <sdk:DataGridTextColumn Binding="{Binding recruiterConnectTime}" />
                         <sdk:DataGridTextColumn Binding="{Binding jobFormatted }" />
                         <sdk:DataGridTextColumn Binding="{Binding phoneFormatted }" />
                         <sdk:DataGridTextColumn Binding="{Binding recruiterCallDuration}" />
-                        <sdk:DataGridTemplateColumn>
+                        <!--<sdk:DataGridTemplateColumn>
                             <sdk:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Name="playControlsPanel" Orientation="Horizontal">
-                                        <ToggleButton x:Name="tbtnPlay" Margin="0"  HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                                        <ToggleButton x:Name="tbtnPlay" Margin="0"  HorizontalAlignment="Left"  VerticalAlignment="Top"  
                                             Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked" Width="90">Play</ToggleButton>
                                     </StackPanel>
                                 </DataTemplate>
                             </sdk:DataGridTemplateColumn.CellTemplate>
-                        </sdk:DataGridTemplateColumn>
+                        </sdk:DataGridTemplateColumn>-->
                     </sdk:DataGrid.Columns>
                 </sdk:DataGrid>
             <StackPanel  Margin="6" Grid.Row="2" Grid.Column="0" Visibility="{Binding ShowLogData, Converter={StaticResource NotBoolToVisConverter}}">
                 <TextBlock  HorizontalAlignment="Left" Text="No calls in this time frame"/>
             </StackPanel>
-            <Views:AudioPlaybackView Name="AudioPlayer" Visibility="Collapsed" Grid.Row="3" Grid.Column="0" />
+        <!--<Views:AudioPlaybackView Name="AudioPlayer" Visibility="Collapsed" Grid.Row="3" Grid.Column="0" />-->
+        <AudioPlayer:SimplePlayer Name="AudioPlayer" Grid.Row="3" Grid.Column="0"  Visibility="Collapsed"/>
+
         </Grid>
 </UserControl>

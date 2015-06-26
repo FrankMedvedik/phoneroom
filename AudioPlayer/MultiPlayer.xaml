@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="AudioPlayer.MultiPlayer"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:my="clr-namespace:AudioPlayer"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    > <!-- 400, 300-->
+    <UserControl.Resources>
+
+        <Color x:Key="TransportButtonBackground">#A7C494</Color>
+        <Color x:Key="TransportButtonMouseOver">#41803B</Color>
+
+        <Style x:Name="TransportButtonStyle" 
+               TargetType="Button">
+            <!--
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <SolidColorBrush x:Name="backgroundBrush" Color="LightGoldenrodYellow" />
+                </Setter.Value>
+            </Setter>-->
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootElement">
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualStateGroup.Transitions>
+                                        <vsm:VisualTransition To="MouseOver" GeneratedDuration="0:0:0.2" />
+                                    </vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualState x:Name="Normal" />
+                                    <vsm:VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0"
+                                                Storyboard.TargetName="borderBrush"
+                                                Storyboard.TargetProperty="Color"
+                                                To="{StaticResource OctwelveDarkGreen}" />
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
+
+                            <Border Margin="0" CornerRadius="5"                                    
+                                     BorderThickness="3">
+                                <Border.Background>
+                                    <SolidColorBrush x:Name="backgroundBrush" 
+                                                     Color="{StaticResource TransportButtonBackground}"/>
+                                </Border.Background>
+                                <Border.BorderBrush>
+                                    <SolidColorBrush x:Name="borderBrush" 
+                                                     Color="{StaticResource TransportButtonBackground}"/>
+                                </Border.BorderBrush>
+                                <ContentPresenter
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Margin="2" />
+                            </Border>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </UserControl.Resources>
+
+    
+    <Grid x:Name="LayoutRoot" ShowGridLines="False">
+
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="buttonPrev" 
+                    Margin="2" 
+                    Grid.Column="0" 
+                    Style="{StaticResource TransportButtonStyle}"
+                    Click="buttonPrev_Click">
+                <Path Fill="Black" Margin="3"  Data="M 0,0 h 2 v 10 h -2 z m 7,0 v 10 l -5,-5 z"/>
+            </Button>
+            <Button x:Name="buttonPlay" 
+                    Margin="2" 
+                    Style="{StaticResource TransportButtonStyle}"
+                    Grid.Column="1" 
+                    Click="buttonPlay_Click">
+                <Path Fill="Black" 
+                      Margin="3" 
+                      Data="M 0,0 l 5,5 l -5,5 z" />
+            </Button>
+            <Button x:Name="buttonPause" 
+                    Margin="2" 
+                    Style="{StaticResource TransportButtonStyle}"
+                    Grid.Column="2" 
+                    Click="buttonPause_Click">
+                <Path Fill="Black" Margin="3"  Data="M 0,0 h 2 v 10 h -2 z m 5,0 h 2 v 10 h -2 z"/>
+            </Button>
+            <Button x:Name="buttonNext" 
+                    Margin="2" 
+                    Style="{StaticResource TransportButtonStyle}"
+                    Grid.Column="3" 
+                    Click="buttonNext_Click">
+                <Path Fill="Black" Margin="3"  Data="M 0,0 v 10 l 5,-5 z m 5,0 h 2 v 10 h -2 z"/>
+            </Button>
+            <my:TextScroller Margin="2" x:Name="titleScroller" Text="Title" Grid.Column="4"/>
+            <my:HorizontalProgressBar Margin="2" Value="0.0" x:Name="progressBar" Width="200" Grid.Column="4" />
+            <Slider 
+                Orientation="Horizontal" 
+                Style="{StaticResource VolumeSliderStyle}"
+                x:Name="sliderVolume" 
+                Width="80" Height="15" 
+                Value="0.5" 
+                Margin="2"
+                Minimum="0" 
+                Maximum="1" 
+                SmallChange="0.1"
+                LargeChange="0.2"
+                Grid.Column="5" 
+                IsTabStop="False"
+                IsEnabled="True"
+                ValueChanged="sliderVolume_ValueChanged" />
+            <!--                  -->
+
+            <ListBox 
+                Grid.Row="1"
+                Grid.ColumnSpan="6"
+                x:Name="playListBox" 
+                Style="{StaticResource ListBoxStyle1}"
+                SelectionChanged="playListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="12" Text="{Binding Title}" FontWeight="Bold" Foreground="#404040" Margin="3" />
+                            <TextBlock FontSize="12" Text="{Binding Artist}" Foreground="#808080" Margin="3" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        <MediaElement x:Name="mediaElement" AutoPlay="False" />
+
+    </Grid>
+
+
+</UserControl>

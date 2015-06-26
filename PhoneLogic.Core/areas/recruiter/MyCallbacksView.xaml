@@ -7,6 +7,7 @@
     x:Class="PhoneLogic.Core.areas.recruiter.MyCallbacksView"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
+    xmlns:audioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer"
     mc:Ignorable="d" d:DesignWidth="186.667" d:DesignHeight="123" VerticalAlignment="Top"  HorizontalAlignment="Left">
     <Control.Resources>
         <DataTemplate x:Key="ContactTemplate">
@@ -53,8 +54,8 @@
                         <TextBlock Text="Caller's current time" Margin="6"/>
                         <TextBlock Text="{Binding caller_current_time, StringFormat=t}" Margin="6"/>
                             <!--<toolkit:WrapPanel Name="playControlsPanel" Orientation="Horizontal">-->
-                            <ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" Width="80" 
-                            Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked">Play</ToggleButton>
+                            <!--<ToggleButton x:Name="tbtnPlay" Margin="6,6,3,6"  HorizontalAlignment="Left"  VerticalAlignment="Center" Width="80" 
+                            Checked="tbtnPlay_Checked"  Unchecked="tbtnPlay_Unchecked">Play</ToggleButton>-->
                             <!--</toolkit:WrapPanel>-->
                         <Button Name="Call"  Width="80" Margin="3,6,3,6" Click="Call_Click" IsEnabled="{Binding DataContext.CanCall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}">Call</Button>
                         <TextBlock Text="{Binding DataContext.ActionMsg, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}" Foreground="Red"  Margin="6"/>
@@ -71,6 +72,7 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
-        <Views:AudioPlaybackView Grid.Row="2" Name="AudioPlayer" Visibility="Collapsed"/>
+        <!--<Views:AudioPlaybackView Grid.Row="2" Name="AudioPlayer" Visibility="Collapsed"/>-->
+        <audioPlayer:SimplePlayer Name="AudioPlayer" Grid.Row="2" Grid.Column="0"  Visibility="Collapsed"/>
     </Grid>
 </UserControl>
