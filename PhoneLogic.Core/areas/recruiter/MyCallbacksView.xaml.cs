@@ -25,14 +25,6 @@ namespace PhoneLogic.Core.areas.recruiter
             //SizeChanged += HandleResizeGrid;
         }
 
-        //private void DGrid_LoadingRow(object sender, DataGridRowEventArgs e)
-        //{
-        //    var c = (myCallback)e.Row.DataContext;
-        //    if (c.DisplayStatusContact)
-        //    {
-        //        callbackGrid.Columns[4].GetCellContent(e.Row);
-        //        //(ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
-        //    }
 
 
 
@@ -62,7 +54,9 @@ namespace PhoneLogic.Core.areas.recruiter
             set
             {
                 SetValue(SelectedJobNumProperty, value);
-                _vm.SelectedJobNum = value; }
+                _vm.SelectedJobNum = value;
+                AudioPlayer.Visibility = Visibility.Collapsed;
+            }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
@@ -134,41 +128,12 @@ namespace PhoneLogic.Core.areas.recruiter
 
         private void callbackGrid_Loaded(object sender, RoutedEventArgs e)
         {
+            AudioPlayer.Visibility = Visibility.Collapsed;
             if (_vm.SelectedMyCallback != null)
                 callbackGrid.SelectedItem = _vm.SelectedMyCallback;
             else
                 callbackGrid.SelectedIndex = 0;
         }
-
-        //private void tbtnPlay_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    AudioPlayer.Visibility = Visibility.Visible;
-        //    _selectedButton = (sender as ToggleButton);
-        //    _selectedButton.Content = "Stop";
-        //    AudioPlayer.Play();
-        //    _vm.ActionMsg = "..playing message...";
- 
-        //    _vm.CanRefresh = false;
-
-        //}
-
-        //private void tbtnPlay_Unchecked(object sender, RoutedEventArgs e)
-        //{
-        //    _selectedButton = (sender as ToggleButton);
-        //    _selectedButton.Content = "Play";
-        //    AudioPlayer.Stop();
-        //    _vm.CanRefresh = true;
-        //    AudioPlayer.Visibility = Visibility.Collapsed;
-        //}
-        
-        //private void ResetPlaybackState(object o, RoutedEventArgs e)
-        //{
-        //    _selectedButton.Content = "Play";
-        //    AudioPlayer.Visibility = Visibility.Collapsed;
-        //    _vm.ActionMsg = "";
-        //    _vm.CanRefresh = true;
-        //}
-
 
         // inactivate call button
         public void StartTimer()
