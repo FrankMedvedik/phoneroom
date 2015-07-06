@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.Core.MVVMMessenger;
+using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
@@ -49,10 +54,16 @@ namespace PhoneLogic.Core.areas.recruiter
              get { return _CallsInQueue; }
              set
              {
-                     _CallsInQueue = value;
-                    NotifyPropertyChanged();
-                    NotifyPropertyChanged("TheBackground");
-                    NotifyPropertyChanged("TheForeground");
+                _CallsInQueue = value;
+                 NotifyPropertyChanged();
+                 NotifyPropertyChanged("TheBackground");
+                 NotifyPropertyChanged("TheForeground");
+                 AppColors ac = new AppColors()
+                 {
+                     TheForeground = ColorToBrushSvc.GetForeground(CallsInQueue.Sum(c => c.InQueue)),
+                     TheBackground = ColorToBrushSvc.GetBackground(CallsInQueue.Sum(c => c.InQueue))
+                 };
+                 Messenger.Default.Send(ac);
              }
          }
         #endregion
@@ -63,13 +74,7 @@ namespace PhoneLogic.Core.areas.recruiter
         {
             get
             {
-                int callCnt = 0;
-
-                foreach (var c in CallsInQueue)
-                {
-                    callCnt += c.InQueue;
-                }
-
+                int callCnt = CallsInQueue.Sum(c => c.InQueue);
                 return ColorMappingSvc.GetBackground(callCnt);
             }
         }
@@ -77,16 +82,29 @@ namespace PhoneLogic.Core.areas.recruiter
         public string TheForeground
         {
             get {
-                int callCnt = 0;
-
-                foreach (var c in CallsInQueue)
-                {
-                    callCnt += c.InQueue;
-                }
-
+                int callCnt = CallsInQueue.Sum(c => c.InQueue);
                 return ColorMappingSvc.GetForeground(callCnt);
             }
         }
+
+        public new Boolean ShowGridData
+        {
+            set
+            {
+                if (value == false)
+                {
+                    AppColors ac = new AppColors()
+                    {
+                        TheForeground = ColorToBrushSvc.GetForeground(0),
+                        TheBackground = ColorToBrushSvc.GetBackground(0)
+                    };
+                    Messenger.Default.Send(ac);
+                }
+                base.ShowGridData = value;
+            }
+            get { return base.ShowGridData; }
+        }
+
 
         #endregion
         

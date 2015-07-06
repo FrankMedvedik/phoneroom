@@ -6,10 +6,10 @@
     xmlns:lyncControls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
     xmlns:recruiter="clr-namespace:PhoneLogic.Core.areas.recruiter;assembly=PhoneLogic.Core"
-    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-    <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
-        <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <!--Background="{Binding  ElementName=MyCallsInQ, Path=TheBackground}"-->
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" Name="Main">
+    <ScrollViewer>
+    <Grid x:Name="LayoutRoot" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -19,13 +19,32 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <!--<ToggleButton IsChecked="{Binding IsCheckedState}" Grid.Column="0" Grid.Row="0">
+                <Image Width="48" Height="48"  >
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsCheckedState}" Value="true">
+                                    <Setter Property="Source" Value="Images/fountain_collage.jpg"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsCheckedState}" Value="false">
+                                    <Setter Property="Source" Value="Images/Health-Benefits-of-Celery.jpg"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </ToggleButton>-->
+           <!--<ToggleButton Name="TBBrowserResize" Checked="tbtnShrink_Checked"  Unchecked="tbtnShrink_Unchecked"  Width="220" Height="200"   Grid.Column="0" Grid.Row="0"/>--> 
            <!--<lyncControls:MyStatusArea  PhotoDisplayMode="Large"  Background="Transparent" MinWidth="400" Height="Auto"  Margin="12" HorizontalAlignment="Stretch"  FontSize="20" Grid.Column="0" Grid.Row="0"/>-->
-            <recruiter:AvailabilityView MinWidth="400" Height="Auto"  Margin="12" HorizontalAlignment="Stretch"  FontSize="20" Grid.Column="0" Grid.Row="0"/>
+            <recruiter:AvailabilityView MinWidth="300" Height="Auto"  Margin="12" HorizontalAlignment="Stretch"  FontSize="20" Grid.Column="0" Grid.Row="0"/>
             <recruiter:MyCallsInQueueView Name="MyCallsInQ" Margin="12" MinWidth="300" Height="Auto" HorizontalAlignment="Stretch" FontSize="16" Grid.Column="1" Grid.Row="0"/>
             <recruiter:MyWorkView Name="MyWork" Margin="6" HorizontalAlignment="Stretch" FontSize="16" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"/>
-            <TextBlock Name="BrowserInfo" Grid.Column="0" Grid.Row="3" />
-            <views:BuildInformationView  Grid.Column="1" Grid.Row="3"/>
+            <views:BuildInformationView  Grid.Column="0" Grid.Row="3"/>
+            <TextBlock Name="tbCanRefresh" Grid.Row="4"/>
+        
         </Grid>
     </ScrollViewer>
 </UserControl>

@@ -8,8 +8,8 @@ namespace PhoneLogic.Model
         {
             const string noActivity = "Black";
             const string low = "Black";
-            const string medium = "Grey";
-            const string high = "White";
+            const string medium = "Black";
+            const string high = "Black";
 
             if (cnt == 0)
                 return noActivity;

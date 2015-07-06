@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
 using Newtonsoft.Json;
+using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -17,7 +19,21 @@ namespace PhoneLogic.Core.areas.recruiter
         {
           StartAutoRefresh(ApiRefreshFrequency.UserDB);
           GetMyCallbacks();
+         Messenger.Default.Register<NotificationMessage>(this, HandleNotification);
         }
+
+       private void HandleNotification(NotificationMessage message)
+        {
+            if (message.Notification == Notifications.PauseRefresh)
+            {
+                CanRefresh = false;
+            }
+            if (message.Notification == Notifications.ResumeRefresh)
+            {
+                CanRefresh = true;
+            }
+        }
+
 
         private TimeSpan _callDuration;
         public TimeSpan CallDuration

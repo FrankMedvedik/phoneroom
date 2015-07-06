@@ -18,7 +18,7 @@ namespace PhoneLogic.Core.Services
             SolidColorBrush noActivity  = new SolidColorBrush( Colors.Black);
             SolidColorBrush low = new SolidColorBrush( Colors.Black);
             SolidColorBrush medium = new SolidColorBrush(Colors.Black);
-            SolidColorBrush high = new SolidColorBrush(Colors.White);
+            SolidColorBrush high = new SolidColorBrush(Colors.Black);
 
             if (cnt == 0)
                 return noActivity;

@@ -5,10 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:recruiter="clr-namespace:PhoneLogic.Core.areas.recruiter;assembly=PhoneLogic.Core"
-    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d"  Background="#a6dbed">
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" >
+    x:Class="PhoneLogic.Inbound.MainPage"    mc:Ignorable="d"  Name="Main">
+    <Grid Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Border BorderBrush="Black" BorderThickness="4, 4, 8 ,10" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  Background="#a6dbed"  >
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top"  >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
@@ -24,7 +24,7 @@
                     <recruiter:LyncSearchView Margin="20,5,20,10" FontSize="16"/>
                     <Views:TimerView x:Name="timer" Margin="20,15,40,10" FontSize="16"/>
                     </StackPanel>
-                <recruiter:MyCallsInQueueView Grid.Row="2" FontSize="16"/>
+                <recruiter:MyCallsInQueueView Name="MyCallsInQ" Grid.Row="2" FontSize="16"/>
                 <Views:BuildInformationView Grid.Row="3" FontSize="16"/>
                 </Grid>
             </Border>

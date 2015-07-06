@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -17,8 +19,26 @@ namespace PhoneLogic.Core.areas.phoneroom
             SelectedPhoneRoomName = PhoneRoomSvc.GetDefault();
             StartRptDate = DateTime.Now.AddDays(-1);
             EndRptDate = DateTime.Now;
+            Messenger.Default.Register<NotificationMessage>(this, HandleNotification);
         }
 
+        private void HandleNotification(NotificationMessage message)
+        {
+            if (message.Notification == Notifications.PauseRefresh)
+            {
+                CanRefresh = false;
+            }
+            if (message.Notification == Notifications.ResumeRefresh)
+            {
+                CanRefresh = true;
+            }
+        }
+
+        public Boolean CanRefresh       
+        {
+            get { return _canRefresh; }
+            set { _canRefresh = value; }
+        }
 
         #region reporting variables
 
@@ -110,12 +130,15 @@ namespace PhoneLogic.Core.areas.phoneroom
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-            var sr = SelectedRecruiter;
-            GetRecruiters();
-            if (sr != null)
+            if (CanRefresh)
             {
-                SelectedRecruiter = Recruiters.FirstOrDefault(x => x.sip == sr.sip);
-                GetRecruiterLogs();
+                var sr = SelectedRecruiter;
+                GetRecruiters();
+                if (sr != null)
+                {
+                    SelectedRecruiter = Recruiters.FirstOrDefault(x => x.sip == sr.sip);
+                    GetRecruiterLogs();
+                }
             }
         }
 
@@ -179,7 +202,6 @@ namespace PhoneLogic.Core.areas.phoneroom
                 }
                 else 
                     ShowSelectedRecruiter = false;
-
                 NotifyPropertyChanged();
 
             }
@@ -236,6 +258,8 @@ namespace PhoneLogic.Core.areas.phoneroom
             }
         }
         private Boolean _showSelectedRecruiter = false;
+        private bool _canRefresh;
+
         public Boolean ShowSelectedRecruiter
         {
             get

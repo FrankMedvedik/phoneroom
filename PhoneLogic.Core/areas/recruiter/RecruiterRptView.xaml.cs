@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.ViewModels;
 
@@ -25,6 +26,7 @@ namespace PhoneLogic.Core.areas.recruiter
         private void btnGetLogsClick(object sender, RoutedEventArgs e)
         {
             _vm.GetRecruiterLogs();
+            AudioPlayer.Reset();
         }
         
         private void btnExport_Click(object sender, RoutedEventArgs e)
@@ -39,7 +41,6 @@ namespace PhoneLogic.Core.areas.recruiter
             {
                 AudioPlayer.Reset();
                 AudioPlayer.Visibility = Visibility.Collapsed;
-
                 SetValue(RecruiterSipProperty, value);
                 _vm.RecruiterSip = value;
 
@@ -48,30 +49,6 @@ namespace PhoneLogic.Core.areas.recruiter
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RecruiterSipProperty =
             DependencyProperty.Register("RecruiterSip", typeof(string), typeof(RecruiterRptView), new PropertyMetadata(""));
-
-        //private void tbtnPlay_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    AudioPlayer.Visibility = Visibility.Visible;
-        //    _selectedButton = (sender as ToggleButton);
-        //    _selectedButton.Content = "Stop";
-        //    AudioPlayer.Play();
-
-        //}
-
-        //private void tbtnPlay_Unchecked(object sender, RoutedEventArgs e)
-        //{
-        //    _selectedButton = (sender as ToggleButton);
-        //    _selectedButton.Content = "Play";
-        //    //AudioPlayer.Stop();
-        //    AudioPlayer.Pause();
-        //    AudioPlayer.Visibility = Visibility.Collapsed;
-        //}
-
-        //private void ResetPlaybackState(object o, RoutedEventArgs e)
-        //{
-        //    _selectedButton.Content = "Play";
-        //    AudioPlayer.Visibility = Visibility.Collapsed;
-        //}
 
         private void RecruiterLogDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -94,7 +71,7 @@ namespace PhoneLogic.Core.areas.recruiter
                     //AudioPlayer.PlaybackFileName = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" +
                     //                               _vm.SelectedRecruiterLog.callId + ".wma";
                     AudioPlayer.Visibility = Visibility.Visible;
-                    AudioPlayer.Play();
+                    //AudioPlayer.Play();
                 }
 
             }

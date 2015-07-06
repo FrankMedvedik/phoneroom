@@ -2,7 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
+using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -21,11 +23,22 @@ namespace PhoneLogic.Core.areas.recruiter
             DataContext = _vm;
             _vm.RefreshAll();
             AudioPlayer.Visibility = Visibility.Collapsed;
+            Messenger.Default.Register<NotificationMessage>(this, HandleNotification);
             //AudioPlayer.AudioPlayback.MediaEnded += ResetPlaybackState;
             //SizeChanged += HandleResizeGrid;
         }
 
-
+        private void HandleNotification(NotificationMessage message)
+        {
+            if (message.Notification == Notifications.PauseRefresh)
+            {
+                tbCanRefresh.Text = "Can Refresh";
+            }
+            if (message.Notification == Notifications.ResumeRefresh)
+            {
+                tbCanRefresh.Text = "Refresh Paused";
+            }
+        }
 
 
         //}

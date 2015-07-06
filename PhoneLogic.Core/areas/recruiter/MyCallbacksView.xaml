@@ -74,5 +74,6 @@
         </StackPanel>
         <!--<Views:AudioPlaybackView Grid.Row="2" Name="AudioPlayer" Visibility="Collapsed"/>-->
         <audioPlayer:SimplePlayer Name="AudioPlayer" Grid.Row="2" Grid.Column="0"  Visibility="Collapsed"/>
+        <TextBlock Name="tbCanRefresh" Grid.Row="4"/>
     </Grid>
 </UserControl>

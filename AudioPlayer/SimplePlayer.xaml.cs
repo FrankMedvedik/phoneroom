@@ -10,6 +10,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Browser;
 using System.Net;
+using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.Core.MVVMMessenger;
 
 namespace AudioPlayer
 {
@@ -170,6 +172,7 @@ namespace AudioPlayer
                 positionUpdate.Begin();
                 pauseIcon.Visibility = Visibility.Visible;
                 playIcon.Visibility = Visibility.Collapsed;
+                Messenger.Default.Send(Notifications.PauseRefresh);
             }
             else
             {
@@ -177,6 +180,7 @@ namespace AudioPlayer
                 positionUpdate.Stop();
                 pauseIcon.Visibility = Visibility.Collapsed;
                 playIcon.Visibility = Visibility.Visible;
+                Messenger.Default.Send(Notifications.ResumeRefresh);
 
             }
         }
@@ -238,6 +242,7 @@ namespace AudioPlayer
             {
                 mediaElement.Play();
                 expandPlayer.Begin();
+                Messenger.Default.Send(Notifications.PauseRefresh);
             }
             catch (Exception e)
             {

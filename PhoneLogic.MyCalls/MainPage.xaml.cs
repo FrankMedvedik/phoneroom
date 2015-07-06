@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
+using PhoneLogic.Core.MVVMMessenger;
 
 namespace PhoneLogic.MyCalls
 {
@@ -20,6 +12,20 @@ namespace PhoneLogic.MyCalls
         {
             InitializeComponent();
             MyCalls.RecruiterSip = LyncClient.GetClient().Self.Contact.Uri;
+
+            Messenger.Default.Register<AppColors>
+          (
+              this, SetColors
+
+          );
         }
+
+
+        private void SetColors(AppColors ac)
+        {
+            LayoutRoot.Background = ac.TheBackground;
+
+        }
+
     }
 }

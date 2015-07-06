@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
 using Microsoft.Lync.Model.Conversation;
 using Newtonsoft.Json;
 using PhoneLogic.Core;
+using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Core.Views;
@@ -16,6 +19,7 @@ namespace PhoneLogic.Inbound
     {
         private Conversation _myConversation;
 
+
         public MainPage()
         {
             InitializeComponent();
@@ -23,7 +27,29 @@ namespace PhoneLogic.Inbound
 
             DataContext = ConversationContext.Instance;
             InitializeCallInformation();
+            
+            Messenger.Default.Register<AppColors>
+                (
+                    this, SetColors
+                );
         }
+
+
+        private void SetColors(AppColors ac)
+        {
+            String xamlString = "<Canvas xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" Background=\"Aqua\"/>";
+            Canvas c = (Canvas)System.Windows.Markup.XamlReader.Load(xamlString);
+            SolidColorBrush AquaBrush = (SolidColorBrush)c.Background;
+
+
+            //LayoutRoot.Foreground = ac.TheForeground;
+            if (ac.TheBackground != new SolidColorBrush(Colors.LightGray))
+                LayoutRoot.Background = ac.TheBackground;
+            else
+                LayoutRoot.Background = AquaBrush;
+            Main.Background = ac.TheBackground;
+        }
+
 
         public void InitializeCallInformation()
         {
@@ -134,6 +160,7 @@ namespace PhoneLogic.Inbound
                 _myConversation.End();
                 myCW.Close();
             }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

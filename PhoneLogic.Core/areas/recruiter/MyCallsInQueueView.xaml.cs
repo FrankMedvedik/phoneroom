@@ -22,7 +22,7 @@ namespace PhoneLogic.Core.areas.recruiter
         }
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TheForegroundProperty =
-            DependencyProperty.Register("TheForeground", typeof(string), typeof(MyCallsInQueueView), new PropertyMetadata(""));
+            DependencyProperty.Register("TheForeground", typeof(string), typeof(MyCallsInQueueView), new PropertyMetadata("Black"));
 
         public string TheBackground
         {
@@ -30,7 +30,7 @@ namespace PhoneLogic.Core.areas.recruiter
         }
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TheBackgroundProperty =
-            DependencyProperty.Register("TheBackground", typeof(string), typeof(MyCallsInQueueView), new PropertyMetadata(""));
+            DependencyProperty.Register("TheBackground", typeof(string), typeof(MyCallsInQueueView), new PropertyMetadata("#a6dbed"));
 
         }
 }
