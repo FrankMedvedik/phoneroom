@@ -68,10 +68,7 @@ namespace PhoneLogic.Core.areas.recruiter
                         _vm.SelectedRecruiterLog.phoneFormatted);
                     AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" +
                                       _vm.SelectedRecruiterLog.callId + ".wma";
-                    //AudioPlayer.PlaybackFileName = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" +
-                    //                               _vm.SelectedRecruiterLog.callId + ".wma";
                     AudioPlayer.Visibility = Visibility.Visible;
-                    //AudioPlayer.Play();
                 }
 
             }

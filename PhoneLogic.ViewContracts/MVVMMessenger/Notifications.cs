@@ -1,4 +1,4 @@
-﻿namespace PhoneLogic.Core.MVVMMessenger
+﻿namespace PhoneLogic.ViewContracts.MVVMMessenger
 {
     public static class Notifications
     {

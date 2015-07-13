@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.Core;
-using PhoneLogic.Core.MVVMMessenger;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 using PhoneLogic.Core.Services;
 
 namespace PhoneLogic.Outbound

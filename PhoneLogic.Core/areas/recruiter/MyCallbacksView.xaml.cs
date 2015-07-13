@@ -4,10 +4,10 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
-using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.areas.recruiter
 {

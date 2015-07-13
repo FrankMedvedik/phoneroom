@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.areas.recruiter
     

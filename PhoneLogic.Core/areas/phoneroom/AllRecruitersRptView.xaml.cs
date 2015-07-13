@@ -14,18 +14,22 @@ namespace PhoneLogic.Core.areas.phoneroom
 
       
 
+        //private void RecruiterDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+            
+        //    if (_vm.SelectedRecruiter != null)
+        //    {
+        //        RecDtl.RecruiterSip = _vm.SelectedRecruiter.sip;
+        //        _vm.GetRecruiterLogs();
+        //    }
+        //    else
+        //        RecDtl.RecruiterSip = null;
+
+        //}
+
         private void RecruiterDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            if (_vm.SelectedRecruiter != null)
-            {
-                RecDtl.RecruiterSip = _vm.SelectedRecruiter.sip;
-                _vm.GetRecruiterLogs();
-            }
-            else
-                RecDtl.RecruiterSip = null;
-
+            throw new System.NotImplementedException();
         }
-
     }
 }

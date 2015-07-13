@@ -1,4 +1,5 @@
-﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"  x:Class="PhoneLogic.MyCalls.MainPage"
+﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"  
+    x:Class="PhoneLogic.MyCalls.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <recruiter:MyCallsInQueueView FontSize="16" />
-        <recruiter:RecruiterRptView   FontSize="16" Name="MyCalls" Grid.Row="1" Margin="14" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <!--<recruiter:RecruiterLyncCallLogView   FontSize="16" Name="MyCalls" Grid.Row="1" Margin="14" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
         <Views:BuildInformationView Grid.Row="2"/>
     </Grid>
 </UserControl>

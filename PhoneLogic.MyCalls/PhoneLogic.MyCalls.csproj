@@ -167,6 +167,10 @@
       <Project>{920DA392-D09B-4C37-BB57-A75439221000}</Project>
       <Name>PhoneLogic.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhoneLogic.ViewContracts\PhoneLogic.ViewContracts.csproj">
+      <Project>{c6dedda7-f6c6-43ed-8807-748f71e21824}</Project>
+      <Name>PhoneLogic.ViewContracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

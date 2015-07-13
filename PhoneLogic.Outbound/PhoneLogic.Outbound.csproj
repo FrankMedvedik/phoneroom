@@ -252,6 +252,10 @@
       <Project>{920da392-d09b-4c37-bb57-a75439221000}</Project>
       <Name>PhoneLogic.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhoneLogic.ViewContracts\PhoneLogic.ViewContracts.csproj">
+      <Project>{c6dedda7-f6c6-43ed-8807-748f71e21824}</Project>
+      <Name>PhoneLogic.ViewContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Silverlight.Base\Silverlight.Base.csproj">
       <Project>{9020fe33-555c-4a2c-9624-7b3962eb9d0e}</Project>
       <Name>Silverlight.Base</Name>

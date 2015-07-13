@@ -7,11 +7,11 @@ using Microsoft.Lync.Model;
 using Microsoft.Lync.Model.Conversation;
 using Newtonsoft.Json;
 using PhoneLogic.Core;
-using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Core.Views;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Inbound
 {

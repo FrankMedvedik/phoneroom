@@ -114,10 +114,23 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Data" />
   </ItemGroup>
@@ -126,9 +139,6 @@
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="agentLog.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="agentLogDTO.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="callback.cs">
@@ -141,6 +151,15 @@
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="inboundCall.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LyncCallJob.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LyncCallLog.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LyncCallRecruiter.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.cs">
@@ -183,9 +202,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="recruiterLogDTO.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="RecruiterLyncCallLogsController.cs" />
     <Compile Include="RespModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -277,6 +294,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhoneLogic.Model.Net\PhoneLogic.Model.Net.csproj">
+      <Project>{C4C77A22-6318-4E32-90CB-9E9854E03F5A}</Project>
+      <Name>PhoneLogic.Model.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhoneLogic.UserAuth\PhoneLogic.UserAuth.csproj">
+      <Project>{7496A516-D4AC-4EDC-8C2C-016E4F621478}</Project>
+      <Name>PhoneLogic.UserAuth</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

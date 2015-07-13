@@ -109,6 +109,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\Call.cs">
+      <Link>Models\Call.cs</Link>
+    </Compile>
     <Compile Include="..\PhoneLogic.Model.Silverlight\Models\CallbackDto.cs">
       <Link>Models\CallbackDto.cs</Link>
     </Compile>
@@ -139,6 +142,8 @@
     <Compile Include="..\PhoneLogic.Model.Silverlight\TestConfig.cs">
       <Link>TestConfig.cs</Link>
     </Compile>
+    <Compile Include="Models\LyncCallByRecruiter.cs" />
+    <Compile Include="Models\RecruiterLyncCallLog.cs" />
     <Compile Include="Models\RptInboundCallByHour.cs" />
     <Compile Include="Models\RptJobActivity.cs" />
     <Compile Include="Models\RptTodayCallLogSummary.cs" />

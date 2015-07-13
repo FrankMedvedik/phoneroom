@@ -10,26 +10,26 @@ namespace PhoneLogic.Model
         [Display(Name = "Caller ID")]
         public string callerId { get; set; }
         public string callId { get; set; }
-        public System.DateTime callStartTime { get; set; }
+        public Nullable<System.DateTime> callStartTime { get; set; }
         [Display(Name = "Call Start")]
-        public System.DateTime recruiterConnectTime { get; set; }
+        public Nullable<System.DateTime> recruiterConnectTime { get; set; }
         [Display(Name = "Wait Time")]
         public string preconnectDuration { get; set; }
         [Display(Name = "Call Length")]
         public string recruiterCallDuration { get; set; }
         public string recruiterSip { get; set; }
         public string totalCallDuration { get; set; }
-        public System.DateTime callEndTime { get; set; }
+        public Nullable<System.DateTime> callEndTime { get; set; }
         public string tollFreeNumber { get; set; }
 
         public TimeSpan tsrecruiterCallDuration
         {
-            get { return (callEndTime - recruiterConnectTime); }
+            get { return (callEndTime.GetValueOrDefault() - recruiterConnectTime.GetValueOrDefault()); }
         }
 
         public TimeSpan tstotalCallDuration
         {
-            get { return (callEndTime - callStartTime); }
+            get { return (callEndTime.GetValueOrDefault() - callStartTime.GetValueOrDefault()); }
         }
 
 

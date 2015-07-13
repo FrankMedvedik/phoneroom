@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl xmlns:phoneroom1="clr-namespace:PhoneLogic.Core.areas.phoneroom;assembly=PhoneLogic.Core" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,7 +23,10 @@
                 <sdk:TabItem  Header="Recruiters">
                     <phoneroom:AllRecruitersRptView />
                 </sdk:TabItem>
-                <sdk:TabItem  Header="Job Call Activity">
+                    <sdk:TabItem  Header="Calls">
+                        <phoneroom:RecruiterCallRptView />
+                    </sdk:TabItem>
+                    <sdk:TabItem  Header="Job Call Activity">
                     <phoneroom:JobCallActivityRptView />
                 </sdk:TabItem>
                 <sdk:TabItem  Header="Today's Call Log Summary">

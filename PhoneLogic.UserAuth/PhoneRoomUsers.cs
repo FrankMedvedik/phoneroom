@@ -55,7 +55,7 @@ namespace PhoneLogic.UserAuth
                         });
                 }
             }
-            return recruiters;
+            return recruiters.OrderBy(z => z.DisplayName);
         }
 
         public PhoneRoomUsers()
@@ -70,12 +70,14 @@ namespace PhoneLogic.UserAuth
                MKEUsers = cache["MKEUsers"] as IEnumerable<UserPrincipal> ;
                AllUsers = cache["AllUsers"] as IEnumerable<UserPrincipal> ;
         }
+#if DEBUGLOCAL
 
-        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain,"reckner.com","fmedvedik","(manos)3k");
-        
+#else 
+        private PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "reckner.com", "fmedvedik", "(manos)3k");
+
         //private PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
         
-
+#endif
         public Boolean IsSupervisor(string userName)
         {
             var src = UserPrincipal.FindByIdentity(ctx, userName).GetGroups(ctx);

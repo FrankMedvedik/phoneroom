@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
-using PhoneLogic.Core.MVVMMessenger;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.areas.phoneroom
 {
@@ -210,9 +210,9 @@ namespace PhoneLogic.Core.areas.phoneroom
 
         #region RecruiterLogs
 
-        private ObservableCollection<RecruiterLog> _recruiterLogs = new ObservableCollection<RecruiterLog>();
+        private ObservableCollection<Call> _recruiterLogs = new ObservableCollection<Call>();
 
-        public ObservableCollection<RecruiterLog> RecruiterLogs
+        public ObservableCollection<Call> RecruiterLogs
         {
             get
             {
@@ -225,19 +225,19 @@ namespace PhoneLogic.Core.areas.phoneroom
             }
         }
 
-        #region SelectedRecruiterLog
+        #region SelectedCall
 
-        private RecruiterLog _selectedRecruiterLog;
-        public RecruiterLog SelectedRecruiterLog
+        private Call _selectedCall;
+        public Call SelectedCall
         {
             get
             {
-                return _selectedRecruiterLog;
+                return _selectedCall;
             }
             set
             {
-                _selectedRecruiterLog = value;
-                //ShowSelectedRecruiterLog = (_selectedRecruiterLog != null);
+                _selectedCall = value;
+                //ShowSelectedRecruiterLog = (_selectedRecruiter != null);
                 NotifyPropertyChanged();
             }
         }
@@ -284,8 +284,8 @@ namespace PhoneLogic.Core.areas.phoneroom
             else
                 try
                 {
-                    var ro = await RecruiterSvc.GetRecruiterLog(SelectedRecruiter.sip, StartRptDate, EndRptDate);
-                    var r = new ObservableCollection<RecruiterLog>(ro);
+                    var ro = await LyncCallLogSvc.GetCall(SelectedRecruiter.sip , StartRptDate, EndRptDate);
+                    var r = new ObservableCollection<Call>(ro);
                     if (ro.Count > 0)
                     {
                         ShowLogData = true;

@@ -1,7 +1,8 @@
 ﻿using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
-using PhoneLogic.Core.MVVMMessenger;
+using PhoneLogic.ViewContracts.MVVMMessenger;
+
 
 namespace PhoneLogic.MyCalls
 {
@@ -11,7 +12,8 @@ namespace PhoneLogic.MyCalls
         public MainPage()
         {
             InitializeComponent();
-            MyCalls.RecruiterSip = LyncClient.GetClient().Self.Contact.Uri;
+            //MyCalls.RecruiterSip = "sip:kmolina@reckner.com";
+                                                          // LyncClient.GetClient().Self.Contact.Uri;
 
             Messenger.Default.Register<AppColors>
           (

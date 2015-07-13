@@ -25,7 +25,15 @@ namespace PhoneLogic.Model
                 _name = value;
             }
         }
-
+        private int _GMTOffset;
+        public int GMTOffset
+        {
+            get { return _GMTOffset; }
+            set
+            {
+                _GMTOffset = value;
+            }
+        }
         public override string ToString()
         {
             return Code + ": " + Name;
