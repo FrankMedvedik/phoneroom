@@ -222,13 +222,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\LyncCallJobsController.cs" />
     <Compile Include="Controllers\LyncCallByRecruitersController.cs" />
-    <Compile Include="Controllers\RecruiterLyncCallLogsController.cs" />
+    <Compile Include="Controllers\LyncCallJobPhoneroomRecruitersController.cs" />
     <Compile Include="Controllers\CallbacksController.cs" />
     <Compile Include="Controllers\FormattedPhoneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\InboundCallRptController.cs" />
     <Compile Include="Controllers\RecruiterController.cs" />
+    <Compile Include="Controllers\CallsController.cs" />
     <Compile Include="Controllers\TodayRptController.cs" />
     <Compile Include="Controllers\JobActivityRptController.cs" />
     <Compile Include="Controllers\PhoneLogicTasksController.cs" />

@@ -131,6 +131,17 @@
           <Parameter Name="Start" Type="datetime" Mode="In" />
           <Parameter Name="End" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="rpt_GetLyncCallJobRecruiterLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jobNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="sip" Type="nvarchar" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="rpt_GetLyncCallJobRecruiters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="JobNum" Type="char" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="rpt_GetLyncCallJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
@@ -243,6 +254,17 @@
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="rpt_GetLyncCallRecruiter" ReturnType="Collection(PhoneLogicModel.LyncCallRecruiter)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetLyncCallJobRecruiters" ReturnType="Collection(PhoneLogicModel.LyncCallJobRecruiter)">
+            <Parameter Name="JobNum" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetLyncCallJobRecruiterLog" ReturnType="Collection(PhoneLogicModel.LyncCallLog)">
+            <Parameter Name="jobNum" Mode="In" Type="String" />
+            <Parameter Name="sip" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -436,6 +458,7 @@
           <Property Type="String" Name="RecruiterSIP" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="CallDirection" Nullable="false" MaxLength="35" />
           <Property Type="String" Name="CallEndStatus" Nullable="false" MaxLength="35" />
+          <Property Type="Int32" Name="CallDuration" Nullable="true" />
         </ComplexType>
         <ComplexType Name="LyncCallRecruiter">
           <Property Type="String" Name="RecruiterSIP" Nullable="true" MaxLength="100" />
@@ -469,6 +492,22 @@
           <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="AbandonedCnt" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LyncCallJobRecruiter">
+          <Property Type="String" Name="recruiterSip" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CallCnt" Nullable="true" />
+          <Property Type="Int32" Name="IncomingCallCnt" Nullable="true" />
+          <Property Type="Int32" Name="OutgoingCallCnt" Nullable="true" />
+          <Property Type="Int32" Name="TotalCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="AvgCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="MaxCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="UniqueCallerCnt" Nullable="true" />
+          <Property Type="Int32" Name="CompleteCnt" Nullable="true" />
+          <Property Type="Int32" Name="AbandonedCnt" Nullable="true" />
+          <Property Type="Int32" Name="LeftMsgCnt" Nullable="true" />
+          <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="11" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -726,6 +765,7 @@
                 <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
                 <ScalarProperty Name="CallDirection" ColumnName="CallDirection" />
                 <ScalarProperty Name="CallEndStatus" ColumnName="CallEndStatus" />
+                <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -743,6 +783,7 @@
                 <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
                 <ScalarProperty Name="CallDirection" ColumnName="CallDirection" />
                 <ScalarProperty Name="CallEndStatus" ColumnName="CallEndStatus" />
+                <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -784,6 +825,44 @@
                 <ScalarProperty Name="UniqueCallerCnt" ColumnName="UniqueCallerCnt" />
                 <ScalarProperty Name="FirstCallTime" ColumnName="FirstCallTime" />
                 <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetLyncCallJobRecruiters" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallJobRecruiters">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallJobRecruiter">
+                <ScalarProperty Name="recruiterSip" ColumnName="recruiterSip" />
+                <ScalarProperty Name="CallCnt" ColumnName="CallCnt" />
+                <ScalarProperty Name="IncomingCallCnt" ColumnName="IncomingCallCnt" />
+                <ScalarProperty Name="OutgoingCallCnt" ColumnName="OutgoingCallCnt" />
+                <ScalarProperty Name="TotalCallDuration" ColumnName="TotalCallDuration" />
+                <ScalarProperty Name="AvgCallDuration" ColumnName="AvgCallDuration" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="UniqueCallerCnt" ColumnName="UniqueCallerCnt" />
+                <ScalarProperty Name="CompleteCnt" ColumnName="CompleteCnt" />
+                <ScalarProperty Name="AbandonedCnt" ColumnName="AbandonedCnt" />
+                <ScalarProperty Name="LeftMsgCnt" ColumnName="LeftMsgCnt" />
+                <ScalarProperty Name="FirstCallTime" ColumnName="FirstCallTime" />
+                <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetLyncCallJobRecruiterLog" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallJobRecruiterLog">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallLog">
+                <ScalarProperty Name="StartLogId" ColumnName="StartLogId" />
+                <ScalarProperty Name="CallID" ColumnName="CallID" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="CallerId" ColumnName="CallerId" />
+                <ScalarProperty Name="TollFreeNumber" ColumnName="TollFreeNumber" />
+                <ScalarProperty Name="CallStartTime" ColumnName="CallStartTime" />
+                <ScalarProperty Name="RecruiterConnectTime" ColumnName="RecruiterConnectTime" />
+                <ScalarProperty Name="CallEndTime" ColumnName="CallEndTime" />
+                <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
+                <ScalarProperty Name="CallDirection" ColumnName="CallDirection" />
+                <ScalarProperty Name="CallEndStatus" ColumnName="CallEndStatus" />
+                <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

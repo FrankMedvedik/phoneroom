@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
-using PhoneLogic.CallRpt.ViewModel;
 
 namespace PhoneLogic.CallRpt
 {
@@ -24,7 +23,7 @@ namespace PhoneLogic.CallRpt
 
         private void Application_Exit(object sender, EventArgs e)
         {
-            ViewModelLocator.Cleanup();
+            //ViewModelLocator.Cleanup();
         }
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)

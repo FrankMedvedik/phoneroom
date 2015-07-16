@@ -220,12 +220,22 @@
     <Compile Include="Areas\CallsByRecruiterForJob.xaml.cs">
       <DependentUpon>CallsByRecruiterForJob.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CallsRpts\CallReportView.xaml.cs">
-      <DependentUpon>CallReportView.xaml</DependentUpon>
+    <Compile Include="Areas\CallsRpts\RecruitersCallReportView.xaml.cs">
+      <DependentUpon>RecruitersCallReportView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\CallsRpts\JobsCallReportView.xaml.cs">
+      <DependentUpon>JobsCallReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CallsRpts\Models\CallRptDateRange.cs" />
+    <Compile Include="Areas\CallsRpts\CallsViewModel.cs" />
+    <Compile Include="Areas\CallsRpts\RptDateRangeViewModel.cs" />
+    <Compile Include="Areas\CallsRpts\JobRecruitersView.xaml.cs">
+      <DependentUpon>JobRecruitersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CallsRpts\JobRecruitersViewModel.cs" />
+    <Compile Include="Areas\CallsRpts\RecruiterViewModel.cs" />
     <Compile Include="Areas\CallsRpts\JobsViewModel.cs" />
-    <Compile Include="Areas\CallsRpts\CallReportViewModel.cs" />
-    <Compile Include="Areas\CallsRpts\CallSummarySvc.cs" />
+    <None Include="Areas\CallsRpts\CallReportViewModel.cs.xxx" />
     <Compile Include="Areas\CallsRpts\JobsForRecruiterView.xaml.cs">
       <DependentUpon>JobsForRecruiterView.xaml</DependentUpon>
     </Compile>
@@ -233,8 +243,8 @@
       <DependentUpon>JobsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CallsRpts\Models\ByPhoneroom.cs" />
-    <Compile Include="Areas\CallsRpts\RecruiterView.xaml.cs">
-      <DependentUpon>RecruiterView.xaml</DependentUpon>
+    <Compile Include="Areas\CallsRpts\RecruitersView.xaml.cs">
+      <DependentUpon>RecruitersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CallsRpts\CallsView.xaml.cs">
       <DependentUpon>CallsView.xaml</DependentUpon>
@@ -243,21 +253,21 @@
     <Compile Include="Areas\CallsRpts\Models\ByJob.cs" />
     <Compile Include="Areas\CallsRpts\Models\ByJobsForRecruiter.cs" />
     <Compile Include="Areas\CallsRpts\Models\ByRecruiter.cs" />
-    <Compile Include="Areas\CallsRpts\NavigationView.xaml.cs">
-      <DependentUpon>NavigationView.xaml</DependentUpon>
+    <Compile Include="Areas\CallsRpts\RptDateRangeView.xaml.cs">
+      <DependentUpon>RptDateRangeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\RecruiterCallRptViewModel.cs" />
-    <Compile Include="Areas\phoneroom\RecruiterCallRptView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\RecruiterCallRptViewModel.cs" />
+    <Compile Include="Areas\PhoneRooms\RecruiterCallRptView.xaml.cs">
       <DependentUpon>RecruiterCallRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\AvailabilityView.xaml.cs">
+    <Compile Include="Areas\Recruiter\AvailabilityView.xaml.cs">
       <DependentUpon>AvailabilityView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\LyncSearchViewModel.cs" />
-    <Compile Include="Areas\recruiter\RecruiterLyncCallLogView.xaml.cs">
+    <Compile Include="Areas\Recruiter\LyncSearchViewModel.cs" />
+    <Compile Include="Areas\Recruiter\RecruiterLyncCallLogView.xaml.cs">
       <DependentUpon>RecruiterLyncCallLogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\RecruiterLyncCallLogViewModel.cs" />
+    <Compile Include="Areas\Recruiter\RecruiterLyncCallLogViewModel.cs" />
     <Compile Include="Behaviors\DefaultButtonBehavior.cs" />
     <Compile Include="Configuration\ConditionalConfiguration.cs" />
     <Compile Include="Commands\ThemeChangeCommand.cs" />
@@ -291,12 +301,12 @@
     <Compile Include="Services\QuoteSvc.cs" />
     <Compile Include="Timestamp.cs" />
     <Compile Include="ViewModels\CollectionViewModelBase.cs" />
-    <Compile Include="Areas\recruiter\OutboundCallViewModel.cs" />
+    <Compile Include="Areas\Recruiter\OutboundCallViewModel.cs" />
     <Compile Include="ViewModels\QuotableQuoteViewModel.cs" />
-    <Compile Include="Areas\recruiter\MyCallsInQueueViewModel.cs" />
-    <Compile Include="Areas\recruiter\RecruiterRptViewModel.cs" />
+    <Compile Include="Areas\Recruiter\MyCallsInQueueViewModel.cs" />
+    <Compile Include="Areas\Recruiter\RecruiterRptViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
-    <Compile Include="Areas\recruiter\OutboundCallView.xaml.cs">
+    <Compile Include="Areas\Recruiter\OutboundCallView.xaml.cs">
       <DependentUpon>OutboundCallView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Utility\QuotableQuoteView.xaml.cs">
@@ -305,19 +315,19 @@
     <Compile Include="Views\Utility\AudioPlaybackView.xaml.cs">
       <DependentUpon>AudioPlaybackView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\MyWork.xaml.cs">
+    <Compile Include="Areas\Recruiter\MyWork.xaml.cs">
       <DependentUpon>MyWork.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\MyCallsInQueueView.xaml.cs">
+    <Compile Include="Areas\Recruiter\MyCallsInQueueView.xaml.cs">
       <DependentUpon>MyCallsInQueueView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\PhoneroomStatusView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\PhoneroomStatusView.xaml.cs">
       <DependentUpon>PhoneroomStatusView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\RecruiterRptView.xaml.cs">
+    <Compile Include="Areas\Recruiter\RecruiterRptView.xaml.cs">
       <DependentUpon>RecruiterRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\CallerInfoView.xaml.cs">
+    <Compile Include="Areas\Recruiter\CallerInfoView.xaml.cs">
       <DependentUpon>CallerInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Utility\TimerView.xaml.cs">
@@ -336,52 +346,52 @@
     <Compile Include="Services\RptSvc.cs" />
     <Compile Include="Services\PhoneLogicTaskSvc.cs" />
     <Compile Include="Services\CallbackSvc.cs" />
-    <Compile Include="Areas\phoneroom\ActiveCallsViewModel.cs" />
-    <Compile Include="Areas\phoneroom\JobCallQueueSummaryViewModel.cs" />
-    <Compile Include="Areas\phoneroom\InboundCallsByHrRptViewModel.cs" />
-    <Compile Include="Areas\phoneroom\JobCallActivityRptViewModel.cs" />
-    <Compile Include="Areas\recruiter\ConversationContext.cs" />
-    <Compile Include="Areas\phoneroom\AllRecruitersViewModel.cs" />
-    <Compile Include="Areas\phoneroom\TodaysCallLogRptViewModel.cs" />
-    <Compile Include="Areas\recruiter\JobDetailViewModel.cs" />
+    <Compile Include="Areas\PhoneRooms\ActiveCallsViewModel.cs" />
+    <Compile Include="Areas\PhoneRooms\JobCallQueueSummaryViewModel.cs" />
+    <Compile Include="Areas\PhoneRooms\InboundCallsByHrRptViewModel.cs" />
+    <Compile Include="Areas\PhoneRooms\JobCallActivityRptViewModel.cs" />
+    <Compile Include="Areas\Recruiter\ConversationContext.cs" />
+    <Compile Include="Areas\PhoneRooms\AllRecruitersViewModel.cs" />
+    <Compile Include="Areas\PhoneRooms\TodaysCallLogRptViewModel.cs" />
+    <Compile Include="Areas\Recruiter\JobDetailViewModel.cs" />
     <Compile Include="ViewModels\PeopleViewModel.cs" />
-    <Compile Include="Areas\phoneroom\ActiveCallsView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\ActiveCallsView.xaml.cs">
       <DependentUpon>ActiveCallsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Utility\BuildInformationView.xaml.cs">
       <DependentUpon>BuildInformationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\InboundCallsByHrChartView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\InboundCallsByHrChartView.xaml.cs">
       <DependentUpon>InboundCallsByHrChartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\JobCallQueueSummaryView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\JobCallQueueSummaryView.xaml.cs">
       <DependentUpon>JobCallQueueSummaryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\JobDetailView.xaml.cs">
+    <Compile Include="Areas\Recruiter\JobDetailView.xaml.cs">
       <DependentUpon>JobDetailView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\LyncSearch.xaml.cs">
+    <Compile Include="Areas\Recruiter\LyncSearch.xaml.cs">
       <DependentUpon>LyncSearch.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\InboundCallsByHrRptView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\InboundCallsByHrRptView.xaml.cs">
       <DependentUpon>InboundCallsByHrRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\MyCallbacksView.xaml.cs">
+    <Compile Include="Areas\Recruiter\MyCallbacksView.xaml.cs">
       <DependentUpon>MyCallbacksView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\JobCallActivityRptView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\JobCallActivityRptView.xaml.cs">
       <DependentUpon>JobCallActivityRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\AllRecruitersRptView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\AllRecruitersRptView.xaml.cs">
       <DependentUpon>AllRecruitersRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\recruiter\RespondentSearchView.xaml.cs">
+    <Compile Include="Areas\Recruiter\RespondentSearchView.xaml.cs">
       <DependentUpon>RespondentSearchView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\TodaysCallLogRptView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\TodaysCallLogRptView.xaml.cs">
       <DependentUpon>TodaysCallLogRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\CallsInQueueView.xaml.cs">
+    <Compile Include="Areas\PhoneRooms\CallsInQueueView.xaml.cs">
       <DependentUpon>CallsInQueueView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BooleanToVisibility.cs" />
@@ -390,9 +400,9 @@
     <Compile Include="ToastNotification.xaml.cs">
       <DependentUpon>ToastNotification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\phoneroom\CallsInQueueViewModel.cs" />
-    <Compile Include="Areas\recruiter\MyJobsViewModel.cs" />
-    <Compile Include="Areas\recruiter\MyCallbacksViewModel.cs" />
+    <Compile Include="Areas\PhoneRooms\CallsInQueueViewModel.cs" />
+    <Compile Include="Areas\Recruiter\MyJobsViewModel.cs" />
+    <Compile Include="Areas\Recruiter\MyCallbacksViewModel.cs" />
     <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.ActiveCall.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -431,7 +441,11 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CallsRpts\CallReportView.xaml">
+    <Page Include="Areas\CallsRpts\RecruitersCallReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Areas\CallsRpts\JobsCallReportView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -439,11 +453,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Areas\CallsRpts\JobRecruitersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Areas\CallsRpts\JobsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CallsRpts\RecruiterView.xaml">
+    <Page Include="Areas\CallsRpts\RecruitersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -451,19 +469,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CallsRpts\NavigationView.xaml">
-      <SubType>Form</SubType>
+    <Page Include="Areas\CallsRpts\RptDateRangeView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\phoneroom\RecruiterCallRptView.xaml">
+    <Page Include="Areas\PhoneRooms\RecruiterCallRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\recruiter\AvailabilityView.xaml">
+    <Page Include="Areas\Recruiter\AvailabilityView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\recruiter\RecruiterLyncCallLogView.xaml">
+    <Page Include="Areas\Recruiter\RecruiterLyncCallLogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -480,7 +498,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\recruiter\OutboundCallView.xaml">
+    <Page Include="Areas\Recruiter\OutboundCallView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -492,23 +510,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\recruiter\MyWork.xaml">
+    <Page Include="Areas\Recruiter\MyWork.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\recruiter\MyCallsInQueueView.xaml">
+    <Page Include="Areas\Recruiter\MyCallsInQueueView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\PhoneroomStatusView.xaml">
+    <Page Include="Areas\PhoneRooms\PhoneroomStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\recruiter\RecruiterRptView.xaml">
+    <Page Include="Areas\Recruiter\RecruiterRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\recruiter\CallerInfoView.xaml">
+    <Page Include="Areas\Recruiter\CallerInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -516,7 +534,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\ActiveCallsView.xaml">
+    <Page Include="Areas\PhoneRooms\ActiveCallsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -524,47 +542,47 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\phoneroom\InboundCallsByHrChartView.xaml">
+    <Page Include="Areas\PhoneRooms\InboundCallsByHrChartView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\JobCallQueueSummaryView.xaml">
+    <Page Include="Areas\PhoneRooms\JobCallQueueSummaryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\recruiter\JobDetailView.xaml">
+    <Page Include="Areas\Recruiter\JobDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\recruiter\LyncSearch.xaml">
+    <Page Include="Areas\Recruiter\LyncSearch.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\InboundCallsByHrRptView.xaml">
+    <Page Include="Areas\PhoneRooms\InboundCallsByHrRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\recruiter\MyCallbacksView.xaml">
+    <Page Include="Areas\Recruiter\MyCallbacksView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\JobCallActivityRptView.xaml">
+    <Page Include="Areas\PhoneRooms\JobCallActivityRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\AllRecruitersRptView.xaml">
+    <Page Include="Areas\PhoneRooms\AllRecruitersRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\recruiter\RespondentSearchView.xaml">
+    <Page Include="Areas\Recruiter\RespondentSearchView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\TodaysCallLogRptView.xaml">
+    <Page Include="Areas\PhoneRooms\TodaysCallLogRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\phoneroom\CallsInQueueView.xaml">
+    <Page Include="Areas\PhoneRooms\CallsInQueueView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

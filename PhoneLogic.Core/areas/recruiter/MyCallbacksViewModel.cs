@@ -28,7 +28,7 @@ namespace PhoneLogic.Core.areas.recruiter
             {
                 CanRefresh = false;
             }
-            if (message.Notification == Notifications.ResumeRefresh)
+            if (message.Notification == Notifications.Refresh)
             {
                 CanRefresh = true;
             }

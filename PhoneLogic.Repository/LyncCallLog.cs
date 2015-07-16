@@ -24,5 +24,6 @@ namespace PhoneLogic.Repository
         public string RecruiterSIP { get; set; }
         public string CallDirection { get; set; }
         public string CallEndStatus { get; set; }
+        public Nullable<int> CallDuration { get; set; }
     }
 }

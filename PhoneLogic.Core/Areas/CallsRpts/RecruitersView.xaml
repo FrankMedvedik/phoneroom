@@ -1,0 +1,67 @@
+﻿<UserControl xmlns:CallsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts" 
+             x:Class="PhoneLogic.Core.Areas.CallsRpts.RecruitersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ignore="http://www.ignore.com"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             mc:Ignorable="d ignore">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal"   Grid.Row="0" Grid.Column="0" >
+            <TextBlock Text="Recruiters" FontSize="14" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
+            <TextBlock Text="Location" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
+            <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
+                           Name="comboBox1" VerticalAlignment="Top" Width="100" 
+                              ItemsSource="{Binding Path=PhoneRooms, Mode=OneWay}" 
+                                SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}" 
+                  DisplayMemberPath="Name" 
+                  SelectedValuePath="Name"  />
+        </StackPanel>
+        <CallsRpts:RptDateRangeView Name="DatePicker" Grid.Row="0" Grid.Column="1" />
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" >
+            <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+        </StackPanel>
+        <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   
+                      ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
+                    ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
+                <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
+                <sdk:DataGridTextColumn Binding="{Binding JobCnt}" />
+                <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
+                <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />
+                <sdk:DataGridTextColumn Binding="{Binding OutgoingCallCnt}" />
+                <sdk:DataGridTextColumn Binding="{Binding CompleteCnt}" />
+                <sdk:DataGridTextColumn Binding="{Binding TotalCallDurationFormatted }" />
+                <sdk:DataGridTextColumn Binding="{Binding MaxCallDurationFormatted }" />
+                <sdk:DataGridTextColumn Binding="{Binding AvgCallDurationFormatted }" />
+                <sdk:DataGridTextColumn Binding="{Binding UniqueCallerCnt }" />
+                <sdk:DataGridTextColumn Binding="{Binding FirstCallTime }" />
+                <sdk:DataGridTextColumn Binding="{Binding LastCallTime }" />
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <Button  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+        <StackPanel  Margin="6" Grid.Row="2" Grid.Column="0"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+            <TextBlock  HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text=""/>
+            <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
+                <TextBlock Text="Error during load"/>
+                <TextBlock Text="{Binding LoadMethod}" />
+                <TextBlock Text="{Binding LoadError}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

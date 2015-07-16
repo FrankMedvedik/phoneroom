@@ -39,7 +39,7 @@ namespace PhoneLogic.Outbound
             {
                 tbCanRefresh.Text = "Can Refresh";
             }
-            if (message.Notification == Notifications.ResumeRefresh)
+            if (message.Notification == Notifications.Refresh)
             {
                 tbCanRefresh.Text = "Refresh Paused";
             }

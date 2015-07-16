@@ -3,7 +3,6 @@
              x:Class="PhoneLogic.CallRpt.App"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:PhoneLogic.CallRpt.ViewModel"
              xmlns:converters="clr-namespace:PhoneLogic.Core.Converters;assembly=PhoneLogic.Core"
              mc:Ignorable="d">
     <Application.Resources>
@@ -14,8 +13,5 @@
             <Setter Property="FontFamily" Value="Ariel Bold"  />
             <Setter Property="Margin" Value="8" />
         </Style>
-        <!--Global View Model Locator-->
-        <vm:ViewModelLocator x:Key="Locator"
-                             d:IsDataSource="True" />
     </Application.Resources>
 </Application>

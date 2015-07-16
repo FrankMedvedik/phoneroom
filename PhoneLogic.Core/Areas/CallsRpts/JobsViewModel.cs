@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.CallRpt.Model;
 using PhoneLogic.Core.areas.CallsRpts.Models;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.areas.CallsRpts
 {
@@ -11,10 +15,17 @@ namespace PhoneLogic.Core.areas.CallsRpts
     {
         public JobsViewModel()
         {
-            StartRptDate = DateTime.Now.AddDays(-5);
-            EndRptDate = DateTime.Now;
-            GetJobs();
+            Messenger.Default.Register<NotificationMessage<CallRptDateRange>>(this, message =>
+            {
+                if (message.Notification == Notifications.JobCallRptDateRangeChanged)
+                {
+                    _callRptDateRange = message.Content;
+                    RefreshAll(null,null);
+                    Messenger.Default.Send(new NotificationMessage<string>(this, SelectedJob.JobNumber, Notifications.CallRptJobNumSet));
+                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
 
+                }
+            });
         }
         private bool _canRefresh = true;
         public Boolean CanRefresh       
@@ -24,45 +35,13 @@ namespace PhoneLogic.Core.areas.CallsRpts
         }
 
         #region reporting variables
-
-        private DateTime _startRptDate = DateTime.Now.AddDays(-5);
-        public DateTime StartRptDate
-        {
-            get { return _startRptDate; }
-            set
-            {
-                _startRptDate = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private DateTime _endRptDate = DateTime.Now;
-        public DateTime EndRptDate
-        {
-            get { return _endRptDate; }
-            set
-            {
-                _endRptDate = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string _selectedJobNumber;
-        public string SelectedJobNumber
-        {
-            get { return _selectedJobNumber; }
-            set
-            {
-                _selectedJobNumber = value;
-                NotifyPropertyChanged();
-            }
-        }
-
+        private CallRptDateRange _callRptDateRange = new CallRptDateRange();
         #endregion
 
         #region CallSummaries
         private ObservableCollection<ByJob> _jobs = new ObservableCollection<ByJob>();
-        
+        private ByJob _selectedJob;
+
 
         public ObservableCollection<ByJob> Jobs
         {
@@ -84,25 +63,60 @@ namespace PhoneLogic.Core.areas.CallsRpts
         {
             if (CanRefresh)
             {
-                var s = SelectedJobNumber;
+                var s = SelectedJob;
                 GetJobs();
                 if (s != null)
                 {
-                    SelectedJobNumber = Jobs.First(x => x.JobNumber == s).JobNumber;
+                    SelectedJob = Jobs.First(x => x.JobNumber == s.JobNumber);
                     GetJobs();
+                }
+            }
+        }
+
+        private string _headingText;
+
+        public string HeadingText
+        {
+            get { return _headingText; }
+            set
+            {
+                _headingText = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ByJob SelectedJob
+        {
+            get { return _selectedJob; }
+            set
+            {
+                _selectedJob = value;
+                NotifyPropertyChanged();
+                if (value != null)
+                {
+                    Messenger.Default.Send(new NotificationMessage<string>(this, SelectedJob.JobNumber,Notifications.CallRptJobNumSet));
+                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
+                }
+                else
+                {
+                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptJobNumCleared));
+                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
                 }
             }
         }
 
         public async void GetJobs()
         {
+            HeadingText = "Loading...";
+            ShowGridData = false;
             try
             {
-                var ro = await LyncCallLogSvc.GetLynCallsByJob(StartRptDate, EndRptDate);
+                var ro = await LyncCallLogSvc.GetLynCallsByJob(_callRptDateRange.StartRptDate, _callRptDateRange.EndRptDate);
                 if (ro.Count > 0)
                 {
                     ShowGridData = true;
                     Jobs = new ObservableCollection<ByJob>(ro);
+                    HeadingText = string.Format("{0} Jobs", Jobs.Count());
                 }
                 else
                     ShowGridData = false;

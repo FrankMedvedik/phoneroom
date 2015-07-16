@@ -1,12 +1,11 @@
-﻿<UserControl xmlns:phoneroom1="clr-namespace:PhoneLogic.Core.areas.phoneroom;assembly=PhoneLogic.Core" 
+﻿<UserControl xmlns:CallsRpts="clr-namespace:PhoneLogic.Core.areas.CallsRpts;assembly=PhoneLogic.Core"  xmlns:phoneroom1="clr-namespace:PhoneLogic.Core.areas.phoneroom;assembly=PhoneLogic.Core" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    xmlns:phoneroom="clr-namespace:PhoneLogic.Core.areas.phoneroom;assembly=PhoneLogic.Core"
+    xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.areas.PhoneRooms;assembly=PhoneLogic.Core"
     x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
     <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -21,20 +20,20 @@
         <Border BorderBrush="Black" BorderThickness="2" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" Grid.Row="0" Grid.Column="0">
             <sdk:TabControl  Width="Auto" >
                 <sdk:TabItem  Header="Recruiters">
-                    <phoneroom:AllRecruitersRptView />
+                    <phoneRooms:AllRecruitersRptView />
                 </sdk:TabItem>
-                    <sdk:TabItem  Header="Calls">
-                        <phoneroom:RecruiterCallRptView />
+                    <sdk:TabItem  Header="Jobs">
+                        <CallsRpts:JobsCallReportView />
                     </sdk:TabItem>
-                    <sdk:TabItem  Header="Job Call Activity">
-                    <phoneroom:JobCallActivityRptView />
+                    <sdk:TabItem  Header="Recruiter Rpt">
+                    <CallsRpts:RecruitersCallReportView />
                 </sdk:TabItem>
                 <sdk:TabItem  Header="Today's Call Log Summary">
-                    <phoneroom:TodaysCallLogRptView />
+                    <phoneRooms:TodaysCallLogRptView />
                 </sdk:TabItem>
                 <sdk:TabItem  Header="Inbound Calls By Hour">
                     <StackPanel Orientation="Vertical">
-                        <phoneroom:InboundCallsByHrChartView />
+                        <phoneRooms:InboundCallsByHrChartView />
                     </StackPanel>
                 </sdk:TabItem>
             </sdk:TabControl>
@@ -48,8 +47,8 @@
         </sdk:GridSplitter>
         <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
             <StackPanel Orientation="Vertical">
-                <phoneroom:CallsInQueueView />
-                <phoneroom:ActiveCallsView  />
+                <phoneRooms:CallsInQueueView />
+                <phoneRooms:ActiveCallsView  />
             </StackPanel>
         </Border>
         <views:BuildInformationView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>

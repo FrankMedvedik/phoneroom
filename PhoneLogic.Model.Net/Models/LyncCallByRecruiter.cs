@@ -18,20 +18,53 @@ namespace PhoneLogic.Model
         [Display(Name = "Title")]
         public String Description { get; set; }
         public string RecruiterSIP { get; set; }
+       [Display(Name = "Job Cnt")]
         public Nullable<int> JobCnt { get; set; }
+        [Display(Name = "Total Call Cnt")]
         public Nullable<int> CallCnt { get; set; }
+        [Display(Name = "Incoming")]
         public Nullable<int> IncomingCallCnt { get; set; }
+        [Display(Name = "Outgoing")]
         public Nullable<int> OutgoingCallCnt { get; set; }
         public Nullable<int> TotalCallDuration { get; set; }
         public Nullable<int> AvgCallDuration { get; set; }
         public Nullable<int> MaxCallDuration { get; set; }
-        public Nullable<int> CompleteCnt { get; set; }
-        public Nullable<int> AbandondedCnt { get; set; }
-        public Nullable<int> LeftMsgCnt { get; set; }
+        [Display(Name = "Unique Callers")]
         public Nullable<int> UniqueCallerCnt { get; set; }
+        [Display(Name = "Complete")]
+        public Nullable<int> CompleteCnt { get; set; }
+        public Nullable<int> LeftMsgCnt { get; set; }
+        public Nullable<int> AbandondedCnt { get; set; }
+        [Display(Name = "First Call")]
         public Nullable<System.DateTime> FirstCallTime { get; set; }
-        public Nullable<System.DateTime> LastCallTime { get; set; }
-    }
+        [Display(Name = "Last Call")]
+        public Nullable<System.DateTime> LastCallTime { get; set; }  
+        [Display(Name = "Total Time in Calls")]
+        public string TotalCallDurationFormatted
+        {
+            get
+            {
+                return string.Format("{0:00}:{1:00}:{2:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60, TotalCallDuration % 60);
+            }
+        }
+        [Display(Name = "Avg")]
+        public string AvgCallDurationFormatted
+        {
+            get
+            {
+                return string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+            }
+        }
+        [Display(Name = "Max")]
+        public string MaxCallDurationFormatted
+        {
+            get
+            {
+                return string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60, MaxCallDuration % 60);
+            }
+        }
+   
+   }
 }
 
  

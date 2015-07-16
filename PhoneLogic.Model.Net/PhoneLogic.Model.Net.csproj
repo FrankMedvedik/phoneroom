@@ -142,8 +142,9 @@
     <Compile Include="..\PhoneLogic.Model.Silverlight\TestConfig.cs">
       <Link>TestConfig.cs</Link>
     </Compile>
+    <Compile Include="Models\LyncCallJobRecruiter.cs" />
     <Compile Include="Models\LyncCallByRecruiter.cs" />
-    <Compile Include="Models\RecruiterLyncCallLog.cs" />
+    <None Include="Models\RecruiterLyncCallLog.cs.xxx" />
     <Compile Include="Models\RptInboundCallByHour.cs" />
     <Compile Include="Models\RptJobActivity.cs" />
     <Compile Include="Models\RptTodayCallLogSummary.cs" />

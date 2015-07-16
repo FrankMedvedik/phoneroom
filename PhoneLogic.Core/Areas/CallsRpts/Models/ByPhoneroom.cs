@@ -2,7 +2,7 @@
 
 namespace PhoneLogic.Core.areas.CallsRpts.Models
 {
-    public class ByPhoneroom
+    public class ByPhoneRoom
     {
         public String JobCnt { get; set; }
         public int CallCnt { get; set; }

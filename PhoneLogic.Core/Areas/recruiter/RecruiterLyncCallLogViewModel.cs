@@ -157,7 +157,7 @@ namespace PhoneLogic.Core.areas.recruiter
             else
                 try
                 {
-                    var ro = await LyncCallLogSvc.GetCall(RecruiterSip, StartRptDate, EndRptDate);
+                    var ro = await LyncCallLogSvc.GetCalls(RecruiterSip, StartRptDate, EndRptDate);
                     var r = new ObservableCollection<Call>(ro.OrderBy(e => e.CallStartTime));
                     if (ro.Count > 0)
                     {

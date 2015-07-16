@@ -1,0 +1,244 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.CallRpt.Model;
+using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Services;
+using PhoneLogic.Core.ViewModels;
+using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
+using Silverlight.Base.MVVMBaseTypes;
+
+namespace PhoneLogic.Core.areas.CallsRpts
+{
+    public class CallsViewModel : CollectionViewModelBase
+    {
+        public CallsViewModel()
+        {
+            Messenger.Default.Register<NotificationMessage<CallRptDateRange>>(this, message =>
+            {
+                if (message.Notification == Notifications.CallRptDateRangeChanged)
+                {
+                    CallRptDateRange = message.Content;
+                    GetCalls();
+                }
+            });
+
+            Messenger.Default.Register<NotificationMessage<string>>(this, message =>
+            {
+                if (message.Notification == Notifications.CallRptJobNumSet)
+                {
+                    SelectedJobNum = message.Content;
+                    GetCalls();
+                }
+
+                if (message.Notification == Notifications.CallRptRecruiterSet)
+                {
+                    SelectedRecruiter = message.Content;
+                    GetCalls();
+                }
+
+                if (message.Notification == Notifications.Refresh)
+                {
+                    GetCalls();
+                }
+            });
+
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                if (message.Notification == Notifications.CallRptJobNumCleared)
+                {
+                    SelectedJobNum = null;
+                }
+            });
+
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                if (message.Notification == Notifications.CallRptRecruiterCleared)
+                {
+                    SelectedRecruiter = null;
+                }
+            });
+
+
+        }
+
+
+        private bool _canRefresh;
+
+        public Boolean CanRefresh
+        {
+            get { return _canRefresh; }
+            set { _canRefresh = value; }
+        }
+
+
+        #region reporting variables
+
+        public CallRptDateRange CallRptDateRange = new CallRptDateRange();
+
+        #endregion
+
+
+        private string _selectedRecruiter;
+
+        public string SelectedRecruiter
+        {
+            get { return _selectedRecruiter; }
+            set
+            {
+                _selectedRecruiter = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Call _selectedCall;
+
+        public Call SelectedCall
+        {
+            get { return _selectedCall; }
+            set
+            {
+                _selectedCall = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _selectedJobNum;
+
+        public string SelectedJobNum
+        {
+            get { return _selectedJobNum; }
+            set
+            {
+                _selectedJobNum = value;
+                NotifyPropertyChanged();
+
+            }
+        }
+
+        private string _headingText;
+
+        public string HeadingText
+        {
+            get { return _headingText; }
+            set
+            {
+                _headingText = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Call> _calls;
+        private string _recruiterNotificationMessage;
+        private string _jobNotificationMessage;
+        private string _rptDatesNotificationMessage;
+
+        public ObservableCollection<Call> Calls
+        {
+            get { return _calls; }
+            set
+            {
+                _calls = value;
+                NotifyPropertyChanged();
+
+            }
+        }
+
+        public string RecruiterNotificationMessage
+        {
+            get { return _recruiterNotificationMessage; }
+            set
+            {
+                _recruiterNotificationMessage = value;
+                NotifyPropertyChanged();
+
+            }
+        }
+
+        public string JobNotificationMessage
+        {
+            get { return _jobNotificationMessage; }
+            set
+            {
+                _jobNotificationMessage = value; 
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string RptDatesNotificationMessage
+        {
+            get { return _rptDatesNotificationMessage; }
+            set
+            {
+                _rptDatesNotificationMessage = value;
+                NotifyPropertyChanged();
+                Messenger.Default.Unregister<NotificationMessage<CallRptDateRange>>(this);
+                Messenger.Default.Register<NotificationMessage<CallRptDateRange>>(this, message =>
+                {
+                    if (message.Notification == RptDatesNotificationMessage)
+                    {
+                        CallRptDateRange = message.Content;
+                        GetCalls();
+                    }
+                });
+
+
+            }
+        }
+
+        protected override void RefreshAll(object sender, EventArgs e)
+        {
+            if (CanRefresh)
+            {
+                var s = SelectedCall;
+                GetCalls();
+                if (s != null)
+                {
+                    SelectedCall = Calls.First(x => x.CallId == s.CallId);
+                }
+            }
+        }
+
+        public async void GetCalls()
+        {
+            ShowGridData = false;
+            HeadingText = "";
+            try
+            {
+
+                if ((CallRptDateRange != null) && (SelectedJobNum != null) && (SelectedRecruiter != null))
+                {
+                    HeadingText = "Loading...";
+                    var ro = await LyncCallLogSvc.GetLyncCallLog(SelectedJobNum, SelectedRecruiter,
+                                CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
+                    ShowGridData = true;
+                    Calls = new ObservableCollection<Call>(ro);
+                    HeadingText = String.Format("Job {0}-{1}  Recruiter {2}", SelectedJobNum.Substring(0, 4),
+                        SelectedJobNum.Substring(4, 4), Calls.First().DisplayName);
+                    LoadedOk = true;
+                }
+                else if ((CallRptDateRange != null) && (SelectedRecruiter != null))
+                {
+                    HeadingText = "Loading...";
+                    var ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, CallRptDateRange.StartRptDate,
+                    CallRptDateRange.EndRptDate);
+                    ShowGridData = true;
+                    Calls = new ObservableCollection<Call>(ro);
+                    HeadingText = String.Format("{0} has {1} Calls", Calls.First().DisplayName, Calls.Count());
+                    LoadedOk = true;
+                }
+            }
+            catch (Exception e)
+            {
+                LoadFailed(e);
+            }
+        }
+    }
+
+
+}
+
+

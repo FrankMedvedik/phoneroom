@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.areas.CallsRpts;
+using PhoneLogic.Core.Helpers;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
@@ -18,10 +19,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             DataContext = _vm;
             
         }
-
-        private void JobsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            JobsDG.Export();
         }
+
     }
 }

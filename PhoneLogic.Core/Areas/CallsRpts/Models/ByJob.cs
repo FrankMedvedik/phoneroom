@@ -36,7 +36,7 @@ namespace PhoneLogic.Core.areas.CallsRpts.Models
         {
             get
             {
-                return JobNumber.Substring(0, 4) + "-" + JobNumber.Substring(4);
+                return JobNumber.Substring(0, 4) + "-" + JobNumber.Substring(4,4);
             }
         }
 

@@ -15,9 +15,9 @@ namespace PhoneLogic.Core.Services
             };
         }
 
-        public static string GetDefault()
+        public static PhoneRoom GetDefault()
         {
-            return "All";
+            return new PhoneRoom {Code = "All", Name = "All"};
         }
     }
 }

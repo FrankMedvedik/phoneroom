@@ -7,11 +7,19 @@
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              mc:Ignorable="d ignore">
     <Grid>
-        <sdk:DataGrid Grid.Column="0" x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="600"  
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" >
+            <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+        </StackPanel>
+        <sdk:DataGrid Grid.Column="0" x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="400"   Grid.Row="1"
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="JobsDG_SelectionChanged" 
-                    ItemsSource="{Binding Jobs}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Stretch" SelectionMode="Single" >
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   
+                      ItemsSource="{Binding Jobs}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"  
+                    ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding RecruiterCnt }" />
@@ -30,5 +38,6 @@
                 <sdk:DataGridTextColumn Binding="{Binding LeftMsgCnt}" />
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
+        <Button  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
     </Grid>
 </UserControl>

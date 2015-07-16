@@ -156,6 +156,9 @@
     <Compile Include="LyncCallJob.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LyncCallJobRecruiter.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LyncCallLog.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
@@ -202,7 +205,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RecruiterLyncCallLogsController.cs" />
     <Compile Include="RespModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

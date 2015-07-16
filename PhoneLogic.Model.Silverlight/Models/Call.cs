@@ -20,21 +20,31 @@ namespace PhoneLogic.Model
         public string CallerId { get; set; }
         [Display(Name = "CallId")]
         public string CallId { get; set; }
-        [Display(Name = "StartTime")]
+        [Display(Name = "Start")]
         public Nullable<System.DateTime> CallStartTime { get; set; }
         [Display(Name = "RecruiterConnectTime")]
         public Nullable<System.DateTime> RecruiterConnectTime { get; set; }
         [Display(Name = "SIP")]
         public string RecruiterSIP { get; set; }
-        [Display(Name = "EndTime")]
+        [Display(Name = "End")]
         public Nullable<System.DateTime> CallEndTime { get; set; }
         [Display(Name = "TollFreeNumber")]
         public string TollFreeNumber { get; set; }
         [Display(Name = "Direction")]
         public string CallDirection { get; set; }
-        [Display(Name = "EndStatus")]
+        [Display(Name = "Status")]
         public string CallEndStatus { get; set; }
+        [Display(Name = "Duration")]
+        public Nullable<int> CallDuration { get; set; }
 
+        [Display(Name = "Length")]
+        public string CallDurationFormatted
+        {
+            get
+            {
+                return string.Format("{0:00}:{1:00}:{2:00}", CallDuration / 3600, (CallDuration / 60) % 60, CallDuration % 60);
+            }
+        }
         [Display(Name = "Job")]
         public string JobFormatted
         {

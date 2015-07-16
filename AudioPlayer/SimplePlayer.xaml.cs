@@ -174,7 +174,7 @@ namespace AudioPlayer
                 positionUpdate.Stop();
                 pauseIcon.Visibility = Visibility.Collapsed;
                 playIcon.Visibility = Visibility.Visible;
-                Messenger.Default.Send(Notifications.ResumeRefresh);
+                Messenger.Default.Send(Notifications.Refresh);
 
             }
         }
