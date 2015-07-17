@@ -29,5 +29,17 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             RecruitersDG.Export();
         }
 
+        private void RecruitersDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_vm.SelectedRecruiter != null)
+            {
+                cv.RecruiterSIP = _vm.SelectedRecruiter.RecruiterSIP;
+                cv.CallRptDateRange = _vm.CallRptDateRange;
+                cv.Refresh();
+            }
+            else
+                cv.ShowData = false;
+        }
+
     }
 }

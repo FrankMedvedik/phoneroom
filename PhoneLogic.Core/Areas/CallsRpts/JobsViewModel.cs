@@ -19,11 +19,8 @@ namespace PhoneLogic.Core.areas.CallsRpts
             {
                 if (message.Notification == Notifications.JobCallRptDateRangeChanged)
                 {
-                    _callRptDateRange = message.Content;
+                    CallRptDateRange = message.Content;
                     RefreshAll(null,null);
-                    Messenger.Default.Send(new NotificationMessage<string>(this, SelectedJob.JobNumber, Notifications.CallRptJobNumSet));
-                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
-
                 }
             });
         }
@@ -35,7 +32,7 @@ namespace PhoneLogic.Core.areas.CallsRpts
         }
 
         #region reporting variables
-        private CallRptDateRange _callRptDateRange = new CallRptDateRange();
+        public CallRptDateRange CallRptDateRange = new CallRptDateRange();
         #endregion
 
         #region CallSummaries
@@ -111,7 +108,7 @@ namespace PhoneLogic.Core.areas.CallsRpts
             ShowGridData = false;
             try
             {
-                var ro = await LyncCallLogSvc.GetLynCallsByJob(_callRptDateRange.StartRptDate, _callRptDateRange.EndRptDate);
+                var ro = await LyncCallLogSvc.GetLynCallsByJob(CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
                 if (ro.Count > 0)
                 {
                     ShowGridData = true;

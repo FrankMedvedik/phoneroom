@@ -17,56 +17,11 @@ namespace PhoneLogic.Core.areas.CallsRpts
     {
         public CallsViewModel()
         {
-            Messenger.Default.Register<NotificationMessage<CallRptDateRange>>(this, message =>
-            {
-                if (message.Notification == Notifications.CallRptDateRangeChanged)
-                {
-                    CallRptDateRange = message.Content;
-                    GetCalls();
-                }
-            });
-
-            Messenger.Default.Register<NotificationMessage<string>>(this, message =>
-            {
-                if (message.Notification == Notifications.CallRptJobNumSet)
-                {
-                    SelectedJobNum = message.Content;
-                    GetCalls();
-                }
-
-                if (message.Notification == Notifications.CallRptRecruiterSet)
-                {
-                    SelectedRecruiter = message.Content;
-                    GetCalls();
-                }
-
-                if (message.Notification == Notifications.Refresh)
-                {
-                    GetCalls();
-                }
-            });
-
-            Messenger.Default.Register<NotificationMessage>(this, message =>
-            {
-                if (message.Notification == Notifications.CallRptJobNumCleared)
-                {
-                    SelectedJobNum = null;
-                }
-            });
-
-            Messenger.Default.Register<NotificationMessage>(this, message =>
-            {
-                if (message.Notification == Notifications.CallRptRecruiterCleared)
-                {
-                    SelectedRecruiter = null;
-                }
-            });
-
 
         }
 
 
-        private bool _canRefresh;
+        private bool _canRefresh = true;
 
         public Boolean CanRefresh
         {
@@ -82,7 +37,7 @@ namespace PhoneLogic.Core.areas.CallsRpts
         #endregion
 
 
-        private string _selectedRecruiter;
+        private string _selectedRecruiter = null;
 
         public string SelectedRecruiter
         {
@@ -106,7 +61,7 @@ namespace PhoneLogic.Core.areas.CallsRpts
             }
         }
 
-        private string _selectedJobNum;
+        private string _selectedJobNum = null;
 
         public string SelectedJobNum
         {
@@ -132,10 +87,6 @@ namespace PhoneLogic.Core.areas.CallsRpts
         }
 
         private ObservableCollection<Call> _calls;
-        private string _recruiterNotificationMessage;
-        private string _jobNotificationMessage;
-        private string _rptDatesNotificationMessage;
-
         public ObservableCollection<Call> Calls
         {
             get { return _calls; }
@@ -143,62 +94,22 @@ namespace PhoneLogic.Core.areas.CallsRpts
             {
                 _calls = value;
                 NotifyPropertyChanged();
-
             }
         }
 
-        public string RecruiterNotificationMessage
-        {
-            get { return _recruiterNotificationMessage; }
-            set
-            {
-                _recruiterNotificationMessage = value;
-                NotifyPropertyChanged();
-
-            }
-        }
-
-        public string JobNotificationMessage
-        {
-            get { return _jobNotificationMessage; }
-            set
-            {
-                _jobNotificationMessage = value; 
-                NotifyPropertyChanged();
-            }
-        }
-
-        public string RptDatesNotificationMessage
-        {
-            get { return _rptDatesNotificationMessage; }
-            set
-            {
-                _rptDatesNotificationMessage = value;
-                NotifyPropertyChanged();
-                Messenger.Default.Unregister<NotificationMessage<CallRptDateRange>>(this);
-                Messenger.Default.Register<NotificationMessage<CallRptDateRange>>(this, message =>
-                {
-                    if (message.Notification == RptDatesNotificationMessage)
-                    {
-                        CallRptDateRange = message.Content;
-                        GetCalls();
-                    }
-                });
-
-
-            }
-        }
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
             if (CanRefresh)
             {
-                var s = SelectedCall;
+                //var s = SelectedCall;
                 GetCalls();
-                if (s != null)
-                {
-                    SelectedCall = Calls.First(x => x.CallId == s.CallId);
-                }
+                //if ((s != null) && (Calls.First(x => x.CallId == s.CallId) != null))
+                //{
+                //    SelectedCall = Calls.First(x => x.CallId == s.CallId);
+                //}
+                //else
+                //    SelectedCall = null;
             }
         }
 
@@ -227,7 +138,7 @@ namespace PhoneLogic.Core.areas.CallsRpts
                     CallRptDateRange.EndRptDate);
                     ShowGridData = true;
                     Calls = new ObservableCollection<Call>(ro);
-                    HeadingText = String.Format("{0} has {1} Calls", Calls.First().DisplayName, Calls.Count());
+                    HeadingText = String.Format("{0} has {1} Calls", Calls.First().DisplayName != "" ? Calls.First().DisplayName: "Inbound Respondent", Calls.Count());
                     LoadedOk = true;
                 }
             }

@@ -22,7 +22,7 @@ namespace PhoneLogic.Core.areas.CallsRpts
             
             Messenger.Default.Register<NotificationMessage<CallRptDateRange>>(this, message =>
             {
-                if (message.Notification == Notifications.CallRptDateRangeChanged)
+                if (message.Notification == Notifications.RecruiterCallRptDateRangeChanged)
                 {
                     CallRptDateRange = message.Content;
                     RefreshAll(null, null);
@@ -51,8 +51,9 @@ namespace PhoneLogic.Core.areas.CallsRpts
             {
                 _selectedPhoneRoomName = value;
                 NotifyPropertyChanged();
-                Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
+                SelectedRecruiter = null;
                 RefreshFilteredData();
+
             }
         }
 
@@ -101,7 +102,7 @@ namespace PhoneLogic.Core.areas.CallsRpts
 
         private void FilterByPhoneRoom()
         {
-            var fr = new List<LyncCallByRecruiter >();
+            var fr = new List<LyncCallByRecruiter>();
             if ((SelectedPhoneRoomName == null) || (SelectedPhoneRoomName == "All"))
                 FilteredRecruiters = Recruiters;
             else
@@ -113,7 +114,6 @@ namespace PhoneLogic.Core.areas.CallsRpts
                 if (FilteredRecruiters.Count == fr.Count())
                     return;
                 FilteredRecruiters = new ObservableCollection<LyncCallByRecruiter>(fr);
-
             }
         }
         #endregion

@@ -28,18 +28,18 @@
                     <sdk:TabItem  Header="Recruiter Rpt">
                     <CallsRpts:RecruitersCallReportView />
                 </sdk:TabItem>
-                <sdk:TabItem  Header="Today's Call Log Summary">
+                <!--<sdk:TabItem  Header="Today's Call Log Summary">
                     <phoneRooms:TodaysCallLogRptView />
                 </sdk:TabItem>
                 <sdk:TabItem  Header="Inbound Calls By Hour">
                     <StackPanel Orientation="Vertical">
                         <phoneRooms:InboundCallsByHrChartView />
                     </StackPanel>
-                </sdk:TabItem>
+                </sdk:TabItem>-->
             </sdk:TabControl>
         </Border>
-        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Width="6" Fill="#FFEAEAEA"/>
-        <sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left" 
+        <Rectangle Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Width="6" Fill="#FFEAEAEA"/>
+        <sdk:GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" 
                 Width="6" BorderBrush="#FFD6D6D6" BorderThickness="1,0" Opacity="0.715">
             <sdk:GridSplitter.Background>
                 <ImageBrush Stretch="None" ImageSource="SplitterHandle.png"/>

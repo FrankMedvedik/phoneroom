@@ -7,7 +7,17 @@
              xmlns:ignore="http://www.ignore.com"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              mc:Ignorable="d ignore">
-    <Grid>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition  Height="Auto"/>
@@ -18,7 +28,6 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-
         <StackPanel Orientation="Horizontal"   Grid.Row="0" Grid.Column="0" >
             <TextBlock Text="Recruiters" FontSize="14" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
             <TextBlock Text="Location" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
@@ -30,13 +39,12 @@
                   SelectedValuePath="Name"  />
         </StackPanel>
         <CallsRpts:RptDateRangeView Name="DatePicker" Grid.Row="0" Grid.Column="1" />
-
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" >
             <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
         </StackPanel>
         <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="RecruitersDG_SelectionChanged"
                       ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
                 <sdk:DataGrid.Columns>
@@ -63,5 +71,12 @@
                 <TextBlock Text="{Binding LoadError}" />
             </StackPanel>
         </StackPanel>
+    </Grid>
+        <sdk:GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Width="Auto" Height="3" BorderBrush="Black" BorderThickness="1,0" Opacity="0.715">
+            <sdk:GridSplitter.Background>
+                <SolidColorBrush Opacity="1" Color="Gray" />
+            </sdk:GridSplitter.Background>
+        </sdk:GridSplitter>
+        <CallsRpts:CallsView Grid.Row="2"  Name="cv"/>
     </Grid>
 </UserControl>

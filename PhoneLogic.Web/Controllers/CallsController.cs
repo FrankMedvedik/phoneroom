@@ -16,6 +16,8 @@ namespace PhoneLogic.Web.Controllers
         // GET: api/Calls?sip=1&startDate=2&endDate=3
         public IEnumerable<Call> GetCalls(string sip, DateTime startDate, DateTime endDate)
         {
+            if (sip == null)
+                sip = "";
             var Logs = db.rpt_GetRecruiterLyncCallLog(sip, startDate, endDate).ToList();
             var recruiters = p.GetAllRecruiters();
 

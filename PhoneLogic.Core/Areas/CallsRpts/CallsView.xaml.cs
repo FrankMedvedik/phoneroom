@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.areas.CallsRpts;
+using PhoneLogic.Core.areas.CallsRpts.Models;
 using PhoneLogic.Core.Helpers;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
@@ -19,49 +20,55 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             DataContext = _vm;
         }
 
-        public string RecruiterNotificationMessage
+        public void Refresh()
         {
-            get { return _vm.RecruiterNotificationMessage; }
+            _vm.RefreshAll();
+        }
+
+        public string RecruiterSIP
+        {
+            get { return _vm.SelectedRecruiter; }
             set
             {
-                SetValue(RecruiterNotificationMessageProperty, value);
-                _vm.RecruiterNotificationMessage = value;
+                SetValue(RecruiterSIPProperty, value);
+                _vm.SelectedRecruiter = value;
+                cc.Source = value;
             }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RecruiterNotificationMessageProperty =
-            DependencyProperty.Register("RecruiterNotificationMessage", typeof(string), typeof(CallsView), new PropertyMetadata(""));
+        public static readonly DependencyProperty RecruiterSIPProperty =
+            DependencyProperty.Register("RecruiterSIP", typeof(string), typeof(CallsView), new PropertyMetadata(""));
 
 
-        public string JobNotificationMessage
+        public string SelectedJobNum
         {
-            get { return _vm.JobNotificationMessage; }
+            get { return _vm.SelectedJobNum; }
             set
             {
-                SetValue(JobNotificationMessageProperty, value);
-                _vm.JobNotificationMessage = value;
+                SetValue(SelectedJobNumProperty, value);
+                _vm.SelectedJobNum = value;
             }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty JobNotificationMessageProperty =
-            DependencyProperty.Register("JobNotificationMessage", typeof(string), typeof(CallsView), new PropertyMetadata(""));
+        public static readonly DependencyProperty SelectedJobNumProperty =
+            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(CallsView), new PropertyMetadata(""));
 
 
-        public string RptDatesNotificationMessage
+        public CallRptDateRange CallRptDateRange
         {
-            get { return _vm.RptDatesNotificationMessage; }
+            get { return _vm.CallRptDateRange; }
             set
             {
-                SetValue(RptDatesNotificationMessageProperty, value);
-                _vm.RptDatesNotificationMessage = value;
+                SetValue(CallRptDateRangeProperty, value);
+                _vm.CallRptDateRange = value;
             }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RptDatesNotificationMessageProperty =
-            DependencyProperty.Register("RptDatesNotificationMessage", typeof(string), typeof(CallsView), new PropertyMetadata(""));
+        public static readonly DependencyProperty CallRptDateRangeProperty =
+            DependencyProperty.Register("CallRptDateRange", typeof(CallRptDateRange), typeof(CallsView), new PropertyMetadata(new CallRptDateRange() ));
 
         private void CallsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -91,6 +98,26 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             CallsDG.Export();
         }
+
+
+
+        public bool ShowData
+        {
+            get { return _vm.ShowGridData; }
+            set
+            {
+                _vm.ShowGridData = value;
+                AudioPlayer.Visibility = System.Windows.Visibility.Collapsed;
+                _vm.HeadingText = "";
+
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for boolean ShowData.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowDataProperty =
+      DependencyProperty.Register("ShowData", typeof(bool), typeof(CallsView), new PropertyMetadata(false));
+
+
 
      
     }
