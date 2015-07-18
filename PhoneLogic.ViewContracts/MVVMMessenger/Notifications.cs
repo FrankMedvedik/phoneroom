@@ -18,6 +18,6 @@
 
         public static string RecruiterCallRptDateRangeChanged { get { return "RecruiterCallRptDateRangeChanged"; } }
         public static string JobCallRptDateRangeChanged { get { return "JobCallRptDateRangeChanged"; } }
-
+        public static string JobCallbackRptDateRangeChanged { get { return "JobCallbackRptDateRangeChanged"; } }
     }
 }

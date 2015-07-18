@@ -138,7 +138,32 @@ namespace PhoneLogic.Core.Services
                     var client = new WebClient();
                     var data = await client.DownloadStringTaskAsync(
                         new Uri(ConditionalConfiguration.apiUrl + "LyncCallByRecruiters?startDate=" + startRptDate +
-                                "&endDate=" + endRptDate));
+                                "&endDate=" + endRptDate+"&primaryEntity=Log"));
+                    var z = JsonConvert.DeserializeObject<List<LyncCallByRecruiter>>(data);
+                    return z;
+                }
+                catch (Exception e)
+                {
+                    if (e.InnerException == null)
+                        Console.Write(e.Message + e.StackTrace);
+                    else
+                        Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
+                    return null;
+                }
+
+            }
+        }
+
+        public static async Task<List<LyncCallByRecruiter>> GetRecruitersPlusCallSummary(DateTime startRptDate,
+            DateTime endRptDate)
+        {
+            {
+                try
+                {
+                    var client = new WebClient();
+                    var data = await client.DownloadStringTaskAsync(
+                        new Uri(ConditionalConfiguration.apiUrl + "LyncCallByRecruiters?startDate=" + startRptDate +
+                                "&endDate=" + endRptDate + "&primaryEntity=Recruiter"));
                     var z = JsonConvert.DeserializeObject<List<LyncCallByRecruiter>>(data);
                     return z;
                 }

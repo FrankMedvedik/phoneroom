@@ -147,6 +147,9 @@
     <Compile Include="callbackDTO.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CallbackRpt.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="callLog.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>

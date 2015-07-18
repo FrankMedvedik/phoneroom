@@ -6,6 +6,7 @@ using Microsoft.Lync.Model;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using PhoneLogic.Model;
+using PhoneLogic.Model.Models;
 
 
 namespace PhoneLogic.Core.Services
@@ -58,6 +59,31 @@ namespace PhoneLogic.Core.Services
             var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "Callbacks?SIP=" + sip));
             return JsonConvert.DeserializeObject<List<myCallback>>(data);
         }
+
+        public static async Task<List<myCallback>> GetMyCallbacks(string jobNum, string taskId, DateTime startDate, DateTime endDate)
+        {
+            var client = new WebClient();
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl 
+                + "Callbacks" 
+                + "?jobNum="+jobNum
+                + "&taskId"+taskId
+                + "&startDate" + startDate
+                + "&endDate" + endDate
+                ));
+            return JsonConvert.DeserializeObject<List<myCallback>>(data);
+        }
+
+        public static async Task<List<CallbackRpt>> GetCallbackRpt(DateTime startDate, DateTime endDate)
+        {
+            var client = new WebClient();
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl
+                + "Callbacks" 
+                + "?startDate" + startDate
+                + "&endDate" + endDate
+                ));
+            return JsonConvert.DeserializeObject<List<CallbackRpt>>(data);
+        }
+
 
         public static async Task<CallbackDto> GetMyCallback(int id)
         {

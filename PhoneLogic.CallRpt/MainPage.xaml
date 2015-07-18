@@ -16,6 +16,6 @@
     </UserControl.Resources>
     <Grid>
         <!--<CallsRpts:RecruitersCallReportView />-->
-        <CallsRpts:JobsCallReportView />
+        <!--<CallsRpts:JobsCallReportView />-->
     </Grid>
 </UserControl>

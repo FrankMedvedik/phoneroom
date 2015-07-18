@@ -20,7 +20,7 @@
                 <RowDefinition  Height="Auto"/>
                 <RowDefinition  Height="Auto"/>
             </Grid.RowDefinitions>
-            <callsRpts:RptDateRangeView Grid.Row="0" Name="DatePicker"/>
+            <callsRpts:RptDateRangeView Grid.Row="0" Name="dp"/>
             <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Stretch" >
                 <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
             </StackPanel>

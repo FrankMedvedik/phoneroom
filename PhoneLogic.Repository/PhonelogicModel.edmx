@@ -123,6 +123,10 @@
           <Parameter Name="beginTime" Type="varchar" Mode="In" />
           <Parameter Name="endTime" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="rpt_GetCallbackRpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="rpt_GetCallLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
@@ -130,6 +134,12 @@
         <Function Name="rpt_GetJobCallActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Start" Type="datetime" Mode="In" />
           <Parameter Name="End" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="rpt_GetJobCallbacks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jobNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="taskId" Type="nvarchar" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="rpt_GetLyncCallJobRecruiterLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jobNum" Type="nvarchar" Mode="In" />
@@ -265,6 +275,16 @@
           <FunctionImport Name="rpt_GetLyncCallJobRecruiterLog" ReturnType="Collection(PhoneLogicModel.LyncCallLog)">
             <Parameter Name="jobNum" Mode="In" Type="String" />
             <Parameter Name="sip" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetCallbackRpt" ReturnType="Collection(PhoneLogicModel.CallbackRpt)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetJobCallbacks" ReturnType="Collection(PhoneLogicModel.callbackDTO)">
+            <Parameter Name="jobNum" Mode="In" Type="String" />
+            <Parameter Name="taskId" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -508,6 +528,14 @@
           <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
           <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="CallbackRpt">
+          <Property Type="String" Name="jobNum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskID" Nullable="false" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TaskTypeId" Nullable="false" MaxLength="35" />
+          <Property Type="Int32" Name="openCnt" Nullable="false" />
+          <Property Type="Int32" Name="closedCnt" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -863,6 +891,39 @@
                 <ScalarProperty Name="CallDirection" ColumnName="CallDirection" />
                 <ScalarProperty Name="CallEndStatus" ColumnName="CallEndStatus" />
                 <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetCallbackRpt" FunctionName="PhoneLogicModel.Store.rpt_GetCallbackRpt">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.CallbackRpt">
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
+                <ScalarProperty Name="openCnt" ColumnName="openCnt" />
+                <ScalarProperty Name="closedCnt" ColumnName="closedCnt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetJobCallbacks" FunctionName="PhoneLogicModel.Store.rpt_GetJobCallbacks">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.callbackDTO">
+                <ScalarProperty Name="callbackID" ColumnName="callbackID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="msgLength" ColumnName="msgLength" />
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+                <ScalarProperty Name="UTC_code" ColumnName="UTC_code" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="timeEntered" ColumnName="timeEntered" />
+                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
+                <ScalarProperty Name="msgScr" ColumnName="msgScr" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="SIP" ColumnName="SIP" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

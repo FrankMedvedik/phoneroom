@@ -220,14 +220,12 @@
     <Compile Include="Areas\CallsByRecruiterForJob.xaml.cs">
       <DependentUpon>CallsByRecruiterForJob.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CallsRpts\RecruitersCallReportView.xaml.cs">
-      <DependentUpon>RecruitersCallReportView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\CallsRpts\JobsCallReportView.xaml.cs">
-      <DependentUpon>JobsCallReportView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Areas\CallsRpts\Models\CallRptDateRange.cs" />
     <Compile Include="Areas\CallsRpts\CallsViewModel.cs" />
+    <Compile Include="Areas\CallsRpts\RecruiterMonitorView.xaml.cs">
+      <DependentUpon>RecruiterMonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CallsRpts\RecruiterMonitorViewModel.cs" />
     <Compile Include="Areas\CallsRpts\RptDateRangeViewModel.cs" />
     <Compile Include="Areas\CallsRpts\JobRecruitersView.xaml.cs">
       <DependentUpon>JobRecruitersView.xaml</DependentUpon>
@@ -235,7 +233,6 @@
     <Compile Include="Areas\CallsRpts\JobRecruitersViewModel.cs" />
     <Compile Include="Areas\CallsRpts\RecruiterViewModel.cs" />
     <Compile Include="Areas\CallsRpts\JobsViewModel.cs" />
-    <None Include="Areas\CallsRpts\CallReportViewModel.cs.xxx" />
     <Compile Include="Areas\CallsRpts\JobsForRecruiterView.xaml.cs">
       <DependentUpon>JobsForRecruiterView.xaml</DependentUpon>
     </Compile>
@@ -441,14 +438,6 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CallsRpts\RecruitersCallReportView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Areas\CallsRpts\JobsCallReportView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Areas\CallsRpts\JobsForRecruiterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -460,6 +449,10 @@
     <Page Include="Areas\CallsRpts\JobsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\CallsRpts\RecruiterMonitorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Areas\CallsRpts\RecruitersView.xaml">
       <SubType>Designer</SubType>

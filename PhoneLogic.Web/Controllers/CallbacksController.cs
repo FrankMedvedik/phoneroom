@@ -22,13 +22,28 @@ namespace PhoneLogic.Web.Controllers
             return db.callbacks.FirstOrDefault(b => b.callbackID == id);
         }
 
-        
-        // GET: api/Callbacks/sip
+
+        // GET: api/Callbacks/?startDate=3&endDate=4
+        public List<CallbackRpt> GetCallbacks(DateTime startDate, DateTime endDate)
+        {
+            List <CallbackRpt> list = db.rpt_GetCallbackRpt(startDate, endDate).ToList();
+            return list;
+        }
+
+        // GET: api/Callbacks/?jobNum=1&taskId=2&startDate=3&endDate=4
+        public List<callbackDTO> GetCallbacks(string jobNum, string taskId, DateTime startDate, DateTime endDate)
+        {
+            List<callbackDTO> list = db.rpt_GetJobCallbacks(jobNum, taskId, startDate, endDate).ToList();
+            return list;
+        }
+
+        // GET: api/Callbacks
         public List<callbackDTO> GetCallbacks(string SIP)
         {
             List<callbackDTO> list = db.getMyCallbacks(SIP).ToList();
             return list;
         }
+
 
         // PUT: api/Callbacks/5
         [ResponseType(typeof(void))]

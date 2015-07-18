@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using PhoneLogic.Core.areas.CallsRpts;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.ViewContracts.MVVMMessenger;
@@ -18,7 +17,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             InitializeComponent();
             _vm = new JobsViewModel();
             DataContext = _vm;
-            DatePicker.NotificationMessage = Notifications.JobCallRptDateRangeChanged;
+            dp.NotificationMessage = Notifications.JobCallRptDateRangeChanged;
         }
             
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

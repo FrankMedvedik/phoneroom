@@ -17,6 +17,7 @@ namespace PhoneLogic.Model
         public String EmailAddress { get; set; }
         [Display(Name = "Title")]
         public String Description { get; set; }
+       [Display(Name = "Status")]
         public string RecruiterSIP { get; set; }
        [Display(Name = "Job Cnt")]
         public Nullable<int> JobCnt { get; set; }

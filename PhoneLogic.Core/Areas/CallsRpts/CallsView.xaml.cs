@@ -15,7 +15,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         public CallsView()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             _vm = new CallsViewModel();
             DataContext = _vm;
         }
@@ -68,7 +68,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CallRptDateRangeProperty =
-            DependencyProperty.Register("CallRptDateRange", typeof(CallRptDateRange), typeof(CallsView), new PropertyMetadata(new CallRptDateRange() ));
+            DependencyProperty.Register("CallRptDateRange", typeof(CallRptDateRange), typeof(CallsView), new PropertyMetadata(new CallRptDateRange()));
 
         private void CallsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -119,6 +119,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
 
 
-     
+
     }
 }
