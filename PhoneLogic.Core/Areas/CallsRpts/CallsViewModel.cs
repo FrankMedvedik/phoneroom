@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.CallRpt.Model;
-using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 using Silverlight.Base.MVVMBaseTypes;
 
-namespace PhoneLogic.Core.areas.CallsRpts
+namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class CallsViewModel : CollectionViewModelBase
     {
@@ -117,34 +118,37 @@ namespace PhoneLogic.Core.areas.CallsRpts
         {
             ShowGridData = false;
             HeadingText = "";
+            var ro = new List<Call>();
             try
             {
 
                 if ((CallRptDateRange != null) && (SelectedJobNum != null) && (SelectedRecruiter != null))
                 {
                     HeadingText = "Loading...";
-                    var ro = await LyncCallLogSvc.GetLyncCallLog(SelectedJobNum, SelectedRecruiter,
+                    ro = await LyncCallLogSvc.GetLyncCallLog(SelectedJobNum, SelectedRecruiter,
                                 CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
-                    ShowGridData = true;
-                    Calls = new ObservableCollection<Call>(ro);
-                    HeadingText = String.Format("Job {0}-{1}  Recruiter {2}", SelectedJobNum.Substring(0, 4),
-                        SelectedJobNum.Substring(4, 4), Calls.First().DisplayName);
-                    LoadedOk = true;
                 }
                 else if ((CallRptDateRange != null) && (SelectedRecruiter != null))
                 {
                     HeadingText = "Loading...";
-                    var ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, CallRptDateRange.StartRptDate,
-                    CallRptDateRange.EndRptDate);
-                    ShowGridData = true;
-                    Calls = new ObservableCollection<Call>(ro);
-                    HeadingText = String.Format("{0} has {1} Calls", Calls.First().DisplayName != "" ? Calls.First().DisplayName: "Inbound Respondent", Calls.Count());
-                    LoadedOk = true;
+                    ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, CallRptDateRange.StartRptDate,
+                        CallRptDateRange.EndRptDate);
                 }
+
+                ShowGridData = true;
+                Calls = new ObservableCollection<Call>(ro);
+                if (Calls.Count > 0)
+                    HeadingText = String.Format("{0} has {1} Calls",
+                        Calls.First().DisplayName != "" ? Calls.First().DisplayName : "Inbound Respondent",
+                        Calls.Count());
+                else
+                    HeadingText = "Recruiter has no calls";
+                LoadedOk = true;
             }
             catch (Exception e)
             {
                 LoadFailed(e);
+                HeadingText = e.Message;
             }
         }
     }

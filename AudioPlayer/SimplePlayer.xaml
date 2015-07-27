@@ -3,9 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:my="clr-namespace:AudioPlayer"
     Width="350" Height="30">
-    <Canvas x:Name="parentCanvas"
+            <Canvas x:Name="parentCanvas"
         Loaded="Page_Loaded">
-            <Canvas.Resources>
+        <Canvas.Resources>
             <SolidColorBrush x:Key="rightCanvasBrush" Color="#CCCCCC" />
             <SolidColorBrush x:Key="iconBrush" Color="#666666" />
             <SolidColorBrush x:Key="midCanvasBrush" Color="#E9E6DF" />
@@ -89,7 +89,7 @@
         </Canvas.Resources>
 
         <MediaElement x:Name="mediaElement" AutoPlay="False" />
-        
+
         <Rectangle x:Name="hiddenRect" Visibility="Collapsed" />
 
         <Canvas 
@@ -137,7 +137,7 @@
             <Path x:Name="LeftSection" 
                   Fill="{StaticResource leftCanvasBrush}"
                   Data="M 5 0 h 30 l 10 15 l -10 15 h -30 a 5,5 0 0 1 -5,-5 v -20 a 5,5 0 0 1 5,-5" />
-            
+
             <my:AnimatedSpeaker 
                 x:Name="animatedSpeaker" 
                 Canvas.Left="4" 
@@ -153,7 +153,7 @@
                 Canvas.Left="4"
                 Canvas.Top="3" />
         </Canvas>
-        
+
         <!-- we are starting off in the collapsed position -->
         <Canvas x:Name="rightCanvas" Canvas.Top="0" Canvas.Left="35" Width="100" Height="30">
             <Path x:Name="rightSection" 
@@ -161,7 +161,7 @@
                   Data="M 0 0 h 40 a 5,5 0 0 1 5,5 v 20 a 5,5 0 0 1 -5,5 h -40 l 10,-15 Z"/>
             <Canvas 
                 Canvas.Left="22" 
-                Canvas.Top="6" >     
+                Canvas.Top="6" >
                 <Path 
                     x:Name="playIcon"
                     Visibility="Collapsed"

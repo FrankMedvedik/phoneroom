@@ -4,7 +4,7 @@ using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
-namespace PhoneLogic.Core.areas.PhoneRooms
+namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public class TodaysCallLogRptViewModel : CollectionViewModelBase
     {

@@ -23,14 +23,20 @@ namespace PhoneLogic.Core.Services
             return t;
         }
 
+        //public static async Task<List<PhoneLogicTask>> GetMyJobs(string sip)
+        //{
+        //    var client = new WebClient();
+        //    var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasks?SIP=" + sip));
+        //    return JsonConvert.DeserializeObject<List<PhoneLogicTask>>(data);
+        //}
+
+
         public static async Task<List<PhoneLogicTask>> GetMyJobs(string sip)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasks?SIP=" + sip));
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasksRpt?SIP=" + sip));
             return JsonConvert.DeserializeObject<List<PhoneLogicTask>>(data);
         }
-
-
 
     }
 }

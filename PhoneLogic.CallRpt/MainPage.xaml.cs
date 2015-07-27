@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.ViewContracts.MVVMMessenger;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace PhoneLogic.CallRpt
 {
@@ -16,7 +10,40 @@ namespace PhoneLogic.CallRpt
     {
         public MainPage()
         {
+            Messenger.Default.Register<string>(this, HandleNotification);
             InitializeComponent();
+         
+        }
+
+        private void HandleNotification(string message)
+        {
+
+            //if (message == Notifications.AudioPlaybackStarted)
+            //{
+            //    tbPlaybackStatus.Text = "Playback started";
+            //}
+            //if (message == Notifications.AudioPlaybackEnded)
+            //{
+            //    tbPlaybackStatus.Text = "Playback Ended";
+            //}
+        }
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //            ap.Visibility = Visibility.Collapsed;
+        //    try
+        //    {
+        //        Messenger.Default.Send(Notifications.AudioPlaybackStarted);
+        //        ap.Url = "http://localhost:19938/ClientBin/numbers.wma";
+        //        ap.Reset();
+        //        ap.Title = "Audio Test";
+        //        ap.Visibility = Visibility.Visible;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
         }
     }
-}

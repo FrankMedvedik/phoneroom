@@ -1,10 +1,10 @@
 using System;
 using System.Collections.ObjectModel;
-using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 
-namespace PhoneLogic.Core.areas.CallsRpts
+namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class JobRecruitersViewModel : CollectionViewModelBase
     {
@@ -98,12 +98,13 @@ namespace PhoneLogic.Core.areas.CallsRpts
                                 CallRptDateRange.EndRptDate);
                         ShowGridData = true;
                         JobRecruiters = new ObservableCollection<ByRecruitersForJob>(ro);
-                        HeadingText = String.Format("Job {0}-{1}", CallRptJobNum.Substring(0, 4), CallRptJobNum.Substring(4, 4));
+                        HeadingText = String.Format("Job {0}-{1} has {2} Recruiters", CallRptJobNum.Substring(0, 4), CallRptJobNum.Substring(4, 4), JobRecruiters.Count);
                         LoadedOk = true;
                 }
                 catch (Exception e)
                 {
                     LoadFailed(e);
+                    HeadingText = e.Message;
                 }
             }
         }

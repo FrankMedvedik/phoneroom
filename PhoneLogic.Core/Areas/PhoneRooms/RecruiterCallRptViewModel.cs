@@ -8,7 +8,7 @@ using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
-namespace PhoneLogic.Core.areas.PhoneRooms
+namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public class RecruiterCallRptViewModel : CollectionViewModelBase
     {

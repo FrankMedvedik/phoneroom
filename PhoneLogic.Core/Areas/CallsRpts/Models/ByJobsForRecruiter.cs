@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PhoneLogic.Core.areas.CallsRpts.Models
+namespace PhoneLogic.Core.Areas.CallsRpts.Models
 {
     public class ByJobsForRecruiter
     {

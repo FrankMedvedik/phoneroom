@@ -235,6 +235,9 @@
     <Compile Include="rptInboundCallByHourResult.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="rptMyPhoneLogicTask.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AgentUtils.cs" />
     <Compile Include="Utils\FormatUtil.cs" />
   </ItemGroup>

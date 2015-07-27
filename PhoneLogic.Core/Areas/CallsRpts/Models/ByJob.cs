@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PhoneLogic.Core.areas.CallsRpts.Models
+namespace PhoneLogic.Core.Areas.CallsRpts.Models
 {
     public class ByJob
     {

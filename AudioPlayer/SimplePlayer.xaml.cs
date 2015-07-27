@@ -24,6 +24,7 @@ namespace AudioPlayer
             iconBrush = (Brush)parentCanvas.Resources["iconBrush"];
         }
 
+
         private bool showingProgress;
 
         public void Page_Loaded(object sender, EventArgs args)
@@ -146,9 +147,11 @@ namespace AudioPlayer
 
         void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
+            Messenger.Default.Send(Notifications.AudioPlaybackEnded);
             System.Diagnostics.Debug.WriteLine("Media Ended");
             // apparently does not go into stop state by itself
             mediaElement.Stop();
+          
         }
 
         void mediaElement_DownloadProgressChanged(object sender, RoutedEventArgs args)
@@ -166,15 +169,15 @@ namespace AudioPlayer
                 positionUpdate.Begin();
                 pauseIcon.Visibility = Visibility.Visible;
                 playIcon.Visibility = Visibility.Collapsed;
-                Messenger.Default.Send(Notifications.PauseRefresh);
+                //Messenger.Default.Send(Notifications.PauseRefresh);
             }
             else
             {
+              
                 animatedSpeaker.StopAnimation();
                 positionUpdate.Stop();
                 pauseIcon.Visibility = Visibility.Collapsed;
                 playIcon.Visibility = Visibility.Visible;
-                Messenger.Default.Send(Notifications.Refresh);
 
             }
         }
@@ -234,9 +237,10 @@ namespace AudioPlayer
         {
             try
             {
+                Messenger.Default.Send(Notifications.AudioPlaybackStarted);
                 mediaElement.Play();
                 expandPlayer.Begin();
-                Messenger.Default.Send(Notifications.PauseRefresh);
+                
             }
             catch (Exception e)
             {

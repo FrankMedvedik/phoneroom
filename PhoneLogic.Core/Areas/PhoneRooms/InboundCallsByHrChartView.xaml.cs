@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Controls.DataVisualization.Charting;
 
-namespace PhoneLogic.Core.areas.PhoneRooms
+namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public partial class InboundCallsByHrChartView : UserControl
     {

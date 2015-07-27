@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace PhoneLogic.Core.areas.PhoneRooms
+namespace PhoneLogic.Core.Areas.PhoneRooms
 {
 
     public partial class ActiveCallsView : UserControl

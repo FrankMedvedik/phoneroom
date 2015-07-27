@@ -304,5 +304,14 @@ namespace PhoneLogic.Repository
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetJobCallbacks", jobNumParameter, taskIdParameter, startDateParameter, endDateParameter);
         }
+    
+        public virtual ObjectResult<rptMyPhoneLogicTask> rpt_getMyPhoneLogicTasks(string sIP)
+        {
+            var sIPParameter = sIP != null ?
+                new ObjectParameter("SIP", sIP) :
+                new ObjectParameter("SIP", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rptMyPhoneLogicTask>("rpt_getMyPhoneLogicTasks", sIPParameter);
+        }
     }
 }

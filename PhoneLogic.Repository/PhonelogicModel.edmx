@@ -164,6 +164,9 @@
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="rpt_getMyPhoneLogicTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SIP" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="rpt_GetRecruiterCallLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="sip" Type="nvarchar" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
@@ -287,6 +290,9 @@
             <Parameter Name="taskId" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_getMyPhoneLogicTasks" ReturnType="Collection(PhoneLogicModel.rptMyPhoneLogicTask)">
+            <Parameter Name="SIP" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="returnedCall">
@@ -536,6 +542,25 @@
           <Property Type="String" Name="TaskTypeId" Nullable="false" MaxLength="35" />
           <Property Type="Int32" Name="openCnt" Nullable="false" />
           <Property Type="Int32" Name="closedCnt" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="rptMyPhoneLogicTask">
+          <Property Type="String" Name="JobNum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskID" Nullable="false" />
+          <Property Type="String" Name="TaskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TaskDscr" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="RecruiterSIP" Nullable="true" MaxLength="256" />
+          <Property Type="DateTime" Name="OldestMsg" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NewestMsg" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MsgCnt" Nullable="true" />
+          <Property Type="Int32" Name="CallCnt" Nullable="true" />
+          <Property Type="Int32" Name="InboundCallCnt" Nullable="true" />
+          <Property Type="Int32" Name="OutboundCallCnt" Nullable="true" />
+          <Property Type="Int32" Name="TotalCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="AvgCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="MaxCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="UniqueCallerCnt" Nullable="true" />
+          <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -924,6 +949,29 @@
                 <ScalarProperty Name="SIP" ColumnName="SIP" />
                 <ScalarProperty Name="taskName" ColumnName="taskName" />
                 <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_getMyPhoneLogicTasks" FunctionName="PhoneLogicModel.Store.rpt_getMyPhoneLogicTasks">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.rptMyPhoneLogicTask">
+                <ScalarProperty Name="JobNum" ColumnName="JobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaskDscr" ColumnName="TaskDscr" />
+                <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
+                <ScalarProperty Name="OldestMsg" ColumnName="OldestMsg" />
+                <ScalarProperty Name="NewestMsg" ColumnName="NewestMsg" />
+                <ScalarProperty Name="MsgCnt" ColumnName="MsgCnt" />
+                <ScalarProperty Name="CallCnt" ColumnName="CallCnt" />
+                <ScalarProperty Name="InboundCallCnt" ColumnName="InboundCallCnt" />
+                <ScalarProperty Name="OutboundCallCnt" ColumnName="OutboundCallCnt" />
+                <ScalarProperty Name="TotalCallDuration" ColumnName="TotalCallDuration" />
+                <ScalarProperty Name="AvgCallDuration" ColumnName="AvgCallDuration" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="UniqueCallerCnt" ColumnName="UniqueCallerCnt" />
+                <ScalarProperty Name="FirstCallTime" ColumnName="FirstCallTime" />
+                <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

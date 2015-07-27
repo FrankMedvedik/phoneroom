@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.CallRpt.Model;
-using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 using Silverlight.Base.MVVMBaseTypes;
 
-namespace PhoneLogic.Core.areas.CallsRpts
+namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class RptDateRangeViewModel : ViewModelBase
     {

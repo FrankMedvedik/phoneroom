@@ -1,0 +1,46 @@
+﻿<UserControl xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    x:Class="PhoneLogic.Core.Areas.Recruiters.LyncSearchView"
+    mc:Ignorable="d" FontSize="16" >
+    <Control.Resources>
+        <DataTemplate x:Key="TransferCallTemplate" >
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <controls:PresenceIndicator x:Name="Presence" Margin="6" Source="{Binding Contact.Uri}" PhotoDisplayMode="Small" Grid.Column="0"/>
+                <TextBlock Text="{Binding DisplayName, ElementName=Presence}" Margin="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Width="175" />
+                <Button Name="btnAddToCall" HorizontalAlignment="Stretch" Grid.Column="2" Margin="6" Click="btnAddToCall_Click"   Width="90" IsEnabled="True">Add</Button>
+            </Grid>
+        </DataTemplate>
+    </Control.Resources>
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" >
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+            <TextBlock Text="Add To Call" HorizontalAlignment="Center" FontWeight="Bold" />
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Width="50" Text="Name" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="6,6,3,6"/>
+                <TextBox Name="tbSearchString" Grid.Column="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,6,6,6"/>
+            </Grid>
+            <sdk:DataGrid Grid.Row="0"  x:Name="TransferCallDG" AutoGenerateColumns="False" MaxHeight="550" 
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding Contacts }"  
+                      SelectedItem="{Binding  SelectedContact, Mode=TwoWay}"   Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+                    ToolTipService.ToolTip="Press the button next to the contact to tranfer this call." 
+                      Margin="6" HorizontalAlignment="Left" SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource TransferCallTemplate}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--<TextBox Name="CmdParms" />-->
+        </StackPanel>
+    </Grid>
+</UserControl>

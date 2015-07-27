@@ -4,12 +4,12 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.CallRpt.Model;
-using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
-namespace PhoneLogic.Core.areas.CallsRpts
+namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class JobsViewModel : CollectionViewModelBase
     {
@@ -89,16 +89,6 @@ namespace PhoneLogic.Core.areas.CallsRpts
             {
                 _selectedJob = value;
                 NotifyPropertyChanged();
-                if (value != null)
-                {
-                    Messenger.Default.Send(new NotificationMessage<string>(this, SelectedJob.JobNumber,Notifications.CallRptJobNumSet));
-                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
-                }
-                else
-                {
-                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptJobNumCleared));
-                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
-                }
             }
         }
 
@@ -109,19 +99,15 @@ namespace PhoneLogic.Core.areas.CallsRpts
             try
             {
                 var ro = await LyncCallLogSvc.GetLynCallsByJob(CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
-                if (ro.Count > 0)
-                {
-                    ShowGridData = true;
-                    Jobs = new ObservableCollection<ByJob>(ro);
-                    HeadingText = string.Format("{0} Jobs", Jobs.Count());
-                }
-                else
-                    ShowGridData = false;
+                ShowGridData = true;
+                Jobs = new ObservableCollection<ByJob>(ro);
+                HeadingText = string.Format("{0} Jobs", Jobs.Count());
                 LoadedOk = true;
             }
             catch (Exception e)
             {
                 LoadFailed(e);
+                HeadingText = e.Message;
             }
         }
 

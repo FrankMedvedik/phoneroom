@@ -19,5 +19,14 @@
         public static string RecruiterCallRptDateRangeChanged { get { return "RecruiterCallRptDateRangeChanged"; } }
         public static string JobCallRptDateRangeChanged { get { return "JobCallRptDateRangeChanged"; } }
         public static string JobCallbackRptDateRangeChanged { get { return "JobCallbackRptDateRangeChanged"; } }
+
+        
+        /* incoming call alerts */
+        public static string InboundCallAlertStarted { get { return "InboundCallAlertStarted"; } }
+        public static string InboundCallAlertEnded { get { return "InboundCallAlertEnded"; } }
+
+        /* communicate playback status */
+        public static string AudioPlaybackStarted { get { return "AudioPlaybackStarted"; } }
+        public static string AudioPlaybackEnded{ get { return "AudioPlaybackEnded"; } }
     }
 }

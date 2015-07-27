@@ -5,13 +5,13 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.CallRpt.Model;
-using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
-namespace PhoneLogic.Core.areas.CallsRpts
+namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class RecruitersViewModel : CollectionViewModelBase
     {

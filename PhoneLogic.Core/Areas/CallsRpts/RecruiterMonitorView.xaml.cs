@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using PhoneLogic.Core.areas.CallsRpts;
+using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 

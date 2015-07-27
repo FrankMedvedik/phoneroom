@@ -60,15 +60,15 @@ namespace PhoneLogic.Core.Services
             return JsonConvert.DeserializeObject<List<myCallback>>(data);
         }
 
-        public static async Task<List<myCallback>> GetMyCallbacks(string jobNum, string taskId, DateTime startDate, DateTime endDate)
+        public static async Task<List<myCallback>> GetJobCallbacks(string jobNum, string taskId, DateTime startDate, DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl 
                 + "Callbacks" 
                 + "?jobNum="+jobNum
-                + "&taskId"+taskId
-                + "&startDate" + startDate
-                + "&endDate" + endDate
+                + "&taskId="+taskId
+                + "&startDate=" + startDate
+                + "&endDate=" + endDate
                 ));
             return JsonConvert.DeserializeObject<List<myCallback>>(data);
         }
@@ -78,8 +78,8 @@ namespace PhoneLogic.Core.Services
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl
                 + "Callbacks" 
-                + "?startDate" + startDate
-                + "&endDate" + endDate
+                + "?startDate=" + startDate
+                + "&endDate=" + endDate
                 ));
             return JsonConvert.DeserializeObject<List<CallbackRpt>>(data);
         }

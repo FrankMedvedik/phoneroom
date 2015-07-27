@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using PhoneLogic.Core.areas.CallsRpts;
+using PhoneLogic.Core.Areas.CallsRpts;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {

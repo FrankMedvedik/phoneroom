@@ -23,7 +23,7 @@ namespace PhoneLogic.Web.Controllers
         }
 
 
-        // GET: api/Callbacks/?startDate=3&endDate=4
+        // GET: api/Callbacks?startDate=1&endDate=2
         public List<CallbackRpt> GetCallbacks(DateTime startDate, DateTime endDate)
         {
             List <CallbackRpt> list = db.rpt_GetCallbackRpt(startDate, endDate).ToList();

@@ -1,12 +1,12 @@
 ﻿<UserControl
     xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls" 
-    x:Class="PhoneLogic.Core.areas.PhoneRooms.AllRecruitersRptView"
+    x:Class="PhoneLogic.Core.Areas.PhoneRooms.AllRecruitersRptView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-        xmlns:recruiter="clr-namespace:PhoneLogic.Core.areas.recruiter"
+        xmlns:recruiter="clr-namespace:PhoneLogic.Core.Areas.Recruiters"
         mc:Ignorable="d" d:DesignWidth="568" d:DesignHeight="245" VerticalAlignment="Top"  HorizontalAlignment="Left">
     <Control.Resources>
         <DataTemplate x:Key="RecruiterStatusTemplate" >

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using PhoneLogic.Core.areas.CallsRpts;
-using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.CallsRpts;
+using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Helpers;
 
 namespace PhoneLogic.Core.Areas.CallsRpts

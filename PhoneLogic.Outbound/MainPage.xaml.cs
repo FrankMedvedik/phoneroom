@@ -19,7 +19,8 @@ namespace PhoneLogic.Outbound
     {
         private bool _isCheckedState = true;
 
-
+    
+ 
         public MainPage()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace PhoneLogic.Outbound
                 );
           Messenger.Default.Register<NotificationMessage>(this, HandleNotification);
         }
+
 
        private void HandleNotification(NotificationMessage message)
         {

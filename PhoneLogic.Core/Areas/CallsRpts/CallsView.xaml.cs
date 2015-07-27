@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using PhoneLogic.Core.areas.CallsRpts;
-using PhoneLogic.Core.areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.CallsRpts;
+using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Helpers;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
@@ -75,8 +75,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             AudioPlayer.Visibility = Visibility.Collapsed;
             if (_vm.SelectedCall != null)
             {
-                AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/messages/" +
-                                  _vm.SelectedCall.CallId;
+                AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" +
+                                  _vm.SelectedCall.CallId +".wma";
                 AudioPlayer.Reset();
                 AudioPlayer.Title = string.Format("{0} - {1}", _vm.SelectedCall.JobFormatted,
                     _vm.SelectedCall.PhoneFormatted);
@@ -117,8 +117,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public static readonly DependencyProperty ShowDataProperty =
       DependencyProperty.Register("ShowData", typeof(bool), typeof(CallsView), new PropertyMetadata(false));
 
-
-
+        public void SetMyCallsConfiguration()
+        {
+            cc.Visibility = System.Windows.Visibility.Collapsed;
+            Grid.SetRow(AudioPlayer, 0) ;
+            Grid.SetColumn(AudioPlayer, 0);
+        }
 
     }
 }

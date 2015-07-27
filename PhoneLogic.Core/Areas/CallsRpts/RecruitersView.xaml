@@ -25,11 +25,10 @@
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"   Grid.Row="0" Grid.Column="0" >
-            <TextBlock Text="Recruiters" FontSize="14" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6"/>
             <TextBlock Text="Location" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
             <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
                            Name="comboBox1" VerticalAlignment="Top" Width="100" 

@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lyncControls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
-    xmlns:recruiter="clr-namespace:PhoneLogic.Core.areas.recruiter;assembly=PhoneLogic.Core"
+    xmlns:recruiter="clr-namespace:PhoneLogic.Core.Areas.Recruiters;assembly=PhoneLogic.Core"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" Name="Main">
     <ScrollViewer>
@@ -39,7 +39,9 @@
             </ToggleButton>-->
            <!--<ToggleButton Name="TBBrowserResize" Checked="tbtnShrink_Checked"  Unchecked="tbtnShrink_Unchecked"  Width="220" Height="200"   Grid.Column="0" Grid.Row="0"/>--> 
            <!--<lyncControls:MyStatusArea  PhotoDisplayMode="Large"  Background="Transparent" MinWidth="400" Height="Auto"  Margin="12" HorizontalAlignment="Stretch"  FontSize="20" Grid.Column="0" Grid.Row="0"/>-->
-            <recruiter:AvailabilityView MinWidth="300" Height="Auto"  Margin="12" HorizontalAlignment="Stretch"  FontSize="20" Grid.Column="0" Grid.Row="0"/>
+            <!--<recruiter:AvailabilityView MinWidth="300" Height="Auto"  Margin="12" HorizontalAlignment="Stretch"  FontSize="20" Grid.Column="0" Grid.Row="0"/>-->
+        <!--<lyncControls:MyStatusArea />-->
+        <recruiter:AvailabilityView />
             <recruiter:MyCallsInQueueView Name="MyCallsInQ" Margin="12" MinWidth="300" Height="Auto" HorizontalAlignment="Stretch" FontSize="16" Grid.Column="1" Grid.Row="0"/>
             <recruiter:MyWorkView Name="MyWork" Margin="6" HorizontalAlignment="Stretch" FontSize="16" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"/>
             <views:BuildInformationView  Grid.Column="0" Grid.Row="3"/>

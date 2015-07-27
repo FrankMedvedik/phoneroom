@@ -8,22 +8,27 @@
              xmlns:audioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer"
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
              mc:Ignorable="d ignore">
-    <Grid>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition  Height="Auto"/>
             <RowDefinition  Height="Auto"/>
-            <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" >
+        <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch" >
             <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>
         </StackPanel>
-        <sdk:DataGrid Grid.Column="0"   Grid.Row="2"  x:Name="CallsDG" AutoGenerateColumns="False" MaxHeight="250"  
-                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+        <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <sdk:DataGrid Grid.Column="0" Grid.RowSpan="2" Grid.Row="1"  x:Name="CallsDG" AutoGenerateColumns="False" MaxHeight="250"  
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="CallsDG_SelectionChanged" Loaded="CallsDG_Loaded"
                     ItemsSource="{Binding Calls}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedCall, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Phone Calls" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
@@ -36,14 +41,9 @@
                 <sdk:DataGridTextColumn Binding="{Binding CallDurationFormatted}" />
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
-        <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="2"  Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="Auto"/>
-                <RowDefinition  Height="Auto"/>
-            </Grid.RowDefinitions>
-            <controls:ContactCard Grid.Row="0" Name="cc" Margin="6" HorizontalAlignment="Left"/>
-            <audioPlayer:SimplePlayer Name="AudioPlayer" Margin="6" Grid.Row="1" HorizontalAlignment="Left"/>
+            <controls:ContactCard Grid.Column="1" Grid.Row="1" Name="cc" Margin="6" HorizontalAlignment="Left"/>
+            <audioPlayer:SimplePlayer Name="AudioPlayer" Grid.Column="1" Margin="6" Grid.Row="2" HorizontalAlignment="Left"/>
         </Grid>
-        <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+        <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  Grid.Row="2" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
     </Grid>
 </UserControl>

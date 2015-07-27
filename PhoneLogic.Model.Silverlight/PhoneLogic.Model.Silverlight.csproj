@@ -137,6 +137,7 @@
     <Compile Include="Models\PhoneCall.cs" />
     <Compile Include="Models\RecruiterLogJobSummary.cs" />
     <Compile Include="Models\returnedCall.cs" />
+    <Compile Include="Models\rptMyPhoneLogicTask.cs" />
     <Compile Include="Models\RptRecruiterCalls.cs" />
     <Compile Include="Models\RptSeries.cs" />
     <Compile Include="Properties\Annotations.cs" />
