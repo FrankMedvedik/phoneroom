@@ -76,9 +76,7 @@
         {
             get
             {
-                // for testing 
-                //phoneNum = "2159181557";
-                return String.Format("{0:(###) ###-####}", double.Parse(phoneNum));
+                return StringFormatSvc.PhoneNumberFormatted(phoneNum);
             }
         }
 
@@ -87,7 +85,7 @@
         {
             get
             {
-                return jobNum.Substring(0, 4) + "-" + jobNum.Substring(4);
+                return StringFormatSvc.JobFormatted(jobNum);
             }
         }
 
@@ -97,10 +95,7 @@
         {
             get
             {
-                if (tollFreeNumber != null)
-                    return String.Format("{0:(###) ###-####}", double.Parse(tollFreeNumber));
-                else
-                    return "";
+                return StringFormatSvc.PhoneNumberFormatted(tollFreeNumber);
             }
         }
 
@@ -119,11 +114,6 @@
         {
             get
             {
-                // this number gets used to make the call
-
-                string retval; 
-                //    retval = !String.IsNullOrEmpty(tollFreeNumber) ? String.Concat("tel:+", tollFreeNumber, phoneNum) : String.Concat("tel:",phoneNum);
-                // return retval;
                 return String.Concat("tel:", phoneNum);
             }
         }

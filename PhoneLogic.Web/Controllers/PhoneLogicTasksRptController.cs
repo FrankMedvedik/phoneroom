@@ -15,7 +15,7 @@ namespace PhoneLogic.Web.Controllers
         // GET: api/PhoneLogicTasksRpt?sip=sip:yourname@reckner.com
         public IEnumerable<rptMyPhoneLogicTask> GetPhoneLogicTask(string sip)
         {
-            return db.rpt_getMyPhoneLogicTasks(sip).ToList();
+            return db.GetMyPhoneLogicTasks(sip).ToList();
         }
     }
 }

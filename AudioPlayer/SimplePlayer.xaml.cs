@@ -143,6 +143,7 @@ namespace AudioPlayer
         {
             System.Diagnostics.Debug.WriteLine("Media Failed {0}",e);
             trackNameTextBlock.Text = e.ErrorException.Message;
+            Messenger.Default.Send(Notifications.AudioPlaybackEnded);
         }
 
         void mediaElement_MediaEnded(object sender, RoutedEventArgs e)

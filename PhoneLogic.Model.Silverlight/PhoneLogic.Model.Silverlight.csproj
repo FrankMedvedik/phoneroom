@@ -140,6 +140,7 @@
     <Compile Include="Models\rptMyPhoneLogicTask.cs" />
     <Compile Include="Models\RptRecruiterCalls.cs" />
     <Compile Include="Models\RptSeries.cs" />
+    <Compile Include="Models\StringFormatSvc.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConfig.cs" />

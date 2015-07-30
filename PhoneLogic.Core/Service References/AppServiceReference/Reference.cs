@@ -434,6 +434,11 @@ namespace PhoneLogic.Core.AppServiceReference {
         
         System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueSummary> EndGetMyQueueSummary(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPhoneLogicService/GetMyQueueDetail", ReplyAction="http://tempuri.org/IPhoneLogicService/GetMyQueueDetailResponse")]
+        System.IAsyncResult BeginGetMyQueueDetail(string sipAddress, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail> EndGetMyQueueDetail(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPhoneLogicService/GetRecruitersOnline", ReplyAction="http://tempuri.org/IPhoneLogicService/GetRecruitersOnlineResponse")]
         System.IAsyncResult BeginGetRecruitersOnline(System.AsyncCallback callback, object asyncState);
         
@@ -448,6 +453,11 @@ namespace PhoneLogic.Core.AppServiceReference {
         System.IAsyncResult BeginGetActiveCalls(System.AsyncCallback callback, object asyncState);
         
         System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.ActiveCall> EndGetActiveCalls(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPhoneLogicService/PullFromQueue", ReplyAction="http://tempuri.org/IPhoneLogicService/PullFromQueueResponse")]
+        System.IAsyncResult BeginPullFromQueue(string id, string recruiterUri, System.AsyncCallback callback, object asyncState);
+        
+        void EndPullFromQueue(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPhoneLogicService/RecruiterDialOut", ReplyAction="http://tempuri.org/IPhoneLogicService/RecruiterDialOutResponse")]
         System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState);
@@ -576,6 +586,25 @@ namespace PhoneLogic.Core.AppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMyQueueDetailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMyQueueDetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetRecruitersOnlineCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -665,6 +694,12 @@ namespace PhoneLogic.Core.AppServiceReference {
         
         private System.Threading.SendOrPostCallback onGetMyQueueSummaryCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetMyQueueDetailDelegate;
+        
+        private EndOperationDelegate onEndGetMyQueueDetailDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMyQueueDetailCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetRecruitersOnlineDelegate;
         
         private EndOperationDelegate onEndGetRecruitersOnlineDelegate;
@@ -682,6 +717,12 @@ namespace PhoneLogic.Core.AppServiceReference {
         private EndOperationDelegate onEndGetActiveCallsDelegate;
         
         private System.Threading.SendOrPostCallback onGetActiveCallsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginPullFromQueueDelegate;
+        
+        private EndOperationDelegate onEndPullFromQueueDelegate;
+        
+        private System.Threading.SendOrPostCallback onPullFromQueueCompletedDelegate;
         
         private BeginOperationDelegate onBeginRecruiterDialOutDelegate;
         
@@ -776,11 +817,15 @@ namespace PhoneLogic.Core.AppServiceReference {
         
         public event System.EventHandler<GetMyQueueSummaryCompletedEventArgs> GetMyQueueSummaryCompleted;
         
+        public event System.EventHandler<GetMyQueueDetailCompletedEventArgs> GetMyQueueDetailCompleted;
+        
         public event System.EventHandler<GetRecruitersOnlineCompletedEventArgs> GetRecruitersOnlineCompleted;
         
         public event System.EventHandler<GetRecruitersAvailableCompletedEventArgs> GetRecruitersAvailableCompleted;
         
         public event System.EventHandler<GetActiveCallsCompletedEventArgs> GetActiveCallsCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> PullFromQueueCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RecruiterDialOutCompleted;
         
@@ -1023,6 +1068,52 @@ namespace PhoneLogic.Core.AppServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneLogic.Core.AppServiceReference.IPhoneLogicService.BeginGetMyQueueDetail(string sipAddress, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMyQueueDetail(sipAddress, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail> PhoneLogic.Core.AppServiceReference.IPhoneLogicService.EndGetMyQueueDetail(System.IAsyncResult result) {
+            return base.Channel.EndGetMyQueueDetail(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetMyQueueDetail(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string sipAddress = ((string)(inValues[0]));
+            return ((PhoneLogic.Core.AppServiceReference.IPhoneLogicService)(this)).BeginGetMyQueueDetail(sipAddress, callback, asyncState);
+        }
+        
+        private object[] OnEndGetMyQueueDetail(System.IAsyncResult result) {
+            System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail> retVal = ((PhoneLogic.Core.AppServiceReference.IPhoneLogicService)(this)).EndGetMyQueueDetail(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMyQueueDetailCompleted(object state) {
+            if ((this.GetMyQueueDetailCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMyQueueDetailCompleted(this, new GetMyQueueDetailCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMyQueueDetailAsync(string sipAddress) {
+            this.GetMyQueueDetailAsync(sipAddress, null);
+        }
+        
+        public void GetMyQueueDetailAsync(string sipAddress, object userState) {
+            if ((this.onBeginGetMyQueueDetailDelegate == null)) {
+                this.onBeginGetMyQueueDetailDelegate = new BeginOperationDelegate(this.OnBeginGetMyQueueDetail);
+            }
+            if ((this.onEndGetMyQueueDetailDelegate == null)) {
+                this.onEndGetMyQueueDetailDelegate = new EndOperationDelegate(this.OnEndGetMyQueueDetail);
+            }
+            if ((this.onGetMyQueueDetailCompletedDelegate == null)) {
+                this.onGetMyQueueDetailCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMyQueueDetailCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMyQueueDetailDelegate, new object[] {
+                        sipAddress}, this.onEndGetMyQueueDetailDelegate, this.onGetMyQueueDetailCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult PhoneLogic.Core.AppServiceReference.IPhoneLogicService.BeginGetRecruitersOnline(System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetRecruitersOnline(callback, asyncState);
         }
@@ -1152,6 +1243,53 @@ namespace PhoneLogic.Core.AppServiceReference {
                 this.onGetActiveCallsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetActiveCallsCompleted);
             }
             base.InvokeAsync(this.onBeginGetActiveCallsDelegate, null, this.onEndGetActiveCallsDelegate, this.onGetActiveCallsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult PhoneLogic.Core.AppServiceReference.IPhoneLogicService.BeginPullFromQueue(string id, string recruiterUri, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginPullFromQueue(id, recruiterUri, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void PhoneLogic.Core.AppServiceReference.IPhoneLogicService.EndPullFromQueue(System.IAsyncResult result) {
+            base.Channel.EndPullFromQueue(result);
+        }
+        
+        private System.IAsyncResult OnBeginPullFromQueue(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string id = ((string)(inValues[0]));
+            string recruiterUri = ((string)(inValues[1]));
+            return ((PhoneLogic.Core.AppServiceReference.IPhoneLogicService)(this)).BeginPullFromQueue(id, recruiterUri, callback, asyncState);
+        }
+        
+        private object[] OnEndPullFromQueue(System.IAsyncResult result) {
+            ((PhoneLogic.Core.AppServiceReference.IPhoneLogicService)(this)).EndPullFromQueue(result);
+            return null;
+        }
+        
+        private void OnPullFromQueueCompleted(object state) {
+            if ((this.PullFromQueueCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.PullFromQueueCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void PullFromQueueAsync(string id, string recruiterUri) {
+            this.PullFromQueueAsync(id, recruiterUri, null);
+        }
+        
+        public void PullFromQueueAsync(string id, string recruiterUri, object userState) {
+            if ((this.onBeginPullFromQueueDelegate == null)) {
+                this.onBeginPullFromQueueDelegate = new BeginOperationDelegate(this.OnBeginPullFromQueue);
+            }
+            if ((this.onEndPullFromQueueDelegate == null)) {
+                this.onEndPullFromQueueDelegate = new EndOperationDelegate(this.OnEndPullFromQueue);
+            }
+            if ((this.onPullFromQueueCompletedDelegate == null)) {
+                this.onPullFromQueueCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnPullFromQueueCompleted);
+            }
+            base.InvokeAsync(this.onBeginPullFromQueueDelegate, new object[] {
+                        id,
+                        recruiterUri}, this.onEndPullFromQueueDelegate, this.onPullFromQueueCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1532,6 +1670,19 @@ namespace PhoneLogic.Core.AppServiceReference {
                 return _result;
             }
             
+            public System.IAsyncResult BeginGetMyQueueDetail(string sipAddress, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = sipAddress;
+                System.IAsyncResult _result = base.BeginInvoke("GetMyQueueDetail", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail> EndGetMyQueueDetail(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail> _result = ((System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.QueueDetail>)(base.EndInvoke("GetMyQueueDetail", _args, result)));
+                return _result;
+            }
+            
             public System.IAsyncResult BeginGetRecruitersOnline(System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[0];
                 System.IAsyncResult _result = base.BeginInvoke("GetRecruitersOnline", _args, callback, asyncState);
@@ -1566,6 +1717,19 @@ namespace PhoneLogic.Core.AppServiceReference {
                 object[] _args = new object[0];
                 System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.ActiveCall> _result = ((System.Collections.Generic.List<PhoneLogic.Core.AppServiceReference.ActiveCall>)(base.EndInvoke("GetActiveCalls", _args, result)));
                 return _result;
+            }
+            
+            public System.IAsyncResult BeginPullFromQueue(string id, string recruiterUri, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = id;
+                _args[1] = recruiterUri;
+                System.IAsyncResult _result = base.BeginInvoke("PullFromQueue", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndPullFromQueue(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("PullFromQueue", _args, result);
             }
             
             public System.IAsyncResult BeginRecruiterDialOut(string recruiterUri, string jobNumber, string numberToDial, int callbackId, System.AsyncCallback callback, object asyncState) {

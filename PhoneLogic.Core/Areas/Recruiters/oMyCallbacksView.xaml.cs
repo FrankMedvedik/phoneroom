@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
+using PhoneLogic.Core.Areas.Callbacks;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -11,12 +12,12 @@ using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.Recruiters
 {
-    public partial class MyCallbacksView 
+    public partial class oMyCallbacksView 
     {
         private readonly MyCallBacksViewModel _vm;
         private ToggleButton _selectedButton = new ToggleButton();
 
-        public MyCallbacksView()
+        public oMyCallbacksView()
         {
             InitializeComponent();
             _vm = new MyCallBacksViewModel();
@@ -142,10 +143,6 @@ namespace PhoneLogic.Core.Areas.Recruiters
         private void callbackGrid_Loaded(object sender, RoutedEventArgs e)
         {
             AudioPlayer.Visibility = Visibility.Collapsed;
-            if (_vm.SelectedMyCallback != null)
-                callbackGrid.SelectedItem = _vm.SelectedMyCallback;
-            else
-                callbackGrid.SelectedIndex = 0;
         }
 
         // inactivate call button

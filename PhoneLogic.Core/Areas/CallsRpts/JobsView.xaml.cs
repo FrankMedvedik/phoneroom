@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.ViewContracts.MVVMMessenger;
@@ -22,7 +24,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            JobsDG.Export();
+            try
+            {
+                JobsDG.Export();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Saving file - " + ex.Message);
+            }
         }
 
         private void JobsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)

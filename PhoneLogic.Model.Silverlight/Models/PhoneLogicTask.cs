@@ -15,7 +15,7 @@ namespace PhoneLogic.Model
 #endif
     {
         [Display(Name = "Job")]
-        public string jobFormatted
+        public string JobFormatted
         {
             get
             {
@@ -24,20 +24,18 @@ namespace PhoneLogic.Model
             }
         }
         [Display(Name = "Task ID")]
-        public int? taskID { get; set; }
+        public int? TaskID { get; set; }
 
         public string JobNum { get; set; }
 
-        public int TaskId;
-
         [Display(Name = "Topic")]
-        public string taskName { get; set; }
+        public string TaskName { get; set; }
 
         [Display(Name = "Description")]
-        public string taskDscr { get; set; }
+        public string TaskDscr { get; set; }
 
         [Display(Name = "Type")]
-        public string taskTypeID { get; set; }
+        public string TaskTypeID { get; set; }
 
         public string RecruiterSIP { get; set; }
         [Display(Name = "First Msg")]
@@ -67,7 +65,11 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60, TotalCallDuration % 60);
+                 var retval = string.Format("{0:00}:{1:00}:{2:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60, TotalCallDuration % 60);
+                if(retval == "::")
+                    retval = null;
+                return retval;
+
             }
         }
         [Display(Name = "Avg")]
@@ -75,7 +77,10 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+                string retval = string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+                if(retval == "::")
+                    retval = null;
+                return retval;
             }
         }
         [Display(Name = "Max")]
@@ -83,7 +88,11 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60, MaxCallDuration % 60);
+                string retval = string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration/3600, (MaxCallDuration/60)%60,
+                    MaxCallDuration%60);
+                if (retval == "::")
+                    retval = null;
+                return retval;
             }
         }
     }

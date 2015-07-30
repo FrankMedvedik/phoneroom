@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Helpers;
+using PhoneLogic.Core.Services;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
@@ -32,6 +34,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 SetValue(RecruiterSIPProperty, value);
                 _vm.SelectedRecruiter = value;
+                // set the contact card's sip
                 cc.Source = value;
             }
         }
@@ -54,6 +57,16 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedJobNumProperty =
             DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(CallsView), new PropertyMetadata(""));
+
+
+        public int RowCount
+        {
+            get { return _vm.Calls.Count; }
+        }
+
+        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RowCountProperty =
+            DependencyProperty.Register("RowCount", typeof(int), typeof(CallsView), new PropertyMetadata(0));
 
 
         public CallRptDateRange CallRptDateRange
@@ -89,17 +102,21 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         private void CallsDG_Loaded(object sender, RoutedEventArgs e)
         {
             AudioPlayer.Visibility = Visibility.Collapsed;
-            if (_vm.SelectedCall != null)
-                CallsDG.SelectedItem = _vm.SelectedCall;
-            else
-                CallsDG.SelectedIndex = 0;
+            //if (_vm.SelectedCall != null)
+            //    CallsDG.SelectedItem = _vm.SelectedCall;
+            //else
+            //    CallsDG.SelectedIndex = 0;
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            CallsDG.Export();
+        try {
+                CallsDG.Export();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Saving file - " + ex.Message);
+            }
         }
-
-
 
         public bool ShowData
         {
@@ -117,11 +134,32 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public static readonly DependencyProperty ShowDataProperty =
       DependencyProperty.Register("ShowData", typeof(bool), typeof(CallsView), new PropertyMetadata(false));
 
+        /* used to setup the view so it can be used by MyWork 
+         * (default beahvior shows the contact card and puts playback control to the right 
+        */
         public void SetMyCallsConfiguration()
         {
             cc.Visibility = System.Windows.Visibility.Collapsed;
             Grid.SetRow(AudioPlayer, 0) ;
             Grid.SetColumn(AudioPlayer, 0);
+        }
+        public void ResizeGrid()
+        {
+            //tbGridSize.Text = String.Format("Width : {0}  Height : {1} ", BrowserInfoSvc.ClientWidth,
+            //    BrowserInfoSvc.ClientHeight);
+            if (BrowserInfoSvc.ClientWidth < UserInterfaceTimings.ResizeBoundryWidth)
+            {
+                CallsDG.Columns[3].Visibility = Visibility.Collapsed;
+                CallsDG.Columns[4].Visibility = Visibility.Collapsed;
+                CallsDG.Columns[5].Visibility = Visibility.Collapsed;
+            }
+            if (BrowserInfoSvc.ClientWidth >= UserInterfaceTimings.ResizeBoundryWidth)
+            {
+                CallsDG.Columns[3].Visibility = Visibility.Visible;
+                CallsDG.Columns[4].Visibility = Visibility.Visible;
+                CallsDG.Columns[5].Visibility = Visibility.Visible;
+            }
+
         }
 
     }

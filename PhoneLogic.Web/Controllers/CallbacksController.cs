@@ -29,15 +29,21 @@ namespace PhoneLogic.Web.Controllers
             List <CallbackRpt> list = db.rpt_GetCallbackRpt(startDate, endDate).ToList();
             return list;
         }
+        // GET: api/Callbacks?SIP=1&jobNum=2&taskId=3
+        public List<callbackDTO> GetCallbacks(string SIP, string jobNum, string taskId)
+        {
+            List<callbackDTO> list = db.rpt_GetMyCallbacks(SIP, jobNum, taskId).ToList();
+            return list;
+        }
 
-        // GET: api/Callbacks/?jobNum=1&taskId=2&startDate=3&endDate=4
+        // GET: api/Callbacks?jobNum=1&taskId=2&startDate=3&endDate=4
         public List<callbackDTO> GetCallbacks(string jobNum, string taskId, DateTime startDate, DateTime endDate)
         {
             List<callbackDTO> list = db.rpt_GetJobCallbacks(jobNum, taskId, startDate, endDate).ToList();
             return list;
         }
 
-        // GET: api/Callbacks
+        // GET: api/Callbacks?SIP=1
         public List<callbackDTO> GetCallbacks(string SIP)
         {
             List<callbackDTO> list = db.getMyCallbacks(SIP).ToList();

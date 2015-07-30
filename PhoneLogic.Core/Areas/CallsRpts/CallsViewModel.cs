@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Lync.Model;
 using PhoneLogic.CallRpt.Model;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Services;
@@ -87,7 +88,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        private ObservableCollection<Call> _calls;
+        private ObservableCollection<Call> _calls = new ObservableCollection<Call>();
         public ObservableCollection<Call> Calls
         {
             get { return _calls; }
@@ -105,6 +106,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 //var s = SelectedCall;
                 GetCalls();
+                SelectedCall = null;
                 //if ((s != null) && (Calls.First(x => x.CallId == s.CallId) != null))
                 //{
                 //    SelectedCall = Calls.First(x => x.CallId == s.CallId);
@@ -138,11 +140,26 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 ShowGridData = true;
                 Calls = new ObservableCollection<Call>(ro);
                 if (Calls.Count > 0)
-                    HeadingText = String.Format("{0} has {1} Calls",
-                        Calls.First().DisplayName != "" ? Calls.First().DisplayName : "Inbound Respondent",
-                        Calls.Count());
+                {
+                    //if its a recruiter show the heading without their name
+                    //string sip = Calls.First().RecruiterSIP;
+                    //if (sip == LyncClient.GetClient().Uri)
+                        HeadingText = String.Format("{0} Calls", Calls.Count());
+                    //else
+                    //{
+                        //if its a not a recruiter show the heading with name 
+                        //Contact r = LyncClient.GetClient().ContactManager.GetContactByUri(sip);
+                        //HeadingText = String.Format("{0} has {1} Calls for Job {2}-{3}",
+                        //    r.GetContactInformation(ContactInformationType.DisplayName).ToString() != ""
+                        //        ? r.GetContactInformation(ContactInformationType.DisplayName).ToString()
+                        //        : "Inbound Respondent",
+                        //    Calls.Count(), SelectedJobNum.Substring(0, 4), SelectedJobNum.Substring(4, 4));
+                    }
                 else
-                    HeadingText = "Recruiter has no calls";
+                {
+                    HeadingText = "No calls";
+                    ShowGridData = false;
+                }
                 LoadedOk = true;
             }
             catch (Exception e)

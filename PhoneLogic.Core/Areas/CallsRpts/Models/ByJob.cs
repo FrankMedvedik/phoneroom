@@ -46,7 +46,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                if (TollFreeNumber != null)
+                if(!String.IsNullOrWhiteSpace(TollFreeNumber))
                     return String.Format("{0:(###) ###-####}", double.Parse(TollFreeNumber));
                 else
                     return "";
@@ -54,17 +54,26 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         }
 
         [Display(Name = "Total Time in Calls")]
-        public string  TotalCallDurationFormatted {
+        public string TotalCallDurationFormatted
+        {
             get
-            {   return string.Format("{0:00}:{1:00}:{2:00}",TotalCallDuration /3600,(TotalCallDuration /60)%60,TotalCallDuration %60);
-            } 
+            {
+                var retval = string.Format("{0:00}:{1:00}:{2:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60, TotalCallDuration % 60);
+                if (retval == "::")
+                    retval = null;
+                return retval;
+
+            }
         }
         [Display(Name = "Avg")]
         public string AvgCallDurationFormatted
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+                string retval = string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+                if (retval == "::")
+                    retval = null;
+                return retval;
             }
         }
         [Display(Name = "Max")]
@@ -72,7 +81,11 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60, MaxCallDuration % 60);
+                string retval = string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60,
+                    MaxCallDuration % 60);
+                if (retval == "::")
+                    retval = null;
+                return retval;
             }
         }
     }

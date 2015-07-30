@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="PhoneLogic.Core.Areas.Recruiters.MyCallbacksView"
+    x:Class="PhoneLogic.Core.Areas.Callbacks.MyCallbacksView"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
     xmlns:audioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer"
@@ -14,7 +14,7 @@
             <Grid >
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding DisplayName, ElementName=Presence}" FontSize="10" Margin="6,3,6,1" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="{Binding DisplayStatusContact, Converter={StaticResource BoolToVisConverter}}"/>
-                    <controls:PresenceIndicator x:Name="Presence" Margin="6,1,6,3" Source="{Binding SIP}"  PhotoDisplayMode="Small" Visibility="{Binding DisplayStatusContact, Converter={StaticResource BoolToVisConverter}}"/>
+                    <controls:PresenceIndicator x:Name="Presence" Margin="6,1,6,3" Source="{Binding SIP}"  PhotoDisplayMode="Small" Visibility="Collapsed"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -24,6 +24,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition  Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -31,14 +32,14 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" >
-                <TextBlock Text="{Binding JobHeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+                <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
                 <TextBlock Name="tbGridSize" HorizontalAlignment="Right" Margin="6" />
             </StackPanel>
         </Grid>
-        <sdk:DataGrid x:Name="callbackGrid" Grid.Row="2" AutoGenerateColumns="False" MaxHeight="300" MinWidth="300" 
+        <sdk:DataGrid x:Name="callbackGrid" Grid.Row="2" AutoGenerateColumns="False" MaxHeight="225" 
             SelectionChanged="callbackGrid_SelectionChanged" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
             Loaded="callbackGrid_Loaded"  VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"  
-            ItemsSource="{Binding FilteredCallbacks}"  SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"   
+            ItemsSource="{Binding MyCallbacks}"  SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}"   
             ToolTipService.ToolTip="Voice Mail Messages" Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto"
              SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected"  IsReadOnly="True" >
             <sdk:DataGrid.Columns>
@@ -69,7 +70,7 @@
             </StackPanel>
         </StackPanel>
         <!--<Views:AudioPlaybackView Grid.Row="2" Name="AudioPlayer" Visibility="Collapsed"/>-->
-        <audioPlayer:SimplePlayer Name="AudioPlayer" Grid.Row="1" Grid.Column="0"  Visibility="Collapsed"/>
-        <TextBlock Name="tbCanRefresh" Grid.Row="4"/>
+        <audioPlayer:SimplePlayer Name="AudioPlayer" Grid.Row="1" Grid.Column="0"  Visibility="Collapsed" HorizontalAlignment="Left"/>
+        <!--<TextBlock Name="tbCanRefresh" Grid.Row="4"/>-->
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using PhoneLogic.Core.Areas.Callbacks;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
@@ -58,7 +59,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             {
                 _vm.CanMakeCall = false;
                 StartTimer();
-                string job = String.Format("{0}:0{1}", _vm.Task.JobNum, _vm.Task.taskID);
+                string job = String.Format("{0}:0{1}", _vm.Task.JobNum, _vm.Task.TaskID);
                 //if (MessageBox.Show(
                 //    String.Format("Job {0} Phone {1} sip {2}", job, _vm.PhoneNumber, LyncClient.GetClient().Self.Contact.Uri), 
                 //    "Confirm",

@@ -16,9 +16,9 @@ namespace PhoneLogic.Core.Areas.Recruiters
         private PhoneLogicTask _phoneLogicTask = new PhoneLogicTask()
                 {
                     JobNum = "00000000",
-                    taskDscr = msg,
-                    taskName = msg,
-                    taskTypeID = msg
+                    TaskDscr = msg,
+                    TaskName = msg,
+                    TaskTypeID = msg
                 };
 
         public PhoneLogicTask  PhoneLogicTask

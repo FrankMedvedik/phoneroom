@@ -238,6 +238,12 @@
     <Compile Include="rptMyPhoneLogicTask.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="rpt_GetMyCallbacks_Result.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_GetMyPhoneLogicTasks1_Result.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AgentUtils.cs" />
     <Compile Include="Utils\FormatUtil.cs" />
   </ItemGroup>

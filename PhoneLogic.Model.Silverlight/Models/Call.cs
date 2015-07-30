@@ -42,7 +42,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", CallDuration / 3600, (CallDuration / 60) % 60, CallDuration % 60);
+                return StringFormatSvc.DurationFormatted(CallDuration.GetValueOrDefault(0));
             }
         }
         [Display(Name = "Job")]
@@ -50,7 +50,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return (String.IsNullOrWhiteSpace(JobNumber)) ? JobNumber : JobNumber.Substring(0, 4) + "-" + JobNumber.Substring(4, 4);
+                return StringFormatSvc.JobFormatted( JobNumber);
             }
         }
 
@@ -59,7 +59,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return (String.IsNullOrWhiteSpace(TollFreeNumber)) ? TollFreeNumber : String.Format("{0:(###) ###-####}", double.Parse(TollFreeNumber));
+                return StringFormatSvc.PhoneNumberFormatted(TollFreeNumber);
             }
         }
         [Display(Name = "Phone #")]
@@ -67,7 +67,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return (String.IsNullOrWhiteSpace(CallerId)) ? CallerId : String.Format("{0:(###) ###-####}", double.Parse(CallerId));
+                return StringFormatSvc.PhoneNumberFormatted(CallerId);
             }
         }
     }

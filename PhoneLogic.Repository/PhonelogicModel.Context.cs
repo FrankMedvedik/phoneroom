@@ -94,13 +94,13 @@ namespace PhoneLogic.Repository
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CloseCallback", callbackIDParameter, sIPParameter);
         }
     
-        public virtual ObjectResult<PhoneLogicTaskDTO> GetMyPhoneLogicTasks(string sIP)
+        public virtual ObjectResult<rptMyPhoneLogicTask> GetMyPhoneLogicTasks(string sIP)
         {
             var sIPParameter = sIP != null ?
                 new ObjectParameter("SIP", sIP) :
                 new ObjectParameter("SIP", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PhoneLogicTaskDTO>("GetMyPhoneLogicTasks", sIPParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rptMyPhoneLogicTask>("GetMyPhoneLogicTasks", sIPParameter);
         }
     
         public virtual ObjectResult<PhoneLogicTaskDTO> GetPhoneLogicTask(string jobNum, Nullable<int> taskID)
@@ -305,13 +305,21 @@ namespace PhoneLogic.Repository
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetJobCallbacks", jobNumParameter, taskIdParameter, startDateParameter, endDateParameter);
         }
     
-        public virtual ObjectResult<rptMyPhoneLogicTask> rpt_getMyPhoneLogicTasks(string sIP)
+        public virtual ObjectResult<callbackDTO> rpt_GetMyCallbacks(string sIP, string jobNum, string taskId)
         {
             var sIPParameter = sIP != null ?
                 new ObjectParameter("SIP", sIP) :
                 new ObjectParameter("SIP", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rptMyPhoneLogicTask>("rpt_getMyPhoneLogicTasks", sIPParameter);
+            var jobNumParameter = jobNum != null ?
+                new ObjectParameter("jobNum", jobNum) :
+                new ObjectParameter("jobNum", typeof(string));
+    
+            var taskIdParameter = taskId != null ?
+                new ObjectParameter("taskId", taskId) :
+                new ObjectParameter("taskId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetMyCallbacks", sIPParameter, jobNumParameter, taskIdParameter);
         }
     }
 }

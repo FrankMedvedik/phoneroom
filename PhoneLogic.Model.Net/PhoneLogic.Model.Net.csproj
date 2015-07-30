@@ -139,6 +139,9 @@
     <Compile Include="..\PhoneLogic.Model.Silverlight\Models\RecruiterLog.cs">
       <Link>Models\RecruiterLog.cs</Link>
     </Compile>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\StringFormatSvc.cs">
+      <Link>Models\StringFormatSvc.cs</Link>
+    </Compile>
     <Compile Include="..\PhoneLogic.Model.Silverlight\TestConfig.cs">
       <Link>TestConfig.cs</Link>
     </Compile>
@@ -149,6 +152,12 @@
     <Compile Include="Models\RptJobActivity.cs" />
     <Compile Include="Models\RptTodayCallLogSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhoneLogic.Model.Silverlight\PhoneLogic.Model.Silverlight.csproj">
+      <Project>{E4C37822-FCFA-431B-B373-A78FBD5136B3}</Project>
+      <Name>PhoneLogic.Model.Silverlight</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

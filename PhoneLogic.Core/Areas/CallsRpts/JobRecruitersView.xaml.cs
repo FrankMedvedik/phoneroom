@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
@@ -24,7 +25,15 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            JobRecruitersDG.Export();
+            try
+            {
+                JobRecruitersDG.Export();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Saving file - " + ex.Message);
+            }
         }
         public string SelectedJobNum
         {

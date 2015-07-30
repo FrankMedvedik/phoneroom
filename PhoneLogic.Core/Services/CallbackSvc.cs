@@ -53,10 +53,13 @@ namespace PhoneLogic.Core.Services
         }
 
         
-        public  static async Task<List<myCallback>> GetMyCallbacks(string sip)
+        public  static async Task<List<myCallback>> GetMyCallbacks(string sip, string jobNum, string taskId)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "Callbacks?SIP=" + sip));
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl 
+                + "Callbacks?SIP=" + sip 
+                + "&jobNum="+jobNum
+                + "&taskId="+taskId));
             return JsonConvert.DeserializeObject<List<myCallback>>(data);
         }
 
@@ -92,5 +95,6 @@ namespace PhoneLogic.Core.Services
             return JsonConvert.DeserializeObject<CallbackDto>(data);
         }
 
+      
     }
 }

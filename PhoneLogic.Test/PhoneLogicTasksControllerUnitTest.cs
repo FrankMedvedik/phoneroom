@@ -15,7 +15,7 @@ namespace PhoneLogic.Test
 
             var controller = new PhoneLogicTasksController();
 
-            var tr = controller.GetPhoneLogicTask(TestConfig.SIP);
+            var tr = controller.GetPhoneLogicTask(TestConfig.JobNum, TestConfig.TaskId);
             Assert.AreNotEqual(tr.Count(), 0); 
             Assert.IsNotNull(tr);
 

@@ -221,14 +221,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Callbacks\CallbacksView.xaml.cs">
-      <DependentUpon>CallbacksView.xaml</DependentUpon>
+    <Compile Include="Areas\Callbacks\oldCallbacksView.xaml.cs">
+      <DependentUpon>oldCallbacksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Callbacks\CallbacksViewModel.cs" />
     <Compile Include="Areas\Callbacks\JobsView.xaml.cs">
       <DependentUpon>JobsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Callbacks\JobsViewModel.cs" />
+    <Compile Include="Areas\Callbacks\MyCallbacksView.xaml.cs">
+      <DependentUpon>MyCallbacksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Callbacks\MyCallbacksViewModel.cs" />
     <Compile Include="Areas\CallsByRecruiterForJob.xaml.cs">
       <DependentUpon>CallsByRecruiterForJob.xaml</DependentUpon>
     </Compile>
@@ -304,7 +308,6 @@
     <Compile Include="Services\DefaultButtonSvc.cs" />
     <Compile Include="Services\LyncSearchSvc.cs" />
     <Compile Include="Services\LyncCallLogSvc.cs" />
-    <Compile Include="Services\StringToBrushSvc.cs" />
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="Services\QuoteSvc.cs" />
@@ -386,8 +389,8 @@
     <Compile Include="Areas\PhoneRooms\InboundCallsByHrRptView.xaml.cs">
       <DependentUpon>InboundCallsByHrRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Recruiters\MyCallbacksView.xaml.cs">
-      <DependentUpon>MyCallbacksView.xaml</DependentUpon>
+    <Compile Include="Areas\Recruiters\oMyCallbacksView.xaml.cs">
+      <DependentUpon>oMyCallbacksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\PhoneRooms\JobCallActivityRptView.xaml.cs">
       <DependentUpon>JobCallActivityRptView.xaml</DependentUpon>
@@ -447,11 +450,15 @@
     <None Include="Service References\ProdServiceReference\PhoneLogicService.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Areas\Callbacks\CallbacksView.xaml">
+    <Page Include="Areas\Callbacks\oldCallbacksView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Areas\Callbacks\JobsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Areas\Callbacks\MyCallbacksView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -576,7 +583,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\Recruiters\MyCallbacksView.xaml">
+    <Page Include="Areas\Recruiters\oMyCallbacksView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

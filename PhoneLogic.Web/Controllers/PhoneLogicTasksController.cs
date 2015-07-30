@@ -21,11 +21,11 @@ namespace PhoneLogic.Web.Controllers
         }
 
 
-        // GET: api/PhoneLogicTask?sip=sip:yourname@reckner.com
-        public IEnumerable<PhoneLogicTaskDTO> GetPhoneLogicTask(string sip)
-        {
-            return db.GetMyPhoneLogicTasks(sip).ToList();
-        }
+        //// GET: api/PhoneLogicTask?sip=sip:yourname@reckner.com
+        //public IEnumerable<PhoneLogicTaskDTO> GetPhoneLogicTask(string sip)
+        //{
+        //    return db.GetMyPhoneLogicTasks(sip).ToList();
+        //}
 
         // GET: api/PhoneLogicTask/InboundCallsByHour?startDate=1&endDate=2
         [ResponseType(typeof(rptInboundCallByHourResult))]

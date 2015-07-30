@@ -94,9 +94,9 @@ namespace PhoneLogic.Core.Areas.Recruiters
             myCallback s = SelectedMyCallback;
             LoadDate = DateTime.Now; 
             try{
-                var mcb = new ObservableCollection<myCallback>(await CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri));
-                MyCallbacks = mcb;
-                FilterCallbacks();
+                //var mcb = new ObservableCollection<myCallback>(await CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri));
+                //MyCallbacks = mcb;
+                //FilterCallbacks();
                 if (FilteredCallbacks.Count > 0)
                 {
                     if(s != null) 

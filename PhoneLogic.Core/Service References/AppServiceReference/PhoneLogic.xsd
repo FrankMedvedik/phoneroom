@@ -69,6 +69,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMyQueueDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sipAddress" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyQueueDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/PhoneLogic.DataContracts" minOccurs="0" name="GetMyQueueDetailResult" nillable="true" type="q5:ArrayOfQueueDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetRecruitersOnline">
     <xs:complexType>
       <xs:sequence />
@@ -77,7 +91,7 @@
   <xs:element name="GetRecruitersOnlineResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetRecruitersOnlineResult" nillable="true" type="q5:ArrayOfstring" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetRecruitersOnlineResult" nillable="true" type="q6:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -89,7 +103,7 @@
   <xs:element name="GetRecruitersAvailableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetRecruitersAvailableResult" nillable="true" type="q6:ArrayOfstring" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetRecruitersAvailableResult" nillable="true" type="q7:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -101,8 +115,21 @@
   <xs:element name="GetActiveCallsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/PhoneLogic.DataContracts" minOccurs="0" name="GetActiveCallsResult" nillable="true" type="q7:ArrayOfActiveCall" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/PhoneLogic.DataContracts" minOccurs="0" name="GetActiveCallsResult" nillable="true" type="q8:ArrayOfActiveCall" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PullFromQueue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recruiterUri" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PullFromQueueResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="RecruiterDialOut">
@@ -180,7 +207,7 @@
   <xs:element name="GetSilverlightPolicyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/Message" name="GetSilverlightPolicyResult" type="q8:StreamBody" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/Message" name="GetSilverlightPolicyResult" type="q9:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

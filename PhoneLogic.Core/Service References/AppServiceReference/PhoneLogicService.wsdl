@@ -39,6 +39,12 @@
   <wsdl:message name="IPhoneLogicService_GetMyQueueSummary_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMyQueueSummaryResponse" />
   </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_GetMyQueueDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyQueueDetail" />
+  </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_GetMyQueueDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyQueueDetailResponse" />
+  </wsdl:message>
   <wsdl:message name="IPhoneLogicService_GetRecruitersOnline_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRecruitersOnline" />
   </wsdl:message>
@@ -56,6 +62,12 @@
   </wsdl:message>
   <wsdl:message name="IPhoneLogicService_GetActiveCalls_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetActiveCallsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_PullFromQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:PullFromQueue" />
+  </wsdl:message>
+  <wsdl:message name="IPhoneLogicService_PullFromQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PullFromQueueResponse" />
   </wsdl:message>
   <wsdl:message name="IPhoneLogicService_RecruiterDialOut_InputMessage">
     <wsdl:part name="parameters" element="tns:RecruiterDialOut" />
@@ -114,6 +126,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/GetMyQueueSummary" message="tns:IPhoneLogicService_GetMyQueueSummary_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPhoneLogicService/GetMyQueueSummaryResponse" message="tns:IPhoneLogicService_GetMyQueueSummary_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetMyQueueDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/GetMyQueueDetail" message="tns:IPhoneLogicService_GetMyQueueDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPhoneLogicService/GetMyQueueDetailResponse" message="tns:IPhoneLogicService_GetMyQueueDetail_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetRecruitersOnline">
       <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/GetRecruitersOnline" message="tns:IPhoneLogicService_GetRecruitersOnline_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPhoneLogicService/GetRecruitersOnlineResponse" message="tns:IPhoneLogicService_GetRecruitersOnline_OutputMessage" />
@@ -125,6 +141,10 @@
     <wsdl:operation name="GetActiveCalls">
       <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/GetActiveCalls" message="tns:IPhoneLogicService_GetActiveCalls_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPhoneLogicService/GetActiveCallsResponse" message="tns:IPhoneLogicService_GetActiveCalls_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PullFromQueue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/PullFromQueue" message="tns:IPhoneLogicService_PullFromQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPhoneLogicService/PullFromQueueResponse" message="tns:IPhoneLogicService_PullFromQueue_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecruiterDialOut">
       <wsdl:input wsaw:Action="http://tempuri.org/IPhoneLogicService/RecruiterDialOut" message="tns:IPhoneLogicService_RecruiterDialOut_InputMessage" />
@@ -200,6 +220,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMyQueueDetail">
+      <soap:operation soapAction="http://tempuri.org/IPhoneLogicService/GetMyQueueDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetRecruitersOnline">
       <soap:operation soapAction="http://tempuri.org/IPhoneLogicService/GetRecruitersOnline" style="document" />
       <wsdl:input>
@@ -220,6 +249,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetActiveCalls">
       <soap:operation soapAction="http://tempuri.org/IPhoneLogicService/GetActiveCalls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PullFromQueue">
+      <soap:operation soapAction="http://tempuri.org/IPhoneLogicService/PullFromQueue" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

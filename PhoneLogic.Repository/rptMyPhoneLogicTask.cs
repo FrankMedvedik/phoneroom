@@ -14,7 +14,6 @@ namespace PhoneLogic.Repository
     public partial class rptMyPhoneLogicTask
     {
         public string JobNum { get; set; }
-        public int taskID { get; set; }
         public string TaskName { get; set; }
         public string TaskDscr { get; set; }
         public string RecruiterSIP { get; set; }
@@ -30,5 +29,7 @@ namespace PhoneLogic.Repository
         public Nullable<int> UniqueCallerCnt { get; set; }
         public Nullable<System.DateTime> FirstCallTime { get; set; }
         public Nullable<System.DateTime> LastCallTime { get; set; }
+        public int TaskID { get; set; }
+        public string TaskTypeID { get; set; }
     }
 }
