@@ -8,6 +8,7 @@
     xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts;assembly=PhoneLogic.Core"
     xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.Areas.PhoneRooms;assembly=PhoneLogic.Core"
     x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
+    <ScrollViewer  HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
     <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -54,6 +55,7 @@
         </Border>
         <views:BuildInformationView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
     </Grid>
+    </ScrollViewer>
 </UserControl>
 
 

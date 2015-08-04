@@ -95,11 +95,11 @@ namespace PhoneLogic.Core.Helpers
                     sw.WriteLine("<?mso-application progid=\"Excel.Sheet\"?>");
                     sw.WriteLine("<Workbook xmlns=\"urn:schemas-microsoft-com:office:spreadsheet\">");
                     sw.WriteLine("<DocumentProperties xmlns=\"urn:schemas-microsoft-com:office:office\">");
-                    sw.WriteLine("<Author>Arasu Elango</Author>");
+                    sw.WriteLine("<Author>Your name here</Author>");
                     sw.WriteLine("<Created>" + DateTime.Now.ToLocalTime().ToLongDateString() + "</Created>");
                     sw.WriteLine("<LastSaved>" + DateTime.Now.ToLocalTime().ToLongDateString() + "</LastSaved>");
-                    sw.WriteLine("<Company>Atom8 IT Solutions (P) Ltd.,</Company>");
-                    sw.WriteLine("<Version>12.00</Version>");
+                    sw.WriteLine("<Company>Reckner</Company>");
+                    sw.WriteLine("<Version>1</Version>");
                     sw.WriteLine("</DocumentProperties>");
                     sw.WriteLine(
                         "<Worksheet ss:Name=\"Silverlight Export\" xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\">");

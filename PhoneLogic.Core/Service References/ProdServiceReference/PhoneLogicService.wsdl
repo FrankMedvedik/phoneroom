@@ -80,6 +80,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMyQueueDetail">
+      <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetMyQueueDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetRecruitersOnline">
       <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetRecruitersOnline" style="document" />
       <wsdl:input>
@@ -100,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetActiveCalls">
       <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/GetActiveCalls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PullFromQueue">
+      <soap:operation soapAction="http://reckner.phonelogic.windowsservice/IPhoneLogicService/PullFromQueue" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

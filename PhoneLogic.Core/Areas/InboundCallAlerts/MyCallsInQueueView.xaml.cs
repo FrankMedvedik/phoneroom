@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace PhoneLogic.Core.Areas.Recruiters
+namespace PhoneLogic.Core.Areas.InboundCallAlerts
 {
     public partial class MyCallsInQueueView : UserControl
     {
@@ -15,6 +15,20 @@ namespace PhoneLogic.Core.Areas.Recruiters
             DataContext = _vm;
 
         }
+        
+        private async void btnTakeCall_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+                if (_vm.SelectedCallInQueue == null) return;
+                await LyncSvc.PullFromQueue(_vm.SelectedCallInQueue.Id);
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.Message);
+            //}
+            
+        }
 
         public string TheForeground
         {
@@ -22,7 +36,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
         }
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TheForegroundProperty =
-            DependencyProperty.Register("TheForeground", typeof(string), typeof(InboundCallAlerts.MyCallsInQueueView), new PropertyMetadata("Black"));
+            DependencyProperty.Register("TheForeground", typeof(string), typeof(MyCallsInQueueView), new PropertyMetadata("Black"));
 
         public string TheBackground
         {
@@ -30,7 +44,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
         }
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TheBackgroundProperty =
-            DependencyProperty.Register("TheBackground", typeof(string), typeof(InboundCallAlerts.MyCallsInQueueView), new PropertyMetadata("#a6dbed"));
+            DependencyProperty.Register("TheBackground", typeof(string), typeof(MyCallsInQueueView), new PropertyMetadata("#a6dbed"));
 
         }
 }

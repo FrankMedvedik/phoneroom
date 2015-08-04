@@ -16,8 +16,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
     {
         public RptDateRangeViewModel()
         {
-            StartRptDate = DateTime.Now.AddDays(-1);
-            EndRptDate = DateTime.Now.AddDays(1);
+            StartRptDate = DateTime.Today;
+            EndRptDate = DateTime.Today.AddDays(1);
         }
 
         private string  _notificationMessage = Notifications.CallRptDateRangeChanged;

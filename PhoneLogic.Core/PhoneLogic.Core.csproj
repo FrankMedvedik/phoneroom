@@ -221,10 +221,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Callbacks\oldCallbacksView.xaml.cs">
-      <DependentUpon>oldCallbacksView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Callbacks\CallbacksViewModel.cs" />
     <Compile Include="Areas\Callbacks\JobsView.xaml.cs">
       <DependentUpon>JobsView.xaml</DependentUpon>
     </Compile>
@@ -269,6 +265,10 @@
     <Compile Include="Areas\CallsRpts\RptDateRangeView.xaml.cs">
       <DependentUpon>RptDateRangeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\InboundCallAlerts\MyCallsInQueueView.xaml.cs">
+      <DependentUpon>MyCallsInQueueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\InboundCallAlerts\MyCallsInQueueViewModel.cs" />
     <Compile Include="Areas\PhoneRooms\RecruiterCallRptViewModel.cs" />
     <Compile Include="Areas\PhoneRooms\RecruiterCallRptView.xaml.cs">
       <DependentUpon>RecruiterCallRptView.xaml</DependentUpon>
@@ -282,6 +282,7 @@
     </Compile>
     <Compile Include="Areas\Recruiters\RecruiterLyncCallLogViewModel.cs" />
     <Compile Include="Behaviors\DefaultButtonBehavior.cs" />
+    <Compile Include="Behaviors\ExcelBehavior.cs" />
     <Compile Include="Configuration\ConditionalConfiguration.cs" />
     <Compile Include="Commands\ThemeChangeCommand.cs" />
     <Compile Include="Configuration\NinjectConfiguration.cs" />
@@ -389,9 +390,6 @@
     <Compile Include="Areas\PhoneRooms\InboundCallsByHrRptView.xaml.cs">
       <DependentUpon>InboundCallsByHrRptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Recruiters\oMyCallbacksView.xaml.cs">
-      <DependentUpon>oMyCallbacksView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Areas\PhoneRooms\JobCallActivityRptView.xaml.cs">
       <DependentUpon>JobCallActivityRptView.xaml</DependentUpon>
     </Compile>
@@ -415,7 +413,6 @@
     </Compile>
     <Compile Include="Areas\PhoneRooms\CallsInQueueViewModel.cs" />
     <Compile Include="Areas\Recruiters\MyJobsViewModel.cs" />
-    <Compile Include="Areas\Recruiters\MyCallbacksViewModel.cs" />
     <None Include="Service References\ProdServiceReference\PhoneLogic.Core.ProdServiceReference.ActiveCall.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -450,10 +447,6 @@
     <None Include="Service References\ProdServiceReference\PhoneLogicService.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Areas\Callbacks\oldCallbacksView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Areas\Callbacks\JobsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -493,6 +486,10 @@
     <Page Include="Areas\CallsRpts\RptDateRangeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\InboundCallAlerts\MyCallsInQueueView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Areas\PhoneRooms\RecruiterCallRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -580,10 +577,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Areas\PhoneRooms\InboundCallsByHrRptView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Areas\Recruiters\oMyCallbacksView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

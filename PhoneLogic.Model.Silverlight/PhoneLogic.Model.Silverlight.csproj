@@ -119,6 +119,7 @@
       <Link>Models\RptTodayCallLogSummary.cs</Link>
     </Compile>
     <Compile Include="Models\CallbackRpt.cs" />
+    <Compile Include="Models\CallInQueue.cs" />
     <Compile Include="Models\CallRptSettings.cs" />
     <Compile Include="ColorMappingSvc.cs" />
     <Compile Include="Models\ActiveCallDetail.cs" />

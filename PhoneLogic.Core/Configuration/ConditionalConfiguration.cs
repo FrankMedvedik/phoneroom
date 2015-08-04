@@ -42,18 +42,18 @@ namespace PhoneLogic.Core
      public static string LyncServiceRefUrl = "http://cc-prod.reckner.com:1255/PhoneLogic/basic";
         // getting calls from prod. 
      public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";   
+#elif DEBUGTEST
+        public static string BuildType = "DEBUG-TEST";
+        public static string apiUrl = "http://cc-app.reckner.com/inbound/api/";
+        public static string rootUrl = "http://cc-app.reckner.com/inbound/";
+        public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic/basic";
+        public const string RecknerCallAppGuid = "{EF327138-E9C6-4E5D-8BB3-F505DAB0F567}";
 //#elif DEBUGTEST
 //     public static string BuildType = "DEBUG-TEST";
-//     public static string apiUrl = "http://cc-app.reckner.com/inbound/api/";
-//     public static string rootUrl = "http://cc-app.reckner.com/inbound/";
-//     public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic/basic";
-//     public const string RecknerCallAppGuid = "{EF327138-E9C6-4E5D-8BB3-F505DAB0F567}";
-#elif DEBUGTEST
-     public static string BuildType = "DEBUG-TEST";
-     public static string apiUrl = "http://cc-prod.reckner.com/phoneroom.hold/api/";
-     public static string rootUrl = "http://cc-prod.reckner.com/phoneroom.hold/";
-     public static string LyncServiceRefUrl = "http://cc-prod.reckner.com:1255/PhoneLogic";
-     public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";
+//     public static string apiUrl = "http://cc-prod.reckner.com/phoneroom.hold/api/";
+//     public static string rootUrl = "http://cc-prod.reckner.com/phoneroom.hold/";
+//     public static string LyncServiceRefUrl = "http://cc-prod.reckner.com:1255/PhoneLogic";
+//     public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";
         
 #elif DEBUGPROD
         public static string BuildType = "DEBUG-PROD";

@@ -6,6 +6,7 @@
     xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
     xmlns:recruiter="clr-namespace:PhoneLogic.Core.Areas.Recruiters;assembly=PhoneLogic.Core"
     xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
+    xmlns:inboundCallAlerts="clr-namespace:PhoneLogic.Core.Areas.InboundCallAlerts;assembly=PhoneLogic.Core"
     x:Class="PhoneLogic.Outbound.MainPage" mc:Ignorable="d" d:Height="403.333" Name="Main">
     <ScrollViewer>
     <Grid x:Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="10">
@@ -20,7 +21,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
         <controls:MyStatusArea  Name="ms"  Grid.Column="0" Grid.Row="0" PhotoDisplayMode="Large"  MinWidth="200" Height="Auto"  Background="Transparent"  Margin="6" HorizontalAlignment="Left"/>
-        <recruiter:MyCallsInQueueView Name="MyCallsInQ" MinWidth="300" Height="Auto" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
+        <inboundCallAlerts:MyCallsInQueueView Name="MyCallsInQ" MinWidth="300" Height="Auto" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
         <recruiter:MyWorkView Name="MyWork" Margin="6" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Left" />
         <views:BuildInformationView  Grid.Column="0" Grid.Row="3"/>
         </Grid>

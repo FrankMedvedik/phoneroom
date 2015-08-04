@@ -9,12 +9,12 @@ using System.Collections.Generic;
 using PhoneLogic.Core;
 using PhoneLogic.Core.Models;
 using PhoneNumbers;
-#if DEBUGTEST
-using sr = PhoneLogic.Core.ProdServiceReference;
-using PhoneLogic.Core.ProdServiceReference;
 //#if DEBUGTEST
-//using sr = PhoneLogic.Core.AppServiceReference;
-//using PhoneLogic.Core.AppServiceReference;
+//using sr = PhoneLogic.Core.ProdServiceReference;
+//using PhoneLogic.Core.ProdServiceReference;
+#if DEBUGTEST
+using sr = PhoneLogic.Core.AppServiceReference;
+using PhoneLogic.Core.AppServiceReference;
 #elif DEBUGPROD
 using sr= PhoneLogic.Core.ProdServiceReference;
 using PhoneLogic.Core.ProdServiceReference;
@@ -170,6 +170,7 @@ namespace PhoneLogic.Core.Services
 
         public async static Task RecruiterDialOut(String JobFormatted,  String PhoneNumber, int CallbackId)
         {
+            if (LyncClient.GetClient() == null) return ;
             var proxy = new PhoneLogicServiceClient();
             Object state = "test";
             var channel = proxy.ChannelFactory.CreateChannel();
@@ -187,5 +188,32 @@ namespace PhoneLogic.Core.Services
 
         }
 
+        public async static Task<List<QueueDetail>> GetMyQueuedCalls()
+        {   var t = new List<QueueDetail>();
+            try
+            {
+                if (LyncClient.GetClient() == null) return null;
+                var proxy = new PhoneLogicServiceClient();
+                Object state = "test";
+                var channel = proxy.ChannelFactory.CreateChannel();
+                t = await Task<List<QueueDetail>>.Factory.FromAsync(channel.BeginGetMyQueueDetail,
+                    channel.EndGetMyQueueDetail, LyncClient.GetClient().Self.Contact.Uri, state);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return t;
+        }
+
+        public async static Task PullFromQueue(string callId)
+        {
+
+            if (LyncClient.GetClient() == null) return;
+            var proxy = new PhoneLogicServiceClient();
+            Object state = "test";
+            var channel = proxy.ChannelFactory.CreateChannel();
+            IAsyncResult result = channel.BeginPullFromQueue(callId, LyncClient.GetClient().Self.Contact.Uri, channel.EndPullFromQueue, state);
+        }
     }
 

@@ -38,8 +38,8 @@
                     <sdk:DataGridTextColumn Binding="{Binding OutboundCallCnt}" />
                     <sdk:DataGridTextColumn Binding="{Binding MaxCallDurationFormatted }" />
                     <sdk:DataGridTextColumn Binding="{Binding AvgCallDurationFormatted }" />
-                    <sdk:DataGridTextColumn Binding="{Binding OldestMsg }" />
-                    <sdk:DataGridTextColumn Binding="{Binding NewestMsg }" />
+                <sdk:DataGridTextColumn Binding="{Binding FirstCallTime, StringFormat=t}" />
+                <sdk:DataGridTextColumn Binding="{Binding LastCallTime, StringFormat=t}" />
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
         <StackPanel Width="Auto" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}"  Grid.Row="1" Grid.Column="0" >
