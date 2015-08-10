@@ -46,6 +46,11 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 NotifyPropertyChanged();
             }
         }
+        public DateTime? LastCallBackStartTime
+        {
+            get { return _myCallbacks.Select(x => x.timeEntered).Max(); }
+        }
+
         protected override void RefreshAll(object sender, EventArgs e)
         {
                 if (MyCallbacksOnly)

@@ -41,14 +41,14 @@ namespace PhoneLogic.Core.Areas.Callbacks
         public static readonly DependencyProperty SelectedJobNumProperty =
             DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(MyCallbacksView), new PropertyMetadata(""));
 
-        public int RowCount
+        public DateTime? LastCallBackStartTime
         {
-            get { return _vm.MyCallbacks.Count; }
+            get { return _vm.LastCallBackStartTime; }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RowCountProperty =
-            DependencyProperty.Register("RowCount", typeof(int), typeof(MyCallbacksView), new PropertyMetadata(0));
+        public static readonly DependencyProperty LastCallBackStartTimeProperty =
+            DependencyProperty.Register("LastCallBackStartTime", typeof(DateTime?), typeof(MyCallbacksView), new PropertyMetadata(DateTime.Today));
 
 
         public int SelectedTaskId

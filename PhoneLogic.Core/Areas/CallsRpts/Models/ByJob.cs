@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Areas.CallsRpts.Models
 {
@@ -36,10 +37,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                return JobNumber.Substring(0, 4) + "-" + JobNumber.Substring(4,4);
+                return StringFormatSvc.JobAndTaskFormatted(JobNumber);
             }
         }
 
+        public int TaskID
+        {
+            get { return StringFormatSvc.TaskFromJobNumber(JobNumber); }
+        }
 
         [Display(Name = "Toll Free #")]
         public string TollFreeFormatted

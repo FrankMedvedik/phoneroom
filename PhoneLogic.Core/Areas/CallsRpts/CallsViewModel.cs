@@ -88,6 +88,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
+
         private ObservableCollection<Call> _calls = new ObservableCollection<Call>();
         public ObservableCollection<Call> Calls
         {
@@ -99,6 +100,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
+        public DateTime? LastCallStartTime
+        {
+            get { return _calls.Select(x => x.CallStartTime).Max(); }
+        }
 
         protected override void RefreshAll(object sender, EventArgs e)
         {

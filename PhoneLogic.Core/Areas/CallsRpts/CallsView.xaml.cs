@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.Areas.CallsRpts;
@@ -59,15 +60,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(CallsView), new PropertyMetadata(""));
 
 
-        public int RowCount
+        public DateTime? LastCallTime
         {
-            get { return _vm.Calls.Count; }
+            get { return _vm.LastCallStartTime; }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RowCountProperty =
-            DependencyProperty.Register("RowCount", typeof(int), typeof(CallsView), new PropertyMetadata(0));
-
+        public static readonly DependencyProperty LastCallTimeProperty =
+            DependencyProperty.Register("LastCallTime", typeof(DateTime?), typeof(CallsView), new PropertyMetadata(DateTime.Today));
 
         public CallRptDateRange CallRptDateRange
         {

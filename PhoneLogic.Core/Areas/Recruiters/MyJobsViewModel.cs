@@ -48,7 +48,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 if (PhoneLogicTasks.Count > 0)
                 {
                     if (s != null)
-                         SelectedPhoneLogicTask = PhoneLogicTasks.FirstOrDefault(x => x.JobNum == s.JobNum);
+                         SelectedPhoneLogicTask = PhoneLogicTasks.FirstOrDefault(x => x.JobNum == s.JobNum && x.TaskID == s.TaskID);
                     ShowGridData = true;
                 }
                 else

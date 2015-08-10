@@ -54,12 +54,9 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 return;
             }
 
-            RefreshCallBacks();
             RefreshOutboundCall();
+            RefreshCallBacks();
             RefreshCalls();
-        
-
-
 
             tc.Visibility = Visibility.Visible;
         }
@@ -67,7 +64,8 @@ namespace PhoneLogic.Core.Areas.Recruiters
         private void RefreshCalls()
         {
             // no need to refresh if nothing has changed 
-            if ((cv.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID) && _vm.SelectedPhoneLogicTask.CallCnt == cv.RowCount)
+            if ((cv.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID)
+                && (_vm.SelectedPhoneLogicTask.LastCallTime == cv.LastCallTime   || _vm.SelectedPhoneLogicTask.LastCallTime == null))
                 return;
             // trigger getting the list of outbound calls
             cv.RecruiterSIP = LyncClient.GetClient().Self.Contact.Uri;
@@ -89,7 +87,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
         {
             if (mcb.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum 
                 && mcb.SelectedTaskId == _vm.SelectedPhoneLogicTask.TaskID.GetValueOrDefault(0) 
-                && _vm.SelectedPhoneLogicTask.MsgCnt == mcb.RowCount) 
+                && (_vm.SelectedPhoneLogicTask.NewestMsg == mcb.LastCallBackStartTime)  || _vm.SelectedPhoneLogicTask.MsgCnt.GetValueOrDefault(0) == 0)
                 return;
             // Trigger getting callbacks 
             mcb.SelectedJobNum = _vm.SelectedPhoneLogicTask.JobNum;
