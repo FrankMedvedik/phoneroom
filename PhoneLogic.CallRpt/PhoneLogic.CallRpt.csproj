@@ -89,9 +89,28 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllRecruitersRptView.xaml.cs">
+      <DependentUpon>AllRecruitersRptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllRecruitersViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InboundCallsByHrChartView.xaml.cs">
+      <DependentUpon>InboundCallsByHrChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InboundCallsByHrRptView.xaml.cs">
+      <DependentUpon>InboundCallsByHrRptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InboundCallsByHrRptViewModel.cs" />
+    <Compile Include="JobCallActivityRptView.xaml.cs">
+      <DependentUpon>JobCallActivityRptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JobCallActivityRptViewModel.cs" />
+    <Compile Include="JobCallQueueSummaryView.xaml.cs">
+      <DependentUpon>JobCallQueueSummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JobCallQueueSummaryViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -101,17 +120,76 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="RecruiterCallRptView.xaml.cs">
+      <DependentUpon>RecruiterCallRptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RecruiterCallRptViewModel.cs" />
+    <Compile Include="RecruiterLyncCallLogView.xaml.cs">
+      <DependentUpon>RecruiterLyncCallLogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RecruiterLyncCallLogViewModel.cs" />
+    <Compile Include="RecruiterRptView.xaml.cs">
+      <DependentUpon>RecruiterRptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RecruiterRptViewModel.cs" />
+    <Compile Include="RespondentSearchView.xaml.cs">
+      <DependentUpon>RespondentSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TodaysCallLogRptView.xaml.cs">
+      <DependentUpon>TodaysCallLogRptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TodaysCallLogRptViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="AllRecruitersRptView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InboundCallsByHrChartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InboundCallsByHrRptView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="JobCallActivityRptView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="JobCallQueueSummaryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RecruiterCallRptView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RecruiterLyncCallLogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RecruiterRptView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RespondentSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Skins\MainSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TodaysCallLogRptView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -24,7 +24,7 @@ namespace PhoneLogic.Model.Models
         {
             get
             {
-                return jobNum.Substring(0, 4) + "-" + jobNum.Substring(4);
+                return StringFormatSvc.JobFormatted(jobNum) + ":"+ taskID.ToString().PadLeft(2,'0');
             }
         }
 
