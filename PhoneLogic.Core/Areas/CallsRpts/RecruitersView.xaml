@@ -9,12 +9,9 @@
              mc:Ignorable="d ignore">
 
     <Grid x:Name="LayoutRoot">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid>
@@ -24,25 +21,19 @@
             <RowDefinition  Height="Auto"/>
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="75*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"   Grid.Row="0" Grid.Column="0" >
-            <TextBlock Text="Location" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-            <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
-                           Name="comboBox1" VerticalAlignment="Top" Width="100" 
+            <StackPanel Orientation="Horizontal" Grid.Row="0" >
+                    <TextBlock Text="Location" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
+                           Name="comboBox1" VerticalAlignment="Center" Width="100" 
                               ItemsSource="{Binding Path=PhoneRooms, Mode=OneWay}" 
                                 SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}" 
                   DisplayMemberPath="Name" 
                   SelectedValuePath="Name"  />
-        </StackPanel>
-        <CallsRpts:RptDateRangeView Name="DatePicker" Grid.Row="0" Grid.Column="1" />
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" >
-            <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
-        </StackPanel>
-        <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
-                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"
+                <CallsRpts:RptDateRangeView Name="DatePicker" HorizontalAlignment="Left" Margin="6" VerticalAlignment="Center"/>
+            </StackPanel>
+            <TextBlock Text="{Binding HeadingText}" Grid.Row="1" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+            <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="2" 
+                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto" FrozenColumnCount="2"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="RecruitersDG_SelectionChanged"
                       ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >

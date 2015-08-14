@@ -245,9 +245,6 @@
     <Compile Include="Areas\CallsRpts\JobRecruitersViewModel.cs" />
     <Compile Include="Areas\CallsRpts\RecruiterViewModel.cs" />
     <Compile Include="Areas\CallsRpts\JobsViewModel.cs" />
-    <Compile Include="Areas\CallsRpts\JobsForRecruiterView.xaml.cs">
-      <DependentUpon>JobsForRecruiterView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Areas\CallsRpts\JobsView.xaml.cs">
       <DependentUpon>JobsView.xaml</DependentUpon>
     </Compile>
@@ -457,10 +454,6 @@
     </Page>
     <Page Include="Areas\CallsByRecruiterForJob.xaml">
       <SubType>Form</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Areas\CallsRpts\JobsForRecruiterView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Areas\CallsRpts\JobRecruitersView.xaml">
