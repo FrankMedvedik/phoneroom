@@ -107,7 +107,15 @@
                 DateTime dt = DateTime.Now;
 
                 dt = dt.ToUniversalTime();
-                return dt.AddHours((double)UTC_code + (dt.IsDaylightSavingTime() ? 0 : 1));
+                try
+                {
+                    dt.AddHours((double) UTC_code + (dt.IsDaylightSavingTime() ? 0 : 1));
+                }
+                catch (InvalidOperationException i)
+                {
+                     // do nothing fucked up time zone
+                }
+                return dt;
             }
         }
         public String callbackNum

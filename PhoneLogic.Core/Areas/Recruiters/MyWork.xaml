@@ -28,7 +28,6 @@
              ToolTipService.ToolTip="My current jobs" HorizontalAlignment="Left"  VerticalAlignment="Top" SelectionMode="Single" LoadingRow="DGrid_LoadingRow" >
                 <sdk:DataGrid.Columns>
                     <sdk:DataGridTextColumn Binding="{Binding JobFormatted}"  />
-                <sdk:DataGridTextColumn Binding="{Binding TaskID}"  />
                 <sdk:DataGridTextColumn Binding="{Binding TaskName}"  />
                     <sdk:DataGridTextColumn Binding="{Binding MsgCnt}" />
                     <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />

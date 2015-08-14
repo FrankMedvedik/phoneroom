@@ -19,8 +19,8 @@ namespace PhoneLogic.Model
         {
             get
             {
-                if (JobNum == null) return null;
-                return JobNum.Substring(0, 4) + "-" + JobNum.Substring(4);
+                return StringFormatSvc.JobAndTaskFormatted(JobNum) + ":0" + TaskID;
+                
             }
         }
         [Display(Name = "Task ID")]

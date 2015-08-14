@@ -50,7 +50,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return StringFormatSvc.JobFormatted( JobNumber);
+                return StringFormatSvc.JobAndTaskFormatted( JobNumber);
             }
         }
 

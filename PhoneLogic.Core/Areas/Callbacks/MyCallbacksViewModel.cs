@@ -48,7 +48,22 @@ namespace PhoneLogic.Core.Areas.Callbacks
         }
         public DateTime? LastCallBackStartTime
         {
-            get { return _myCallbacks.Select(x => x.timeEntered).Max(); }
+            get
+            {
+                DateTime? dt = null;
+                try
+                {
+                    dt = _myCallbacks.Select(x => x.timeEntered).Max();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    // do nothing 
+                    dt = null;
+                }
+
+                return dt;
+
+            }
         }
 
         protected override void RefreshAll(object sender, EventArgs e)
