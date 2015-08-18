@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Helpers;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
@@ -50,19 +51,19 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(JobRecruitersView), new PropertyMetadata(""));
 
 
-        public CallRptDateRange CallRptDateRange
+        public ReportDateRange ReportDateRange
         {
-            get { return _vm.CallRptDateRange; }
+            get { return _vm.ReportDateRange; }
             set
             {
-                //SetValue(CallRptDateRangeProperty, value);
-                _vm.CallRptDateRange = value;
+                //SetValue(ReportDateRangeProperty, value);
+                _vm.ReportDateRange = value;
             }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CallRptDateRangeProperty =
-            DependencyProperty.Register("CallRptDateRange", typeof(CallRptDateRange), typeof(JobRecruitersView), new PropertyMetadata(new CallRptDateRange()));
+        public static readonly DependencyProperty ReportDateRangeProperty =
+            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(JobRecruitersView), new PropertyMetadata(new ReportDateRange()));
 
         private void JobRecruitersDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -70,7 +71,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 cv.RecruiterSIP = _vm.SelectedRecruiter.recruiterSip;
                 cv.SelectedJobNum = _vm.CallRptJobNum;
-                cv.CallRptDateRange = _vm.CallRptDateRange;
+                cv.ReportDateRange = _vm.ReportDateRange;
                 cv.Refresh();
             }
             else

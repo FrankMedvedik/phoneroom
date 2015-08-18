@@ -5,16 +5,8 @@
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="PhoneLogic.Core.Areas.PhoneRooms.CallsInQueueView"
-    xmlns:converters="clr-namespace:PhoneLogic.Core.Converters"
-    xmlns:viewModels="clr-namespace:PhoneLogic.Core.ViewModels"
-    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
-    xmlns:PhoneRoom="clr-namespace:PhoneLogic.Core.Areas.PhoneRoom"
-    xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.Areas.PhoneRooms"
     mc:Ignorable="d" >
-    <Control.DataContext>
-        <phoneRooms:CallsInQueueViewModel/>
-    </Control.DataContext>
-    <Grid  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" >
+   <Grid  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" >
         <StackPanel Grid.Row="0" Grid.Column="0"  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  
                     Background="{Binding TheBackground}" >
             <!--<TextBlock Text="Incoming Call: Become Available in Lync to Accept" FontWeight="Bold" Foreground="{Binding TheForeground}" Margin="6" />-->

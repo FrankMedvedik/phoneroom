@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Lync.Model;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
 
@@ -70,7 +71,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             // trigger getting the list of outbound calls
             cv.RecruiterSIP = LyncClient.GetClient().Self.Contact.Uri;
             cv.SelectedJobNum = _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID;
-            cv.CallRptDateRange = new CallsRpts.Models.CallRptDateRange() { StartRptDate = Convert.ToDateTime("7/01/2015"), EndRptDate = DateTime.Now };
+            cv.ReportDateRange = new ReportDateRange() { StartRptDate = Convert.ToDateTime("7/01/2015"), EndRptDate = DateTime.Now };
             cv.Refresh();
         }
 

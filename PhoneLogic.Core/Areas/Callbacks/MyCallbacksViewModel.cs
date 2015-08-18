@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
 using Newtonsoft.Json;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -203,18 +204,18 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 });
         }
 
-        public CallRptDateRange CallRptDateRange = new CallRptDateRange();
+        public ReportDateRange ReportDateRange = new ReportDateRange();
         public async void GetAllCallBacks()
         {
             ShowGridData = false;
             HeadingText = "";
             try
             {
-                if ((CallRptDateRange != null) && (SelectedJobNum != null))
+                if ((ReportDateRange != null) && (SelectedJobNum != null))
                 {
                     HeadingText = "Loading...";
                     var ro = await CallbackSvc.GetJobCallbacks(SelectedJobNum, SelectedTaskId.ToString(),
-                                CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
+                                ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     ShowGridData = true;
                     MyCallbacks = new ObservableCollection<myCallback>(ro);
                     HeadingText = String.Format("Job {0}-{1}  has {2} Voice Mail Messages", SelectedJobNum.Substring(0, 4),

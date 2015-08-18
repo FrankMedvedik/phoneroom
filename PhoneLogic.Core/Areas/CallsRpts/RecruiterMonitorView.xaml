@@ -23,23 +23,12 @@
         </Grid.RowDefinitions>
         <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition  Height="Auto"/>
             <RowDefinition  Height="Auto"/>
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal"   Grid.Row="0" Grid.Column="0" >
-                <TextBlock Text="Location" FontWeight="Bold"  Margin="6" VerticalAlignment="Center"/>
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
-                           Name="comboBox1" VerticalAlignment="Center" Width="100" 
-                              ItemsSource="{Binding Path=PhoneRooms, Mode=OneWay}" 
-                                SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}" 
-                  DisplayMemberPath="Name" 
-                  SelectedValuePath="Name"  />
-                <CallsRpts:RptDateRangeView Name="DatePicker" Margin="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            </StackPanel>
-            <TextBlock Text="{Binding HeadingText}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold" Margin="6"/>
-        <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="2" 
+            <TextBlock Text="{Binding HeadingText}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold" Margin="6"/>
+        <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="1" 
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto" FrozenColumnCount="2"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="RecruitersDG_SelectionChanged"
                       ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
@@ -61,8 +50,8 @@
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
         <Button  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 
-                 Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
-        <StackPanel  Margin="6" Grid.Row="2" Grid.Column="0"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+                 Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+        <StackPanel  Margin="6" Grid.Row="1" Grid.Column="0"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
             <TextBlock  HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text=""/>
             <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
                 <TextBlock Text="Error during load"/>

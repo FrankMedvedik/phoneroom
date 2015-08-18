@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PhoneLogic.Core.Areas.CallsRpts.Models
+namespace PhoneLogic.Core.Areas.ReportCriteria
 {
-    public class CallRptDateRange 
+    public class ReportDateRange 
     {
         public DateTime EndRptDate { get; set; }
         public DateTime StartRptDate { get; set; }

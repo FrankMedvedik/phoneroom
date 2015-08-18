@@ -19,7 +19,8 @@
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>PhoneLogic.ViewContracts.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>PhoneLogic.ViewContracts.App</SilverlightAppEntry>
+    <SilverlightAppEntry>
+    </SilverlightAppEntry>
     <TestPageFileName>TestPage.html</TestPageFileName>
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
@@ -82,6 +83,9 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="MVVMBaseTypes\DelegateCommand.cs" />
+    <Compile Include="MVVMBaseTypes\ViewModelBase.cs" />
     <Compile Include="MVVMMessenger\AppColors.cs" />
     <Compile Include="MVVMMessenger\Notifications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

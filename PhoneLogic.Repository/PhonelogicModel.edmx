@@ -86,17 +86,29 @@
           <Property Name="endCallDate" Type="datetime" />
           <Property Name="phoneNum" Type="char" MaxLength="10" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_PhoneLogicTaskAgent">
+          <Key>
+            <PropertyRef Name="jobNum" />
+            <PropertyRef Name="taskID" />
+            <PropertyRef Name="taskName" />
+            <PropertyRef Name="taskDscr" />
+            <PropertyRef Name="taskTypeID" />
+          </Key>
+          <Property Name="jobNum" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="taskID" Type="int" Nullable="false" />
+          <Property Name="taskName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="taskDscr" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="taskTypeID" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="sip" Type="nvarchar" MaxLength="256" />
+          <Property Name="tollFreeNumber" Type="char" MaxLength="10" />
+        </EntityType>
         <Function Name="pl_CloseCallback_sip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="callbackID" Type="int" Mode="In" />
           <Parameter Name="SIP" Type="varchar" Mode="In" />
         </Function>
         <Function Name="pl_getJobCallStats" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="pl_GetMyCallbacks_sip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SIP" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="pl_getMyPhoneLogicTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SIP" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="pl_GetPhoneLogicTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jobNum" Type="char" Mode="In" />
           <Parameter Name="taskID" Type="int" Mode="In" />
@@ -203,6 +215,17 @@
           <EntitySet Name="callLog" EntityType="Self.callLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lyncCallQueue" EntityType="Self.lyncCallQueue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="returnedCalls" EntityType="Self.returnedCalls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_PhoneLogicTaskAgent" EntityType="Self.vw_PhoneLogicTaskAgent" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_PhoneLogicTaskAgent].[jobNum] AS [jobNum], 
+    [vw_PhoneLogicTaskAgent].[taskID] AS [taskID], 
+    [vw_PhoneLogicTaskAgent].[taskName] AS [taskName], 
+    [vw_PhoneLogicTaskAgent].[taskDscr] AS [taskDscr], 
+    [vw_PhoneLogicTaskAgent].[taskTypeID] AS [taskTypeID], 
+    [vw_PhoneLogicTaskAgent].[sip] AS [sip], 
+    [vw_PhoneLogicTaskAgent].[tollFreeNumber] AS [tollFreeNumber]
+    FROM [dbo].[vw_PhoneLogicTaskAgent] AS [vw_PhoneLogicTaskAgent]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -301,6 +324,7 @@
             <Parameter Name="jobNum" Mode="In" Type="String" />
             <Parameter Name="taskId" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="vw_PhoneLogicTaskAgent" EntityType="PhoneLogicModel.vw_PhoneLogicTaskAgent" />
         </EntityContainer>
         <EntityType Name="returnedCall">
           <Key>
@@ -607,33 +631,28 @@
           <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
         </ComplexType>
+        <EntityType Name="vw_PhoneLogicTaskAgent">
+          <Key>
+            <PropertyRef Name="jobNum" />
+            <PropertyRef Name="taskID" />
+            <PropertyRef Name="taskName" />
+            <PropertyRef Name="taskDscr" />
+            <PropertyRef Name="taskTypeID" />
+          </Key>
+          <Property Name="jobNum" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="taskID" Type="Int32" Nullable="false" />
+          <Property Name="taskName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="taskDscr" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="taskTypeID" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="sip" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="tollFreeNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PhoneLogicModelStoreContainer" CdmEntityContainer="PhoneLogicEntities">
-          <FunctionImportMapping FunctionImportName="getMyCallbacks" FunctionName="PhoneLogicModel.Store.pl_GetMyCallbacks_sip">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PhoneLogicModel.callbackDTO">
-                <ScalarProperty Name="callbackID" ColumnName="callbackID" />
-                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
-                <ScalarProperty Name="taskID" ColumnName="taskID" />
-                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
-                <ScalarProperty Name="msgLength" ColumnName="msgLength" />
-                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
-                <ScalarProperty Name="UTC_code" ColumnName="UTC_code" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="timeEntered" ColumnName="timeEntered" />
-                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
-                <ScalarProperty Name="msgScr" ColumnName="msgScr" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="SIP" ColumnName="SIP" />
-                <ScalarProperty Name="taskName" ColumnName="taskName" />
-                <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="returnedCalls">
             <EntityTypeMapping TypeName="PhoneLogicModel.returnedCall">
               <MappingFragment StoreEntitySet="returnedCalls">
@@ -1013,6 +1032,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="vw_PhoneLogicTaskAgent">
+            <EntityTypeMapping TypeName="PhoneLogicModel.vw_PhoneLogicTaskAgent">
+              <MappingFragment StoreEntitySet="vw_PhoneLogicTaskAgent">
+                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
+                <ScalarProperty Name="sip" ColumnName="sip" />
+                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
+                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

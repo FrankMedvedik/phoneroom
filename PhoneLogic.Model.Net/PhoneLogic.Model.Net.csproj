@@ -133,6 +133,9 @@
     <Compile Include="..\PhoneLogic.Model.Silverlight\Models\PhoneLogicTask.cs">
       <Link>Models\PhoneLogicTask.cs</Link>
     </Compile>
+    <Compile Include="..\PhoneLogic.Model.Silverlight\Models\PhoneroomRecruiterJob.cs">
+      <Link>Models\PhoneroomRecruiterJob.cs</Link>
+    </Compile>
     <Compile Include="..\PhoneLogic.Model.Silverlight\Models\Recruiter.cs">
       <Link>Models\Recruiter.cs</Link>
     </Compile>

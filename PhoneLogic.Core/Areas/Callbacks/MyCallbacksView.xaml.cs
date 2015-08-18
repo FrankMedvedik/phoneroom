@@ -5,6 +5,7 @@ using System.Windows.Controls.Primitives;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
@@ -66,19 +67,19 @@ namespace PhoneLogic.Core.Areas.Callbacks
             DependencyProperty.Register("SelectedTaskId", typeof(int), typeof(MyCallbacksView), new PropertyMetadata(0));
 
 
-        public CallRptDateRange CallRptDateRange
+        public ReportDateRange ReportDateRange
         {
-            get { return _vm.CallRptDateRange; }
+            get { return _vm.ReportDateRange; }
             set
             {
-                SetValue(CallRptDateRangeProperty, value);
-                _vm.CallRptDateRange = value;
+                SetValue(ReportDateRangeProperty, value);
+                _vm.ReportDateRange = value;
             }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CallRptDateRangeProperty =
-            DependencyProperty.Register("CallRptDateRange", typeof(CallRptDateRange), typeof(MyCallbacksView), new PropertyMetadata(new CallRptDateRange()));
+        public static readonly DependencyProperty ReportDateRangeProperty =
+            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(MyCallbacksView), new PropertyMetadata(new ReportDateRange()));
 
         public void Refresh()
         {

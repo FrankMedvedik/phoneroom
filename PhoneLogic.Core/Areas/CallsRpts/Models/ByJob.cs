@@ -51,10 +51,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                if(!String.IsNullOrWhiteSpace(TollFreeNumber))
-                    return String.Format("{0:(###) ###-####}", double.Parse(TollFreeNumber));
-                else
-                    return "";
+                return StringFormatSvc.PhoneNumberFormatted(TollFreeNumber);
             }
         }
 

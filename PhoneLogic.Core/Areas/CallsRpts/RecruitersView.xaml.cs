@@ -22,7 +22,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             InitializeComponent();
             _vm = new RecruitersViewModel();
             DataContext = _vm;
-            DatePicker.NotificationMessage = Notifications.RecruiterCallRptDateRangeChanged;
 
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -43,7 +42,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             if (_vm.SelectedRecruiter != null)
             {
                 cv.RecruiterSIP = _vm.SelectedRecruiter.RecruiterSIP;
-                cv.CallRptDateRange = _vm.CallRptDateRange;
+                cv.ReportDateRange = _vm.ReportDateRange;
                 cv.Refresh();
             }
             else

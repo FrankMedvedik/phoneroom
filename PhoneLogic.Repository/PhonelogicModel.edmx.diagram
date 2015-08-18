@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="PhoneLogicModel.agent" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="PhoneLogicModel.agentLog" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="PhoneLogicModel.callLog" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PhoneLogicModel.vw_PhoneLogicTaskAgent" Width="1.5" PointX="0.75" PointY="7.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.CallRpt.Model;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -20,11 +21,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             PhoneRooms = PhoneRoomSvc.GetAll();
             SelectedPhoneRoomName = PhoneRoomSvc.GetDefault().Name;
             
-            Messenger.Default.Register<NotificationMessage<CallRptDateRange>>(this, message =>
+            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
-                if (message.Notification == Notifications.RecruiterCallRptDateRangeChanged)
+                if (message.Notification == Notifications.GlobalReportCriteriaChanged)
                 {
-                    CallRptDateRange = message.Content;
+                    ReportDateRange = message.Content.ReportDateRange;
+                    SelectedPhoneRoomName = message.Content.Phoneroom;
                     RefreshAll(null, null);
                 }
             });
@@ -65,7 +67,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         #region reporting variables
-        public  CallRptDateRange CallRptDateRange = new CallRptDateRange();
+        public  ReportDateRange ReportDateRange = new ReportDateRange();
         #endregion
 
         #region CallSummaries
@@ -152,10 +154,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 _selectedRecruiter = value;
                 NotifyPropertyChanged();
-                if (value != null)
-                    Messenger.Default.Send(new NotificationMessage<string>(this, SelectedRecruiter.RecruiterSIP, Notifications.CallRptRecruiterSet));
-                else
-                    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
+                //if (value != null)
+                //    Messenger.Default.Send(new NotificationMessage<string>(this, SelectedRecruiter.RecruiterSIP, Notifications.CallRptRecruiterSet));
+                //else
+                //    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
             }
         }
 
@@ -165,10 +167,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
               HeadingText = "Loading...";
             try
             {
-                var ro = await LyncCallLogSvc.GetRecruitersPlusCallSummary(CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
+                var ro = await LyncCallLogSvc.GetRecruitersPlusCallSummary(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                 ShowGridData = true;
                 Recruiters = new ObservableCollection<LyncCallByRecruiter>(ro);
-                HeadingText = String.Format("Call Stats for {0} through {1}", CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
+                HeadingText = String.Format("{0} Phone Room(s) Call Stats for {1} through {2}", SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                 RefreshFilteredData();
                 LoadedOk = true;
             }

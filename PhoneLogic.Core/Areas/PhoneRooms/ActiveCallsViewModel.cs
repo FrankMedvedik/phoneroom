@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.PhoneRooms
 {
@@ -21,9 +26,19 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 {
                     _activeCalls = value;
                     NotifyPropertyChanged();
-                    NotifyPropertyChanged("Background");
-                    NotifyPropertyChanged("Foreground");
+                    NotifyPropertyChanged("TheBackground");
+                    NotifyPropertyChanged("TheForeground");
+                    NotifyPropertyChanged("FilteredActiveCalls");
                 }
+            }
+        }
+
+        public ObservableCollection<ActiveCallDetail> FilteredActiveCalls
+        {
+            get { 
+                return new ObservableCollection<ActiveCallDetail>(from c in _activeCalls
+                join b in MyRecruiters on c.RecruiterUri equals b.sip
+                select c);
             }
         }
 
@@ -34,9 +49,20 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         public ActiveCallsViewModel()
         {
             StartAutoRefresh(ApiRefreshFrequency.LyncApi);
+
+            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
+            {
+                if (message.Notification == Notifications.GlobalReportCriteriaChanged)
+                {
+                    MyRecruiters = message.Content.PhoneroomRecruiters;
+                    RefreshAll(null, null);
+                }
+            });
             RefreshAll();
 
         }
+
+        public List<Recruiter> MyRecruiters { get; set; }
 
         protected override void RefreshAll(object sender, EventArgs e)
         {

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.Services;
 
@@ -69,19 +70,19 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public static readonly DependencyProperty LastCallTimeProperty =
             DependencyProperty.Register("LastCallTime", typeof(DateTime?), typeof(CallsView), new PropertyMetadata(DateTime.Today));
 
-        public CallRptDateRange CallRptDateRange
+        public ReportDateRange ReportDateRange
         {
-            get { return _vm.CallRptDateRange; }
+            get { return _vm.ReportDateRange; }
             set
             {
-                SetValue(CallRptDateRangeProperty, value);
-                _vm.CallRptDateRange = value;
+                SetValue(ReportDateRangeProperty, value);
+                _vm.ReportDateRange = value;
             }
         }
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CallRptDateRangeProperty =
-            DependencyProperty.Register("CallRptDateRange", typeof(CallRptDateRange), typeof(CallsView), new PropertyMetadata(new CallRptDateRange()));
+        public static readonly DependencyProperty ReportDateRangeProperty =
+            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(CallsView), new PropertyMetadata(new ReportDateRange()));
 
         private void CallsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

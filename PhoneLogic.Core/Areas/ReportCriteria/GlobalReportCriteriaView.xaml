@@ -1,0 +1,15 @@
+﻿<UserControl xmlns:CallsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts"  xmlns:ReportCriteria="clr-namespace:PhoneLogic.Core.Areas.ReportCriteria"  x:Class="PhoneLogic.Core.Areas.ReportCriteria.GlobalReportCriteriaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+        mc:Ignorable="d ignore">
+    <Grid>
+        <StackPanel Orientation="Vertical" Name="spCriteria" Visibility="Collapsed">
+        <ReportCriteria:ReportDateRangeView Name="DR"/>
+        <ReportCriteria:PhoneroomsView Name="PR" />
+        </StackPanel>
+    </Grid>
+</UserControl>

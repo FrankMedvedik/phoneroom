@@ -19,7 +19,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             InitializeComponent();
             _vm = new JobsViewModel();
             DataContext = _vm;
-            dp.NotificationMessage = Notifications.JobCallRptDateRangeChanged;
         }
             
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -39,7 +38,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             if (_vm.SelectedJob != null)
             {
                 jrv.SelectedJobNum = _vm.SelectedJob.JobNumber;
-                jrv.CallRptDateRange = _vm.CallRptDateRange;
+                jrv.ReportDateRange = _vm.ReportDateRange;
                 jrv.Refresh();
             }
             else

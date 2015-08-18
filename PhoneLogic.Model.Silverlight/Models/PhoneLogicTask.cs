@@ -1,18 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-#if SILVERLIGHT
-using Silverlight.Base.MVVMBaseTypes;
-#endif
 
 namespace PhoneLogic.Model 
 {
     
-#if SILVERLIGHT
-    public class PhoneLogicTask : ViewModelBase
-#else
-    public class PhoneLogicTask
-#endif
+    public class PhoneLogicTask 
     {
         [Display(Name = "Job")]
         public string JobFormatted
@@ -36,6 +29,9 @@ namespace PhoneLogic.Model
 
         [Display(Name = "Type")]
         public string TaskTypeID { get; set; }
+
+        [Display(Name = "Tollfree Number")]
+        public string tollFreeNumber { get; set; }
 
         public string RecruiterSIP { get; set; }
         [Display(Name = "First Msg")]

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 
@@ -21,7 +22,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
 
         #region reporting variables
-        public  CallRptDateRange CallRptDateRange = new CallRptDateRange();
+        public  ReportDateRange ReportDateRange = new ReportDateRange();
         #endregion
 
         private ObservableCollection<ByRecruitersForJob> _jobRecruiters = new ObservableCollection<ByRecruitersForJob>();
@@ -89,13 +90,13 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             ShowGridData = false;
             HeadingText = "";
-            if ((CallRptDateRange != null) && (_callRptJobNum != null))
+            if ((ReportDateRange != null) && (_callRptJobNum != null))
             {
                 HeadingText = "Loading...";
                 try
                 {
-                    var ro = await LyncCallLogSvc.GetLynRecruitersForJob(_callRptJobNum, CallRptDateRange.StartRptDate,
-                                CallRptDateRange.EndRptDate);
+                    var ro = await LyncCallLogSvc.GetLynRecruitersForJob(_callRptJobNum, ReportDateRange.StartRptDate,
+                                ReportDateRange.EndRptDate);
                         ShowGridData = true;
                         JobRecruiters = new ObservableCollection<ByRecruitersForJob>(ro);
                         HeadingText = String.Format("Job {0}-{1} has {2} Recruiters", CallRptJobNum.Substring(0, 4), CallRptJobNum.Substring(4, 4), JobRecruiters.Count);

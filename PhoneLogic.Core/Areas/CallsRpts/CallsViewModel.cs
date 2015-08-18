@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
 using PhoneLogic.CallRpt.Model;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -34,7 +35,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         #region reporting variables
 
-        public CallRptDateRange CallRptDateRange = new CallRptDateRange();
+        public ReportDateRange ReportDateRange = new ReportDateRange();
 
         #endregion
 
@@ -129,17 +130,17 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             try
             {
 
-                if ((CallRptDateRange != null) && (SelectedJobNum != null) && (SelectedRecruiter != null))
+                if ((ReportDateRange != null) && (SelectedJobNum != null) && (SelectedRecruiter != null))
                 {
                     HeadingText = "Loading...";
                     ro = await LyncCallLogSvc.GetLyncCallLog(SelectedJobNum, SelectedRecruiter,
-                                CallRptDateRange.StartRptDate, CallRptDateRange.EndRptDate);
+                                ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                 }
-                else if ((CallRptDateRange != null) && (SelectedRecruiter != null))
+                else if ((ReportDateRange != null) && (SelectedRecruiter != null))
                 {
                     HeadingText = "Loading...";
-                    ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, CallRptDateRange.StartRptDate,
-                        CallRptDateRange.EndRptDate);
+                    ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, ReportDateRange.StartRptDate,
+                        ReportDateRange.EndRptDate);
                 }
 
                 ShowGridData = true;

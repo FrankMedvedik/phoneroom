@@ -246,6 +246,9 @@
     </Compile>
     <Compile Include="Utils\AgentUtils.cs" />
     <Compile Include="Utils\FormatUtil.cs" />
+    <Compile Include="vw_PhoneLogicTaskAgent.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Areas.CallsRpts.Models
 {
@@ -17,6 +19,15 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         public int AbandondedCnt { get; set; }
         public int LeftMsgCnt { get; set; }
         public String TollFreeNumber { get; set; }
+        [Display(Name = "Toll Free #")]
+        public string TollFreeFormatted
+        {
+            get
+            {
+                return StringFormatSvc.PhoneNumberFormatted(TollFreeNumber);
+            }
+        }
+
         public DateTime FirstCallTime { get; set; }
         public DateTime LastCallTime { get; set; }
 

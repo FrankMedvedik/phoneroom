@@ -33,6 +33,7 @@ namespace PhoneLogic.Repository
         public virtual DbSet<agent> agents { get; set; }
         public virtual DbSet<agentLog> agentLogs { get; set; }
         public virtual DbSet<callLog> callLogs { get; set; }
+        public virtual DbSet<vw_PhoneLogicTaskAgent> vw_PhoneLogicTaskAgent { get; set; }
     
         public virtual ObjectResult<callbackDTO> getMyCallbacks(string sIP)
         {
