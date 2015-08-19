@@ -19,28 +19,28 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         {
             InitializeComponent();
             DataContext = this;
-            Messenger.Default.Register<NotificationMessage>(this, message =>
-            {
-                if ((message.Notification == Notifications.DateRangeChanged)
-                    || (message.Notification == Notifications.PhoneroomChanged))
-                {
-                    if (PR.SelectedPhoneroom == null)
-                        ShowControl = Visibility.Collapsed;
-                    else
-                    {
-                        ShowControl = Visibility.Visible;
-                        var rc = new GlobalReportCriteria()
-                        {
-                            Phoneroom = PR.SelectedPhoneroom,
-                            PhoneroomRecruiters = PR.PhoneroomRecruiters,
-                            PhoneroomJobs = PR.PhoneroomJobs,
-                            ReportDateRange = DR.DateRange,
-                        };
-                        Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(this, rc,
-                            Notifications.GlobalReportCriteriaChanged));
-                    }
-                }
-            });
+            //Messenger.Default.Register<NotificationMessage>(this, message =>
+            //{
+            //    if ((message.Notification == Notifications.DateRangeChanged)
+            //        || (message.Notification == Notifications.PhoneroomChanged))
+            //    {
+            //        if (PR.SelectedPhoneroom == null)
+            //            ShowControl = Visibility.Collapsed;
+            //        else
+            //        {
+            //            ShowControl = Visibility.Visible;
+            //            var rc = new GlobalReportCriteria()
+            //            {
+            //                Phoneroom = PR.SelectedPhoneroom,
+            //                PhoneroomRecruiters = PR.PhoneroomRecruiters,
+            //                PhoneroomJobs = PR.PhoneroomJobs,
+            //                ReportDateRange = DR.DateRange,
+            //            };
+            //            Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(this, rc,
+            //                Notifications.GlobalReportCriteriaChanged));
+            //        }
+            //    }
+            //});
 
 
         }
