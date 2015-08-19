@@ -52,18 +52,19 @@ namespace PhoneLogic.Core.Areas.Callbacks
             get
             {
                 DateTime? dt = null;
-                try
+                if (MyCallbacks != null)
                 {
-                    dt = _myCallbacks.Select(x => x.timeEntered).Max();
+                    try
+                    {
+                        dt = MyCallbacks.Select(x => x.timeEntered).Max();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        // do nothing 
+                        dt = null;
+                    }
                 }
-                catch (InvalidOperationException ex)
-                {
-                    // do nothing 
-                    dt = null;
-                }
-
                 return dt;
-
             }
         }
 
@@ -103,28 +104,6 @@ namespace PhoneLogic.Core.Areas.Callbacks
             {
                 _selectedMyCallback = value;
                 NotifyPropertyChanged();
-            }
-        }
-
-        public string SelectedAppData
-        {
-            get
-            {
-                if (SelectedMyCallback != null)
-                {
-                    var plc = new PhoneLogicContext()
-                    {
-                        callerId = SelectedMyCallback.phoneNum,
-                        conversationId = "",
-                        dialedNumber = SelectedMyCallback.tollFreeNumber,
-                        jobNumber = SelectedMyCallback.jobNum,
-                        taskId = SelectedMyCallback.taskID,
-                        timeReceived = DateTime.Now.ToLongDateString(),
-                        callbackId = SelectedMyCallback.callbackID
-                    };
-                    return JsonConvert.SerializeObject(plc);
-                }
-                return "";
             }
         }
 
@@ -217,9 +196,8 @@ namespace PhoneLogic.Core.Areas.Callbacks
                     var ro = await CallbackSvc.GetJobCallbacks(SelectedJobNum, SelectedTaskId.ToString(),
                                 ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     ShowGridData = true;
-                    MyCallbacks = new ObservableCollection<myCallback>(ro);
-                    HeadingText = String.Format("Job {0}-{1}  has {2} Voice Mail Messages", SelectedJobNum.Substring(0, 4),
-                        SelectedJobNum.Substring(4, 4), MyCallbacks.Count());
+                    MyCallbacks = new ObservableCollection<myCallback>(ro.OrderByDescending(x => x.timeEntered));
+                    HeadingText = String.Format("Job {0} has {1} Voice Mail Messages", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
                     LoadedOk = true;
                 }
                 

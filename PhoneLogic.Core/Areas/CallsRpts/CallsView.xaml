@@ -7,6 +7,7 @@
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              xmlns:audioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer"
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
              mc:Ignorable="d ignore">
         <Grid>
         <Grid.RowDefinitions>
@@ -15,7 +16,7 @@
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch" >
-            <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Left" Margin="6"/>
+            <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Left" Margin="6"/>
         </StackPanel>
         <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="1" >
             <Grid.RowDefinitions>
@@ -30,17 +31,25 @@
             </Grid.ColumnDefinitions>
             <sdk:DataGrid Grid.Column="0" Grid.RowSpan="2" Grid.Row="1"  x:Name="CallsDG" AutoGenerateColumns="False" MaxHeight="225"  
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="CallsDG_SelectionChanged" Loaded="CallsDG_Loaded"
-                    ItemsSource="{Binding Calls}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedCall, Mode=TwoWay}"  
+                    ItemsSource="{Binding Calls}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedCall, Mode=TwoWay}"  RowDetailsVisibilityMode="VisibleWhenSelected" 
                     ToolTipService.ToolTip="Phone Calls" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding JobFormatted }" />
+                <!--<sdk:DataGridTextColumn Binding="{Binding JobFormatted }" />-->
                 <sdk:DataGridTextColumn Binding="{Binding PhoneFormatted }" />
                 <sdk:DataGridTextColumn Binding="{Binding CallDirection }" />
                 <sdk:DataGridTextColumn Binding="{Binding CallEndStatus }" />
                 <sdk:DataGridTextColumn Binding="{Binding CallStartTime }" />
                 <sdk:DataGridTextColumn Binding="{Binding CallDurationFormatted}" />
             </sdk:DataGrid.Columns>
-        </sdk:DataGrid>
+                <sdk:DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <toolkit:WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Button Name="Call"  Width="80" Margin="3,6,3,6" Click="Call_Click" IsEnabled="{Binding DataContext.CanCall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}">Call</Button>
+                            <TextBlock Text="{Binding DataContext.ActionMsg, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}" Foreground="Red"  Margin="6"/>
+                        </toolkit:WrapPanel>
+                    </DataTemplate>
+                </sdk:DataGrid.RowDetailsTemplate>
+            </sdk:DataGrid>
             <controls:ContactCard Grid.Column="1" Grid.Row="1" Name="cc" Margin="6" HorizontalAlignment="Left" />
             <audioPlayer:SimplePlayer Name="AudioPlayer" Grid.Column="1" Margin="6" Grid.Row="2" HorizontalAlignment="Left"/>
         </Grid>

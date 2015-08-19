@@ -5,6 +5,7 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
+using Newtonsoft.Json;
 using PhoneLogic.CallRpt.Model;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
@@ -22,7 +23,33 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
 
         }
+        private Boolean _canCall = true;
 
+        public Boolean CanCall
+        {
+            get
+            {
+                return _canCall;
+            }
+            set
+            {
+                _canCall = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        private String _actionMsg;
+
+        public String ActionMsg
+        {
+            get { return _actionMsg; }
+            set
+            {
+                _actionMsg = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         private bool _canRefresh = true;
 
@@ -144,13 +171,13 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 }
 
                 ShowGridData = true;
-                Calls = new ObservableCollection<Call>(ro);
+                Calls = new ObservableCollection<Call>(ro.OrderByDescending(x => x.CallStartTime));
                 if (Calls.Count > 0)
                 {
                     //if its a recruiter show the heading without their name
                     //string sip = Calls.First().RecruiterSIP;
                     //if (sip == LyncClient.GetClient().Uri)
-                        HeadingText = String.Format("{0} Calls", Calls.Count());
+                    HeadingText = String.Format("Job {0} has {1} calls", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), Calls.Count());
                     //else
                     //{
                         //if its a not a recruiter show the heading with name 

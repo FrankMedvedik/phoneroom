@@ -421,6 +421,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Property Type="DateTime" Name="oldest_call" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="newest_call" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="call_cnt" Nullable="true" />
+          <Property Type="String" Name="tollFreeNumber" Nullable="true" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="rptInboundCallByHourResult">
           <Property Type="String" Name="WorkDate" Nullable="true" MaxLength="10" />
@@ -593,6 +594,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="TaskID" Nullable="false" />
           <Property Type="String" Name="TaskTypeID" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="tollFreeNumber" Nullable="true" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="rpt_GetMyCallbacks_Result">
           <Property Type="Int32" Name="callbackID" Nullable="false" />
@@ -737,6 +739,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
                 <ScalarProperty Name="oldest_call" ColumnName="oldest_call" />
                 <ScalarProperty Name="newest_call" ColumnName="newest_call" />
                 <ScalarProperty Name="call_cnt" ColumnName="call_cnt" />
+                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -761,6 +764,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
                 <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

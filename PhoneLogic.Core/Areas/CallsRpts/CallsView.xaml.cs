@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Lync.Model;
 using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
@@ -23,7 +24,36 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             _vm = new CallsViewModel();
             DataContext = _vm;
         }
+        private async void Call_Click(object sender, RoutedEventArgs e)
+        {
+            if (LyncClient.GetClient().State != ClientState.SignedIn)
+            {
+                MessageBox.Show("Please Sign in to Lync first ");
+                return;
+            }
+            _vm.CanCall = false;
+            _vm.ActionMsg = "Your call has been placed";
+            StartTimer();
+            await LyncSvc.RecruiterDialOut(_vm.SelectedCall.JobNumber,_vm.SelectedCall.CallerId,0);
+        }
+        
+        public void StartTimer()
+        {
+            System.Windows.Threading.DispatcherTimer myDispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0);
+            myDispatcherTimer.Tick += new EventHandler(Each_Tick);
+            myDispatcherTimer.Start();
+        }
 
+        // A variable to count with.
+        int i = 0;
+
+        public void Each_Tick(object o, EventArgs sender)
+        {
+            _vm.CanCall = true;
+            _vm.ActionMsg = "";
+
+        }
         public void Refresh()
         {
             _vm.RefreshAll();
@@ -152,13 +182,11 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 CallsDG.Columns[3].Visibility = Visibility.Collapsed;
                 CallsDG.Columns[4].Visibility = Visibility.Collapsed;
-                CallsDG.Columns[5].Visibility = Visibility.Collapsed;
             }
             if (BrowserInfoSvc.ClientWidth >= UserInterfaceTimings.ResizeBoundryWidth)
             {
                 CallsDG.Columns[3].Visibility = Visibility.Visible;
                 CallsDG.Columns[4].Visibility = Visibility.Visible;
-                CallsDG.Columns[5].Visibility = Visibility.Visible;
             }
 
         }

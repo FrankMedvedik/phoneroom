@@ -20,14 +20,19 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             PhoneRooms = PhoneRoomSvc.GetAll();
             SelectedPhoneRoomName = PhoneRoomSvc.GetDefault().Name;
-            
+
+
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
                 if (message.Notification == Notifications.GlobalReportCriteriaChanged)
                 {
-                    ReportDateRange = message.Content.ReportDateRange;
+                    if (ReportDateRange != message.Content.ReportDateRange)
+                    {
+                        ReportDateRange = message.Content.ReportDateRange;
+                        SelectedPhoneRoomName = message.Content.Phoneroom;
+                        RefreshAll(null, null);
+                    }
                     SelectedPhoneRoomName = message.Content.Phoneroom;
-                    RefreshAll(null, null);
                 }
             });
         }

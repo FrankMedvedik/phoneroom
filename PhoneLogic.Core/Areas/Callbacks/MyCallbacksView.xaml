@@ -32,7 +32,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" >
-                <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+                <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6"/>
                 <TextBlock Name="tbGridSize" HorizontalAlignment="Right" Margin="6" />
             </StackPanel>
         </Grid>

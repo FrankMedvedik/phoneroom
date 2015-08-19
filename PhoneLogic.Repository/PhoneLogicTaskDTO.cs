@@ -36,5 +36,6 @@ namespace PhoneLogic.Repository
         public Nullable<System.DateTime> oldest_call { get; set; }
         public Nullable<System.DateTime> newest_call { get; set; }
         public Nullable<int> call_cnt { get; set; }
+        public string tollFreeNumber { get; set; }
     }
 }

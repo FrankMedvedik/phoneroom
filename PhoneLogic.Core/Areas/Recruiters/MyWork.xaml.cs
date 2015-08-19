@@ -35,13 +35,29 @@ namespace PhoneLogic.Core.Areas.Recruiters
             var c = (PhoneLogicTask)e.Row.DataContext;
             if (c.MsgCnt > 0)
             {
-                FrameworkElement ele = DGrid.Columns[2].GetCellContent(e.Row);
+                FrameworkElement ele = DGrid.Columns[0].GetCellContent(e.Row);
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
+                ele = DGrid.Columns[1].GetCellContent(e.Row);
+                (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
+                ele = DGrid.Columns[2].GetCellContent(e.Row);
+                (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
+                ele = DGrid.Columns[3].GetCellContent(e.Row);
+                (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
+
             }
+
+
             else
             {
-                FrameworkElement ele = DGrid.Columns[2].GetCellContent(e.Row);
+                FrameworkElement ele = DGrid.Columns[0].GetCellContent(e.Row);
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
+                ele = DGrid.Columns[1].GetCellContent(e.Row);
+                (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
+                ele = DGrid.Columns[2].GetCellContent(e.Row);
+                (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
+                ele = DGrid.Columns[3].GetCellContent(e.Row);
+                (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
+
             }
 
 
@@ -64,15 +80,25 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         private void RefreshCalls()
         {
-            // no need to refresh if nothing has changed 
-            if ((cv.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID)
-                && (_vm.SelectedPhoneLogicTask.LastCallTime == cv.LastCallTime   || _vm.SelectedPhoneLogicTask.LastCallTime == null))
-                return;
+            if (cv.SelectedJobNum != null && _vm.SelectedPhoneLogicTask != null)
+                // no need to refresh if nothing has changed 
+                if ((cv.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID)
+                    &&
+                    (_vm.SelectedPhoneLogicTask.LastCallTime == cv.LastCallTime ||
+                     _vm.SelectedPhoneLogicTask.LastCallTime == null))
+                    return;
             // trigger getting the list of outbound calls
-            cv.RecruiterSIP = LyncClient.GetClient().Self.Contact.Uri;
-            cv.SelectedJobNum = _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID;
-            cv.ReportDateRange = new ReportDateRange() { StartRptDate = Convert.ToDateTime("7/01/2015"), EndRptDate = DateTime.Now };
-            cv.Refresh();
+            if (_vm.SelectedPhoneLogicTask != null)
+            {
+                cv.RecruiterSIP = LyncClient.GetClient().Self.Contact.Uri;
+                cv.SelectedJobNum = _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID;
+                cv.ReportDateRange = new ReportDateRange()
+                {
+                    StartRptDate = Convert.ToDateTime("7/01/2015"),
+                    EndRptDate = DateTime.Now
+                };
+                cv.Refresh();
+            }
         }
 
         private void RefreshOutboundCall()
@@ -86,14 +112,19 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         private void RefreshCallBacks()
         {
+            if (mcb.SelectedJobNum != null && _vm.SelectedPhoneLogicTask != null)
             if (mcb.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum 
                 && mcb.SelectedTaskId == _vm.SelectedPhoneLogicTask.TaskID.GetValueOrDefault(0) 
-                && (_vm.SelectedPhoneLogicTask.NewestMsg == mcb.LastCallBackStartTime)  || _vm.SelectedPhoneLogicTask.MsgCnt.GetValueOrDefault(0) == 0)
+                &&( (_vm.SelectedPhoneLogicTask.NewestMsg == mcb.LastCallBackStartTime)
+                    || _vm.SelectedPhoneLogicTask.MsgCnt.GetValueOrDefault(0) == 0))
                 return;
             // Trigger getting callbacks 
-            mcb.SelectedJobNum = _vm.SelectedPhoneLogicTask.JobNum;
-            mcb.SelectedTaskId = _vm.SelectedPhoneLogicTask.TaskID.GetValueOrDefault(0);
-            mcb.Refresh();
+            if (_vm.SelectedPhoneLogicTask != null)
+            {
+                mcb.SelectedJobNum = _vm.SelectedPhoneLogicTask.JobNum;
+                mcb.SelectedTaskId = _vm.SelectedPhoneLogicTask.TaskID.GetValueOrDefault(0);
+                mcb.Refresh();
+            }
         }
 
         public void ResizeGrid()
@@ -103,7 +134,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
             if (BrowserInfoSvc.ClientWidth < UserInterfaceTimings.ResizeBoundryWidth)
             {
-         
+                DGrid.Columns[3].Visibility = Visibility.Collapsed;
                 DGrid.Columns[4].Visibility = Visibility.Collapsed;
                 DGrid.Columns[5].Visibility = Visibility.Collapsed;
                 DGrid.Columns[6].Visibility = Visibility.Collapsed;
@@ -119,6 +150,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             }
             if (BrowserInfoSvc.ClientWidth >= UserInterfaceTimings.ResizeBoundryWidth)
             {
+                DGrid.Columns[3].Visibility = Visibility.Visible;
                 DGrid.Columns[4].Visibility = Visibility.Visible;
                 DGrid.Columns[5].Visibility = Visibility.Visible;
                 DGrid.Columns[6].Visibility = Visibility.Visible;
@@ -135,6 +167,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             mcb.ResizeGrid();
             cv.ResizeGrid();
         }
+
         
     }
 

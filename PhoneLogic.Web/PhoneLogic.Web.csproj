@@ -244,16 +244,13 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="clientaccesspolicy.xml" />
-    <Content Include="ClientBin\PhoneLogic.CallRpt.xap" />
     <Content Include="ClientBin\Phonelogic.Inbound.xap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ClientBin\PhoneLogic.Mgr.xap" />
-    <Content Include="ClientBin\PhoneLogic.MyCalls.xap" />
     <Content Include="ClientBin\Phonelogic.Outbound.xap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ClientBin\PhoneLogic.PhoneRoomMonitor.xap" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -292,10 +289,6 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="PhoneLogic.CallRptTestPage.aspx" />
-    <Content Include="PhoneLogic.CallRptTestPage.html" />
-    <Content Include="PhoneLogic.MyCalls.aspx" />
-    <Content Include="PhoneLogic.MyCalls.html" />
     <Content Include="PhoneLogic.Mgr.aspx" />
     <Content Include="PhoneLogic.Mgr.html" />
     <Content Include="Phonelogic.Inbound.reg">
@@ -323,10 +316,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\APP2012.pubxml" />
-    <Content Include="PhoneLogic.MyCallsTestPage.aspx" />
-    <Content Include="PhoneLogic.MyCallsTestPage.html" />
-    <Content Include="PhoneLogic.PhoneRoomMonitorTestPage.aspx" />
-    <Content Include="PhoneLogic.PhoneRoomMonitorTestPage.html" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />

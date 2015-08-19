@@ -20,5 +20,17 @@ namespace PhoneLogic.Model
         [Display(Name = "Title")]
         public String Description { get; set; }
         public String tollFreeNumber{ get; set; }
+
+
+        [Display(Name = "Toll Free #")]
+        public string TollFreeFormatted
+        {
+            get
+            {
+                return StringFormatSvc.PhoneNumberFormatted(tollFreeNumber);
+            }
+        }
+
+
     }
 }

@@ -19,7 +19,18 @@ namespace PhoneLogic.Core.Areas.Recruiters
              Messenger.Default.Register<string>(this, HandleNotification);
 
         }
+        private string headingText;
 
+        public string HeadingText
+        {
+            get { return headingText; }
+            set
+            {
+                headingText = value;
+                NotifyPropertyChanged();
+            }
+        }
+        
         private void HandleNotification(string message)
         {
 
@@ -47,17 +58,27 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 PhoneLogicTasks = new ObservableCollection<PhoneLogicTask>(mcb);
                 if (PhoneLogicTasks.Count > 0)
                 {
+                    HeadingText = String.Format("There are {0} jobs that have {1} voice mail messages and {2} calls today",
+                        PhoneLogicTasks.Count, PhoneLogicTasks.Sum(x => x.MsgCnt), PhoneLogicTasks.Sum(x => x.CallCnt));
                     if (s != null)
-                         SelectedPhoneLogicTask = PhoneLogicTasks.FirstOrDefault(x => x.JobNum == s.JobNum && x.TaskID == s.TaskID);
+                    {
+                        SelectedPhoneLogicTask =
+                            PhoneLogicTasks.FirstOrDefault(x => x.JobNum == s.JobNum && x.TaskID == s.TaskID);
+                    }
                     ShowGridData = true;
+
                 }
                 else
+                {
                     ShowGridData = false;
+                    HeadingText = "No jobs found";
+                }
                 LoadedOk = true;
 
             }
             catch (Exception e)
             {
+                HeadingText = "Load Error";
                 LoadFailed(e);
 
             }

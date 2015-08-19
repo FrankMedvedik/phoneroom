@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     x:Class="PhoneLogic.Core.Areas.Recruiters.LyncSearchView"
-    mc:Ignorable="d" FontSize="16" >
+    mc:Ignorable="d" FontSize="12" >
     <Control.Resources>
         <DataTemplate x:Key="TransferCallTemplate" >
             <Grid >
@@ -22,7 +22,7 @@
     </Control.Resources>
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" >
             <StackPanel Grid.Row="0" Orientation="Vertical">
-            <TextBlock Text="Add To Call" HorizontalAlignment="Center" FontWeight="Bold" />
+            <TextBlock Text="Add To Call" HorizontalAlignment="Center" />
             <Grid VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

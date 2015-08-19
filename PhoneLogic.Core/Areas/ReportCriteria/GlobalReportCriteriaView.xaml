@@ -6,10 +6,13 @@
         xmlns:ignore="http://www.ignore.com"
         xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
         mc:Ignorable="d ignore">
-    <Grid>
-        <StackPanel Orientation="Vertical" Name="spCriteria" Visibility="Collapsed">
-        <ReportCriteria:ReportDateRangeView Name="DR"/>
-        <ReportCriteria:PhoneroomsView Name="PR" />
-        </StackPanel>
-    </Grid>
+    <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black">
+        <Grid MinWidth="350" >
+            <StackPanel Orientation="Vertical" Name="spCriteria" Visibility="{Binding ShowControl}">
+                <ReportCriteria:ReportDateRangeView Name="DR"/>
+                <ReportCriteria:PhoneroomsView Name="PR" />
+                <Button Name="Refresh" Click="Refresh_Click">Refresh</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
 </UserControl>

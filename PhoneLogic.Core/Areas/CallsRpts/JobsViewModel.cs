@@ -27,7 +27,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                         ReportDateRange = message.Content.ReportDateRange;
                         Phoneroom = message.Content.Phoneroom;
                         PhoneroomJobs = message.Content.PhoneroomJobs;
-
                         RefreshAll(null,null);
                     }
                     else if (Phoneroom != message.Content.Phoneroom)
@@ -65,6 +64,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         #region CallSummaries
         private ObservableCollection<ByJob> _jobs = new ObservableCollection<ByJob>();
+        private ObservableCollection<ByJob> _filteredJobs = new ObservableCollection<ByJob>();
         private ByJob _selectedJob;
 
 
@@ -74,6 +74,16 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             set
             {
                 _jobs = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ByJob> FilteredJobs
+        {
+            get { return _filteredJobs; }
+            set
+            {
+                _filteredJobs = value;
                 NotifyPropertyChanged();
             }
         }
@@ -90,10 +100,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 var s = SelectedJob;
                 GetJobs();
+                FilterJobs();
                 if (s != null)
                 {
-                    SelectedJob = Jobs.First(x => x.JobNumber == s.JobNumber);
-                    GetJobs();
+                    SelectedJob = FilteredJobs.First(x => x.JobNumber == s.JobNumber);
                 }
             }
         }
@@ -128,22 +138,35 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             ShowGridData = false;
             try
             {
-                ObservableCollection<ByJob> j = new ObservableCollection<ByJob>();
+                var ro  = await LyncCallLogSvc.GetLynCallsByJob(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                    Jobs = new ObservableCollection<ByJob>(ro);
+            }
+            catch (Exception e)
+            {
+                LoadFailed(e);
+                HeadingText = e.Message;
+            }
+        }
 
-                var ro = await LyncCallLogSvc.GetLynCallsByJob(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                if (ro.Any())
+        public async void FilterJobs()
+        {
+            HeadingText = "Loading...";
+            ShowGridData = false;
+            try
+            {
+                if (Jobs.Any())
                 {
-                    var rx = (from c in ro
-                                join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
-                                select c).ToList().OrderByDescending(x => x.JobFormatted);
-                    j = new ObservableCollection<ByJob>(rx);
+                    var rx = (from c in Jobs
+                              join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
+                              select c).ToList().OrderByDescending(x => x.JobFormatted);
+                    FilteredJobs = new ObservableCollection<ByJob>(rx);
+                    HeadingText = string.Format("{0} Phone Room(s) has {1} jobs with call activity between  {2} and {3}", Phoneroom, Jobs.Count(), ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     ShowGridData = true;
-                    Jobs = j;
-                    HeadingText = string.Format("{0} Phone Room(s) has {1} Jobs", Phoneroom, Jobs.Count());
+                    SelectedJob = null; // if i am just changing the filtereing i want to loose the selected job
                 }
                 else
                 {
-                    HeadingText = string.Format("{0} Phone Room(s) has no calls", Phoneroom);
+                    HeadingText = string.Format("{0} Phone Room(s) has no call activity between  {1} and {2}", Phoneroom, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     SelectedJob = null;
                     ShowGridData = false;
                 }

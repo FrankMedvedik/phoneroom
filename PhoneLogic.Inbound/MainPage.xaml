@@ -19,14 +19,14 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <recruiters:CallerInfoView Name="cinfoView" Grid.Row="0" HorizontalAlignment="Center" FontSize="16"/>
+                    <recruiters:CallerInfoView Name="cinfoView" Grid.Row="0" HorizontalAlignment="Center" FontSize="12"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <recruiters:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" FontSize="16"/>
-                    <recruiters:LyncSearchView Margin="20,5,20,10" FontSize="16"/>
-                    <Views:TimerView x:Name="timer" Margin="20,15,40,10" FontSize="16"/>
+                    <recruiters:JobDetailView  x:Name="JobDetail" Margin="40,0,20,10" FontSize="12"/>
+                    <recruiters:LyncSearchView Margin="20,5,20,10" FontSize="12"/>
+                    <Views:TimerView x:Name="timer" Margin="20,15,40,10" FontSize="12"/>
                     </StackPanel>
                 <!--<recruiters:MyCallsInQueueView Name="MyCallsInQ" Grid.Row="2" FontSize="16"/>-->
-                <Views:BuildInformationView Grid.Row="3" FontSize="16"/>
+                <Views:BuildInformationView Grid.Row="3" FontSize="12"/>
                 </Grid>
             </Border>
     </Grid>

@@ -32,7 +32,7 @@
         </Grid.RowDefinitions>
         <sdk:DataGrid Grid.Row="0"  x:Name="ActiveCallsDG" AutoGenerateColumns="False" MaxHeight="550" 
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding ActiveCalls}"  
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredActiveCalls}"  
                       SelectedItem="{Binding SelectedActiveCall, Mode=TwoWay}"  
                     ToolTipService.ToolTip="active recruiter sessions" 
                       Margin="6" HorizontalAlignment="Left" SelectionMode="Single"

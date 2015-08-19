@@ -9,12 +9,12 @@ using System.Collections.Generic;
 using PhoneLogic.Core;
 using PhoneLogic.Core.Models;
 using PhoneNumbers;
-//#if DEBUGTEST
-//using sr = PhoneLogic.Core.ProdServiceReference;
-//using PhoneLogic.Core.ProdServiceReference;
 #if DEBUGTEST
-using sr = PhoneLogic.Core.AppServiceReference;
-using PhoneLogic.Core.AppServiceReference;
+using sr = PhoneLogic.Core.ProdServiceReference;
+using PhoneLogic.Core.ProdServiceReference;
+//#if DEBUGTEST
+//using sr = PhoneLogic.Core.AppServiceReference;
+//using PhoneLogic.Core.AppServiceReference;
 #elif DEBUGPROD
 using sr= PhoneLogic.Core.ProdServiceReference;
 using PhoneLogic.Core.ProdServiceReference;

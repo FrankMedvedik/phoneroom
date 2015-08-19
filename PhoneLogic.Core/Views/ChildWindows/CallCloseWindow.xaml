@@ -228,24 +228,26 @@
             <Setter Property="Margin" Value="8" />
         </Style>
     </controls:ChildWindow.Resources>
-    <Grid x:Name="LayoutRoot" Margin="2" Height="200" Width="300" >
+    <Border CornerRadius="6"  BorderBrush="Black" BorderThickness="3">
+    <Grid x:Name="LayoutRoot" Margin="2" Height="210" Width="250" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel  x:Name="ct" Orientation="Vertical"  HorizontalAlignment="Center" Margin="6,30,6,12" >
-            <TextBlock Text="Call Time" FontSize="16" FontWeight="Bold" />
-            <TextBlock Text="{Binding CallDuration, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}" FontSize="16" FontWeight="Bold" />
+        <StackPanel  x:Name="ct" Orientation="Vertical"  HorizontalAlignment="Center" Margin="6,30,12,12" >
+                <TextBlock Text="Call Time" FontSize="12" Margin="8" HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding CallDuration, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}" FontSize="12"  HorizontalAlignment="Center" />
         </StackPanel>
-        <StackPanel x:Name="CallbackStackPanel" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="12" Visibility="Collapsed">
-            <TextBlock Text="Keep voice message? "  VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
-            <CheckBox FontFamily="Ariel Bold" IsChecked="{Binding KeepCallback, Mode=TwoWay}" VerticalAlignment="Center" Style="{StaticResource CheckBoxStyle1}" FontSize="16" FontWeight="Bold" />
+        <StackPanel x:Name="CallbackStackPanel" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="12" Visibility="Visible">
+            <TextBlock Text="Keep voice message? "  VerticalAlignment="Center" FontSize="12" />
+            <CheckBox FontFamily="Ariel Bold" IsChecked="{Binding KeepCallback, Mode=TwoWay}" VerticalAlignment="Center" Style="{StaticResource CheckBoxStyle1}" FontSize="12"  />
         </StackPanel>
-        <Button  Width="100"  HorizontalAlignment="Center" Click="Close_Click" Grid.Row="2" x:Name="Close" TabIndex="0"   Margin="12" Content="Close" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" />
+        <Button  Width="100"  HorizontalAlignment="Center" Click="Close_Click" Grid.Row="2" x:Name="Close" TabIndex="0"   Margin="12" Content="Close" FontSize="12" VerticalAlignment="Bottom" />
         <!--<StackPanel Orientation="Vertical" Grid.Row="2" Visibility="Collapsed">
             <TextBlock x:Name="TextBlock_Notice" />
             <ProgressBar Grid.Row="1" Width="250" Height="30" IsIndeterminate="True"/>
         </StackPanel>-->
     </Grid>
+    </Border>
 </controls:ChildWindow>

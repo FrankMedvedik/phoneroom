@@ -29,9 +29,9 @@ namespace PhoneLogic.Model
         public static string PhoneNumberFormatted(string phoneNumber)
         {
                 string retval;
-                int n;
-                if(int.TryParse(phoneNumber, out n))
-                    retval = (String.IsNullOrWhiteSpace(phoneNumber)) ? phoneNumber : String.Format("{0:(###) ###-####}", double.Parse(phoneNumber));
+                double n;
+                if(double.TryParse(phoneNumber, out n))
+                    retval = (String.IsNullOrWhiteSpace(phoneNumber)) ? phoneNumber : String.Format("{0:(###)###-####}", double.Parse(phoneNumber));
                 else
                     retval = phoneNumber;
               return retval;

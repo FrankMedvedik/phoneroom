@@ -31,5 +31,6 @@ namespace PhoneLogic.Repository
         public Nullable<System.DateTime> LastCallTime { get; set; }
         public int TaskID { get; set; }
         public string TaskTypeID { get; set; }
+        public string tollFreeNumber { get; set; }
     }
 }

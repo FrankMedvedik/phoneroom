@@ -29,27 +29,27 @@
                 <converters:IntToBrush x:Key="IntToBrushConverter" />
         <Style TargetType="Control" x:Key="CtrlDefaultStyle">
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="FontFamily" Value="Ariel Bold"  />
-                <Setter Property="Margin" Value="8" />
+            <Setter Property="FontFamily" Value="Lato UI"/>
+            <Setter Property="Margin" Value="8" />
             </Style>
             <Style TargetType="Button" >
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="FontFamily" Value="Ariel Bold"  />
-                <Setter Property="Margin" Value="8" />
+            <Setter Property="FontFamily" Value="Lato UI"/>
+            <Setter Property="Margin" Value="8" />
             </Style>
           <Style TargetType="TextBlock" x:Key="DefaultStyle">
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="FontFamily" Value="Ariel Bold"  />
-                <Setter Property="Margin" Value="8" />
+            <Setter Property="FontFamily" Value="Lato UI"/>
+            <Setter Property="Margin" Value="8" />
             </Style>
             <Style TargetType="TextBox" >
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="FontFamily" Value="Ariel Bold"  />
-                <Setter Property="Margin" Value="8" />
+            <Setter Property="FontFamily" Value="Lato UI"/>
+            <Setter Property="Margin" Value="8" />
             </Style>
         <Style TargetType="Button" x:Key="BigButton">
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="Ariel Bold"  />
+            <Setter Property="FontFamily" Value="Lato UI"/>
             <Setter Property="Margin" Value="8" />
         </Style>
 

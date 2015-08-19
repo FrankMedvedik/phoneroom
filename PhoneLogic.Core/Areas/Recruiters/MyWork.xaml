@@ -16,18 +16,19 @@
             <RowDefinition  Height="Auto" />
         </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="My Jobs" HorizontalAlignment="Left" Margin="6" FontSize="14" FontWeight="Bold"/>
+            <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Left" Margin="6" FontSize="14" />
                 <!--<TextBlock Text="{Binding CanRefresh}" HorizontalAlignment="Center" Margin="6"/>
                 <TextBlock Name="tbGridSize" HorizontalAlignment="Center" Margin="6"/>-->
             </StackPanel>
             <sdk:DataGrid x:Name="DGrid" AutoGenerateColumns="False" MaxHeight="400"  Grid.Row="1" Grid.Column="0" Width="Auto"  
-                          Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  IsEnabled="True"
+                          Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"  IsEnabled="True" 
              ItemsSource="{Binding PhoneLogicTasks, Mode=TwoWay}" Margin="6"  SelectedItem="{Binding SelectedPhoneLogicTask, Mode=TwoWay}"   
               VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   IsReadOnly="True"
              RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DGrid_SelectionChanged" FrozenColumnCount="4"
              ToolTipService.ToolTip="My current jobs" HorizontalAlignment="Left"  VerticalAlignment="Top" SelectionMode="Single" LoadingRow="DGrid_LoadingRow" >
                 <sdk:DataGrid.Columns>
                     <sdk:DataGridTextColumn Binding="{Binding JobFormatted}"  />
+                <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}"  />
                 <sdk:DataGridTextColumn Binding="{Binding TaskName}"  />
                     <sdk:DataGridTextColumn Binding="{Binding MsgCnt}" />
                     <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />

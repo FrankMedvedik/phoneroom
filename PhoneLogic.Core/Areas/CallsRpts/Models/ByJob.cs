@@ -60,10 +60,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                var retval = string.Format("{0:00}:{1:00}:{2:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60, TotalCallDuration % 60);
-                if (retval == "::")
-                    retval = null;
-                return retval;
+                return StringFormatSvc.DurationFormatted(TotalCallDuration.GetValueOrDefault(0));
+
+                //var retval = string.Format("{0:00}:{1:00}:{2:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60, TotalCallDuration % 60);
+                //if (retval == "::")
+                //    retval = null;
+                //return retval;
 
             }
         }
@@ -72,10 +74,11 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                string retval = string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
-                if (retval == "::")
-                    retval = null;
-                return retval;
+                return StringFormatSvc.DurationFormatted(AvgCallDuration.GetValueOrDefault(0));
+                //string retval = string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+                //if (retval == "::")
+                //    retval = null;
+                //return retval;
             }
         }
         [Display(Name = "Max")]
@@ -83,11 +86,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                string retval = string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60,
-                    MaxCallDuration % 60);
-                if (retval == "::")
-                    retval = null;
-                return retval;
+                return StringFormatSvc.DurationFormatted(MaxCallDuration.GetValueOrDefault(0)); 
+                //string retval = string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60,
+                //    MaxCallDuration % 60);
+                //if (retval == "::")
+                //    retval = null;
+                //return retval;
             }
         }
     }

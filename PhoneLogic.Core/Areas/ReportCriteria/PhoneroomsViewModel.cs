@@ -25,12 +25,26 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         {
             setup();
         }
+        private bool _showGridData;
 
+        public bool ShowGridData
+        {
+            get { return _showGridData; }
+            set
+            {
+                _showGridData = value; 
+                NotifyPropertyChanged();
+            }
+        }
+        
         private async void setup()
         {
+            ShowGridData = false;
             _phoneroomRecruiterJobs = await PhoneroomRecruiterJobSvc.GetAllPhoneroomRecruiterJobs();
             PhoneRooms = PhoneRoomSvc.GetAll();
             SelectedPhoneRoomName = PhoneRoomSvc.GetDefault().Name;
+            ShowGridData = true;
+
         }
 
         private ObservableCollection<PhoneLogic.Model.PhoneRoom> _PhoneRooms =
@@ -61,6 +75,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 NotifyPropertyChanged();
                 GetJobs();
                 GetRecruiters();
+                Messenger.Default.Send(new NotificationMessage(this, Notifications.PhoneroomChanged));
             }
         }
 

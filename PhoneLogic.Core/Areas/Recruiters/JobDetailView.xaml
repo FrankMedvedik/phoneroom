@@ -19,7 +19,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Job" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                <TextBlock Text="Job Details" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" />
                 <TextBlock  Text="{Binding PhoneLogicTask.JobFormatted}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
                 <TextBlock  Text="{Binding PhoneLogicTask.TaskName}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" />
                 <TextBlock  Text="{Binding PhoneLogicTask.TaskDscr}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" />

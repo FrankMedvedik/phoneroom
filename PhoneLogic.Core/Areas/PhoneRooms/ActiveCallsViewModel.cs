@@ -16,6 +16,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         #region ActiveCalls
 
         ObservableCollection<ActiveCallDetail> _activeCalls;
+        private ObservableCollection<ActiveCallDetail> _filteredActiveCalls = new ObservableCollection<ActiveCallDetail>();
 
         public ObservableCollection<ActiveCallDetail> ActiveCalls
         {
@@ -26,20 +27,33 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 {
                     _activeCalls = value;
                     NotifyPropertyChanged();
-                    NotifyPropertyChanged("TheBackground");
-                    NotifyPropertyChanged("TheForeground");
-                    NotifyPropertyChanged("FilteredActiveCalls");
                 }
             }
         }
 
         public ObservableCollection<ActiveCallDetail> FilteredActiveCalls
         {
-            get { 
-                return new ObservableCollection<ActiveCallDetail>(from c in _activeCalls
-                join b in MyRecruiters on c.RecruiterUri equals b.sip
-                select c);
+            get { return _filteredActiveCalls; }
+            set
+            {
+                _filteredActiveCalls = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("TheForeground");
+                NotifyPropertyChanged("TheBackground");
             }
+        }
+
+        private void FilterCalls()
+        {
+            var acd = new ObservableCollection<ActiveCallDetail>();
+            if(MyRecruiters != null && ActiveCalls != null)
+                if(MyRecruiters.Any() && ActiveCalls.Any())
+                    acd = new ObservableCollection<ActiveCallDetail>
+                        (from c in ActiveCalls
+                            join b in MyRecruiters on c.RecruiterUri equals b.sip
+                            select c);
+            FilteredActiveCalls = acd;
+
         }
 
         #endregion
@@ -49,6 +63,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         public ActiveCallsViewModel()
         {
             StartAutoRefresh(ApiRefreshFrequency.LyncApi);
+            MyRecruiters = new List<Recruiter>();
 
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
@@ -62,11 +77,12 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
         }
 
-        public List<Recruiter> MyRecruiters { get; set; }
+        public List<Recruiter> MyRecruiters { get; set; } 
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
             GetActiveCalls();
+            FilterCalls();
         }
 
 
@@ -93,14 +109,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
             try
             {
                 LoadDate = DateTime.Now;
-                var cq = await LyncSvc.GetActiveCallsDetail();
-                if (cq.Count > 0)
-                {
-                    ActiveCalls = cq;
-                    ShowGridData = true;
-                }
-                else
-                    ShowGridData = false;
+                ActiveCalls = await LyncSvc.GetActiveCallsDetail();
                 LoadedOk = true;
             }
             catch (Exception e)
@@ -111,8 +120,6 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         #region DisplayColors
 
 
-
-
         public string TheBackground
         {
             get
@@ -120,7 +127,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 var callCnt = 0;
                 try
                 {
-                    callCnt = ActiveCalls.Count;
+                    callCnt = FilteredActiveCalls.Count;
                 }
                 catch (Exception e)
                 {
@@ -137,7 +144,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 var callCnt = 0;
                 try
                 {
-                    callCnt = ActiveCalls.Count;
+                    callCnt = FilteredActiveCalls.Count;
                 }
                 catch (Exception e)
                 {
