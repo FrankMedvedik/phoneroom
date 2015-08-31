@@ -4,6 +4,7 @@ using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
+using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
@@ -99,7 +100,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                                 ReportDateRange.EndRptDate);
                         ShowGridData = true;
                         JobRecruiters = new ObservableCollection<ByRecruitersForJob>(ro);
-                        HeadingText = String.Format("Job {0}-{1} has {2} Recruiters", CallRptJobNum.Substring(0, 4), CallRptJobNum.Substring(4, 4), JobRecruiters.Count);
+                        HeadingText = String.Format("Job {0} has {1} Recruiters with call activity between {2} and {3}", StringFormatSvc.JobAndTaskFormatted(CallRptJobNum), JobRecruiters.Count, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                         LoadedOk = true;
                 }
                 catch (Exception e)

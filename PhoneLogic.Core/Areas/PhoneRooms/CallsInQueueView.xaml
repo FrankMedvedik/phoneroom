@@ -11,7 +11,7 @@
                     Background="{Binding TheBackground}" >
             <!--<TextBlock Text="Incoming Call: Become Available in Lync to Accept" FontWeight="Bold" Foreground="{Binding TheForeground}" Margin="6" />-->
             <sdk:DataGrid x:Name="callbackGrid" HorizontalAlignment="Center" AutoGenerateColumns="False" FontWeight="Bold" Foreground="{Binding TheForeground}" 
-         ItemsSource="{Binding CallsInQueue}"  VerticalAlignment="Top"  IsReadOnly="True" ToolTipService.ToolTip="incoming phone calls"
+         ItemsSource="{Binding FilteredCallsInQueue}"  VerticalAlignment="Top"  IsReadOnly="True" ToolTipService.ToolTip="incoming phone calls"
          Margin="6" MinHeight="20">
                 <sdk:DataGrid.Columns>
                     <sdk:DataGridTextColumn Binding="{Binding jobFormatted}"  Header="Job"/>

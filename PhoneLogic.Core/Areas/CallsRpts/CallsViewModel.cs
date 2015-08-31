@@ -156,7 +156,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             var ro = new List<Call>();
             try
             {
-
                 if ((ReportDateRange != null) && (SelectedJobNum != null) && (SelectedRecruiter != null))
                 {
                     HeadingText = "Loading...";
@@ -165,9 +164,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 }
                 else if ((ReportDateRange != null) && (SelectedRecruiter != null))
                 {
-                    HeadingText = "Loading...";
-                    ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, ReportDateRange.StartRptDate,
-                        ReportDateRange.EndRptDate);
+                    //HeadingText = "Loading...";
+                    //ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, ReportDateRange.StartRptDate,
+                    //    ReportDateRange.EndRptDate);
+                    throw new Exception("There is a prblem we should not ask for calls without a job!!!");
                 }
 
                 ShowGridData = true;

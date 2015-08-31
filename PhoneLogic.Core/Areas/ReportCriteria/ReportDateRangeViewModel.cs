@@ -9,8 +9,9 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
     {
         public ReportDateRangeViewModel()
         {
-            StartRptDate = DateTime.Today;
-            EndRptDate = DateTime.Today.AddDays(1);
+            _startRptDate = DateTime.Today;
+            _endRptDate = DateTime.Today.AddDays(1);
+            Messenger.Default.Send(new NotificationMessage(this, _notificationMessage));
         }
 
         private string  _notificationMessage = Notifications.DateRangeChanged;
@@ -33,7 +34,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         #region reporting variables
 
-        private DateTime _startRptDate = DateTime.Now.AddDays(-1);
+        private DateTime _startRptDate;
         public DateTime StartRptDate
         {
             get { return _startRptDate; }
@@ -45,7 +46,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             }
         }
 
-        private DateTime _endRptDate = DateTime.Now;
+        private DateTime _endRptDate;
         public DateTime EndRptDate
         {
             get { return _endRptDate; }

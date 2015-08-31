@@ -65,6 +65,7 @@
                 <SolidColorBrush Opacity="1" Color="Gray" />
             </sdk:GridSplitter.Background>
         </sdk:GridSplitter>
-        <CallsRpts:CallsView Grid.Row="2"  Name="cv"/>
+        <CallsRpts:RecruiterJobsView Grid.Row="2"  Name="cv"/>
+        <!--<CallsRpts:CallsView Grid.Row="2"  Name="cv"/>-->
     </Grid>
 </UserControl>

@@ -1,5 +1,5 @@
 ﻿<UserControl xmlns:recruiter="clr-namespace:PhoneLogic.Core.Areas.Recruiters"  
-             x:Class="PhoneLogic.Core.Areas.CallsRpts.JobRecruitersView"
+             x:Class="PhoneLogic.Core.Areas.CallsRpts.RecruiterJobsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,13 +23,13 @@
         <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" >
             <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
         </StackPanel>
-        <sdk:DataGrid Grid.Row="1"  Grid.Column="0" x:Name="JobRecruitersDG" AutoGenerateColumns="False" MaxHeight="600"  
-                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"   FrozenColumnCount="2"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="JobRecruitersDG_SelectionChanged" 
-                      ItemsSource="{Binding JobRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="Job Recruiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single"   >
+        <sdk:DataGrid Grid.Row="1"  Grid.Column="0" x:Name="RecruiterJobsDG" AutoGenerateColumns="False" MaxHeight="600"  
+            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"   FrozenColumnCount="2"
+            VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="RecruiterJobsDG_SelectionChanged" 
+            ItemsSource="{Binding RecruiterJobs}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"  
+            ToolTipService.ToolTip="Recruiter Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single"   >
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding PhoneRoom}" />
+                <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
                 <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
                 <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />

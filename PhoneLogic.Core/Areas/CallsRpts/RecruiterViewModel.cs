@@ -14,41 +14,38 @@ using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
-    public class RecruitersViewModel : CollectionViewModelBase
+    public class RecruiterViewModel : CollectionViewModelBase
     {
-        public RecruitersViewModel()
+        public enum RefreshModes
         {
-            PhoneRooms = PhoneRoomSvc.GetAll();
-            SelectedPhoneRoomName = PhoneRoomSvc.GetDefault().Name;
+            AllRecruiters, ActiveRecruiters
+        }
+
+        public RefreshModes CurrentRefreshMode  
+        {
+            get { return _currentRefreshMode; }
+            set
+            {
+                _currentRefreshMode = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public RecruiterViewModel()
+        {
+
 
 
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
                 if (message.Notification == Notifications.GlobalReportCriteriaChanged)
                 {
-                    if (ReportDateRange != message.Content.ReportDateRange)
-                    {
                         ReportDateRange = message.Content.ReportDateRange;
                         SelectedPhoneRoomName = message.Content.Phoneroom;
                         RefreshAll(null, null);
-                    }
-                    SelectedPhoneRoomName = message.Content.Phoneroom;
                 }
             });
         }
-
-        private ObservableCollection<PhoneLogic.Model.PhoneRoom> _PhoneRooms = new ObservableCollection<PhoneLogic.Model.PhoneRoom>();
-
-        public ObservableCollection<PhoneLogic.Model.PhoneRoom> PhoneRooms
-        {
-            get { return _PhoneRooms; }
-            set
-            {
-                _PhoneRooms = value;
-                NotifyPropertyChanged();
-            }
-        }
-
 
         private string _selectedPhoneRoomName;
         public string SelectedPhoneRoomName
@@ -59,8 +56,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 _selectedPhoneRoomName = value;
                 NotifyPropertyChanged();
                 SelectedRecruiter = null;
-                RefreshFilteredData();
-
             }
         }
 
@@ -85,8 +80,17 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             get { return _recruiters; }
             set
             {
+                var s = SelectedRecruiter;
+
                 _recruiters = value;
                 NotifyPropertyChanged();
+                FilterByPhoneRoom();
+
+                if (s != null)
+                {
+                    SelectedRecruiter = FilteredRecruiters.First(x => x.RecruiterSIP == s.RecruiterSIP);
+                }
+
             }
         }
 
@@ -102,11 +106,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        private void RefreshFilteredData()
-        {
-            FilterByPhoneRoom();
-        }
-
         private void FilterByPhoneRoom()
         {
             var fr = new List<LyncCallByRecruiter>();
@@ -115,13 +114,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             else
             {
                 fr = (from fobjs in Recruiters
-                      where fobjs.PhoneRoom == SelectedPhoneRoomName
-                      select fobjs).ToList();
-
-                if (FilteredRecruiters.Count == fr.Count())
-                    return;
+                    where fobjs.PhoneRoom == SelectedPhoneRoomName
+                    select fobjs).ToList();
                 FilteredRecruiters = new ObservableCollection<LyncCallByRecruiter>(fr);
             }
+
+                    HeadingText = String.Format("{0} Phone Room Activity between {1} and {2} - for {3} Recruiters",
+                        SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, FilteredRecruiters.Count);
+                    ShowGridData = true;
         }
         #endregion
 
@@ -130,19 +130,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-            if (CanRefresh)
-            {
-                var s = SelectedRecruiter;
                 GetRecruiters();
-                if (s != null)
-                {
-                    SelectedRecruiter = Recruiters.First(x => x.RecruiterSIP == s.RecruiterSIP);
-                }
-            }
+                FilterByPhoneRoom();
         }
         
 
         private string _headingText;
+        private RefreshModes _currentRefreshMode;
+
         public string HeadingText
         {
             get {return _headingText;}
@@ -159,10 +154,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 _selectedRecruiter = value;
                 NotifyPropertyChanged();
-                //if (value != null)
-                //    Messenger.Default.Send(new NotificationMessage<string>(this, SelectedRecruiter.RecruiterSIP, Notifications.CallRptRecruiterSet));
-                //else
-                //    Messenger.Default.Send(new NotificationMessage(this, Notifications.CallRptRecruiterCleared));
             }
         }
 
@@ -172,16 +163,21 @@ namespace PhoneLogic.Core.Areas.CallsRpts
               HeadingText = "Loading...";
             try
             {
-                var ro = await LyncCallLogSvc.GetLyncCallsByRecruiter(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                List<LyncCallByRecruiter> l;
+                
+                if(CurrentRefreshMode == RefreshModes.AllRecruiters)
+                    l = await LyncCallLogSvc.GetRecruitersPlusCallSummary(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                else
+                    l = await LyncCallLogSvc.GetLyncCallsByRecruiter(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);           
+
+                Recruiters = new ObservableCollection<LyncCallByRecruiter>(l);
+                LoadedOk = true; 
                 ShowGridData = true;
-                Recruiters = new ObservableCollection<LyncCallByRecruiter>(ro);
-                HeadingText = String.Format("{0} Phone Room(s) Call Stats for {1} through {2}", SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                RefreshFilteredData();
-                LoadedOk = true;
             }
             catch (Exception e)
             {
                 LoadFailed(e);
+                HeadingText = e.Message;
             }
 
         }

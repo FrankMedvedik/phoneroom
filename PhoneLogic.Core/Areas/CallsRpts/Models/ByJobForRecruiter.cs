@@ -4,7 +4,7 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Areas.CallsRpts.Models
 {
-    public class ByJobsForRecruiter
+    public class ByJobForRecruiter
     {
         public String JobNum { get; set; }
         public int CallCnt { get; set; }

@@ -14,11 +14,11 @@ namespace PhoneLogic.Web.Controllers
         private PhoneRoomUsers p = new PhoneRoomUsers();
 
         // GET: api/Calls?sip=1&startDate=2&endDate=3
-        public IEnumerable<Call> GetCalls(string sip, DateTime startDate, DateTime endDate)
+        public IEnumerable<Call> GetCalls(string sip, Int64 startDate, Int64 endDate)
         {
             if (sip == null)
                 sip = "";
-            var Logs = db.rpt_GetRecruiterLyncCallLog(sip, startDate, endDate).ToList();
+            var Logs = db.rpt_GetRecruiterLyncCallLog(sip, new DateTime(startDate), new DateTime(endDate)).ToList();
             var recruiters = p.GetAllRecruiters();
 
 
@@ -49,9 +49,9 @@ namespace PhoneLogic.Web.Controllers
         }
 
         // GET: api/Calls?jobNum=0&sip=1&startDate=2&endDate=3
-        public IEnumerable<Call> GetCalls(string jobNum, string sip, DateTime startDate, DateTime endDate)
+        public IEnumerable<Call> GetCalls(string jobNum, string sip, Int64 startDate, Int64 endDate)
         {
-            var Logs = db.rpt_GetLyncCallJobRecruiterLog(jobNum, sip, startDate, endDate).ToList();
+            var Logs = db.rpt_GetLyncCallJobRecruiterLog(jobNum, sip, new DateTime(startDate), new DateTime(endDate)).ToList();
             var recruiters = p.GetAllRecruiters();
 
 
@@ -82,12 +82,12 @@ namespace PhoneLogic.Web.Controllers
         }
 
         // GET: api/Calls?startDate=2&endDate=3
-        public IEnumerable<Call> GetCalls(DateTime startDate, DateTime endDate)
+        public IEnumerable<Call> GetCalls(Int64 startDate, Int64 endDate)
         {
             var v = new List<Call>();
             try
             {
-                var Logs = db.rpt_GetLyncCallLog(startDate, endDate).ToList();
+                var Logs = db.rpt_GetLyncCallLog(new DateTime(startDate), new DateTime(endDate)).ToList();
                 var recruiters = p.GetAllRecruiters();
                 /* Add BACK CODE TO INCLUDE CALLS NOT ASSOCIATED TO RECRUITER */
                   

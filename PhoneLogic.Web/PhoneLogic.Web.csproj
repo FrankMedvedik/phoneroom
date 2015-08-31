@@ -224,12 +224,9 @@
     <Compile Include="Controllers\CallbacksController.cs" />
     <Compile Include="Controllers\FormattedPhoneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PeopleController.cs" />
-    <Compile Include="Controllers\InboundCallRptController.cs" />
     <Compile Include="Controllers\PhoneLogicTasksRptController.cs" />
     <Compile Include="Controllers\RecruiterController.cs" />
     <Compile Include="Controllers\CallsController.cs" />
-    <Compile Include="Controllers\TodayRptController.cs" />
     <Compile Include="Controllers\JobActivityRptController.cs" />
     <Compile Include="Controllers\PhoneLogicTasksController.cs" />
     <Compile Include="Controllers\PhoneCallsController.cs" />

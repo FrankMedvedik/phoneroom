@@ -18,31 +18,26 @@ namespace PhoneLogic.Core.Areas.CallsRpts
     {
         public JobsViewModel()
         {
+            //StopAutoRefresh();
            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
                 if (message.Notification == Notifications.GlobalReportCriteriaChanged)
                 {
-                    if (ReportDateRange != message.Content.ReportDateRange)
-                    {
                         ReportDateRange = message.Content.ReportDateRange;
                         Phoneroom = message.Content.Phoneroom;
                         PhoneroomJobs = message.Content.PhoneroomJobs;
                         RefreshAll(null,null);
-                    }
-                    else if (Phoneroom != message.Content.Phoneroom)
-                    {
-                        Phoneroom = message.Content.Phoneroom;
-                        PhoneroomJobs = message.Content.PhoneroomJobs;
-                    }
                 }
             });
-
         }
 
         public List<PhoneLogicTask> PhoneroomJobs
         {
             get { return _phoneroomJobs; }
-            set { _phoneroomJobs = value; NotifyPropertyChanged(); }
+            set { 
+                _phoneroomJobs = value;
+                NotifyPropertyChanged(); 
+            }
         }
 
         public string Phoneroom
@@ -75,6 +70,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 _jobs = value;
                 NotifyPropertyChanged();
+                var s = SelectedJob;
+                FilterJobs();
+                if (s != null)
+                {
+                    SelectedJob = FilteredJobs.First(x => x.JobNumber == s.JobNumber);
+                }
             }
         }
 
@@ -96,16 +97,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-            if (CanRefresh)
-            {
-                var s = SelectedJob;
                 GetJobs();
                 FilterJobs();
-                if (s != null)
-                {
-                    SelectedJob = FilteredJobs.First(x => x.JobNumber == s.JobNumber);
-                }
-            }
         }
 
         private string _headingText;
@@ -139,7 +132,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             try
             {
                 var ro  = await LyncCallLogSvc.GetLynCallsByJob(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                    Jobs = new ObservableCollection<ByJob>(ro);
+                Jobs = new ObservableCollection<ByJob>(ro);
             }
             catch (Exception e)
             {
@@ -160,7 +153,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                               join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
                               select c).ToList().OrderByDescending(x => x.JobFormatted);
                     FilteredJobs = new ObservableCollection<ByJob>(rx);
-                    HeadingText = string.Format("{0} Phone Room(s) has {1} jobs with call activity between  {2} and {3}", Phoneroom, Jobs.Count(), ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                    HeadingText = string.Format("{0} Phone Room has {1} jobs with call activity between  {2} and {3}", Phoneroom, Jobs.Count(), ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     ShowGridData = true;
                     SelectedJob = null; // if i am just changing the filtereing i want to loose the selected job
                 }

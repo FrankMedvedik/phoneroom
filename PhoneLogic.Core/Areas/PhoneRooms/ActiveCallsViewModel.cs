@@ -15,7 +15,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
         #region ActiveCalls
 
-        ObservableCollection<ActiveCallDetail> _activeCalls;
+        ObservableCollection<ActiveCallDetail> _activeCalls = new ObservableCollection<ActiveCallDetail>();
         private ObservableCollection<ActiveCallDetail> _filteredActiveCalls = new ObservableCollection<ActiveCallDetail>();
 
         public ObservableCollection<ActiveCallDetail> ActiveCalls
@@ -46,7 +46,6 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         private void FilterCalls()
         {
             var acd = new ObservableCollection<ActiveCallDetail>();
-            if(MyRecruiters != null && ActiveCalls != null)
                 if(MyRecruiters.Any() && ActiveCalls.Any())
                     acd = new ObservableCollection<ActiveCallDetail>
                         (from c in ActiveCalls

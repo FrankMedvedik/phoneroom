@@ -11,7 +11,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
     /// </summary>
     public partial class RecruiterMonitorView : UserControl
     {
-        private RecruiterMonitorViewModel _vm = null;
+        private RecruiterViewModel _vm = null;
         /// <summary>
         /// Initializes a new instance of the RecruiterView class.
         /// </summary>
@@ -19,8 +19,9 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public RecruiterMonitorView()
         {
             InitializeComponent();
-            _vm = new RecruiterMonitorViewModel();
+            _vm = new RecruiterViewModel();
             DataContext = _vm;
+            _vm.CurrentRefreshMode = RecruiterViewModel.RefreshModes.AllRecruiters;
             
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

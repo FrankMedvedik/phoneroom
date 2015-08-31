@@ -12,7 +12,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
     /// </summary>
     public partial class RecruitersView : UserControl
     {
-        private RecruitersViewModel _vm = null;
+        private RecruiterViewModel _vm = null;
         /// <summary>
         /// Initializes a new instance of the RecruiterView class.
         /// </summary>
@@ -20,9 +20,9 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public RecruitersView()
         {
             InitializeComponent();
-            _vm = new RecruitersViewModel();
+            _vm = new RecruiterViewModel();
             DataContext = _vm;
-
+            _vm.CurrentRefreshMode = RecruiterViewModel.RefreshModes.ActiveRecruiters;
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {

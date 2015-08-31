@@ -13,7 +13,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         public String DisplayName { get; set; }
         [Display(Name = "Email")]
         public String EmailAddress { get; set; }
-        [Display(Name = "Title")]
         public string JobNumber { get; set; }
         [Display(Name = "Total Call Cnt")]
         public Nullable<int> CallCnt { get; set; }

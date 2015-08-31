@@ -57,10 +57,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             {
                 _PhoneRooms = value;
                 NotifyPropertyChanged();
-                GetJobs();
-                GetRecruiters();
-                Messenger.Default.Send(new NotificationMessage(this, Notifications.PhoneroomChanged));
-            }
+                }
         }
 
 
@@ -75,7 +72,13 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 NotifyPropertyChanged();
                 GetJobs();
                 GetRecruiters();
-                Messenger.Default.Send(new NotificationMessage(this, Notifications.PhoneroomChanged));
+                Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(new GlobalReportCriteria()
+                {
+                    Phoneroom = this.SelectedPhoneRoomName,
+                    PhoneroomJobs = this.FilteredJobs.ToList(),
+                    PhoneroomRecruiters = this.FilteredRecruiters.ToList()
+                },
+                    Notifications.PhoneroomChanged));
             }
         }
 
@@ -185,8 +188,6 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
             FilteredRecruiters =  new ObservableCollection<Recruiter>(sips);
         }
-
-    
     
     }
 }

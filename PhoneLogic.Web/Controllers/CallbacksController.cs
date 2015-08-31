@@ -24,9 +24,9 @@ namespace PhoneLogic.Web.Controllers
 
 
         // GET: api/Callbacks?startDate=1&endDate=2
-        public List<CallbackRpt> GetCallbacks(DateTime startDate, DateTime endDate)
+        public List<CallbackRpt> GetCallbacks(Int64 startDate, Int64 endDate)
         {
-            List <CallbackRpt> list = db.rpt_GetCallbackRpt(startDate, endDate).ToList();
+            List <CallbackRpt> list = db.rpt_GetCallbackRpt(new DateTime(startDate), new DateTime(endDate)).ToList();
             return list;
         }
         // GET: api/Callbacks?SIP=1&jobNum=2&taskId=3
@@ -37,9 +37,9 @@ namespace PhoneLogic.Web.Controllers
         }
 
         // GET: api/Callbacks?jobNum=1&taskId=2&startDate=3&endDate=4
-        public List<callbackDTO> GetCallbacks(string jobNum, string taskId, DateTime startDate, DateTime endDate)
+        public List<callbackDTO> GetCallbacks(string jobNum, string taskId, Int64 startDate, Int64 endDate)
         {
-            List<callbackDTO> list = db.rpt_GetJobCallbacks(jobNum, taskId, startDate, endDate).ToList();
+            List<callbackDTO> list = db.rpt_GetJobCallbacks(jobNum, taskId, new DateTime(startDate), new DateTime(endDate)).ToList();
             return list;
         }
 

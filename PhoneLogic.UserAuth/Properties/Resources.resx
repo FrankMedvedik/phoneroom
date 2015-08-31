@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ADCacheDuration" xml:space="preserve">
-    <value>3600</value>
+    <value>42300</value>
     <comment>Active Directory Cache Duration</comment>
   </data>
   <data name="AllPhoneRoom" xml:space="preserve">

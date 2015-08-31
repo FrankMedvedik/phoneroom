@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using PhoneLogic.Model;
 using PhoneLogic.Repository;
@@ -9,16 +11,37 @@ using PhoneLogic.UserAuth;
 namespace PhoneLogic.Web.Controllers
 {
     public class LyncCallByRecruitersController : ApiController
-    {
-        private PhoneLogicEntities db = new PhoneLogicEntities();
-        private PhoneRoomUsers p = new PhoneRoomUsers();
+    {            
 
-        // GET: api/LyncCallByRecruiter?sip=1&startDate=2&endDate=3
-        public IEnumerable<LyncCallByRecruiter> GetLyncCallByRecruiters(string sip, DateTime startDate, DateTime endDate)
-        {
-            var Logs = db.rpt_GetLyncCallRecruiter(startDate,endDate).ToList();
+        // GET: api/LyncCallByRecruiters?sip=1&startDate=2&endDate=3
+        public IEnumerable<LyncCallByRecruiter> GetLyncCallByRecruiters(string sip, Int64 startDate, Int64 endDate)
+        {   
+            
+            PhoneLogicEntities db = new PhoneLogicEntities();
+            PhoneRoomUsers p = new PhoneRoomUsers();
+            var logs = db.rpt_GetLyncCallRecruiters(new DateTime(startDate), new DateTime(endDate)).ToList();
             var recruiters = p.GetAllRecruiters();
-                 var query = from l in Logs
+            if (recruiters == null)
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent("recruiters list is null"),
+                    ReasonPhrase = "GetLyncCallByRecruiters"
+                };
+                throw new HttpResponseException(resp);
+            }
+
+            if (!logs.Any())
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent("database phone list is null"),
+                    ReasonPhrase = "GetLyncCallByRecruiters"
+                };
+                throw new HttpResponseException(resp);
+            }
+
+                 var query = from l in logs
                     join r in recruiters on l.RecruiterSIP equals r.sip
                     where r.sip == sip
                    select new LyncCallByRecruiter
@@ -45,10 +68,18 @@ namespace PhoneLogic.Web.Controllers
 
             return query.ToList();
         }
-        // GET: api/LyncCallByRecruiter?startDate=1&endDate=2&primaryEntity=3
-        public IEnumerable<LyncCallByRecruiter> GetLyncCallByRecruiters(DateTime startDate, DateTime endDate, string primaryEntity)
+        // GET: api/LyncCallByRecruiters?startDate=1&endDate=2&primaryEntity=3
+        public IEnumerable<LyncCallByRecruiter> GetLyncCallByRecruiters(Int64 startDate, Int64 endDate, string primaryEntity)
         {
-            var Logs = db.rpt_GetLyncCallRecruiter(startDate, endDate).ToList();
+            PhoneRoomUsers p;
+            List<LyncCallRecruiter> logs;
+
+            using (PhoneLogicEntities db = new PhoneLogicEntities())
+            {
+                p = new PhoneRoomUsers();
+
+                logs = db.rpt_GetLyncCallRecruiters(new DateTime(startDate), new DateTime(endDate)).ToList();
+            }
             var recruiters = p.GetAllRecruiters();
             IEnumerable<LyncCallByRecruiter> lst = new List<LyncCallByRecruiter>();
 
@@ -56,7 +87,7 @@ namespace PhoneLogic.Web.Controllers
             {
 
                 var query = from r in recruiters
-                    join l in Logs on r.sip equals l.RecruiterSIP into rr
+                    join l in logs on r.sip equals l.RecruiterSIP into rr
                     from oj in rr.DefaultIfEmpty()
                     select new LyncCallByRecruiter
                     {
@@ -83,7 +114,7 @@ namespace PhoneLogic.Web.Controllers
             }
             if (primaryEntity == "Log")
             {
-                var query = from l in Logs
+                var query = from l in logs
                     join r in recruiters on l.RecruiterSIP equals r.sip into rr
                     from oj in rr.DefaultIfEmpty()
                     select new LyncCallByRecruiter

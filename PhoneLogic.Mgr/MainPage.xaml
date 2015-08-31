@@ -11,17 +11,18 @@
     <ScrollViewer  HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
     <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="2" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" Grid.Row="0" Grid.Column="0">
-            <sdk:TabControl  Width="Auto" >
+            <Border BorderBrush="Black" BorderThickness="1" Background="#FFF9F9F9" CornerRadius="3" Margin="3" Grid.Row="0" Grid.Column="0" >
+                <StackPanel>
+                <ReportCriteria:GlobalReportCriteriaView VerticalAlignment="Top" />
+            <sdk:TabControl  Width="Auto" Margin="6" >
                 <sdk:TabItem  Header="Phone Room">
                     <callsRpts:RecruiterMonitorView />
                 </sdk:TabItem>
@@ -31,30 +32,28 @@
                     <sdk:TabItem  Header="Recruiters">
                     <callsRpts:RecruitersView />
                 </sdk:TabItem>
-                <sdk:TabItem  Header="Callbacks">
-                    <Callbacks:JobsView />
-                </sdk:TabItem>
-                <!--<sdk:TabItem  Header="Inbound Calls By Hour">
-                    <StackPanel Orientation="Vertical">
-                        <phoneRooms:InboundCallsByHrChartView />
-                    </StackPanel>
-                </sdk:TabItem>-->
-            </sdk:TabControl>
-        </Border>
+                        <sdk:TabItem  Header="Callbacks">
+                            <Callbacks:JobsView />
+                        </sdk:TabItem>
+                    </sdk:TabControl>
+                </StackPanel>
+            </Border>
         <Rectangle Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Width="6" Fill="#FFEAEAEA"/>
-        <sdk:GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" 
+            <sdk:GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" 
                 Width="6" BorderBrush="#FFD6D6D6" BorderThickness="1,0" Opacity="0.715">
             <sdk:GridSplitter.Background>
                 <ImageBrush Stretch="None" ImageSource="SplitterHandle.png"/>
             </sdk:GridSplitter.Background>
         </sdk:GridSplitter>
-        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
-            <StackPanel Orientation="Vertical"><ReportCriteria:GlobalReportCriteriaView />
+            <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" 
+                    Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
+            <StackPanel Orientation="Vertical">
+                <ReportCriteria:PhoneroomsView />
                 <phoneRooms:CallsInQueueView />
                 <phoneRooms:ActiveCallsView  />
             </StackPanel>
         </Border>
-        <views:BuildInformationView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <views:BuildInformationView Grid.Row="1" Grid.Column="0"/>
     </Grid>
     </ScrollViewer>
 </UserControl>

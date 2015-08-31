@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using PhoneLogic.Model;
 using PhoneLogic.Repository;
@@ -10,54 +12,30 @@ namespace PhoneLogic.Web.Controllers
 {
     public class LyncCallJobsController : ApiController
     {
-        private PhoneLogicEntities db = new PhoneLogicEntities();
-        private PhoneRoomUsers p = new PhoneRoomUsers();
-
-        // GET: api/LyncCallJobs?sip=1&startDate=2&endDate=3
-        public IEnumerable<LyncCallJob> GetLyncCallJobs(string sip, DateTime startDate, DateTime endDate)
-        {
-            throw new NotImplementedException();
-
-            //var Logs = db.rpt_GetLyncCallJobs(sip,startDate,endDate).ToList();
-            //var recruiters = p.GetAllRecruiters();
-            //     var query = from l in Logs
-            //        join r in recruiters on l.RecruiterSIP equals r.sip
-            //                 select new LyncCallJobs
-            //        {
-            //            PhoneRoom = r.PhoneRoom, 
-            //            DisplayName =  r.DisplayName,
-            //            EmailAddress = r.EmailAddress,
-            //            Description = r.Description,
-            //            StartLogId = l.StartLogId,
-            //            CallId = l.CallID,
-            //            JobNumber = l.JobNumber,
-            //            CallerId = l.CallerId,
-            //            TollFreeNumber = l.TollFreeNumber,
-            //            CallStartTime = l.CallStartTime,
-            //            RecruiterConnectTime  = l.RecruiterConnectTime ,
-            //            CallEndTime = l.CallEndTime,
-            //            RecruiterSIP = l.RecruiterSIP,
-            //            CallDirection = l.CallDirection,
-            //            CallEndStatus = l.CallEndStatus
-            //                        };
-
-            //return query.ToList();
-        }
+        
 
         // GET: api/LyncCallJobs?startDate=2&endDate=3
-        public IEnumerable<LyncCallJob> GetLyncCallJobs(DateTime startDate, DateTime endDate)
+        public IEnumerable<LyncCallJob> GetLyncCallJobs(Int64 startDate, Int64 endDate)
         {
-            var v = new List<LyncCallJob>();
+            PhoneLogicEntities db = new PhoneLogicEntities();
             try
             {
-                v  = db.rpt_GetLyncCallJob(startDate, endDate).ToList();
+                var v  = db.rpt_GetLyncCallJobs(new DateTime(startDate), new DateTime(endDate));
+
+                return v.ToList();
             }
 
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(e.Message),
+                    ReasonPhrase = "GetLyncCallJobs"
+                };
+                throw new HttpResponseException(resp);
             }
-            return v;
+     
         }
    }
 }

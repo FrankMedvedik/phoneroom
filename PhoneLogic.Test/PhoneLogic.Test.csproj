@@ -160,14 +160,20 @@
     <Compile Include="..\PhoneLogic.Model.Silverlight\TestConfig.cs">
       <Link>TestConfig.cs</Link>
     </Compile>
-    <Compile Include="RptControllerUnitTest.cs" />
-    <Compile Include="CallbackControllerUnitTest.cs" />
+    <Compile Include="ControllerTests\LyncCallJobsControllerUnitTest.cs" />
+    <Compile Include="ControllerTests\PhoneroomRecruiterJobsControllerUnitTest.cs" />
+    <Compile Include="ControllerTests\LyncCallJobPhoneroomRecruitersControllerUnitTest.cs" />
+    <Compile Include="ControllerTests\LyncCallByRecruitersControllerUnitTest.cs" />
+    <Compile Include="ControllerTests\RptControllerUnitTest.cs" />
+    <Compile Include="ControllerTests\CallbackControllerUnitTest.cs" />
+    <Compile Include="ControllerTests\CallsControllerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RespondentRepositoryTest.cs" />
-    <Compile Include="PhoneCallsControllerUnitTest.cs" />
-    <Compile Include="PhoneLogicRepositoryTest.cs" />
-    <Compile Include="RepositoryUtilsUnitTest.cs" />
-    <Compile Include="PhoneLogicTasksControllerUnitTest.cs" />
+    <Compile Include="RespositoryTests\PhoneLogicCallRptRepositoryTest.cs" />
+    <Compile Include="RespositoryTests\RespondentRepositoryTest.cs" />
+    <Compile Include="ControllerTests\PhoneCallsControllerUnitTest.cs" />
+    <Compile Include="RespositoryTests\PhoneLogicRepositoryTest.cs" />
+    <Compile Include="RespositoryTests\RepositoryUtilsUnitTest.cs" />
+    <Compile Include="ControllerTests\PhoneLogicTasksControllerUnitTest.cs" />
     <Compile Include="UserAuthUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>

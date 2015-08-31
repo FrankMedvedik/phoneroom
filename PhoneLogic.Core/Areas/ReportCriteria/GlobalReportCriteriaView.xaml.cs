@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.ReportCriteria
@@ -11,6 +12,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
     public partial class GlobalReportCriteriaView : UserControl
     {
         private Visibility _showControl;
+        private GlobalReportCriteria grc{ get; set; }
 
         /// <summary>
         /// Initializes a new instance of the GlobalReportCriteriaView class.
@@ -19,30 +21,14 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         {
             InitializeComponent();
             DataContext = this;
-            //Messenger.Default.Register<NotificationMessage>(this, message =>
-            //{
-            //    if ((message.Notification == Notifications.DateRangeChanged)
-            //        || (message.Notification == Notifications.PhoneroomChanged))
-            //    {
-            //        if (PR.SelectedPhoneroom == null)
-            //            ShowControl = Visibility.Collapsed;
-            //        else
-            //        {
-            //            ShowControl = Visibility.Visible;
-            //            var rc = new GlobalReportCriteria()
-            //            {
-            //                Phoneroom = PR.SelectedPhoneroom,
-            //                PhoneroomRecruiters = PR.PhoneroomRecruiters,
-            //                PhoneroomJobs = PR.PhoneroomJobs,
-            //                ReportDateRange = DR.DateRange,
-            //            };
-            //            Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(this, rc,
-            //                Notifications.GlobalReportCriteriaChanged));
-            //        }
-            //    }
-            //});
-
-
+            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
+            {
+                if (message.Notification == Notifications.PhoneroomChanged)
+                {
+                    grc = message.Content;
+                    grc.ReportDateRange = DR.DateRange;
+                }
+            });
         }
 
         private Visibility ShowControl
@@ -53,14 +39,8 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            var rc = new GlobalReportCriteria()
-            {
-                Phoneroom = PR.SelectedPhoneroom,
-                PhoneroomRecruiters = PR.PhoneroomRecruiters,
-                PhoneroomJobs = PR.PhoneroomJobs,
-                ReportDateRange = DR.DateRange,
-            };
-            Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(this, rc,
+            grc.ReportDateRange = DR.DateRange;
+            Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(this, grc,
                 Notifications.GlobalReportCriteriaChanged));
         }
     }

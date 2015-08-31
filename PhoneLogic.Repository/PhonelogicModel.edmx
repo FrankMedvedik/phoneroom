@@ -172,6 +172,11 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="rpt_GetLyncCallRecruiterJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sip" Type="char" Mode="In" />
+          <Parameter Name="startDate" Type="datetime" Mode="In" />
+          <Parameter Name="endDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="rpt_GetLyncCallRecruiters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
@@ -261,26 +266,12 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="jobNum" Mode="In" Type="String" />
             <Parameter Name="taskID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="rpt_InboundCallByHour" ReturnType="Collection(PhoneLogicModel.rptInboundCallByHourResult)">
-            <Parameter Name="beginDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="rpt_GetTodayCallLogSummary" ReturnType="Collection(PhoneLogicModel.rptGetTodayCallLogSummaryResult)" />
           <FunctionImport Name="rpt_GetJobCallActivity" ReturnType="Collection(PhoneLogicModel.rptGetJobCallActivityResult)">
             <Parameter Name="Start" Mode="In" Type="DateTime" />
             <Parameter Name="End" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="agentLogs" EntityType="PhoneLogicModel.agentLog" />
           <EntitySet Name="callLogs" EntityType="PhoneLogicModel.callLog" />
-          <FunctionImport Name="rpt_GetAgentLog">
-            <Parameter Name="sip" Mode="In" Type="String" />
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="rpt_GetCallLog">
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="rpt_GetLyncCallLog" ReturnType="Collection(PhoneLogicModel.LyncCallLog)">
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
@@ -290,11 +281,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="rpt_GetLyncCallJob" ReturnType="Collection(PhoneLogicModel.LyncCallJob)">
-            <Parameter Name="startDate" Mode="In" Type="DateTime" />
-            <Parameter Name="endDate" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="rpt_GetLyncCallRecruiter" ReturnType="Collection(PhoneLogicModel.LyncCallRecruiter)">
+          <FunctionImport Name="rpt_GetLyncCallRecruiters" ReturnType="Collection(PhoneLogicModel.LyncCallRecruiter)">
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -325,6 +312,15 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="taskId" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="vw_PhoneLogicTaskAgent" EntityType="PhoneLogicModel.vw_PhoneLogicTaskAgent" />
+          <FunctionImport Name="rpt_GetLyncCallJobs" ReturnType="Collection(PhoneLogicModel.LyncCallJob)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetLyncCallRecruiterJobs" ReturnType="Collection(PhoneLogicModel.rpt_GetLyncCallRecruiterJobs)">
+            <Parameter Name="sip" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="returnedCall">
           <Key>
@@ -649,6 +645,22 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Property Name="sip" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="tollFreeNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
         </EntityType>
+        <ComplexType Name="rpt_GetLyncCallRecruiterJobs">
+          <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="recruiterSip" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CallCnt" Nullable="true" />
+          <Property Type="Int32" Name="IncomingCallCnt" Nullable="true" />
+          <Property Type="Int32" Name="OutgoingCallCnt" Nullable="true" />
+          <Property Type="Int32" Name="TotalCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="AvgCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="MaxCallDuration" Nullable="true" />
+          <Property Type="Int32" Name="UniqueCallerCnt" Nullable="true" />
+          <Property Type="Int32" Name="CompleteCnt" Nullable="true" />
+          <Property Type="Int32" Name="AbandonedCnt" Nullable="true" />
+          <Property Type="Int32" Name="LeftMsgCnt" Nullable="true" />
+          <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -768,48 +780,6 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="rpt_InboundCallByHour" FunctionName="PhoneLogicModel.Store.rpt_InboundCallByHour">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="PhoneLogicModel.rptInboundCallByHourResult">
-                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
-                <ScalarProperty Name="Before_9am" ColumnName="Before 9am" />
-                <ScalarProperty Name="C9_am" ColumnName="9 am" />
-                <ScalarProperty Name="C10_am" ColumnName="10 am" />
-                <ScalarProperty Name="C11_am" ColumnName="11 am" />
-                <ScalarProperty Name="C12_pm" ColumnName="12 pm" />
-                <ScalarProperty Name="C1_pm" ColumnName="1 pm" />
-                <ScalarProperty Name="C2_pm" ColumnName="2 pm" />
-                <ScalarProperty Name="C3_pm" ColumnName="3 pm" />
-                <ScalarProperty Name="C4_pm" ColumnName="4 pm" />
-                <ScalarProperty Name="C5_pm" ColumnName="5 pm" />
-                <ScalarProperty Name="C6_pm" ColumnName="6 pm" />
-                <ScalarProperty Name="C7_pm" ColumnName="7 pm" />
-                <ScalarProperty Name="C8_pm" ColumnName="8 pm" />
-                <ScalarProperty Name="C9_pm" ColumnName="9 pm" />
-                <ScalarProperty Name="C10_pm" ColumnName="10 pm" />
-                <ScalarProperty Name="after_10pm" ColumnName="after 10pm" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="rpt_GetTodayCallLogSummary" FunctionName="PhoneLogicModel.Store.rpt_GetTodayCallLogSummary">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PhoneLogicModel.rptGetTodayCallLogSummaryResult">
-                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
-                <ScalarProperty Name="taskID" ColumnName="taskID" />
-                <ScalarProperty Name="taskName" ColumnName="taskName" />
-                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
-                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
-                <ScalarProperty Name="taskStatusID" ColumnName="taskStatusID" />
-                <ScalarProperty Name="tollfreenumber" ColumnName="tollfreenumber" />
-                <ScalarProperty Name="InboundCalls" ColumnName="InboundCalls" />
-                <ScalarProperty Name="NoAgents" ColumnName="NoAgents" />
-                <ScalarProperty Name="Abandoned" ColumnName="Abandoned" />
-                <ScalarProperty Name="LeftMessage" ColumnName="LeftMessage" />
-                <ScalarProperty Name="CallBack" ColumnName="CallBack" />
-                <ScalarProperty Name="PlacedCall" ColumnName="PlacedCall" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetJobCallActivity" FunctionName="PhoneLogicModel.Store.rpt_GetJobCallActivity">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PhoneLogicModel.rptGetJobCallActivityResult">
@@ -863,10 +833,6 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="rpt_GetAgentLog" FunctionName="PhoneLogicModel.Store.rpt_GetAgentLog">
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="rpt_GetCallLog" FunctionName="PhoneLogicModel.Store.rpt_GetCallLog">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetLyncCallLog" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallLog">
           <ResultMapping>
               <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallLog">
@@ -903,28 +869,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="rpt_GetLyncCallJob" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallJobs">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallJob">
-                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
-                <ScalarProperty Name="CallCnt" ColumnName="CallCnt" />
-                <ScalarProperty Name="IncomingCallCnt" ColumnName="IncomingCallCnt" />
-                <ScalarProperty Name="OutgoingCallCnt" ColumnName="OutgoingCallCnt" />
-                <ScalarProperty Name="TotalCallDuration" ColumnName="TotalCallDuration" />
-                <ScalarProperty Name="AvgCallDuration" ColumnName="AvgCallDuration" />
-                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
-                <ScalarProperty Name="RecruiterCnt" ColumnName="RecruiterCnt" />
-                <ScalarProperty Name="UniqueCallerCnt" ColumnName="UniqueCallerCnt" />
-                <ScalarProperty Name="CompleteCnt" ColumnName="CompleteCnt" />
-                <ScalarProperty Name="LeftMsgCnt" ColumnName="LeftMsgCnt" />
-                <ScalarProperty Name="TollFreeNumber" ColumnName="TollFreeNumber" />
-                <ScalarProperty Name="FirstCallTime" ColumnName="FirstCallTime" />
-                <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
-                <ScalarProperty Name="AbandonedCnt" ColumnName="AbandonedCnt" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="rpt_GetLyncCallRecruiter" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallRecruiters">
+          <FunctionImportMapping FunctionImportName="rpt_GetLyncCallRecruiters" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallRecruiters">
           <ResultMapping>
               <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallRecruiter">
                 <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
@@ -1049,6 +994,47 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetLyncCallJobs" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallJobs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallJob">
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="CallCnt" ColumnName="CallCnt" />
+                <ScalarProperty Name="IncomingCallCnt" ColumnName="IncomingCallCnt" />
+                <ScalarProperty Name="OutgoingCallCnt" ColumnName="OutgoingCallCnt" />
+                <ScalarProperty Name="TotalCallDuration" ColumnName="TotalCallDuration" />
+                <ScalarProperty Name="AvgCallDuration" ColumnName="AvgCallDuration" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="RecruiterCnt" ColumnName="RecruiterCnt" />
+                <ScalarProperty Name="UniqueCallerCnt" ColumnName="UniqueCallerCnt" />
+                <ScalarProperty Name="CompleteCnt" ColumnName="CompleteCnt" />
+                <ScalarProperty Name="LeftMsgCnt" ColumnName="LeftMsgCnt" />
+                <ScalarProperty Name="TollFreeNumber" ColumnName="TollFreeNumber" />
+                <ScalarProperty Name="FirstCallTime" ColumnName="FirstCallTime" />
+                <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
+                <ScalarProperty Name="AbandonedCnt" ColumnName="AbandonedCnt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetLyncCallRecruiterJobs" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallRecruiterJobs">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.rpt_GetLyncCallRecruiterJobs">
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="recruiterSip" ColumnName="recruiterSip" />
+                <ScalarProperty Name="CallCnt" ColumnName="CallCnt" />
+                <ScalarProperty Name="IncomingCallCnt" ColumnName="IncomingCallCnt" />
+                <ScalarProperty Name="OutgoingCallCnt" ColumnName="OutgoingCallCnt" />
+                <ScalarProperty Name="TotalCallDuration" ColumnName="TotalCallDuration" />
+                <ScalarProperty Name="AvgCallDuration" ColumnName="AvgCallDuration" />
+                <ScalarProperty Name="MaxCallDuration" ColumnName="MaxCallDuration" />
+                <ScalarProperty Name="UniqueCallerCnt" ColumnName="UniqueCallerCnt" />
+                <ScalarProperty Name="CompleteCnt" ColumnName="CompleteCnt" />
+                <ScalarProperty Name="AbandonedCnt" ColumnName="AbandonedCnt" />
+                <ScalarProperty Name="LeftMsgCnt" ColumnName="LeftMsgCnt" />
+                <ScalarProperty Name="FirstCallTime" ColumnName="FirstCallTime" />
+                <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
