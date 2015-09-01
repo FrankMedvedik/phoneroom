@@ -291,5 +291,14 @@ namespace PhoneLogic.Repository
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rpt_GetLyncCallRecruiterJobs>("rpt_GetLyncCallRecruiterJobs", sipParameter, startDateParameter, endDateParameter);
         }
+    
+        public virtual ObjectResult<LyncCallLog> rpt_GetCallerLyncCallLog(string callerId)
+        {
+            var callerIdParameter = callerId != null ?
+                new ObjectParameter("callerId", callerId) :
+                new ObjectParameter("callerId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LyncCallLog>("rpt_GetCallerLyncCallLog", callerIdParameter);
+        }
     }
 }

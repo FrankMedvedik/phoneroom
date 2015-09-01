@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:ReportCriteria="clr-namespace:PhoneLogic.Core.Areas.ReportCriteria;assembly=PhoneLogic.Core"  xmlns:Callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks;assembly=PhoneLogic.Core"  
+﻿<UserControl xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  xmlns:ReportCriteria="clr-namespace:PhoneLogic.Core.Areas.ReportCriteria;assembly=PhoneLogic.Core"  xmlns:Callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks;assembly=PhoneLogic.Core"  
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,19 +23,19 @@
                 <StackPanel>
                 <ReportCriteria:GlobalReportCriteriaView VerticalAlignment="Top" />
             <sdk:TabControl  Width="Auto" Margin="6" >
-                <sdk:TabItem  Header="Phone Room">
+                <sdk:TabItem  Header="All Recruiters">
                     <callsRpts:RecruiterMonitorView />
                 </sdk:TabItem>
                     <sdk:TabItem  Header="Jobs">
                         <callsRpts:JobsView />
                     </sdk:TabItem>
-                    <sdk:TabItem  Header="Recruiters">
+                    <sdk:TabItem  Header="Active Recruiters">
                     <callsRpts:RecruitersView />
                 </sdk:TabItem>
-                        <sdk:TabItem  Header="Callbacks">
-                            <Callbacks:JobsView />
-                        </sdk:TabItem>
-                    </sdk:TabControl>
+                <sdk:TabItem  Header="Callbacks">
+                    <Callbacks:JobsView />
+                </sdk:TabItem>
+            </sdk:TabControl>
                 </StackPanel>
             </Border>
         <Rectangle Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Width="6" Fill="#FFEAEAEA"/>
@@ -47,11 +47,20 @@
         </sdk:GridSplitter>
             <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="2, 2, 4 ,6" 
                     Background="#FFF9F9F9" CornerRadius="3" Padding="1,0,0,0" Margin="1" >
-            <StackPanel Orientation="Vertical">
-                <ReportCriteria:PhoneroomsView />
-                <phoneRooms:CallsInQueueView />
-                <phoneRooms:ActiveCallsView  />
-            </StackPanel>
+            <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ReportCriteria:PhoneroomsView  Grid.Row="0"/>
+                    <toolkit:Expander Grid.Row="1" Header="Caller History" Margin="12,6,6,6">
+                        <callsRpts:CallerIdCallsView />
+                    </toolkit:Expander>
+                    <phoneRooms:CallsInQueueView Grid.Row="2"  />
+                    <phoneRooms:ActiveCallsView Grid.Row="3" />
+            </Grid>
         </Border>
         <views:BuildInformationView Grid.Row="1" Grid.Column="0"/>
     </Grid>

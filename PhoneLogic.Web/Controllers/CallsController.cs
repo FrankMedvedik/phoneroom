@@ -48,6 +48,41 @@ namespace PhoneLogic.Web.Controllers
             return query.ToList();
         }
 
+
+
+        public IEnumerable<Call> GetCalls(string callerId)
+        {
+            var Logs = db.rpt_GetCallerLyncCallLog(callerId).ToList();
+            var recruiters = p.GetAllRecruiters();
+
+
+            var query = from l in Logs
+                        join r in recruiters on l.RecruiterSIP equals r.sip into rr
+                        from oj in rr.DefaultIfEmpty()
+                        select new Call
+                        {
+                            PhoneRoom = (oj == null ? String.Empty : oj.PhoneRoom),
+                            DisplayName = (oj == null ? String.Empty : oj.DisplayName),
+                            EmailAddress = (oj == null ? String.Empty : oj.EmailAddress),
+                            Description = (oj == null ? String.Empty : oj.Description),
+                            StartLogId = l.StartLogId,
+                            CallId = l.CallID,
+                            JobNumber = l.JobNumber,
+                            CallerId = l.CallerId,
+                            TollFreeNumber = l.TollFreeNumber,
+                            CallStartTime = l.CallStartTime,
+                            RecruiterConnectTime = l.RecruiterConnectTime,
+                            CallEndTime = l.CallEndTime,
+                            RecruiterSIP = l.RecruiterSIP,
+                            CallDirection = l.CallDirection,
+                            CallEndStatus = l.CallEndStatus,
+                            CallDuration = l.CallDuration
+                        };
+
+            return query.ToList();
+        }
+
+
         // GET: api/Calls?jobNum=0&sip=1&startDate=2&endDate=3
         public IEnumerable<Call> GetCalls(string jobNum, string sip, Int64 startDate, Int64 endDate)
         {

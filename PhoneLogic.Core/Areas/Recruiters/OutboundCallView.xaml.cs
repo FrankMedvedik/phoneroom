@@ -16,7 +16,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             InitializeComponent();
             _vm = new OutboundCallViewModel();
             DataContext = _vm;
-            
+            //cid.spPhoneLookUp.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         public Boolean CanRefresh
@@ -41,6 +41,12 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         public DependencyProperty TaskProperty =
             DependencyProperty.Register("Task", typeof(PhoneLogicTask), typeof(OutboundCallView), new PropertyMetadata(new PhoneLogicTask()));
+
+        //private async void btnLookup_Click(object sender, RoutedEventArgs e)
+        //{
+        //    cid.SelectedCallerId = tbOutboundPhone.Text;
+        //    cid.Refresh();
+        //}
 
 
         private async void Call_Click(object sender, RoutedEventArgs e)

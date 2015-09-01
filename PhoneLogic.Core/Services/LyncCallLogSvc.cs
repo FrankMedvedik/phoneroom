@@ -35,6 +35,28 @@ namespace PhoneLogic.Core.Services
         }
 
 
+        public static async Task<List<Call>> GetCalls(String CallerID)
+        {
+            var client = new WebClient();
+            var data = await client.DownloadStringTaskAsync(
+                new Uri(ConditionalConfiguration.apiUrl + "Calls?callerId=" + CallerID));
+            try
+            {
+                var z = JsonConvert.DeserializeObject<List<Call>>(data);
+                return z;
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException == null)
+                    Console.Write(e.Message + e.StackTrace);
+                else
+                    Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
+                return null;
+            }
+
+        }
+
+
         public static async Task<List<Call>> GetLyncCallLog(DateTime startDate, DateTime endDate)
         {
             var client = new WebClient();

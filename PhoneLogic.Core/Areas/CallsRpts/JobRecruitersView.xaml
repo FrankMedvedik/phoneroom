@@ -21,7 +21,7 @@
             <RowDefinition  Height="Auto"/>
             </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" >
-            <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+            <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6"/>
         </StackPanel>
         <sdk:DataGrid Grid.Row="1"  Grid.Column="0" x:Name="JobRecruitersDG" AutoGenerateColumns="False" MaxHeight="600"  
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"   FrozenColumnCount="2"

@@ -16,6 +16,15 @@ namespace PhoneLogic.Test.ControllerTests
             var data = result.ToString();
             Assert.IsNotNull(result);
         }
+        [TestMethod]
+        public void GetCallsByCalllerTest()
+        {
+            var controller = new CallsController();
+
+            var result = controller.GetCalls(TestConfig.PhoneNumber);
+            var data = result.ToString();
+            Assert.IsNotNull(result);
+        }
 
         public void GetCallsTest()
         {

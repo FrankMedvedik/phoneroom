@@ -51,7 +51,13 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                         (from c in ActiveCalls
                             join b in MyRecruiters on c.RecruiterUri equals b.sip
                             select c);
-            FilteredActiveCalls = acd;
+                FilteredActiveCalls = acd;
+                if (FilteredActiveCalls.Any())
+                    ShowGridData = true;
+                else
+                    ShowGridData = false;
+
+
 
         }
 
@@ -66,7 +72,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
-                if (message.Notification == Notifications.GlobalReportCriteriaChanged)
+                if (message.Notification == Notifications.PhoneroomChanged)
                 {
                     MyRecruiters = message.Content.PhoneroomRecruiters;
                     RefreshAll(null, null);

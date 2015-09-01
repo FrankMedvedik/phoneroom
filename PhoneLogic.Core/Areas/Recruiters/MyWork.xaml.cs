@@ -59,8 +59,6 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
 
             }
-
-
         }
 
         private void DGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

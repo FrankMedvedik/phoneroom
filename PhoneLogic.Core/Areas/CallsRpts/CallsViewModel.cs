@@ -23,8 +23,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
 
         }
-        private Boolean _canCall = true;
 
+        private Boolean _canCall = true;
         public Boolean CanCall
         {
             get
@@ -40,7 +40,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
 
         private String _actionMsg;
-
         public String ActionMsg
         {
             get { return _actionMsg; }
@@ -52,7 +51,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private bool _canRefresh = true;
-
         public Boolean CanRefresh
         {
             get { return _canRefresh; }
@@ -61,14 +59,11 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
 
         #region reporting variables
-
         public ReportDateRange ReportDateRange = new ReportDateRange();
-
         #endregion
 
 
         private string _selectedRecruiter = null;
-
         public string SelectedRecruiter
         {
             get { return _selectedRecruiter; }
@@ -80,7 +75,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private Call _selectedCall;
-
         public Call SelectedCall
         {
             get { return _selectedCall; }
@@ -92,7 +86,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private string _selectedJobNum = null;
-
         public string SelectedJobNum
         {
             get { return _selectedJobNum; }
@@ -105,7 +98,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private string _headingText;
-
         public string HeadingText
         {
             get { return _headingText; }
@@ -137,15 +129,15 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             if (CanRefresh)
             {
-                //var s = SelectedCall;
+                var s = SelectedCall;
                 GetCalls();
-                SelectedCall = null;
-                //if ((s != null) && (Calls.First(x => x.CallId == s.CallId) != null))
-                //{
-                //    SelectedCall = Calls.First(x => x.CallId == s.CallId);
-                //}
-                //else
-                //    SelectedCall = null;
+                //SelectedCall = null;
+                if ((s != null) && (Calls.First(x => x.CallId == s.CallId) != null))
+                {
+                    SelectedCall = Calls.First(x => x.CallId == s.CallId);
+                }
+                else
+                    SelectedCall = null;
             }
         }
 

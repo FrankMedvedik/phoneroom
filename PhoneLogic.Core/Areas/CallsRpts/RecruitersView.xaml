@@ -20,7 +20,7 @@
             <RowDefinition  Height="Auto"/>
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
-            <TextBlock Text="{Binding HeadingText}" Grid.Row="0" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+            <TextBlock Text="{Binding HeadingText}" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Stretch" Margin="6"/>
             <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="1" 
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto" FrozenColumnCount="2"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="RecruitersDG_SelectionChanged"

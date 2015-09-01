@@ -66,6 +66,9 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 FilteredCallsInQueue = acd;
                 if (FilteredCallsInQueue.Any())
                     ShowGridData = true;
+                else
+                    ShowGridData = false;
+
          }
 
         #endregion

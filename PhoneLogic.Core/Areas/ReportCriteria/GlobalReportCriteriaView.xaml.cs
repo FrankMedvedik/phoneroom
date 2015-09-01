@@ -31,7 +31,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             });
         }
 
-        private Visibility ShowControl
+        public Visibility ShowControl
         {
             get { return _showControl; }
             set { _showControl = value; }

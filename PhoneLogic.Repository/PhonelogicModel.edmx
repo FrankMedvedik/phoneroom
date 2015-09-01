@@ -139,6 +139,9 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="rpt_GetCallerLyncCallLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="callerId" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="rpt_GetCallLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="startDate" Type="datetime" Mode="In" />
           <Parameter Name="endDate" Type="datetime" Mode="In" />
@@ -320,6 +323,9 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="sip" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetCallerLyncCallLog" ReturnType="Collection(PhoneLogicModel.LyncCallLog)">
+            <Parameter Name="callerId" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="returnedCall">
@@ -660,6 +666,20 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Property Type="Int32" Name="LeftMsgCnt" Nullable="true" />
           <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="rpt_GetCallerLyncCallLog_Result">
+          <Property Type="Int32" Name="StartLogId" Nullable="true" />
+          <Property Type="String" Name="CallID" Nullable="false" MaxLength="36" />
+          <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="CallerId" Nullable="true" MaxLength="22" />
+          <Property Type="String" Name="TollFreeNumber" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="CallStartTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="RecruiterConnectTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CallEndTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RecruiterSIP" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CallDirection" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="CallEndStatus" Nullable="false" MaxLength="35" />
+          <Property Type="Int32" Name="CallDuration" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1032,6 +1052,24 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
                 <ScalarProperty Name="LeftMsgCnt" ColumnName="LeftMsgCnt" />
                 <ScalarProperty Name="FirstCallTime" ColumnName="FirstCallTime" />
                 <ScalarProperty Name="LastCallTime" ColumnName="LastCallTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetCallerLyncCallLog" FunctionName="PhoneLogicModel.Store.rpt_GetCallerLyncCallLog">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallLog">
+                <ScalarProperty Name="StartLogId" ColumnName="StartLogId" />
+                <ScalarProperty Name="CallID" ColumnName="CallID" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="CallerId" ColumnName="CallerId" />
+                <ScalarProperty Name="TollFreeNumber" ColumnName="TollFreeNumber" />
+                <ScalarProperty Name="CallStartTime" ColumnName="CallStartTime" />
+                <ScalarProperty Name="RecruiterConnectTime" ColumnName="RecruiterConnectTime" />
+                <ScalarProperty Name="CallEndTime" ColumnName="CallEndTime" />
+                <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
+                <ScalarProperty Name="CallDirection" ColumnName="CallDirection" />
+                <ScalarProperty Name="CallEndStatus" ColumnName="CallEndStatus" />
+                <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
