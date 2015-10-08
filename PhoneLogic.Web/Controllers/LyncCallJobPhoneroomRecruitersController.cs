@@ -45,7 +45,10 @@ namespace PhoneLogic.Web.Controllers
                     LeftMsgCnt = l.LeftMsgCnt,
                     FirstCallTime = l.FirstCallTime,
                     LastCallTime = l.LastCallTime,
-                    JobNumber = l.JobNumber
+                    JobNumber = l.JobNumber,
+                    taskDscr  = l.taskDscr,
+                    TaskTypeId = l.taskTypeID,
+                    taskName = l.taskName
                 };
 
             var z = query.ToList();
@@ -80,7 +83,10 @@ namespace PhoneLogic.Web.Controllers
                             LeftMsgCnt = l.LeftMsgCnt,
                             FirstCallTime = l.FirstCallTime,
                             LastCallTime = l.LastCallTime,
-                            JobNumber = l.JobNumber
+                            JobNumber = l.JobNumber, 
+                            taskDscr = l.taskDscr,
+                            TaskTypeId = l.TaskTypeId,
+                            taskName = l.taskName
                         };
 
             var z = query.ToList();

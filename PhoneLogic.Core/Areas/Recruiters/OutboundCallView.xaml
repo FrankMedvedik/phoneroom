@@ -12,8 +12,8 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -33,12 +33,12 @@
             <TextBlock Name="tbErrors"  VerticalAlignment="Top"  HorizontalAlignment="Center"  Foreground="Red" Margin="6" FontSize="12"
                            Grid.Row="3" Grid.Column="0"/>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  >
-            <Button Click="Call_Click"  Width="100" Name="btnCall" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"
+            <Button Click="Call_Click"  Width="75" Name="btnCall" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"
                             IsEnabled="{Binding CanMakeCall}">Call</Button>
-            <!--<Button Click="btnLookup_Click"  Width="100" Name="btnLookup" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"
-                            >History</Button>-->
+                <Button Click="btnLookup_Click"  Width="75" Name="btnLookup" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"
+                            >History</Button>
             </StackPanel>
-            <!--<CallsRpts:CallerIdCallsView  Name="cid" Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2" />-->
-                </Grid>
+            <CallsRpts:DialHistoryView  Name="dhv"  ShowInput="False" Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="2" />
+            </Grid>
     </Border>
 </UserControl>

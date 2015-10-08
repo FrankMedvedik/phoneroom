@@ -30,7 +30,10 @@
             ToolTipService.ToolTip="Recruiter Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single"   >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
-                <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
+                    <sdk:DataGridTextColumn Binding="{Binding TaskTypeID }" />
+                    <sdk:DataGridTextColumn Binding="{Binding TaskName }" />
+                    <sdk:DataGridTextColumn Binding="{Binding TaskDscr }" />
+                    <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
                 <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding OutgoingCallCnt}" />

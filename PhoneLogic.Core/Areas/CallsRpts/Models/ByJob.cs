@@ -94,5 +94,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
                 //return retval;
             }
         }
+        [Display(Name = "Task Type")]
+        public string TaskTypeID { get; set; }
+        [Display(Name = "Task Name")]
+        public string TaskName { get; set; }
+        [Display(Name = "Task Desc")]
+        public string TaskDscr { get; set; }
+
     }
 }

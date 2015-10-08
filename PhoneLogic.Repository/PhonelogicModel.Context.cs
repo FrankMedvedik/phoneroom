@@ -35,13 +35,21 @@ namespace PhoneLogic.Repository
         public virtual DbSet<callLog> callLogs { get; set; }
         public virtual DbSet<vw_PhoneLogicTaskAgent> vw_PhoneLogicTaskAgent { get; set; }
     
-        public virtual ObjectResult<callbackDTO> getMyCallbacks(string sIP)
+        public virtual ObjectResult<callbackDTO> getMyCallbacks(string sIP, string jobNum, string taskId)
         {
             var sIPParameter = sIP != null ?
                 new ObjectParameter("SIP", sIP) :
                 new ObjectParameter("SIP", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("getMyCallbacks", sIPParameter);
+            var jobNumParameter = jobNum != null ?
+                new ObjectParameter("jobNum", jobNum) :
+                new ObjectParameter("jobNum", typeof(string));
+    
+            var taskIdParameter = taskId != null ?
+                new ObjectParameter("taskId", taskId) :
+                new ObjectParameter("taskId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("getMyCallbacks", sIPParameter, jobNumParameter, taskIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> InsertPlacedCall(string agentID, string jobNumber, string callerID, string eventDscr)

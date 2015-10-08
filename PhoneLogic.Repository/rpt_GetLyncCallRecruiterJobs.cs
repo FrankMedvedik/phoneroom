@@ -27,5 +27,8 @@ namespace PhoneLogic.Repository
         public Nullable<int> LeftMsgCnt { get; set; }
         public Nullable<System.DateTime> FirstCallTime { get; set; }
         public Nullable<System.DateTime> LastCallTime { get; set; }
+        public string taskName { get; set; }
+        public string TaskTypeId { get; set; }
+        public string taskDscr { get; set; }
     }
 }

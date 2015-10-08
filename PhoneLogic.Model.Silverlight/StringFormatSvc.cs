@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PhoneLogic.Model 
+namespace PhoneLogic.Model
 {
     public static class StringFormatSvc
     {

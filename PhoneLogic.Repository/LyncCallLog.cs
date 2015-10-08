@@ -25,5 +25,10 @@ namespace PhoneLogic.Repository
         public string CallDirection { get; set; }
         public string CallEndStatus { get; set; }
         public Nullable<int> CallDuration { get; set; }
+        public string taskName { get; set; }
+        public string TaskTypeId { get; set; }
+        public string taskdscr { get; set; }
+        public Nullable<int> CallerId_UTC_code { get; set; }
+        public string CallerId_Region { get; set; }
     }
 }

@@ -44,11 +44,11 @@ namespace PhoneLogic.Web.Controllers
         }
 
         // GET: api/Callbacks?SIP=1
-        public List<callbackDTO> GetCallbacks(string SIP)
-        {
-            List<callbackDTO> list = db.getMyCallbacks(SIP).ToList();
-            return list;
-        }
+        //public List<callbackDTO> GetCallbacks(string SIP)
+        //{
+        ////    List<callbackDTO> list = db.getMyCallbacks(SIP).ToList();
+        ////    return list;
+        //}
 
 
         // PUT: api/Callbacks/5

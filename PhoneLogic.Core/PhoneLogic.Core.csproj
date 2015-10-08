@@ -229,10 +229,10 @@
       <DependentUpon>MyCallbacksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Callbacks\MyCallbacksViewModel.cs" />
-    <Compile Include="Areas\CallsRpts\CallerIdCallsView.xaml.cs">
-      <DependentUpon>CallerIdCallsView.xaml</DependentUpon>
+    <Compile Include="Areas\CallsRpts\DialHistoryView.xaml.cs">
+      <DependentUpon>DialHistoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CallsRpts\CallerIdCallsViewModel.cs" />
+    <Compile Include="Areas\CallsRpts\DialHistoryViewModel.cs" />
     <Compile Include="Areas\CallsRpts\RecruiterJobsView.xaml.cs">
       <DependentUpon>RecruiterJobsView.xaml</DependentUpon>
     </Compile>
@@ -258,7 +258,7 @@
     <Compile Include="Areas\CallsRpts\JobsView.xaml.cs">
       <DependentUpon>JobsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CallsRpts\Models\ByPhoneroom.cs" />
+    <None Include="Areas\CallsRpts\Models\ByPhoneroom.cs.xxx" />
     <Compile Include="Areas\CallsRpts\RecruitersView.xaml.cs">
       <DependentUpon>RecruitersView.xaml</DependentUpon>
     </Compile>
@@ -267,8 +267,8 @@
     </Compile>
     <Compile Include="Areas\CallsRpts\Models\ByRecruitersForJob.cs" />
     <Compile Include="Areas\CallsRpts\Models\ByJob.cs" />
-    <Compile Include="Areas\CallsRpts\Models\ByJobForRecruiter.cs" />
-    <Compile Include="Areas\CallsRpts\Models\ByRecruiter.cs" />
+    <None Include="Areas\CallsRpts\Models\ByJobForRecruiter.cs.xxx" />
+    <None Include="Areas\CallsRpts\Models\ByRecruiter.cs.xxx" />
     <Compile Include="Areas\ReportCriteria\ReportDateRangeView.xaml.cs">
       <DependentUpon>ReportDateRangeView.xaml</DependentUpon>
     </Compile>
@@ -427,7 +427,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\CallsRpts\CallerIdCallsView.xaml">
+    <Page Include="Areas\CallsRpts\DialHistoryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

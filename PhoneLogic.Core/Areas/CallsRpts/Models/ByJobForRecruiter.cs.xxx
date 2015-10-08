@@ -7,6 +7,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
     public class ByJobForRecruiter
     {
         public String JobNum { get; set; }
+        [Display(Name = "Task Type")]
+        public string TaskTypeID { get; set; }
+        [Display(Name = "Task Name")]
+        public string TaskName { get; set; }
+        [Display(Name = "Task Desc")]
+        public string TaskDscr { get; set; }
         public int CallCnt { get; set; }
         public int IncomingCallCnt { get; set; }
         public int OutgoingCallCnt { get; set; }

@@ -55,8 +55,8 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <ReportCriteria:PhoneroomsView  Grid.Row="0"/>
-                    <toolkit:Expander Grid.Row="1" Header="Caller History" Margin="12,6,6,6">
-                        <callsRpts:CallerIdCallsView />
+                    <toolkit:Expander Grid.Row="1" Header="Dial History" Margin="12,6,6,6">
+                        <callsRpts:DialHistoryView />
                     </toolkit:Expander>
                     <phoneRooms:CallsInQueueView Grid.Row="2"  />
                     <phoneRooms:ActiveCallsView Grid.Row="3" />

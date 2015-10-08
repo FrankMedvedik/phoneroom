@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
- 
+
 namespace PhoneLogic.Model
 {
     public class Call
@@ -18,9 +18,13 @@ namespace PhoneLogic.Model
         public string JobNumber { get; set; }
         [Display(Name = "Caller ID")]
         public string CallerId { get; set; }
+        public int? CallerId_UTC_code { get; set; }
+        [Display(Name = "State")]
+        public string CallerId_Region { get; set; }
+
         [Display(Name = "CallId")]
         public string CallId { get; set; }
-        [Display(Name = "Start")]
+        [Display(Name = "Call Date")]
         public Nullable<System.DateTime> CallStartTime { get; set; }
         [Display(Name = "RecruiterConnectTime")]
         public Nullable<System.DateTime> RecruiterConnectTime { get; set; }
@@ -70,6 +74,13 @@ namespace PhoneLogic.Model
                 return StringFormatSvc.PhoneNumberFormatted(CallerId);
             }
         }
+        
+        [Display(Name = "Task Type")]
+        public string TaskTypeID { get; set; }
+        [Display(Name = "Task Name")]
+        public string TaskName { get; set; }
+        [Display(Name = "Task Desc")]
+        public string TaskDscr { get; set; }
     }
 }
 

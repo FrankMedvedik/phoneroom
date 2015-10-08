@@ -10,15 +10,15 @@ namespace PhoneLogic.Test
     public class CallbackControllerUnitTest
     {
         [TestMethod]
-        public void GetCallbacksBySipTest()
-        {
+        //public void GetCallbacksBySipTest()
+        //{
 
-            var controller = new CallbacksController();
+        //    var controller = new CallbacksController();
 
-            var result = controller.GetCallbacks(TestConfig.SIP);
-            Assert.IsNotNull(result);
-            Assert.AreNotEqual(0, result.Count);
-        }
+        //    var result = controller.GetCallbacks(TestConfig.SIP);
+        //    Assert.IsNotNull(result);
+        //    Assert.AreNotEqual(0, result.Count);
+        //}
 
         public void GetCallbacksById()
         {

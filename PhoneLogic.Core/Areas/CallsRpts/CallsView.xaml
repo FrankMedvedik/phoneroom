@@ -36,9 +36,10 @@
             <sdk:DataGrid.Columns>
                 <!--<sdk:DataGridTextColumn Binding="{Binding JobFormatted }" />-->
                 <sdk:DataGridTextColumn Binding="{Binding PhoneFormatted }" />
-                <sdk:DataGridTextColumn Binding="{Binding CallDirection }" />
+                    <sdk:DataGridTextColumn Binding="{Binding CallStartTime }" />
+                    <sdk:DataGridTextColumn Binding="{Binding CallerId_Region}" />
+                    <sdk:DataGridTextColumn Binding="{Binding CallDirection }" />
                 <sdk:DataGridTextColumn Binding="{Binding CallEndStatus }" />
-                <sdk:DataGridTextColumn Binding="{Binding CallStartTime }" />
                 <sdk:DataGridTextColumn Binding="{Binding CallDurationFormatted}" />
             </sdk:DataGrid.Columns>
                 <sdk:DataGrid.RowDetailsTemplate>

@@ -49,17 +49,21 @@ namespace PhoneLogic.Core.Areas.Recruiters
         //}
 
 
-        private async void Call_Click(object sender, RoutedEventArgs e)
+        private void ValidateCallerId()
         {
             tbErrors.Text = "";
             System.Windows.Browser.HtmlPage.Plugin.Focus();
             btnCall.Focus();
-                if (String.IsNullOrWhiteSpace(tbOutboundPhone.Text))
-                    tbErrors.Text = "Phone number is required";
+            if (String.IsNullOrWhiteSpace(tbOutboundPhone.Text))
+                tbErrors.Text = "Phone number is required";
             if ((tbOutboundPhone.Text.Length != 10))
                 tbErrors.Text = "Phone number invalid";
 
-            
+
+        }
+        private async void Call_Click(object sender, RoutedEventArgs e)
+        {
+            ValidateCallerId();
 
             if (tbErrors.Text == "")
             {
@@ -98,5 +102,17 @@ namespace PhoneLogic.Core.Areas.Recruiters
             tbErrors.Text ="";
         }
 
+        private void btnLookup_Click(object sender, RoutedEventArgs e)
+        {
+            ValidateCallerId();
+
+            if (tbErrors.Text == "")
+            {
+                dhv.GetCalls(tbOutboundPhone.Text);
+            }
+            System.Windows.Browser.HtmlPage.Plugin.Focus();
+            tbOutboundPhone.Focus();
+
+        }
     }
 }

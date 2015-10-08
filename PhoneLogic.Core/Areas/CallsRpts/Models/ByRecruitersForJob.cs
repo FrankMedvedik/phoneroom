@@ -81,6 +81,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
                 return string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60, MaxCallDuration % 60);
             }
         }
+        [Display(Name = "Task Type")]
+        public string TaskTypeID { get; set; }
+        [Display(Name = "Task Name")]
+        public string TaskName { get; set; }
+        [Display(Name = "Task Desc")]
+        public string TaskDscr { get; set; }
     }
 }
 

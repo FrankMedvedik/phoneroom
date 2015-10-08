@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
-    public class CallerIdCallsViewModel : CollectionViewModelBase
+    public class DialHistoryViewModel : CollectionViewModelBase
     {
         private Call _selectedCall;
         public Call SelectedCall
@@ -45,6 +45,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
 
         private ObservableCollection<Call> _calls = new ObservableCollection<Call>();
+
         public ObservableCollection<Call> Calls
         {
             get { return _calls; }
@@ -54,6 +55,15 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged();
             }
         }
+        private bool _showInput = true;
+
+        public bool ShowInput
+        {
+            get { return _showInput; }
+            set { _showInput = value; NotifyPropertyChanged(); }
+        }
+
+   
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
