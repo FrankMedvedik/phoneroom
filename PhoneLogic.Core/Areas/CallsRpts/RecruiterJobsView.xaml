@@ -24,20 +24,20 @@
             <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6"/>
         </StackPanel>
         <sdk:DataGrid Grid.Row="1"  Grid.Column="0" x:Name="RecruiterJobsDG" AutoGenerateColumns="False" MaxHeight="600"  
-            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"   FrozenColumnCount="2"
+            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"   FrozenColumnCount="1"
             VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"   SelectionChanged="RecruiterJobsDG_SelectionChanged" 
             ItemsSource="{Binding RecruiterJobs}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"  
             ToolTipService.ToolTip="Recruiter Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single"   >
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
+                <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
+                <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />
+                <sdk:DataGridTextColumn Binding="{Binding OutgoingCallCnt}" />
                     <sdk:DataGridTextColumn Binding="{Binding TaskTypeID }" />
                     <sdk:DataGridTextColumn Binding="{Binding TaskName }" />
                     <sdk:DataGridTextColumn Binding="{Binding TaskDscr }" />
                     <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
-                <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding OutgoingCallCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding FirstCallTime }" />
+                    <sdk:DataGridTextColumn Binding="{Binding FirstCallTime }" />
                 <sdk:DataGridTextColumn Binding="{Binding LastCallTime }" />
                 <sdk:DataGridTextColumn Binding="{Binding TotalCallDurationFormatted }" />
                 <sdk:DataGridTextColumn Binding="{Binding MaxCallDurationFormatted }" />

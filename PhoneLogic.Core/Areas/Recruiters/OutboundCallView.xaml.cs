@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using PhoneLogic.Core.Areas.Callbacks;
+using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 
@@ -27,7 +29,6 @@ namespace PhoneLogic.Core.Areas.Recruiters
         // Using a DependencyProperty as the backing store for CanRefresh.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CanRefreshProperty =
             DependencyProperty.Register("CanRefresh", typeof(Boolean), typeof(MyCallbacksView), new PropertyMetadata(false));
-
 
         public PhoneLogicTask Task
         {
@@ -56,9 +57,8 @@ namespace PhoneLogic.Core.Areas.Recruiters
             btnCall.Focus();
             if (String.IsNullOrWhiteSpace(tbOutboundPhone.Text))
                 tbErrors.Text = "Phone number is required";
-            if ((tbOutboundPhone.Text.Length != 10))
+            if ((PhoneNumberSvc.GetNumbers(tbOutboundPhone.Text).Length != 10))
                 tbErrors.Text = "Phone number invalid";
-
 
         }
         private async void Call_Click(object sender, RoutedEventArgs e)
@@ -78,7 +78,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
                 //tbErrors.Foreground = new SolidColorBrush(Color.FromArgb(255,255,255,255));
                 tbErrors.Text = "Your call has been placed";
-                await LyncSvc.RecruiterDialOut(job, tbOutboundPhone.Text, 0); // zero because it is not a calllback...
+                await LyncSvc.RecruiterDialOut(job, PhoneNumberSvc.GetNumbers(tbOutboundPhone.Text), 0); // zero because it is not a calllback...
             }
             System.Windows.Browser.HtmlPage.Plugin.Focus();
             tbOutboundPhone.Focus();
@@ -102,17 +102,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             tbErrors.Text ="";
         }
 
-        private void btnLookup_Click(object sender, RoutedEventArgs e)
-        {
-            ValidateCallerId();
 
-            if (tbErrors.Text == "")
-            {
-                dhv.GetCalls(tbOutboundPhone.Text);
-            }
-            System.Windows.Browser.HtmlPage.Plugin.Focus();
-            tbOutboundPhone.Focus();
 
-        }
     }
 }

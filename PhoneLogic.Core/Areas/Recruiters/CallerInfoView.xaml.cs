@@ -25,6 +25,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             {
                 SetValue(CallerIdProperty, value);
                 txtCallerId.Text =  String.Format("{0:(###) ###-####}", double.Parse(value));
+                dhv.GetCalls(value);
             }
         }
 

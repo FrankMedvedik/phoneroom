@@ -80,22 +80,22 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 if (SelectedCallerId != null)
                 {
                     HeadingText = "Loading...";
-                    ro = await LyncCallLogSvc.GetCalls(SelectedCallerId);
-                    ShowGridData = true;
+                    ro = await LyncCallLogSvc.GetCalls(PhoneNumberSvc.GetNumbers(SelectedCallerId));
                     Calls = new ObservableCollection<Call>(ro.OrderByDescending(x => x.CallStartTime));
-
                     //var z = Calls.GroupBy(x => x.JobFormatted)
                     //   .Select(x => new { Date = x.Key, Values = x.Distinct().Count() });
-
-
                     if (Calls.Count > 0)
-                        HeadingText = String.Format("Phone Number {0} has {1} calls", SelectedCallerId,Calls.Count());
+                    {
+                        HeadingText = String.Format("Phone Number {0} has {1} calls", SelectedCallerId, Calls.Count());
+                        ShowGridData = true;
+                    }
                     else
                     {
                         HeadingText = "No calls";
                         ShowGridData = false;
                     }
                     LoadedOk = true;
+                    
                 }
             }
             catch (Exception e)

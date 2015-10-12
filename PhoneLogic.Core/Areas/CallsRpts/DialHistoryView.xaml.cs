@@ -80,7 +80,30 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         // Using a DependencyProperty as the backing store for boolean ShowData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowInputProperty =
       DependencyProperty.Register("ShowInput", typeof(bool), typeof(DialHistoryView), new PropertyMetadata(false));
+        public void ResizeGrid()
+        {
+            //tbGridSize.Text = String.Format("Width : {0}  Height : {1} ", BrowserInfoSvc.ClientWidth,
+            //    BrowserInfoSvc.ClientHeight);
+            if (BrowserInfoSvc.ClientWidth < UserInterfaceTimings.ResizeBoundryWidth)
+            {
+                CallsDG.Columns[4].Visibility = Visibility.Collapsed;
+                CallsDG.Columns[5].Visibility = Visibility.Collapsed;
+                CallsDG.Columns[6].Visibility = Visibility.Collapsed;
+                CallsDG.Columns[7].Visibility = Visibility.Collapsed;
+                CallsDG.Columns[8].Visibility = Visibility.Collapsed;
+                CallsDG.Columns[9].Visibility = Visibility.Collapsed;
+            }
+            if (BrowserInfoSvc.ClientWidth >= UserInterfaceTimings.ResizeBoundryWidth)
+            {
+                CallsDG.Columns[4].Visibility = Visibility.Visible;
+                CallsDG.Columns[5].Visibility = Visibility.Visible;
+                CallsDG.Columns[6].Visibility = Visibility.Visible;
+                CallsDG.Columns[7].Visibility = Visibility.Visible;
+                CallsDG.Columns[8].Visibility = Visibility.Visible;
+                CallsDG.Columns[9].Visibility = Visibility.Visible;
+            }
 
+        }
 
     }
 }

@@ -128,16 +128,22 @@ namespace PhoneLogic.Inbound
 
         private void ShutdownThisConversation()
         {
-
-            var cw = new CallCloseWindow()
+            if (ConversationContext.Instance.PhoneLogicContext.callbackId > 0)
             {
-                IsCallback = (ConversationContext.Instance.PhoneLogicContext.callbackId > 0),
-                KeepCallback = false,
-                CallDuration = timer._vm.TimeFromStart
-            };
-         //  MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}", cw.IsCallback, cw.KeepCallback, cw.CallDuration));
-            cw.Closed += CallCloseWindow_Closed;
-            cw.Show();
+
+                var cw = new CallCloseWindow()
+                {
+                    IsCallback = (ConversationContext.Instance.PhoneLogicContext.callbackId > 0),
+                    KeepCallback = false,
+                    CallDuration = timer._vm.TimeFromStart
+                };
+                //  MessageBox.Show(String.Format(" Is Callback? {0}| Keep Callback? {1}|CallDuration {2}", cw.IsCallback, cw.KeepCallback, cw.CallDuration));
+                cw.Closed += CallCloseWindow_Closed;
+                cw.Show();
+            }
+            else
+                EndCall();
+
         }
 
         private async void CallCloseWindow_Closed(object sender, EventArgs e)
@@ -156,11 +162,15 @@ namespace PhoneLogic.Inbound
                     else
                         await CallbackSvc.Close(cb);
                 }
-                var myCW = LyncClient.GetAutomation().GetConversationWindow(_myConversation);
-                _myConversation.End();
-                myCW.Close();
+            EndCall();
             }
 
+        private void EndCall()
+        {
+            var myCW = LyncClient.GetAutomation().GetConversationWindow(_myConversation);
+            _myConversation.End();
+            myCW.Close();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -164,6 +164,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
             mcb.ResizeGrid();
             cv.ResizeGrid();
+            dhv.ResizeGrid();
         }
 
         

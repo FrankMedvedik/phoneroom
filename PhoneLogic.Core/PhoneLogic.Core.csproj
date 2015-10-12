@@ -306,6 +306,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Services\BrowserInfoSvc.cs" />
+    <Compile Include="Services\PhoneNumberSvc.cs" />
     <Compile Include="Services\ColorMapping.cs" />
     <Compile Include="Services\ColorToBrushSvc.cs" />
     <Compile Include="Services\DefaultButtonSvc.cs" />
@@ -609,9 +610,6 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
-    <Resource Include="Images\SplitterHandle.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\Sleep PC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -630,6 +628,7 @@
     <Resource Include="Images\Health-Benefits-of-Celery.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\HorizontalSplitterHandle.png" />
     <Content Include="resources\BuildDate.txt" />
     <None Include="Service References\AppServiceReference\PhoneLogic.disco" />
     <None Include="Service References\AppServiceReference\configuration91.svcinfo" />

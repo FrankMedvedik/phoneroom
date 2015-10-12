@@ -8,6 +8,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.Core;
 using PhoneLogic.ViewContracts.MVVMMessenger;
@@ -30,13 +31,26 @@ namespace PhoneLogic.Outbound
         }
 
 
+        //private void SetColors(AppColors ac)
+        //{
+        //    LayoutRoot.Background = ac.TheBackground;
+        //    Main.Background = ac.TheBackground;
+
+        //}
         private void SetColors(AppColors ac)
         {
-            LayoutRoot.Background = ac.TheBackground;
+            String xamlString = "<Canvas xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" Background=\"Aqua\"/>";
+            Canvas c = (Canvas)System.Windows.Markup.XamlReader.Load(xamlString);
+            SolidColorBrush AquaBrush = (SolidColorBrush)c.Background;
+
+
+            //LayoutRoot.Foreground = ac.TheForeground;
+            if (ac.TheBackground != new SolidColorBrush(Colors.LightGray))
+                LayoutRoot.Background = ac.TheBackground;
+            else
+                LayoutRoot.Background = AquaBrush;
             Main.Background = ac.TheBackground;
-
         }
-
         private void ResizeGrid(object sender, SizeChangedEventArgs e)
         {
             if (BrowserInfoSvc.ClientWidth < UserInterfaceTimings.ResizeBoundryWidth)
