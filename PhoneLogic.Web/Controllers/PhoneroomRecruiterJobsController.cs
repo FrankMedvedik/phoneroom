@@ -21,24 +21,42 @@ namespace PhoneLogic.Web.Controllers
 
             var jobRecruiters = db.vw_PhoneLogicTaskAgent.ToList();
             var recruiters = p.GetAllRecruiters();
+            //var query = from l in jobRecruiters
+            //            join r in recruiters on l.sip.ToLower().Trim() equals r.sip.ToLower().Trim()
+            //            select new PhoneroomRecruiterJob
+            //            {
+            //                PhoneRoom = r.PhoneRoom,
+            //                DisplayName = r.DisplayName,
+            //                EmailAddress = r.EmailAddress,
+            //                Description = r.Description,
+            //                jobNum = l.jobNum,
+            //                sip = l.sip,
+            //                taskID = l.taskID,
+            //                taskDscr = l.taskDscr,
+            //                taskName = l.taskName,
+            //                taskTypeID = l.taskTypeID,
+            //                tollFreeNumber = l.tollFreeNumber
+            //            };
 
             var query = from l in jobRecruiters
-                join r in recruiters on l.sip equals r.sip into rr
-                from oj in rr.DefaultIfEmpty()
-                     select new PhoneroomRecruiterJob
-                {
-                    PhoneRoom = (oj == null ? String.Empty : oj.PhoneRoom),
-                    DisplayName = (oj == null ? String.Empty : oj.DisplayName),
-                    EmailAddress = (oj == null ? String.Empty : oj.EmailAddress),
-                    Description = (oj == null ? String.Empty : oj.Description),
-                    jobNum = l.jobNum,
-                    sip = l.sip,
-                    taskID = l.taskID,
-                    taskDscr = l.taskDscr,
-                    taskName = l.taskName,
-                    taskTypeID = l.taskTypeID,
-                    tollFreeNumber = l.tollFreeNumber
-                };
+                        join r in recruiters on l.sip.ToLower().Trim() equals r.sip.ToLower().Trim()
+                       into rr
+                        from oj in rr.DefaultIfEmpty()
+                            //   where l.sip == "sip:iboyer@reckner.com"
+                        select new PhoneroomRecruiterJob
+                        {
+                            PhoneRoom = (oj == null ? String.Empty : oj.PhoneRoom),
+                            DisplayName = (oj == null ? String.Empty : oj.DisplayName),
+                            EmailAddress = (oj == null ? String.Empty : oj.EmailAddress),
+                            Description = (oj == null ? String.Empty : oj.Description),
+                            jobNum = l.jobNum,
+                            sip = l.sip,
+                            taskID = l.taskID,
+                            taskDscr = l.taskDscr,
+                            taskName = l.taskName,
+                            taskTypeID = l.taskTypeID,
+                            tollFreeNumber = l.tollFreeNumber
+                        };
             var z = query.ToList();
             return z;
         }

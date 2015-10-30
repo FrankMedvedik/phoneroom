@@ -95,13 +95,14 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <PropertyRef Name="taskName" />
             <PropertyRef Name="taskDscr" />
             <PropertyRef Name="taskTypeID" />
+            <PropertyRef Name="sip" />
           </Key>
           <Property Name="jobNum" Type="char" MaxLength="8" Nullable="false" />
           <Property Name="taskID" Type="int" Nullable="false" />
           <Property Name="taskName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="taskDscr" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="taskTypeID" Type="varchar" MaxLength="35" Nullable="false" />
-          <Property Name="sip" Type="nvarchar" MaxLength="256" />
+          <Property Name="sip" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="tollFreeNumber" Type="char" MaxLength="10" />
         </EntityType>
         <Function Name="pl_CloseCallback_sip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -307,7 +308,6 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="jobNum" Mode="In" Type="String" />
             <Parameter Name="taskId" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="vw_PhoneLogicTaskAgent" EntityType="PhoneLogicModel.vw_PhoneLogicTaskAgent" />
           <FunctionImport Name="rpt_GetLyncCallJobs" ReturnType="Collection(PhoneLogicModel.LyncCallJob)">
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
@@ -320,6 +320,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <FunctionImport Name="rpt_GetCallerLyncCallLog" ReturnType="Collection(PhoneLogicModel.LyncCallLog)">
           <Parameter Name="callerId" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="vw_PhoneLogicTaskAgent" EntityType="PhoneLogicModel.vw_PhoneLogicTaskAgent" />
         </EntityContainer>
         <EntityType Name="returnedCall">
           <Key>
@@ -639,22 +640,6 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Property Type="DateTime" Name="FirstCallTime" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="LastCallTime" Nullable="true" Precision="23" />
         </ComplexType>
-        <EntityType Name="vw_PhoneLogicTaskAgent">
-          <Key>
-            <PropertyRef Name="jobNum" />
-            <PropertyRef Name="taskID" />
-            <PropertyRef Name="taskName" />
-            <PropertyRef Name="taskDscr" />
-            <PropertyRef Name="taskTypeID" />
-          </Key>
-          <Property Name="jobNum" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
-          <Property Name="taskID" Type="Int32" Nullable="false" />
-          <Property Name="taskName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="taskDscr" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="taskTypeID" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="sip" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="tollFreeNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-        </EntityType>
         <ComplexType Name="rpt_GetLyncCallRecruiterJobs">
           <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="recruiterSip" Nullable="true" MaxLength="100" />
@@ -688,6 +673,23 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Property Type="String" Name="CallEndStatus" Nullable="false" MaxLength="35" />
           <Property Type="Int32" Name="CallDuration" Nullable="true" />
         </ComplexType>
+        <EntityType Name="vw_PhoneLogicTaskAgent">
+          <Key>
+            <PropertyRef Name="jobNum" />
+            <PropertyRef Name="taskID" />
+            <PropertyRef Name="taskName" />
+            <PropertyRef Name="taskDscr" />
+            <PropertyRef Name="taskTypeID" />
+            <PropertyRef Name="sip" />
+          </Key>
+          <Property Name="jobNum" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="taskID" Type="Int32" Nullable="false" />
+          <Property Name="taskName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="taskDscr" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="taskTypeID" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="sip" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="tollFreeNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1018,19 +1020,6 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="vw_PhoneLogicTaskAgent">
-            <EntityTypeMapping TypeName="PhoneLogicModel.vw_PhoneLogicTaskAgent">
-              <MappingFragment StoreEntitySet="vw_PhoneLogicTaskAgent">
-                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
-                <ScalarProperty Name="sip" ColumnName="sip" />
-                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
-                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
-                <ScalarProperty Name="taskName" ColumnName="taskName" />
-                <ScalarProperty Name="taskID" ColumnName="taskID" />
-                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetLyncCallJobs" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallJobs">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallJob">
@@ -1118,6 +1107,19 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="vw_PhoneLogicTaskAgent">
+            <EntityTypeMapping TypeName="PhoneLogicModel.vw_PhoneLogicTaskAgent">
+              <MappingFragment StoreEntitySet="vw_PhoneLogicTaskAgent">
+                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
+                <ScalarProperty Name="sip" ColumnName="sip" />
+                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
+                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
