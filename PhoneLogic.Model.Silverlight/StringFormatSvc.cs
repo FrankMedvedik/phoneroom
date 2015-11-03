@@ -13,7 +13,7 @@ namespace PhoneLogic.Model
             return duration;
         }
 
-        public static  string DurationFormatted(int duration)
+        public static  string DurationFormatted(long duration)
         {
                 return string.Format("{0:00}:{1:00}:{2:00}", duration / 3600, (duration / 60) % 60, duration % 60);
         }

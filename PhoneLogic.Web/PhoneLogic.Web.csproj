@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False</SilverlightApplicationList>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -409,6 +410,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PhoneLogic.CallBusinessIntelligence\PhoneLogic.CallBusinessIntelligence.csproj">
+      <Project>{2258d950-d824-46dc-aa70-ee6a8199e5ff}</Project>
+      <Name>PhoneLogic.CallBusinessIntelligence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Phonelogic.Model.Net\PhoneLogic.Model.Net.csproj">
       <Project>{c4c77a22-6318-4e32-90cb-9e9854e03f5a}</Project>
       <Name>PhoneLogic.Model.Net</Name>

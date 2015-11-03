@@ -143,6 +143,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PhoneLogic.CallBusinessIntelligence\PhoneLogic.CallBusinessIntelligence.csproj">
+      <Project>{2258d950-d824-46dc-aa70-ee6a8199e5ff}</Project>
+      <Name>PhoneLogic.CallBusinessIntelligence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhoneLogic.Model.Net\PhoneLogic.Model.Net.csproj">
       <Project>{c4c77a22-6318-4e32-90cb-9e9854e03f5a}</Project>
       <Name>PhoneLogic.Model.Net</Name>

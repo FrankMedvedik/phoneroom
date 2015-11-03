@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using PhoneLogic.CallBusinessIntelligence;
 using PhoneLogic.Model;
 using PhoneLogic.Repository;
 using PhoneLogic.UserAuth;
@@ -12,45 +13,11 @@ namespace PhoneLogic.Web.Controllers
     {
         private PhoneLogicEntities db = new PhoneLogicEntities();
         private PhoneRoomUsers p = new PhoneRoomUsers();
-
+        private RecruiterUtilization r = new RecruiterUtilization();
         // GET: api/Calls?sip=1&startDate=2&endDate=3
         public IEnumerable<Call> GetCalls(string sip, Int64 startDate, Int64 endDate)
         {
-            if (sip == null)
-                sip = "";
-            var Logs = db.rpt_GetRecruiterLyncCallLog(sip, new DateTime(startDate), new DateTime(endDate)).ToList();
-            var recruiters = p.GetAllRecruiters();
-
-
-            var query = from l in Logs
-                        join r in recruiters on l.RecruiterSIP equals r.sip into rr
-                        from oj in rr.DefaultIfEmpty()
-                        select new Call
-                        {
-                            PhoneRoom = (oj == null ? String.Empty : oj.PhoneRoom),
-                            DisplayName = (oj == null ? String.Empty : oj.DisplayName),
-                            EmailAddress = (oj == null ? String.Empty : oj.EmailAddress),
-                            Description = (oj == null ? String.Empty : oj.Description),
-                            StartLogId = l.StartLogId,
-                            CallId = l.CallID,
-                            JobNumber = l.JobNumber,
-                            TaskDscr = l.taskdscr,
-                            TaskTypeID = l.TaskTypeId,
-                            TaskName = l.taskName,
-                            CallerId = l.CallerId,
-                            CallerId_Region = l.CallerId_Region,
-                            CallerId_UTC_code = l.CallerId_UTC_code,
-                            TollFreeNumber = l.TollFreeNumber,
-                            CallStartTime = l.CallStartTime,
-                            RecruiterConnectTime = l.RecruiterConnectTime,
-                            CallEndTime = l.CallEndTime,
-                            RecruiterSIP = l.RecruiterSIP,
-                            CallDirection = l.CallDirection,
-                            CallEndStatus = l.CallEndStatus,
-                            CallDuration = l.CallDuration
-                        };
-
-            return query.ToList();
+            return r.GetCalls(sip, new DateTime(startDate) , new DateTime(endDate));
         }
 
 

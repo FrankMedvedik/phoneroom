@@ -151,9 +151,11 @@
     <Compile Include="Models\LyncCallJobRecruiter.cs" />
     <Compile Include="Models\LyncCallByRecruiter.cs" />
     <None Include="Models\RecruiterLyncCallLog.cs.xxx" />
+    <Compile Include="Models\RecruiterActivity.cs" />
     <Compile Include="Models\RptInboundCallByHour.cs" />
     <Compile Include="Models\RptJobActivity.cs" />
     <Compile Include="Models\RptTodayCallLogSummary.cs" />
+    <Compile Include="ObjectCopier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
