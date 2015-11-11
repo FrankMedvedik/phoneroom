@@ -20,7 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False,{581503C5-E9CF-4084-8D57-4D77BD119F69}|..\PhoneLogic.Recruiter.Mgr\PhoneLogic.Recruiter.Mgr.csproj|ClientBin|False,{F0898FC6-C97F-49E1-9CE9-A2ECC0164369}|..\PhoneLogic.Phoneroom.Mgr\PhoneLogic.Phoneroom.Mgr.csproj|ClientBin|False</SilverlightApplicationList>
     <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -231,6 +231,7 @@
     <Compile Include="Controllers\JobActivityRptController.cs" />
     <Compile Include="Controllers\PhoneLogicTasksController.cs" />
     <Compile Include="Controllers\PhoneCallsController.cs" />
+    <Compile Include="Controllers\RecruiterTimeSummaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -248,6 +249,12 @@
     <Content Include="ClientBin\PhoneLogic.Mgr.xap" />
     <Content Include="ClientBin\Phonelogic.Outbound.xap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ClientBin\PhoneLogic.Phoneroom.Mgr.xap">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ClientBin\PhoneLogic.Recruiter.Mgr.xap">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -292,7 +299,6 @@
     <Content Include="Phonelogic.Inbound.reg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ClientBin\System.Windows.Controls.zip" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -315,6 +321,8 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\APP2012.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="PhoneLogic.Recruiter.Mgr.aspx" />
+    <Content Include="PhoneLogic.Recruiter.Mgr.html" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -487,6 +495,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEBUGPROD|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -505,6 +514,9 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

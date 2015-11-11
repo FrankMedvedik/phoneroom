@@ -10,6 +10,7 @@ using log4net;
 using log4net.Config;
 using log4net.Repository;
 using log4net.Repository.Hierarchy;
+using Newtonsoft.Json.Serialization;
 
 namespace PhoneLogic.Web
 {
@@ -28,6 +29,11 @@ namespace PhoneLogic.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             
             log4net.Config.XmlConfigurator.Configure();
+            var serializerSettings =
+        GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
+            var contractResolver =
+              (DefaultContractResolver)serializerSettings.ContractResolver;
+            contractResolver.IgnoreSerializableAttribute = true;
 
         }
     }

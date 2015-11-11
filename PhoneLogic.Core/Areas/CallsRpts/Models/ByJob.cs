@@ -29,8 +29,18 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         public Nullable<int> LeftMsgCnt { get; set; }
         public string TollFreeNumber { get; set; }
         [Display(Name = "First Call")]
-        public Nullable<System.DateTime> FirstCallTime { get; set; }
+        public string FirstCallTimeFormatted
+        {
+            get { return StringFormatSvc.TimeFormatted(FirstCallTime.GetValueOrDefault(DateTime.MinValue)); }
+        }
+
         [Display(Name = "Last Call")]
+        public string LastCallTimeFormatted
+        {
+            get { return StringFormatSvc.TimeFormatted(FirstCallTime.GetValueOrDefault(DateTime.MinValue)); }
+        }
+
+        public Nullable<System.DateTime> FirstCallTime { get; set; }
         public Nullable<System.DateTime> LastCallTime { get; set; }
         [Display(Name = "Job")]
         public string JobFormatted

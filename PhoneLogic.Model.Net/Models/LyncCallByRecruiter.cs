@@ -36,16 +36,27 @@ namespace PhoneLogic.Model
         public Nullable<int> CompleteCnt { get; set; }
         public Nullable<int> LeftMsgCnt { get; set; }
         public Nullable<int> AbandondedCnt { get; set; }
-        [Display(Name = "First Call")]
-        public Nullable<System.DateTime> FirstCallTime { get; set; }
-        [Display(Name = "Last Call")]
+
+       [Display(Name = "First Call")]
+       public string FirstCallTimeFormatted
+       {
+           get { return StringFormatSvc.TimeFormatted(FirstCallTime.GetValueOrDefault(DateTime.MinValue)); } 
+       }
+
+       [Display(Name = "Last Call")]
+       public string LastCallTimeFormatted
+       {
+           get { return StringFormatSvc.TimeFormatted(FirstCallTime.GetValueOrDefault(DateTime.MinValue)); }
+       }
+
+       public Nullable<System.DateTime> FirstCallTime { get; set; }
         public Nullable<System.DateTime> LastCallTime { get; set; }  
         [Display(Name = "Total Time in Calls")]
         public string TotalCallDurationFormatted
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60, TotalCallDuration % 60);
+                return string.Format("{0:00}:{1:00}", TotalCallDuration / 3600, (TotalCallDuration / 60) % 60);
             }
         }
         [Display(Name = "Avg")]
@@ -53,7 +64,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+                return string.Format("{0:00}:{1:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60);
             }
         }
         [Display(Name = "Max")]
@@ -61,7 +72,7 @@ namespace PhoneLogic.Model
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60, MaxCallDuration % 60);
+                return string.Format("{0:00}:{1:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60);
             }
         }
    

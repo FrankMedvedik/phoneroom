@@ -12,9 +12,12 @@
         <Grid MinWidth="350" Height="50" >
                 <StackPanel Orientation="Horizontal" Name="spCriteria" Visibility="{Binding ShowControl}">
                     <ReportCriteria:ReportDateRangeView Name="DR"/>
-                    <Button Name="Refresh" FontSize="12" Width="Auto" Margin="12" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Click="Refresh_Click">Refresh</Button>
+         <CheckBox Margin="6" x:Name="chkAutoRefresh"  VerticalAlignment="Center" Checked="chkAutoRefresh_Checked" Unchecked="chkAutoRefresh_Unchecked">
+                    Automatically Refresh?
+                </CheckBox>
+                <Button Name="btnRefresh" FontSize="12" Width="Auto" Margin="12" VerticalAlignment="Stretch" IsEnabled="False"
+                        HorizontalAlignment="Stretch"  Click="Refresh_Click">Refresh</Button>
                 </StackPanel>
         </Grid>
     </Border>
-
 </UserControl>

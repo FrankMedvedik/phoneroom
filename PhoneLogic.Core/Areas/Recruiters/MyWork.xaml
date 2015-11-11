@@ -1,11 +1,12 @@
-﻿<UserControl xmlns:Callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks"  xmlns:CallsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts"  xmlns:Views="clr-namespace:PhoneLogic.Core.Views" 
+﻿<UserControl 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:recruiter="clr-namespace:PhoneLogic.Core.Areas.Recruiters"
+    xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts"
+    xmlns:callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks"
     x:Class="PhoneLogic.Core.Areas.Recruiters.MyWorkView"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700" VerticalAlignment="Top"  HorizontalAlignment="Left">
     <Grid Width="Auto" Height="Auto">
@@ -64,13 +65,13 @@
             <recruiter:OutboundCallView Name="OBCView" Margin="6,10,10,3"  HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0"/>
             <sdk:TabControl Name="tc"  Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed" Margin="6,10,6,3" Background="Transparent"  Grid.Row="0">
             <sdk:TabItem  Header="Voice Mail">
-                <Callbacks:MyCallbacksView Name="mcb" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3"/>
+                <callbacks:MyCallbacksView Name="mcb" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3"/>
             </sdk:TabItem>
             <sdk:TabItem  Header="Call History">
-                <CallsRpts:CallsView Margin="3" Name="cv"  VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <callsRpts:CallsView Margin="3" Name="cv"  VerticalAlignment="Top" HorizontalAlignment="Left" />
             </sdk:TabItem>
                 <sdk:TabItem  Header="Dial History">
-                    <CallsRpts:DialHistoryView Margin="3" Name="dhv"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <callsRpts:DialHistoryView Margin="3" Name="dhv"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 </sdk:TabItem>
             </sdk:TabControl>
     </Grid>

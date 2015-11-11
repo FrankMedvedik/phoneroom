@@ -152,6 +152,7 @@
     <Compile Include="Models\LyncCallByRecruiter.cs" />
     <None Include="Models\RecruiterLyncCallLog.cs.xxx" />
     <Compile Include="Models\RecruiterActivity.cs" />
+    <Compile Include="Models\RecruiterTimeSummary.cs" />
     <Compile Include="Models\RptInboundCallByHour.cs" />
     <Compile Include="Models\RptJobActivity.cs" />
     <Compile Include="Models\RptTodayCallLogSummary.cs" />

@@ -20,7 +20,7 @@
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
             <TextBlock Text="{Binding HeadingText}" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Stretch" Margin="6"/>
-            <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="1" 
+            <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" Grid.Column="0" Grid.Row="1" MaxWidth="1200" 
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto" FrozenColumnCount="2"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="RecruitersDG_SelectionChanged"
                       ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
@@ -36,8 +36,8 @@
                 <sdk:DataGridTextColumn Binding="{Binding MaxCallDurationFormatted }" />
                 <sdk:DataGridTextColumn Binding="{Binding AvgCallDurationFormatted }" />
                 <sdk:DataGridTextColumn Binding="{Binding UniqueCallerCnt }" />
-                <sdk:DataGridTextColumn Binding="{Binding FirstCallTime }" />
-                <sdk:DataGridTextColumn Binding="{Binding LastCallTime }" />
+                <sdk:DataGridTextColumn Binding="{Binding FirstCallTimeFormatted }" />
+                <sdk:DataGridTextColumn Binding="{Binding LastCallTimeFormatted }" />
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
         <Button  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>

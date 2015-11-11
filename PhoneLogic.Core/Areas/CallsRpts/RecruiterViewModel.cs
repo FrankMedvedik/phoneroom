@@ -33,9 +33,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         public RecruiterViewModel()
         {
-
-
-
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
                 if (message.Notification == Notifications.GlobalReportCriteriaChanged)
@@ -119,8 +116,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 FilteredRecruiters = new ObservableCollection<LyncCallByRecruiter>(fr);
             }
 
-                    HeadingText = String.Format("{0} Phone Room Activity between {1} and {2} - for {3} Recruiters",
-                        SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, FilteredRecruiters.Count);
+                    HeadingText = String.Format("{0} Phone Room Activity between {1} and {2} - for {3} Recruiters as of {4}",
+                        SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, FilteredRecruiters.Count, DateTime.Now.ToShortTimeString());
                     ShowGridData = true;
         }
         #endregion

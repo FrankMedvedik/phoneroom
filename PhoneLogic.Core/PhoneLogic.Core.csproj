@@ -237,6 +237,23 @@
       <DependentUpon>RecruiterJobsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CallsRpts\RecruiterJobsViewModel.cs" />
+    <Compile Include="Areas\RecruiterUtilization\ActivityView.xaml.cs">
+      <DependentUpon>ActivityView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruiterUtilization\ActivityViewModel.cs" />
+    <Compile Include="Areas\RecruiterUtilization\RecruitersTimeChartView.xaml.cs">
+      <DependentUpon>RecruitersTimeChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruiterUtilization\RecruitersCallsChartView.xaml.cs">
+      <DependentUpon>RecruitersCallsChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruiterUtilization\RecruitersView.xaml.cs">
+      <DependentUpon>RecruitersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruiterUtilization\RecruiterUtilizationView.xaml.cs">
+      <DependentUpon>RecruiterUtilizationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruiterUtilization\RecruiterViewModel.cs" />
     <Compile Include="Areas\ReportCriteria\ReportDateRange.cs" />
     <Compile Include="Areas\CallsRpts\CallsViewModel.cs" />
     <Compile Include="Areas\CallsRpts\RecruiterMonitorView.xaml.cs">
@@ -253,7 +270,6 @@
       <DependentUpon>JobRecruitersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CallsRpts\JobRecruitersViewModel.cs" />
-    <None Include="Areas\CallsRpts\RecruiterViewModel.cs.xxxxx" />
     <Compile Include="Areas\CallsRpts\JobsViewModel.cs" />
     <Compile Include="Areas\CallsRpts\JobsView.xaml.cs">
       <DependentUpon>JobsView.xaml</DependentUpon>
@@ -315,6 +331,7 @@
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="Services\PhoneroomRecruiterJobSvc.cs" />
+    <Compile Include="Services\RecruiterUtilizationSvc.cs" />
     <Compile Include="Timestamp.cs" />
     <Compile Include="ViewModels\CollectionViewModelBase.cs" />
     <Compile Include="Areas\Recruiters\OutboundCallViewModel.cs" />
@@ -454,6 +471,26 @@
     </Page>
     <Page Include="Areas\CallsRpts\CallsView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\RecruiterUtilization\ActivityView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Areas\RecruiterUtilization\RecruitersTimeChartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Areas\RecruiterUtilization\RecruitersCallsChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\RecruiterUtilization\RecruitersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Areas\RecruiterUtilization\RecruiterUtilizationView.xaml">
+      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Areas\ReportCriteria\GlobalReportCriteriaView.xaml">

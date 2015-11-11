@@ -110,6 +110,12 @@
     <Compile Include="..\PhoneLogic.Model.Net\Models\LyncCallByRecruiter.cs">
       <Link>Models\LyncCallByRecruiter.cs</Link>
     </Compile>
+    <Compile Include="..\PhoneLogic.Model.Net\Models\RecruiterActivity.cs">
+      <Link>Models\RecruiterActivity.cs</Link>
+    </Compile>
+    <Compile Include="..\PhoneLogic.Model.Net\Models\RecruiterTimeSummary.cs">
+      <Link>Models\RecruiterTimeSummary.cs</Link>
+    </Compile>
     <Compile Include="..\PhoneLogic.Model.Net\Models\RptInboundCallByHour.cs">
       <Link>Models\RptInboundCallByHour.cs</Link>
     </Compile>

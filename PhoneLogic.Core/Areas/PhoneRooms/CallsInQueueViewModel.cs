@@ -58,7 +58,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         {
             var acd = new ObservableCollection<QueueSummary>();
                 
-            if(Jobs.Any() && CallsInQueue.Any())
+        //    if(Jobs.Any() && CallsInQueue.Any())
                     acd = new ObservableCollection<QueueSummary>
                         (from c in CallsInQueue
                             join b in Jobs on c.jobFormatted equals b.JobFormatted

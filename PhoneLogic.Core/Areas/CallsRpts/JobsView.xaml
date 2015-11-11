@@ -21,10 +21,10 @@
                 <RowDefinition  Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch" >
-                <TextBlock Text="{Binding HeadingText}" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="6"/>
+                <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6"/>
             </StackPanel>
             <sdk:DataGrid Grid.Column="0" x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="250"   Grid.Row="1" FrozenColumnCount="1"
-                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto" 
+                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto" MaxWidth="1200"
                     VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="JobsDG_SelectionChanged" 
                       ItemsSource="{Binding FilteredJobs}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
@@ -35,8 +35,8 @@
                     <sdk:DataGridTextColumn Binding="{Binding TaskDscr }" />
                     <sdk:DataGridTextColumn Binding="{Binding RecruiterCnt }" />
                  <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}" />
-                <sdk:DataGridTextColumn Binding="{Binding FirstCallTime }" />
-                <sdk:DataGridTextColumn Binding="{Binding LastCallTime }" />
+                <sdk:DataGridTextColumn Binding="{Binding FirstCallTimeFormatted }" />
+                <sdk:DataGridTextColumn Binding="{Binding LastCallTimeFormatted }" />
                 <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding OutgoingCallCnt}" />

@@ -7,6 +7,7 @@
              xmlns:ignore="http://www.ignore.com"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts"
+             xmlns:recruiterUtilization="clr-namespace:PhoneLogic.Core.Areas.RecruiterUtilization"
              mc:Ignorable="d ignore">
     <Grid>
         <Grid.RowDefinitions>

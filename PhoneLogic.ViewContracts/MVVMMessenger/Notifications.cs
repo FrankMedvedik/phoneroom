@@ -14,5 +14,6 @@
         public static string AudioPlaybackEnded{ get { return "AudioPlaybackEnded"; } }
         public static string DateRangeChanged { get { return "DateRangeChanged"; } }
         public static string PhoneroomChanged { get { return "PhoneroomChanged"; } }
+        public static string RecruiterTimeSummaryDataRefreshed { get { return "RecruiterTimeSummaryDataRefreshed"; }}
     }
 }

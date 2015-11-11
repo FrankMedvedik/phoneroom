@@ -32,7 +32,7 @@
                   DisplayMemberPath="Name" 
                       SelectedValuePath="Name" />
         </StackPanel>
-        <toolkit:Expander Grid.Row="1" Header="Jobs" HorizontalAlignment="Left"  Margin="12,6,6,6">
+        <toolkit:Expander Grid.Row="1" Header="Jobs" HorizontalAlignment="Left"  Margin="12,6,6,6" >
             <sdk:DataGrid x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="350"  
                       Width="300" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredJobs}"  VerticalAlignment="Top" 
                     ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" FrozenColumnCount="1">
@@ -44,7 +44,7 @@
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
         </toolkit:Expander>
-            <toolkit:Expander Grid.Row="2" Header="Recruiters" HorizontalAlignment="Left"  Margin="12,6,6,6" >
+                <toolkit:Expander Grid.Row="2" Header="Recruiters" HorizontalAlignment="Left"  Margin="12,6,6,6" >
                     <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300"  
                       Width="300" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" 
                     ToolTipService.ToolTip="Phone Room Recruiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >

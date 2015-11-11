@@ -62,7 +62,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         [Display(Name = "Total Time in Calls")]
         public string  TotalCallDurationFormatted {
             get
-            {   return string.Format("{0:00}:{1:00}:{2:00}",TotalCallDuration /3600,(TotalCallDuration /60)%60,TotalCallDuration %60);
+            {   return string.Format("{0:00}:{1:00}",TotalCallDuration /3600,(TotalCallDuration /60)%60);
             } 
         }
         [Display(Name = "Avg")]
@@ -70,7 +70,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60, AvgCallDuration % 60);
+                return string.Format("{0:00}:{1:00}", AvgCallDuration / 3600, (AvgCallDuration / 60) % 60);
             }
         }
         [Display(Name = "Max")]
@@ -78,7 +78,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
         {
             get
             {
-                return string.Format("{0:00}:{1:00}:{2:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60, MaxCallDuration % 60);
+                return string.Format("{0:00}:{1:00}", MaxCallDuration / 3600, (MaxCallDuration / 60) % 60);
             }
         }
         [Display(Name = "Task Type")]

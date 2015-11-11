@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Lync.Model;
-using PhoneLogic.Core.Areas.CallsRpts;
-using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.Services;

@@ -95,6 +95,15 @@ namespace PhoneLogic.UserAuth
             }
             return AllUsers;
         }
+        public IEnumerable<UserPrincipal> GetPhoneRoom(string phoneroomName)
+        {
+            if(phoneroomName == "Milwaukee")
+            return GetMKE();
+            if (phoneroomName == "Chalfont")
+                return GetChalfont();
+            else
+                return GetAll();
+        }
 
         public IEnumerable<UserPrincipal> GetChalfont()
         {

@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using PhoneLogic.CallRpt.Model;
-using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
-namespace PhoneLogic.Core.Areas.CallsRpts
+namespace PhoneLogic.Core.Areas.RecruiterUtilization
 {
-    public class RecruitersViewModel : CollectionViewModelBase
+    public class RecruiterViewModel : CollectionViewModelBase
     {
-        public RecruitersViewModel()
+       
+        public RecruiterViewModel()
         {
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
@@ -37,6 +35,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 _selectedPhoneRoomName = value;
                 NotifyPropertyChanged();
+                SelectedRecruiter = null;
             }
         }
 
@@ -52,67 +51,35 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         #endregion
 
         #region CallSummaries
-        private ObservableCollection<LyncCallByRecruiter> _recruiters = new ObservableCollection<LyncCallByRecruiter>();
-        private LyncCallByRecruiter _selectedRecruiter;
+        private ObservableCollection<RecruiterTimeSummary> _recruiters = new ObservableCollection<RecruiterTimeSummary>();
+        private RecruiterTimeSummary _selectedRecruiter;
 
 
-        public ObservableCollection<LyncCallByRecruiter> Recruiters
+        public ObservableCollection<RecruiterTimeSummary> Recruiters
         {
             get { return _recruiters; }
             set
             {
+                var s = SelectedRecruiter;
+
                 _recruiters = value;
                 NotifyPropertyChanged();
-                var s = SelectedRecruiter;
-                GetRecruiters();
-                FilterRecruiters();
+                HeadingText = String.Format("{0} Phone Room Activity for {1} and {2} - for {3} Recruiters as of {4}",
+                    SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, Recruiters.Count, DateTime.Now.ToLongTimeString());
+                //ShowGridData = true;
+
                 if (s != null)
                 {
-                    SelectedRecruiter = FilteredRecruiters.First(x => x.RecruiterSIP == s.RecruiterSIP);
+                    SelectedRecruiter = Recruiters.First(x => x.RecruiterSIP == s.RecruiterSIP);
                 }
 
             }
         }
 
-        #region Filters
-        private ObservableCollection<LyncCallByRecruiter > _filteredRecruiters = new ObservableCollection<LyncCallByRecruiter >();
-        public ObservableCollection<LyncCallByRecruiter > FilteredRecruiters
-        {
-            get { return _filteredRecruiters; }
-            set
-            {
-                _filteredRecruiters = value;
-                NotifyPropertyChanged();
-            }
-        }
+        #endregion
+
+
         
-        private void FilterRecruiters()
-        {
-            var fr = new List<LyncCallByRecruiter>();
-            if ((SelectedPhoneRoomName == null) || (SelectedPhoneRoomName == "All"))
-                FilteredRecruiters = Recruiters;
-            else
-            {
-                fr = (from fobjs in Recruiters
-                      where fobjs.PhoneRoom == SelectedPhoneRoomName
-                      select fobjs).ToList();
-
-                if (fr.Any())
-                {
-                    HeadingText = String.Format("{0} Phone Room(s) Call Stats for {1} through {2}",
-                        SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                    FilteredRecruiters = new ObservableCollection<LyncCallByRecruiter>(fr);
-                    ShowGridData = true;
-                }
-                else
-                    ShowGridData = false;
-            }
-        }
-        #endregion
-
-
-        #endregion
-
         protected override void RefreshAll(object sender, EventArgs e)
         {
                 GetRecruiters();
@@ -120,7 +87,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         
 
         private string _headingText;
-        public string HeadingText
+       public string HeadingText
         {
             get {return _headingText;}
             set 
@@ -129,7 +96,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged();
             }
         }
-        public LyncCallByRecruiter SelectedRecruiter
+        public RecruiterTimeSummary SelectedRecruiter
         {
             get { return _selectedRecruiter; }
             set
@@ -141,17 +108,21 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         public async void GetRecruiters()
         {
-              ShowGridData = false;
+              //ShowGridData = false;
               HeadingText = "Loading...";
             try
             {
-                var ro = await LyncCallLogSvc.GetLyncCallsByRecruiter(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                Recruiters = new ObservableCollection<LyncCallByRecruiter>(ro);
-                LoadedOk = true;
+                List<RecruiterTimeSummary> l  = await RecruiterUtilizationSvc.GetRecruiterTimeSummary(SelectedPhoneRoomName,ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                Recruiters = new ObservableCollection<RecruiterTimeSummary>(l.OrderByDescending(x=>x.CallTime).ToList());
+                Messenger.Default.Send(new NotificationMessage(Notifications.RecruiterTimeSummaryDataRefreshed));
+                LoadedOk = true; 
+                //ShowGridData = true;
             }
             catch (Exception e)
             {
+                ShowGridData = false;
                 LoadFailed(e);
+                HeadingText = e.Message + " at " + DateTime.Now.ToLongTimeString();
             }
 
         }

@@ -12,10 +12,14 @@ namespace PhoneLogic.Model
                 return string.Format("{0:00}:{1:00}:{2:00}", n/3600, (n/60)%60, n%60);
             return duration;
         }
-
+        public static string DurationFormatted(TimeSpan duration)
+        {
+            //return string.Format("{0:c}", duration);
+            return duration.ToString(@"hh\:mm");
+        }
         public static  string DurationFormatted(long duration)
         {
-                return string.Format("{0:00}:{1:00}:{2:00}", duration / 3600, (duration / 60) % 60, duration % 60);
+                return string.Format("{0:00}:{1:00}", duration / 3600, (duration / 60) % 60);
         }
         public static string JobFormatted(string jobNumber)
         {
@@ -43,6 +47,12 @@ namespace PhoneLogic.Model
             if (!int.TryParse(JobNumber.Substring(8, 1), out n))
                 return 0;
             return n;
+        }
+
+        public static string TimeFormatted(DateTime time)
+        {
+            if (time == DateTime.MinValue) return "";
+            return String.Format("{0:t}", time);  
         }
     }
 
