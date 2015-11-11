@@ -1,0 +1,49 @@
+﻿<UserControl xmlns:Callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks" 
+             x:Class="PhoneLogic.Core.Areas.Callbacks.JobsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ignore="http://www.ignore.com"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             mc:Ignorable="d ignore">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch" >
+                <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6"/>
+            </StackPanel>
+        <sdk:DataGrid Grid.Column="0" x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="250"   Grid.Row="1"
+                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto"
+                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="JobsDG_SelectionChanged" 
+                      ItemsSource="{Binding FilteredJobs}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"  
+                    ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
+            <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding JobFormatted}"  />
+                    <sdk:DataGridTextColumn Binding="{Binding taskName}"  />
+                    <sdk:DataGridTextColumn Binding="{Binding TaskTypeId}"  />
+                    <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}"  />
+                    <sdk:DataGridTextColumn Binding="{Binding openCnt}" />
+                    <sdk:DataGridTextColumn Binding="{Binding closedCnt}" />
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <Button  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="2" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+    </Grid>
+    <sdk:GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Width="Auto" Height="3" BorderBrush="#FFD6D6D6" BorderThickness="1,0" Opacity="0.715">
+            <sdk:GridSplitter.Background>
+                <SolidColorBrush Opacity="1" Color="Gray" />
+            </sdk:GridSplitter.Background>
+        </sdk:GridSplitter>
+        <!--<Callbacks:CallbacksView Grid.Row="2" Name="cv"/>-->
+        <Callbacks:MyCallbacksView Grid.Row="2" Name="cv"/>
+    </Grid>
+</UserControl>
