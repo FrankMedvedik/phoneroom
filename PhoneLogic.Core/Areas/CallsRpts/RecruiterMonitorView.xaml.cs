@@ -26,7 +26,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            RecruitersDG.Export();
+            RecruitersDG.Export("Recruiters" + _vm.ReportDateRange.ToFormattedString('.'));
         }
 
         private void RecruitersDG_SelectionChanged(object sender, SelectionChangedEventArgs e)

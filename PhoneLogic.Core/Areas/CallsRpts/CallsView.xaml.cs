@@ -137,8 +137,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-        try {
-                CallsDG.Export();
+        try
+        {
+            string fname = string.Format("{0}", "Calls" + _vm.ReportDateRange.ToFormattedString('.'));
+            CallsDG.Export(fname);
             }
             catch (Exception ex)
             {

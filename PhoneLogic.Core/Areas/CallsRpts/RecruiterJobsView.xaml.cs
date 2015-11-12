@@ -27,7 +27,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             try
             {
-                RecruiterJobsDG.Export();
+                string fname = string.Format("{0}", "RecruiterJobs" + _vm.ReportDateRange.ToFormattedString('.'));
+                RecruiterJobsDG.Export(fname);
             }
             catch (Exception ex)
             {

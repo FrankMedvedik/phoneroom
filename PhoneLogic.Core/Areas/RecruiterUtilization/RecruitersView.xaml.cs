@@ -42,7 +42,12 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
         {
             try
             {
-                RecruitersDG.Export();
+                var g = new GlobalReportCriteria()
+                {
+                    Phoneroom = _vm.SelectedPhoneRoomName,
+                    ReportDateRange = _vm.ReportDateRange
+                };
+                RecruitersDG.Export("recruiters"+ g.ToFormattedString('.'));
             }
             catch (Exception ex)
             {

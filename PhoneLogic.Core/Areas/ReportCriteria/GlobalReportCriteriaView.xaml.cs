@@ -49,7 +49,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         }
 
         public bool AutoRefresh { get; set; }
-
+        
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
                 SendUpdateMessage();
@@ -60,6 +60,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             AutoRefresh = true;
             StartAutoRefresh(60);
         }
+
 
         private void SendUpdateMessage()
         {

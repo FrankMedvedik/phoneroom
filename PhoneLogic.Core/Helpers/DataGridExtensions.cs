@@ -7,24 +7,27 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using PhoneLogic.Core.Areas.ReportCriteria;
 
 namespace PhoneLogic.Core.Helpers
 {
 
     public static class DataGridExtensions
     {
-        public static void Export(this DataGrid dg)
+        public static void Export(this DataGrid dg, string filename)
         {
-            ExportDataGrid(dg);
+            ExportDataGrid(dg, filename);
         }
 
-        public static void ExportDataGrid(DataGrid dGrid)
+        public static void ExportDataGrid(DataGrid dGrid, string filename)
         {
             var objSFD = new SaveFileDialog()
             {
                 DefaultExt = "csv",
                 Filter = "CSV Files (*.csv)|*.csv|Excel XML (*.xml)|*.xml|All files (*.*)|*.*",
-                FilterIndex = 1
+                FilterIndex = 1,
+               DefaultFileName = filename + ".csv"
+                
             };
             if (objSFD.ShowDialog() == true)
             {

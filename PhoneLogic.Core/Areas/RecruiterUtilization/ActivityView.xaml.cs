@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Microsoft.Lync.Model;
 using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Areas.ReportCriteria;
+using PhoneLogic.Core.Behaviors;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Model;
@@ -22,6 +23,7 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
             InitializeComponent();
             _vm = new ActivityViewModel();
             DataContext = _vm;
+            ExcelBehavior.EnableForGrid(ActivitiesDG);
         }
 
 
@@ -56,7 +58,7 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
         try {
-                DataGridExtensions.Export(CallsDG);
+                ActivitiesDG.Export("RecruiterActivities");
             }
             catch (Exception ex)
             {

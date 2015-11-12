@@ -274,7 +274,6 @@
     <Compile Include="Areas\CallsRpts\JobsView.xaml.cs">
       <DependentUpon>JobsView.xaml</DependentUpon>
     </Compile>
-    <None Include="Areas\CallsRpts\Models\ByPhoneroom.cs.xxx" />
     <Compile Include="Areas\CallsRpts\RecruitersView.xaml.cs">
       <DependentUpon>RecruitersView.xaml</DependentUpon>
     </Compile>
@@ -283,8 +282,6 @@
     </Compile>
     <Compile Include="Areas\CallsRpts\Models\ByRecruitersForJob.cs" />
     <Compile Include="Areas\CallsRpts\Models\ByJob.cs" />
-    <None Include="Areas\CallsRpts\Models\ByJobForRecruiter.cs.xxx" />
-    <None Include="Areas\CallsRpts\Models\ByRecruiter.cs.xxx" />
     <Compile Include="Areas\ReportCriteria\ReportDateRangeView.xaml.cs">
       <DependentUpon>ReportDateRangeView.xaml</DependentUpon>
     </Compile>

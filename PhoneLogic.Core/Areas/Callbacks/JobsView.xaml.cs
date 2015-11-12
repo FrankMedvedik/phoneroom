@@ -24,7 +24,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            JobsDG.Export();
+            JobsDG.Export("Jobs"+ _vm.ReportDateRange.ToFormattedString('.'));
         }
 
         private void JobsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)

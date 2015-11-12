@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 using Silverlight.Base.MVVMBaseTypes;
@@ -9,8 +10,10 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
     {
         public ReportDateRangeViewModel()
         {
-            _startRptDate = DateTime.Today;
-            _endRptDate = DateTime.Today.AddDays(1);
+            TimeSpan startTime = new TimeSpan(08, 00, 0);
+            TimeSpan endTime = new TimeSpan(17, 00, 0);
+            _startRptDate = DateTime.Today + startTime;
+            _endRptDate = DateTime.Today + endTime;
             Messenger.Default.Send(new NotificationMessage(this, _notificationMessage));
         }
 
@@ -24,7 +27,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 
             }
         }
-
+ 
         private bool _canRefresh;
         public Boolean CanRefresh       
         {
@@ -58,7 +61,16 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             }
         }
 
-       }
+        private void chkAutoEndTime_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
- 
+
+        public void FloatEndTime()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

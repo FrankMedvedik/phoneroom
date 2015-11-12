@@ -31,7 +31,7 @@
                         <sdk:DataGridTextColumn Binding="{Binding TotalIdleDurationFormatted}" />
                     </sdk:DataGrid.Columns>
                 </sdk:DataGrid>
-                <Button  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+                <Button  HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
                 <recruiterUtilization:ActivityView Name="av" Margin="6" />
             </StackPanel>
             <StackPanel  Margin="6"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
