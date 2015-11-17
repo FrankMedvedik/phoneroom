@@ -13,10 +13,11 @@ using PhoneNumbers;
 using sr = PhoneLogic.Core.ProdServiceReference;
 using PhoneLogic.Core.ProdServiceReference;
 //#if DEBUGTEST
-//using sr = PhoneLogic.Core.AppServiceReference;
+// using xx = PhoneLogic.Core.AppServiceReference;
 //using PhoneLogic.Core.AppServiceReference;
 #elif DEBUGPROD
-using sr= PhoneLogic.Core.ProdServiceReference;
+//using xx = PhoneLogic.Core.AppServiceReference;
+using sr = PhoneLogic.Core.ProdServiceReference;
 using PhoneLogic.Core.ProdServiceReference;
 #else
 using sr = PhoneLogic.Core.ProdServiceReference;
@@ -172,6 +173,7 @@ namespace PhoneLogic.Core.Services
         {
             if (LyncClient.GetClient() == null) return ;
             var proxy = new PhoneLogicServiceClient();
+
             Object state = "test";
             var channel = proxy.ChannelFactory.CreateChannel();
             IAsyncResult result = channel.BeginRecruiterDialOut(LyncClient.GetClient().Self.Contact.Uri, JobFormatted, PhoneNumber,

@@ -26,12 +26,12 @@ namespace PhoneLogic.Core.Helpers
                 DefaultExt = "csv",
                 Filter = "CSV Files (*.csv)|*.csv|Excel XML (*.xml)|*.xml|All files (*.*)|*.*",
                 FilterIndex = 1,
-               DefaultFileName = filename + ".csv"
+                 DefaultFileName = filename + ".xml"
                 
             };
             if (objSFD.ShowDialog() == true)
             {
-                string strFormat = objSFD.SafeFileName.Substring(objSFD.SafeFileName.IndexOf('.') + 1).ToUpper();
+                string strFormat = objSFD.SafeFileName.Substring(objSFD.SafeFileName.LastIndexOf('.') + 1).ToUpper();
                 var strBuilder = new StringBuilder();
                 if (dGrid.ItemsSource == null) return;
                 var lstFields = new List<string>();
@@ -134,12 +134,28 @@ namespace PhoneLogic.Core.Helpers
             }
         }
 
+        //private static string FormatField(string data, string format)
+        //{
+        //    switch (format)
+        //    {
+        //        case "XML":
+        //            return String.Format("<Cell><Data ss:Type=\"String\">{0}</Data></Cell>", data);
+        //        case "CSV":
+        //            return String.Format("\"{0}\"", data.Replace("\"", "\"\"\"").Replace("\n", "").Replace("\r", ""));
+        //    }
+        //    return data;
+        //}
+
+      // replaced to format numbers
         private static string FormatField(string data, string format)
         {
+            double Num;
+            bool isNum = double.TryParse(data, out Num);
+
             switch (format)
             {
                 case "XML":
-                    return String.Format("<Cell><Data ss:Type=\"String\">{0}</Data></Cell>", data);
+                    return String.Format(isNum ? "<Cell><Data ss:Type=\"Number\">{0}</Data></Cell>" : "<Cell><Data ss:Type=\"String\">{0}</Data></Cell>", data);
                 case "CSV":
                     return String.Format("\"{0}\"", data.Replace("\"", "\"\"\"").Replace("\n", "").Replace("\r", ""));
             }
