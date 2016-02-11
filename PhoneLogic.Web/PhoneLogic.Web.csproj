@@ -20,7 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False,{581503C5-E9CF-4084-8D57-4D77BD119F69}|..\PhoneLogic.Recruiter.Mgr\PhoneLogic.Recruiter.Mgr.csproj|ClientBin|False,{F0898FC6-C97F-49E1-9CE9-A2ECC0164369}|..\PhoneLogic.Phoneroom.Mgr\PhoneLogic.Phoneroom.Mgr.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False,{2765851D-82CC-4D40-B497-97837DA2AD6F}|..\PhoneLogic.Callbacks\PhoneLogic.Callbacks.csproj|ClientBin|False,{44671B53-C04B-40AD-AB91-89C6AAB831C8}|..\PhoneLogic.DialHistory\PhoneLogic.DialHistory.csproj|ClientBin|False,{ED91449B-6970-4AEC-95E6-3F39B4105DC1}|..\PhoneLogic.Jobs\PhoneLogic.Jobs.csproj|ClientBin|False,{E44A0723-AD9B-4BC3-AF71-FEB611C90AFF}|..\PhoneLogic.Recruiters\PhoneLogic.Recruiters.csproj|ClientBin|False,{33686882-B855-4D8F-80E1-C20C78B0B3B6}|..\PhoneLogic.Status\PhoneLogic.Status.csproj|ClientBin|False</SilverlightApplicationList>
     <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -242,20 +242,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="clientaccesspolicy.xml" />
+    <Content Include="ClientBin\PhoneLogic.Callbacks.xap" />
+    <Content Include="ClientBin\PhoneLogic.DialHistory.xap" />
     <Content Include="ClientBin\Phonelogic.Inbound.xap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ClientBin\PhoneLogic.Jobs.xap" />
     <Content Include="ClientBin\PhoneLogic.Mgr.xap" />
     <Content Include="ClientBin\Phonelogic.Outbound.xap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ClientBin\PhoneLogic.Phoneroom.Mgr.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ClientBin\PhoneLogic.Recruiter.Mgr.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ClientBin\PhoneLogic.Recruiter.Mgr.xap" />
+    <Content Include="ClientBin\PhoneLogic.Recruiters.xap" />
+    <Content Include="ClientBin\PhoneLogic.Status.xap" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -294,7 +293,9 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="PhoneLogic.Mgr.aspx" />
+    <Content Include="PhoneLogic.Callbacks.html" />
+    <Content Include="PhoneLogic.DialHistory.html" />
+    <Content Include="PhoneLogic.Jobs.html" />
     <Content Include="PhoneLogic.Mgr.html" />
     <Content Include="Phonelogic.Inbound.reg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -321,8 +322,8 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\APP2012.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="PhoneLogic.Recruiter.Mgr.aspx" />
-    <Content Include="PhoneLogic.Recruiter.Mgr.html" />
+    <Content Include="PhoneLogic.Recruiters.html" />
+    <Content Include="PhoneLogic.Status.html" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -343,9 +344,7 @@
     <Resource Include="Images\RecknerLogoLeft.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Phonelogic.Inbound.aspx" />
     <Content Include="Phonelogic.Inbound.html" />
-    <Content Include="Phonelogic.Outbound.aspx" />
     <Content Include="Phonelogic.Outbound.html" />
     <None Include="Properties\PublishProfiles\cc-app.pubxml" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />

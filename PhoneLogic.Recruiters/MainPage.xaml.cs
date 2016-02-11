@@ -1,15 +1,12 @@
 ﻿using System.Windows.Controls;
 
-namespace PhoneLogic.Mgr
+namespace PhoneLogic.Recruiters
 {
     public partial class MainPage : UserControl
     {
-          
         public MainPage()
         {
             InitializeComponent();
-            pv.ShowDetails(true);
         }
-
     }
 }

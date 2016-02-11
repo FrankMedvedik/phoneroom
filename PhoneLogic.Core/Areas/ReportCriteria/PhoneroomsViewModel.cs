@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.Core.Services;
@@ -18,11 +19,20 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
     /// </summary>
     public class PhoneroomsViewModel : ViewModelBase
     {
+        private IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
         /// <summary>
         /// Initializes a new instance of the PhoneroomsViewModel class.
         /// </summary>
         public PhoneroomsViewModel()
         {
+            try
+            {
+                var a = (string) appSettings["PhoneRoomName"];
+            }
+            catch (System.Collections.Generic.KeyNotFoundException ex)
+            {
+                appSettings.Add("PhoneRoomName", PhoneRoomSvc.GetDefault().Name);
+            }
             setup();
         }
         private bool _showGridData;
@@ -39,10 +49,12 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         
         private async void setup()
         {
+            
             ShowGridData = false;
             _phoneroomRecruiterJobs = await PhoneroomRecruiterJobSvc.GetAllPhoneroomRecruiterJobs();
             PhoneRooms = PhoneRoomSvc.GetAll();
-            SelectedPhoneRoomName = PhoneRoomSvc.GetDefault().Name;
+//            SelectedPhoneRoomName = PhoneRoomSvc.GetDefault().Name;
+            SelectedPhoneRoomName = (string) appSettings["PhoneRoomName"];
             ShowGridData = true;
 
         }
@@ -70,6 +82,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             {
                 _selectedPhoneRoomName = value;
                 NotifyPropertyChanged();
+                appSettings["PhoneRoomName"] = value;
                 GetJobs();
                 GetRecruiters();
                 Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(new GlobalReportCriteria()

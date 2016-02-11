@@ -21,8 +21,15 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             InitializeComponent();
            _vm = new PhoneroomsViewModel ();
            DataContext = _vm;
+           Details.Visibility = Visibility.Collapsed;
 
         }
+
+        public void ShowDetails(bool b)
+        {
+            Details.Visibility = b ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public string SelectedPhoneroom
         {
             get { return _vm.SelectedPhoneRoomName; }

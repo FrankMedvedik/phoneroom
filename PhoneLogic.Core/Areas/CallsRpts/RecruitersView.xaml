@@ -6,7 +6,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ignore="http://www.ignore.com"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
              mc:Ignorable="d ignore">
+    <Control.Resources>
+        <DataTemplate x:Key="RecruiterStatusTemplate">
+            <Grid Margin="3">
+                <controls:PresenceIndicator x:Name="Presence" Source="{Binding RecruiterSIP}" PhotoDisplayMode="Hidden" />
+            </Grid>
+        </DataTemplate>
+    </Control.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,7 +34,8 @@
                       ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
                     ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
                 <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
+                    <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource RecruiterStatusTemplate}" />
+                    <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
                 <sdk:DataGridTextColumn Binding="{Binding JobCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
                 <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />

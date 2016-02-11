@@ -62,7 +62,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <ReportCriteria:PhoneroomsView  Grid.Row="0"/>
+                    <ReportCriteria:PhoneroomsView x:Name="pv"  Grid.Row="0"/>
                     <phoneRooms:CallsInQueueView Grid.Row="1"  />
                     <phoneRooms:ActiveCallsView Grid.Row="2" />
                 </Grid>
