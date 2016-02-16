@@ -9,11 +9,25 @@
     <Application.Resources>
             <converters:BooleanToVisibility x:Key="BoolToVisConverter" />
             <converters:NotBooleanToVisibility x:Key="NotBoolToVisConverter" />
-            <Style TargetType="Control" x:Key="DefaultStyle">
-                <!--<Setter Property="FontFamily" Value="Microsoft JhengHei"/>-->
-                <Setter Property="FontFamily" Value="Lato UI" />
-                <Setter Property="FontSize" Value="12" />
-                <Setter Property="Margin" Value="8" />
-            </Style>
-        </Application.Resources>
+        <Style TargetType="Control" x:Key="CtrlDefaultStyle">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Lato UI" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Lato UI" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="DefaultStyle">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Lato UI" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Lato UI" />
+        </Style>
+        <Style TargetType="Button" x:Key="BigButton">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Lato UI" />
+        </Style>
+    </Application.Resources>
 </Application>

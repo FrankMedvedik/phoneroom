@@ -1,31 +1,80 @@
 ﻿<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
 <html>
+<!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Phone Room</title>
+    <meta name="keywords" content="HTML5,CSS3,Template" />
+    <meta name="description" content="" />
+    <meta name="Author" content="Frank Medvedik" />
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Images/reckner-logo-color.png" />
+
+    <!-- WEB FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" rel="stylesheet" type="text/css" />
+
+    <!-- CORE CSS -->
+    <link href="~/Content/Template/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Template/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/sky-forms.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/weather-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/plugins/owl-carousel/owl.pack.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/flexslider.css" rel="stylesheet" type="text/css" />
+
+    <!-- REVOLUTION SLIDER -->
+    <link href="/Content/Template/css/revolution-slider.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/layerslider.css" rel="stylesheet" type="text/css" />
+
+    <!-- THEME CSS -->
+    <link href="/Content/Template/css/essentials.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/header-default.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Template/css/footer-default.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Template/css/color_scheme/red.css" rel="stylesheet" type="text/css" id="color_scheme" />
+    @*<link href="/Content/Template/css/layout-dark.css" rel="stylesheet" type="text/css"  />*@
+    <!-- Morenizr -->
+    <script type="text/javascript" src="/Content/Template/plugins/modernizr.min.js"></script>
+
 </head>
-<body>
-    <header>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">
-                    <a href="~/"><img src="~/Images/RecknerLogoLeft.jpg" /><img src="~/Images/RecknerLogoRight.jpg"/></a></p>
-            </div>
-            <div class="float-right">
-                <nav>
-                    <ul id="menu">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                    </ul>
-                </nav>
-            </div>
+<body class="smoothscroll grey">
+    <div id="wrapper">
+        <div class="container body-content">
+            @RenderBody()
         </div>
-    </header>
-    @RenderBody()
+    </div><!-- /#wrapper -->
+    <!-- JAVASCRIPT FILES -->
+    <script type="text/javascript" src="/Content/Template/plugins/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/Content/Template/plugins/jquery.isotope.js"></script>
+    <script type="text/javascript" src="/Content/Template/plugins/masonry.js"></script>
+
+    <script type="text/javascript" src="/Content/Template/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Content/Template/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="/Content/Template/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/Content/Template/plugins/knob/js/jquery.knob.js"></script>
+    <script type="text/javascript" src="/Content/Template/plugins/flexslider/jquery.flexslider-min.js"></script>
+
+    <!-- REVOLUTION SLIDER -->
+    <script type="text/javascript" src="/Content/Template/plugins/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="/Content/Template/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="/assets/js/revolution_slider.js"></script>
+
+
+    @*<script type="text/javascript" src="~/assets/js/scripts.js"></script>*@
+
     @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>
+

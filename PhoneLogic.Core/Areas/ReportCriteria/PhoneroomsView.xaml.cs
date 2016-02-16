@@ -21,7 +21,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             InitializeComponent();
            _vm = new PhoneroomsViewModel ();
            DataContext = _vm;
-           Details.Visibility = Visibility.Collapsed;
+           ShowDetails(false);
 
         }
 

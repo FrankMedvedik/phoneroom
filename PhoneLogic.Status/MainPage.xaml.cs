@@ -10,5 +10,6 @@ namespace PhoneLogic.Status
             InitializeComponent();
             pv.ShowDetails(true);
         }
+
     }
 }

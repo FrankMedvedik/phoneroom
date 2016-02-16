@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dialHistory="clr-namespace:PhoneLogic.Core.Areas.DialHistory"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
         <Grid x:Name="LayoutRoot" >
@@ -12,6 +13,6 @@
         </Grid.RowDefinitions>
             <Border BorderBrush="Black" BorderThickness="1" ></Border>
             <TextBlock Grid.Row="0" x:Name="txtCallerId" Text="PHONE NUMBER" Margin="14" HorizontalAlignment="Center"  FontWeight="Bold" VerticalAlignment="Center" ToolTipService.ToolTip="CallerID" />
-            <CallsRpts:DialHistoryView Name="dhv" ShowInput="False" Grid.Row="1"/>
+            <dialHistory:DialHistoryView Name="dhv" ShowInput="False" Grid.Row="1"/>
         </Grid>
 </UserControl>

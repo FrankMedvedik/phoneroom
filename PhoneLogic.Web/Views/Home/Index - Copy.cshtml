@@ -1,0 +1,305 @@
+<script type="text/javascript" src="~\Silverlight.js"></script>
+<script type="text/javascript">
+    function onSilverlightError(sender, args) {
+        var appSource = "";
+        if (sender != null && sender != 0) {
+            appSource = sender.getHost().Source;
+        }
+
+        var errorType = args.ErrorType;
+        var iErrorCode = args.ErrorCode;
+
+        if (errorType == "ImageError" || errorType == "MediaError") {
+            return;
+        }
+
+        var errMsg = "Unhandled Error in Silverlight Application " + appSource + "\n";
+
+        errMsg += "Code: " + iErrorCode + "    \n";
+        errMsg += "Category: " + errorType + "       \n";
+        errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+        if (errorType == "ParserError") {
+            errMsg += "File: " + args.xamlFile + "     \n";
+            errMsg += "Line: " + args.lineNumber + "     \n";
+            errMsg += "Position: " + args.charPosition + "     \n";
+        } else if (errorType == "RuntimeError") {
+            if (args.lineNumber != 0) {
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            errMsg += "MethodName: " + args.methodName + "     \n";
+        }
+
+        throw new Error(errMsg);
+    }
+</script>
+
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Phone Room Home Page</h1>
+            </hgroup>
+        </div>
+    </section>
+
+    <!-- SECTION -->
+    @*<section>
+        <div class="container">
+
+
+
+            @*<section class="content-wrapper main-content clear-fix">
+                <h3>Options</h3>
+                <ol class="round">
+                    <li><h1><a target="_blank" href="~/PhoneLogic.Inbound.html">Person Lookup by Phone #</a></h1></li>
+                    <li><h1><a target="_blank" href="~/PhoneLogic.Outbound.html">Recruiter Station</a></h1></li>
+                    <li><h1><a target="_blank" href="~/PhoneLogic.Callbacks.html">Callbacks</a></h1></li>
+                    <li><h1><a target="_blank" href="~/PhoneLogic.DialHistory.html">Dial History</a></h1></li>
+                    <li><h1><a target="_blank" href="~/PhoneLogic.Jobs.html">Jobs</a></h1></li>
+                    <li><h1><a target="_blank" href="~/PhoneLogic.Recruiters.html">Recruiters</a></h1></li>
+                    <li><h1><a target="_blank" href="~/PhoneLogic.Status.html">Status</a></h1></li>
+
+                    <li><h1><a target="_blank" href="~/PhoneLogicSilverlightClientTestPage.aspx">Check Phonelogic Service functionality</a></h1></li>
+                    <li><h1><a target="_blank" href="/btnet/default.aspx">bug tracker</a></h1></li>
+                </ol>
+            </section>*@
+            <header class="text-center">
+                <h2>Applications</h2>
+                @*<p class="lead">We thrive on making Epona the most complete and trusted template on wrapbootstrap</p>*@
+                <div class="divider half-margins onepage center"><!-- lines divider --></div>
+            </header>
+
+
+            @*<div id="portfolio" class="container">
+
+                <div class="row">
+
+                    <ul class="sort-destination isotope" data-sort-id="isotope-list">
+
+                        <li class="isotope-item col-sm-6 col-md-3 development">
+                            <!-- item -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover" href="~/Views/Recruiter/Phonelogic.Outbound.html">
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>Recruiter</strong> Station
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="~/assets/images/demo/portfolio/a1.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Recruiter</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="isotope-item col-sm-6 col-md-3 photography">
+                            <!-- item 2 -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>VIEW</strong> VIDEO
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="assets/images/demo/portfolio/a2.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Video Project</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="isotope-item col-sm-6 col-md-3 design">
+                            <!-- item 3 -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover" href="portfolio-single-basic.html">
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>PROJECT</strong> DETAIL
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="assets/images/demo/portfolio/a3.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Epona Project</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="isotope-item col-sm-6 col-md-3 photography">
+                            <!-- item 4 -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover" href="portfolio-single-basic.html">
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>PROJECT</strong> DETAIL
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="assets/images/demo/portfolio/a4.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Epona Project</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="isotope-item col-sm-6 col-md-3 development">
+                            <!-- item 5 -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>VIEW</strong> VIDEO
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="assets/images/demo/portfolio/a5.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Video Project</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="isotope-item col-sm-6 col-md-3 design">
+                            <!-- item 6 -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover" href="portfolio-single-basic.html">
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>PROJECT</strong> DETAIL
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="assets/images/demo/portfolio/a6.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Epona Project</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="isotope-item col-sm-6 col-md-3 development">
+                            <!-- item -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover" href="portfolio-single-basic.html">
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>PROJECT</strong> DETAIL
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="assets/images/demo/portfolio/a7.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Epona Project</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="isotope-item col-sm-6 col-md-3 photography">
+                            <!-- item 2 -->
+                            <div class="item-box">
+                                <figure>
+                                    <a class="item-hover lightbox" href="http://www.youtube.com/watch?v=W7Las-MJnJo" data-plugin-options='{"type":"iframe"}'>
+                                        <span class="overlay color2"></span>
+                                        <span class="inner">
+                                            <span class="block fa fa-plus fsize20"></span>
+                                            <strong>VIEW</strong> VIDEO
+                                        </span>
+                                    </a>
+                                    <img class="img-responsive" src="assets/images/demo/portfolio/a8.jpg" width="260" height="260" alt="">
+                                </figure>
+                                <div class="item-box-desc">
+                                    <h4>Video Project</h4>
+                                    <small class="styleColor">29 June, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div><!-- /.masonry-container -->
+
+            </div>
+
+
+        </div>
+    </section>*@
+    <!-- /SECTION -->
+
+
+    <section class="content-wrapper main-content clear-fix">
+        <h3>Tools</h3>
+        <ol class="item-box">
+            <li ><h1><a target="_blank" href="~/Views/Recruiter/Phonelogic.Inbound.html">Person Lookup by Phone #</a></h1></li>
+            <li ><h1><a target="_blank" href="~/Views/Recruiter/PhoneLogic.Outbound.html">Recruiter Station</a></h1></li>
+            <li ><h1><a target="_blank" href="~/Views/Tools/PhoneLogic.Callbacks.html">Callbacks</a></h1></li>
+            <li ><h1><a target="_blank" href="~/Views/Tools/PhoneLogic.DialHistory.html">Dial History</a></h1></li>
+            <li ><h1><a target="_blank" href="~/Views/Tools/PhoneLogic.Jobs.html">Jobs</a></h1></li>
+            <li><h1><a target="_blank" href="~/Views/Tools/PhoneLogic.Recruiters.html">Recruiters</a></h1></li>
+            <li><h1><a target="_blank" href="~/Views/Tools/PhoneLogic.Status.html">Status</a></h1></li>
+            @*<li ><h1><a target="_blank" href="~/Views/Tools/PhoneLogicSilverlightClientTestPage.aspx">Check Phonelogic Service functionality</a></h1></li>
+            <li><h1><a target="_blank" href="/btnet/default.aspx">bug tracker</a></h1></li>*@
+        </ol>
+    </section>
+</div>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Phone Room Home Page</h1>
+            </hgroup>
+        </div>
+    </section>
+    <div id="silverlightControlHost">
+        <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
+            <param name="source" value="~/ClientBin/PhoneLogic.Status.xap" />
+            <param name="onError" value="onSilverlightError" />
+            <param name="background" value="white" />
+            <param name="minRuntimeVersion" value="5.0.61118.0" />
+            <param name="autoUpgrade" value="true" />
+            <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none">
+                <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none" />
+            </a>
+        </object><iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+    </div>
+    <section class="content-wrapper main-content clear-fix">
+        <ol class="round">
+            <li class="one">
+                <h1><a target="_blank" href="~/Views/Recruiter/Phonelogic.Outbound.html">Recruiter Station</a></h1>
+            </li>
+            <li class="two">
+                <h1><a target="_blank" href="~/Training/RecruiterStationComponentOverview/RecruiterStationComponentOverview.html">Recruiter Station Overview</a></h1>
+            </li>
+            <li class="three">
+                <h1><a target="_blank" href="~/Training/HowToRecruiterStation/HowToRecruiterStation.html">How to use the Recruiter Station</a></h1>
+            </li>
+
+            <li class="four">
+                <h1><a target="_blank" href="~/Training/RecknerRecruiterStationQuickReference.docx">Recruiter Station Quick Reference</a></h1>
+            </li>
+        </ol>
+    </section>
+</div>

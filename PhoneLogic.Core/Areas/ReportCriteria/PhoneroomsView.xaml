@@ -15,7 +15,6 @@
             </Grid>
         </DataTemplate>
     </Control.Resources>
-    <Border CornerRadius="5" BorderThickness="1" Width="Auto" BorderBrush="Black">
         <StackPanel Orientation="Vertical">
         <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
         <Grid.RowDefinitions>
@@ -23,7 +22,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0" >
+        <toolkit:WrapPanel Orientation="Horizontal" Grid.Row="0" >
                 <TextBlock Text="Phone Room" FontSize="12" Margin="6" VerticalAlignment="Bottom" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
                            Name="comboBox1" VerticalAlignment="Center" Width="100" 
@@ -31,11 +30,11 @@
                                 SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}" 
                   DisplayMemberPath="Name" 
                       SelectedValuePath="Name" />
-        </StackPanel>
-                <StackPanel Grid.Row="1" x:Name="Details">
+        </toolkit:WrapPanel>
+        <toolkit:WrapPanel Grid.Row="1" x:Name="Details">
         <toolkit:Expander Header="Jobs" HorizontalAlignment="Left"  Margin="12,6,6,6" >
-            <sdk:DataGrid x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="350"  
-                      Width="300" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredJobs}"  VerticalAlignment="Top" 
+            <sdk:DataGrid x:Name="JobsDG" AutoGenerateColumns="False"  
+                       VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredJobs}"  VerticalAlignment="Top" 
                     ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" FrozenColumnCount="1">
                 <sdk:DataGrid.Columns>
                     <sdk:DataGridTextColumn Binding="{Binding JobFormatted}"  />
@@ -45,17 +44,16 @@
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
         </toolkit:Expander>
-                <toolkit:Expander Grid.Row="2" Header="Recruiters" HorizontalAlignment="Left"  Margin="12,6,6,6" >
-                    <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300"  
-                      Width="300" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredRecruiters}"  VerticalAlignment="Top" 
-                    ToolTipService.ToolTip="Phone Room Recruiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
+                <toolkit:Expander Header="Recruiters" HorizontalAlignment="Left"  Margin="12,6,6,6" >
+                    <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredRecruiters}"  
+                    VerticalAlignment="Top" ToolTipService.ToolTip="Phone Room Recruiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
                         <sdk:DataGrid.Columns>
                             <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource RecruiterStatusTemplate}"/>
                             <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
         </toolkit:Expander>
-                </StackPanel>
+           </toolkit:WrapPanel>
             </Grid>
         <StackPanel  Margin="6"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
             <TextBlock  HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text=""/>
@@ -64,5 +62,4 @@
             </StackPanel>
         </StackPanel>
         </StackPanel>
-    </Border>
 </UserControl>

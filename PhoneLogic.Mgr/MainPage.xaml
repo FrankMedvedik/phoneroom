@@ -10,6 +10,7 @@
     xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts;assembly=PhoneLogic.Core"
     xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.Areas.PhoneRooms;assembly=PhoneLogic.Core"
     xmlns:recruiterUtilization="clr-namespace:PhoneLogic.Core.Areas.RecruiterUtilization;assembly=PhoneLogic.Core"
+    xmlns:dialHistory="clr-namespace:PhoneLogic.Core.Areas.DialHistory;assembly=PhoneLogic.Core"
     x:Class="PhoneLogic.Mgr.MainPage" mc:Ignorable="d" Style="{StaticResource DefaultStyle}" >
     <ScrollViewer  HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
         <Grid x:Name="LayoutRoot"  Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -39,7 +40,7 @@
                             <callsRpts:RecruitersView />
                         </sdk:TabItem>
                         <sdk:TabItem  Header="Dial History">
-                            <callsRpts:DialHistoryView Margin="3" Name="dhv"   />
+                            <dialHistory:DialHistoryView Margin="3" Name="dhv"   />
                         </sdk:TabItem>
                         <sdk:TabItem  Header="Callbacks">
                             <Callbacks:JobsView />

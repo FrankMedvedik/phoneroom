@@ -7,6 +7,7 @@
     xmlns:recruiter="clr-namespace:PhoneLogic.Core.Areas.Recruiters"
     xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts"
     xmlns:callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks"
+    xmlns:dialHistory="clr-namespace:PhoneLogic.Core.Areas.DialHistory"
     x:Class="PhoneLogic.Core.Areas.Recruiters.MyWorkView"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700" VerticalAlignment="Top"  HorizontalAlignment="Left">
     <Grid Width="Auto" Height="Auto">
@@ -71,7 +72,7 @@
                 <callsRpts:CallsView Margin="3" Name="cv"  VerticalAlignment="Top" HorizontalAlignment="Left" />
             </sdk:TabItem>
                 <sdk:TabItem  Header="Dial History">
-                    <callsRpts:DialHistoryView Margin="3" Name="dhv"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <dialHistory:DialHistoryView Margin="3" Name="dhv"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 </sdk:TabItem>
             </sdk:TabControl>
     </Grid>

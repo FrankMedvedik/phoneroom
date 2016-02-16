@@ -8,6 +8,8 @@
              xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.Areas.PhoneRooms;assembly=PhoneLogic.Core"
              xmlns:reportCriteria="clr-namespace:PhoneLogic.Core.Areas.ReportCriteria;assembly=PhoneLogic.Core"
              xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts;assembly=PhoneLogic.Core"
+             xmlns:recruiterUtilization="clr-namespace:PhoneLogic.Core.Areas.RecruiterUtilization;assembly=PhoneLogic.Core"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              mc:Ignorable="d ignore" >
         <Grid x:Name="LayoutRoot">
             <!--<Grid.RowDefinitions>
@@ -21,7 +23,17 @@
                     <reportCriteria:PhoneroomsView />
                     <reportCriteria:GlobalReportCriteriaView VerticalAlignment="Top" />
                 </StackPanel>
-                <callsRpts:JobsView />
+            <sdk:TabControl Width="Auto" Margin="6">
+                <sdk:TabItem Header="Utilization">
+                    <recruiterUtilization:RecruitersView />
+                </sdk:TabItem>
+                <sdk:TabItem Header="All Recruiters">
+                    <callsRpts:RecruiterMonitorView />
+                </sdk:TabItem>
+                <sdk:TabItem Header="Active Recruiters">
+                    <callsRpts:RecruitersView />
+                </sdk:TabItem>
+            </sdk:TabControl>
             <views:BuildInformationView />
             </StackPanel>
         </Grid>

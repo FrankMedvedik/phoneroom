@@ -1,23 +1,17 @@
-﻿<UserControl x:Class="PhoneLogic.DialHistory.MainPage"
+﻿<UserControl  x:Class="PhoneLogic.DialHistory.MainPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ignore="http://www.galasoft.ch/ignore"
              xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
-             xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.Areas.PhoneRooms;assembly=PhoneLogic.Core"
-             xmlns:reportCriteria="clr-namespace:PhoneLogic.Core.Areas.ReportCriteria;assembly=PhoneLogic.Core"
+             xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts;assembly=PhoneLogic.Core"
+             xmlns:dialHistory="clr-namespace:PhoneLogic.Core.Areas.DialHistory;assembly=PhoneLogic.Core"
              mc:Ignorable="d ignore"  >
-    <Grid x:Name="LayoutRoot">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-            <reportCriteria:PhoneroomsView Grid.Row="0" />
-            <phoneRooms:CallsInQueueView Grid.Row="1" />
-            <phoneRooms:ActiveCallsView Grid.Row="2" />
-            <views:BuildInformationView Grid.Row="3" Grid.Column="0" />
+    <Grid x:Name="LayoutRoot" Margin="10">
+        <StackPanel Margin="6">
+            <dialHistory:DialHistoryView />
+            <views:BuildInformationView />
+        </StackPanel>
     </Grid>
 </UserControl>
