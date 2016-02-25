@@ -10,7 +10,7 @@
              mc:Ignorable="d ignore">
     <Control.Resources>
         <DataTemplate x:Key="RecruiterStatusTemplate">
-            <Grid Margin="3">
+            <Grid Margin="0">
                 <controls:PresenceIndicator x:Name="Presence" Source="{Binding RecruiterSIP}" PhotoDisplayMode="Hidden" />
             </Grid>
         </DataTemplate>

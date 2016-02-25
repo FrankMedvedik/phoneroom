@@ -14,16 +14,31 @@ namespace PhoneLogic.Core.Areas.DialHistory
     {
         public DialHistoryViewModel()
         {
-            
-                     Messenger.Default.Register<NotificationMessage<string>>(this, message =>
+            AllCalls = true;
+            //Messenger.Default.Register<NotificationMessage<DialHistoryMessage>>(this, message =>
+            //{
+            //    if (message.Notification == Notifications.PhoneNumberChanged)
+            //    {
+            //        PhoneNumber = message.Content.PhoneNumber;
+            //        StartDate = message.Content.StartDate;
+            //        EndDate = message.Content.StartDate;
+            //        GetCalls();
+            //    }
+            //});
+            Messenger.Default.Register<NotificationMessage<string>>(this, message =>
                      {
                          if (message.Notification == Notifications.PhoneNumberChanged)
                          {
-                             SelectedCallerId = message.Content;
+                             PhoneNumber = message.Content;
                              GetCalls();
                          }
                      });
         }
+
+        public DateTime EndDate { get; set; }
+
+        public DateTime StartDate { get; set; }
+
         private Call _selectedCall;
         public Call SelectedCall
         {
@@ -36,13 +51,13 @@ namespace PhoneLogic.Core.Areas.DialHistory
             }
         }
 
-        private string _selectedCallerId= null;
-        public string SelectedCallerId
+        private string _phoneNumber= null;
+        public string PhoneNumber
         {
-            get { return _selectedCallerId; }
+            get { return _phoneNumber; }
             set
             {
-                _selectedCallerId = value;
+                _phoneNumber = value;
                 NotifyPropertyChanged();
             }
         }
@@ -92,16 +107,17 @@ namespace PhoneLogic.Core.Areas.DialHistory
             var ro = new List<Call>();
             try
             {
-                if (SelectedCallerId != null)
+                if (PhoneNumber != null)
                 {
                     HeadingText = "Loading...";
-                    ro = await LyncCallLogSvc.GetCalls(PhoneNumberSvc.GetNumbers(SelectedCallerId));
+                    if(AllCalls)
+                        ro = await LyncCallLogSvc.GetCalls(PhoneNumberSvc.GetNumbers(PhoneNumber));
+                    else
+                        ro = await LyncCallLogSvc.GetCallsToPhoneNumber(PhoneNumberSvc.GetNumbers(PhoneNumber), StartDate, EndDate);
                     Calls = new ObservableCollection<Call>(ro.OrderByDescending(x => x.CallStartTime));
-                    //var z = Calls.GroupBy(x => x.JobFormatted)
-                    //   .Select(x => new { Date = x.Key, Values = x.Distinct().Count() });
                     if (Calls.Count > 0)
                     {
-                        HeadingText = String.Format(" {0} has {1} calls", SelectedCallerId, Calls.Count());
+                        HeadingText = String.Format(" {0} has {1} calls", StringFormatSvc.PhoneNumberFormatted(PhoneNumber), Calls.Count());
                         ShowGridData = true;
                     }
                     else
@@ -119,7 +135,16 @@ namespace PhoneLogic.Core.Areas.DialHistory
                 HeadingText = e.Message;
             }
         }
+
+        public bool AllCalls { get; set; }
     }
+
+    //public class DialHistoryMessage
+    //{
+    //    public string PhoneNumber { get; set; }
+    //    public DateTime StartDate { get; set; }
+    //    public DateTime EndDate { get; set; }
+    //}
 }
 
 

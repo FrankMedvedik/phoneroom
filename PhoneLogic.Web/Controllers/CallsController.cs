@@ -22,9 +22,9 @@ namespace PhoneLogic.Web.Controllers
 
 
 
-        public IEnumerable<Call> GetCalls(string callerId)
+        public IEnumerable<Call> GetCalls(string phoneNumber)
         {
-            var Logs = db.rpt_GetCallerLyncCallLog(callerId).ToList();
+            var Logs = db.rpt_GetCallerLyncCallLog(phoneNumber).ToList();
             var recruiters = p.GetAllRecruiters();
 
 
@@ -95,7 +95,7 @@ namespace PhoneLogic.Web.Controllers
                     CallDuration = l.CallDuration
                 };
 
-            return query.ToList();
+            return query.OrderBy(x => x.CallStartTime).ToList();
         }
 
         // GET: api/Calls?startDate=2&endDate=3
@@ -134,7 +134,7 @@ namespace PhoneLogic.Web.Controllers
                                 CallEndStatus = l.CallEndStatus,
                                 CallDuration = l.CallDuration
                             };
-                v = query.ToList();
+                v = query.OrderBy(x => x.CallStartTime).ToList();
             }
 
             catch (Exception e)
@@ -143,6 +143,58 @@ namespace PhoneLogic.Web.Controllers
             }
             return v;
         }
-   }
+
+        // GET: api/Calls?startDate=1&endDate=2&phoneNumber=3
+        public IEnumerable<Call> GetCalls(Int64 startDate, Int64 endDate, string phoneNumber)
+        {
+            var v = new List<Call>();
+            try
+            {
+                var s = new DateTime(startDate);
+                var e = new DateTime(endDate);
+                var Logs = db.rpt_GetLyncCallsforPhoneInDateRange(phoneNumber,s, e).ToList();
+                //var Logs = db.rpt_GetLyncCallsforPhoneInDateRange(phoneNumber, new DateTime(startDate), new DateTime(endDate)).ToList();
+                var recruiters = p.GetAllRecruiters();
+                /* Add BACK CODE TO INCLUDE CALLS NOT ASSOCIATED TO RECRUITER */
+
+
+
+                var query = from l in Logs
+                            join r in recruiters on l.RecruiterSIP equals r.sip into rr
+                            from oj in rr.DefaultIfEmpty()
+                            select new Call
+                            {
+                                PhoneRoom = (oj == null ? String.Empty : oj.PhoneRoom),
+                                DisplayName = (oj == null ? String.Empty : oj.DisplayName),
+                                EmailAddress = (oj == null ? String.Empty : oj.EmailAddress),
+                                Description = (oj == null ? String.Empty : oj.Description),
+                                StartLogId = l.StartLogId,
+                                CallId = l.CallID,
+                                JobNumber = l.JobNumber,
+                                TaskDscr = l.taskdscr,
+                                TaskTypeID = l.TaskTypeId,
+                                TaskName = l.taskName,
+                                CallerId = l.CallerId,
+                                CallerId_Region = l.CallerId_Region,
+                                CallerId_UTC_code = l.CallerId_UTC_code,
+                                TollFreeNumber = l.TollFreeNumber,
+                                CallStartTime = l.CallStartTime,
+                                RecruiterConnectTime = l.RecruiterConnectTime,
+                                CallEndTime = l.CallEndTime,
+                                RecruiterSIP = l.RecruiterSIP,
+                                CallDirection = l.CallDirection,
+                                CallEndStatus = l.CallEndStatus,
+                                CallDuration = l.CallDuration
+                            };
+                v = query.OrderBy(x => x.CallStartTime).ToList();
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return v;
+        }
+    }
 }
 

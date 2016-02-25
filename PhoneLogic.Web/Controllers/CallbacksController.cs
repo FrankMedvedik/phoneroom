@@ -14,41 +14,18 @@ namespace PhoneLogic.Web.Controllers
     {
         private PhoneLogicEntities db = new PhoneLogicEntities();
 
-
-
         // GET: api/Callbacks/id
         public callback GetCallbacks(int id)
         {
             return db.callbacks.FirstOrDefault(b => b.callbackID == id);
         }
 
-
-        // GET: api/Callbacks?startDate=1&endDate=2
-        public List<CallbackRpt> GetCallbacks(Int64 startDate, Int64 endDate)
-        {
-            List <CallbackRpt> list = db.rpt_GetCallbackRpt(new DateTime(startDate), new DateTime(endDate)).ToList();
-            return list;
-        }
         // GET: api/Callbacks?SIP=1&jobNum=2&taskId=3
-        public List<callbackDTO> GetCallbacks(string SIP, string jobNum, string taskId)
+        public List<callbackDTO> GetMyCallbacks(string SIP, string jobNum, string taskId)
         {
             List<callbackDTO> list = db.rpt_GetMyCallbacks(SIP, jobNum, taskId).ToList();
             return list;
         }
-
-        // GET: api/Callbacks?jobNum=1&taskId=2&startDate=3&endDate=4
-        public List<callbackDTO> GetCallbacks(string jobNum, string taskId, Int64 startDate, Int64 endDate)
-        {
-            List<callbackDTO> list = db.rpt_GetJobCallbacks(jobNum, taskId, new DateTime(startDate), new DateTime(endDate)).ToList();
-            return list;
-        }
-
-        // GET: api/Callbacks?SIP=1
-        //public List<callbackDTO> GetCallbacks(string SIP)
-        //{
-        ////    List<callbackDTO> list = db.getMyCallbacks(SIP).ToList();
-        ////    return list;
-        //}
 
 
         // PUT: api/Callbacks/5

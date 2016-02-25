@@ -26,7 +26,11 @@ namespace PhoneLogic.Core.Views.Utility
 
         public string ActionName { get { return (string) btnGo.Content; }
             set { btnGo.Content = value; }
-        }  
+        }
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ActionNameProperty =
+            DependencyProperty.Register("ActionName", typeof(string), typeof(DialPadView), new PropertyMetadata("SetActionName!"));
+
         private void key_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)e.OriginalSource;

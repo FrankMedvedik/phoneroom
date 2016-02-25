@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
+using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
@@ -126,6 +127,8 @@ namespace PhoneLogic.Core.Areas.Recruiters
                     _selectedPhoneLogicTask = value;
                    NotifyPropertyChanged();
                     CanRefresh = true;
+                    Messenger.Default.Send(new NotificationMessage<PhoneLogicTask>(SelectedPhoneLogicTask,
+              Notifications.MySelectedPhoneLogicTaskChanged));
                 }
             }
         }

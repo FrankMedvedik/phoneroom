@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
-using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.Services;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 using PhoneLogic.Model;
@@ -20,13 +19,13 @@ namespace PhoneLogic.Core.Areas.DialHistory
             InitializeComponent();
             _vm = new DialHistoryViewModel();
             DataContext = _vm;
-            Messenger.Default.Register<NotificationMessage<Call>>(this, message =>
-            {
-                if (message.Notification == Notifications.DialHistoryCallChanged)
-                {
-                    SetupAudioPlayback();
-                }
-            });
+            //Messenger.Default.Register<NotificationMessage<Call>>(this, message =>
+            //{
+            //    if (message.Notification == Notifications.DialHistoryCallChanged)
+            //    {
+            //        SetupAudioPlayback();
+            //    }
+            //});
             AudioPlayer.Visibility = Visibility.Collapsed;
 
         }
@@ -35,20 +34,20 @@ namespace PhoneLogic.Core.Areas.DialHistory
             _vm.RefreshAll();
         }
 
-        public string SelectedCallerId
-        {
-            get { return _vm.SelectedCallerId; }
-            set
-            {
-                SetValue(SelectedCallerIdProperty, value);
-                _vm.SelectedCallerId = value;
-            }
-        }
+        //public string SelectedCallerId
+        //{
+        //    get { return _vm.PhoneNumber; }
+        //    set
+        //    {
+        //        SetValue(SelectedCallerIdProperty, value);
+        //        _vm.PhoneNumber = value;
+        //    }
+        //}
 
         private void SetupAudioPlayback()
         {
             AudioPlayer.Visibility = Visibility.Collapsed;
-            if (_vm.SelectedCallerId != null)
+            if (_vm.PhoneNumber != null)
             {
                 AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" +
                                   _vm.SelectedCall.CallId +".wma";
@@ -60,13 +59,13 @@ namespace PhoneLogic.Core.Areas.DialHistory
 
 
         }
-        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedCallerIdProperty =
-            DependencyProperty.Register("SelectedCallerId", typeof(string), typeof(DialHistoryView), new PropertyMetadata(""));
+        //// Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty SelectedCallerIdProperty =
+        //    DependencyProperty.Register("SelectedCallerId", typeof(string), typeof(DialHistoryView), new PropertyMetadata(""));
 
         public void GetCalls(string CallerId )
         {
-            SelectedCallerId = CallerId;
+            PhoneNumber = CallerId;
             _vm.GetCalls();
         }
 
@@ -101,6 +100,31 @@ namespace PhoneLogic.Core.Areas.DialHistory
 
             }
         }
+
+        public string PhoneNumber
+        {
+            get { return _vm.PhoneNumber; }
+            set { _vm.PhoneNumber = value; }
+        }
+
+        public DateTime StartDate
+        {
+            get { return _vm.StartDate; }
+            set { _vm.StartDate = value; }
+        }
+
+        public DateTime EndDate
+        {
+            get { return _vm.EndDate; }
+            set { _vm.EndDate = value; }
+        }
+
+        public bool AllCalls
+        {
+            get { return _vm.AllCalls; }
+            set { _vm.AllCalls = value; }
+        }
+
         // Using a DependencyProperty as the backing store for boolean ShowData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowInputProperty =
       DependencyProperty.Register("ShowInput", typeof(bool), typeof(DialHistoryView), new PropertyMetadata(false));
@@ -129,5 +153,9 @@ namespace PhoneLogic.Core.Areas.DialHistory
 
         }
 
+        private void CallsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SetupAudioPlayback();
+        }
     }
 }

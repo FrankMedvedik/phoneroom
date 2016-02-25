@@ -17,7 +17,7 @@ namespace PhoneLogic.Repository
         public int taskID { get; set; }
         public string taskName { get; set; }
         public string TaskTypeId { get; set; }
-        public int openCnt { get; set; }
-        public int closedCnt { get; set; }
+        public string tollFreeNumber { get; set; }
+        public Nullable<int> CallbackCnt { get; set; }
     }
 }

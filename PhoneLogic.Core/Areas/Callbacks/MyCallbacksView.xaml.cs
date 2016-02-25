@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
-using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Helpers;
 using PhoneLogic.Core.Services;
-using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
-using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.Callbacks
 {
@@ -216,15 +211,8 @@ namespace PhoneLogic.Core.Areas.Callbacks
         }
         public void SetMyCallsbacksConfiguration()
         {
-            _vm.MyCallbacksOnly = true;
             Grid.SetRow(AudioPlayer, 1);
             Grid.SetColumn(AudioPlayer, 0);
-        }
-        public void SetAllCallsbacksConfiguration()
-        {
-            _vm.MyCallbacksOnly = false;
-            //Grid.SetRow(AudioPlayer, 0);
-            //Grid.SetColumn(AudioPlayer, 0);
         }
     }
 }

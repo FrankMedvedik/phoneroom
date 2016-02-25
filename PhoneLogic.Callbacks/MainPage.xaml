@@ -5,24 +5,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ignore="http://www.galasoft.ch/ignore"
              xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
-             xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.Areas.PhoneRooms;assembly=PhoneLogic.Core"
              xmlns:reportCriteria="clr-namespace:PhoneLogic.Core.Areas.ReportCriteria;assembly=PhoneLogic.Core"
              xmlns:callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks;assembly=PhoneLogic.Core"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              mc:Ignorable="d ignore"  >
     <Grid x:Name="LayoutRoot">
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>-->
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
-            <reportCriteria:PhoneroomsView />
-            <reportCriteria:GlobalReportCriteriaView VerticalAlignment="Top" />
-        </StackPanel>
-            <callbacks:JobsView />
-        <views:BuildInformationView />
+            <sdk:TabControl Width="Auto" Margin="6">
+                <sdk:TabItem Header="Open">
+                    <callbacks:OpenCallbacksJobsView />
+                </sdk:TabItem>
+                <sdk:TabItem Header="Closed">
+                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <reportCriteria:PhoneroomsView />
+                        <reportCriteria:GlobalReportCriteriaView VerticalAlignment="Top" />
+                        </StackPanel>
+                    <callbacks:ClosedCallbacksJobsView />
+                    </StackPanel>
+                </sdk:TabItem>
+            </sdk:TabControl>
+            <views:BuildInformationView />
         </StackPanel>
     </Grid>
+
 </UserControl>

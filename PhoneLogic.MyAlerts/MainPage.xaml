@@ -1,0 +1,10 @@
+﻿<UserControl xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ignore="http://www.galasoft.ch/ignore" xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core" xmlns:Recruiters="clr-namespace:PhoneLogic.Core.Areas.Recruiters;assembly=PhoneLogic.Core" x:Class="PhoneLogic.MyAlerts.MainPage" mc:Ignorable="d ignore">
+    <Grid x:Name="LayoutRoot" Margin="3">
+        <ScrollViewer>
+        <StackPanel Margin="6"><controls:MyStatusArea />
+            <Recruiters:MyCallsInQueueView HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <views:BuildInformationView />
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

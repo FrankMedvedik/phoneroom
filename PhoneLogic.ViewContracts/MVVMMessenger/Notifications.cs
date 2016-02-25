@@ -49,5 +49,10 @@
         {
             get { return "DialHistoryCallChanged"; }
         }
+
+        public static string MySelectedPhoneLogicTaskChanged
+        {
+            get { return "MySelectedPhoneLogicTaskChanged"; }
+        }
     }
 }

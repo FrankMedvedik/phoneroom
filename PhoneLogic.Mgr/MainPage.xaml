@@ -42,8 +42,11 @@
                         <sdk:TabItem  Header="Dial History">
                             <dialHistory:DialHistoryView Margin="3" Name="dhv"   />
                         </sdk:TabItem>
-                        <sdk:TabItem  Header="Callbacks">
-                            <Callbacks:JobsView />
+                        <sdk:TabItem  Header="Open Callbacks">
+                            <Callbacks:OpenCallbacksJobsView />
+                        </sdk:TabItem>
+                        <sdk:TabItem Header="Closed Callbacks">
+                            <Callbacks:ClosedCallbacksJobsView />
                         </sdk:TabItem>
                     </sdk:TabControl>
                 </StackPanel>

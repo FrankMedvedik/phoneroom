@@ -10,9 +10,16 @@ namespace PhoneLogic.Test
     {
         private PhoneLogicEntities db = new PhoneLogicEntities();
         [TestMethod]
-        public void rpt_GetCallbackRptText()
+        public void rpt_GetClosedCallbackRptTest()
         {
-            var m = db.rpt_GetCallbackRpt(DateTime.Today, DateTime.Today.AddDays(1));
+            var m = db.rpt_GetClosedCallbackRpt(DateTime.Today, DateTime.Today.AddDays(1));
+
+            Assert.IsTrue(m.Any());
+        }
+        [TestMethod]
+        public void rpt_GetOpenCallbackRptTest()
+        {
+            var m = db.rpt_GetOpenCallbackRpt();
 
             Assert.IsTrue(m.Any());
         }

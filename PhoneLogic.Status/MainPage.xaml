@@ -7,17 +7,16 @@
              xmlns:views="clr-namespace:PhoneLogic.Core.Views;assembly=PhoneLogic.Core"
              xmlns:phoneRooms="clr-namespace:PhoneLogic.Core.Areas.PhoneRooms;assembly=PhoneLogic.Core"
              xmlns:reportCriteria="clr-namespace:PhoneLogic.Core.Areas.ReportCriteria;assembly=PhoneLogic.Core"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
              mc:Ignorable="d ignore"  >
     <Grid x:Name="LayoutRoot">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-            <reportCriteria:PhoneroomsView Grid.Row="0" x:Name="pv" />
-            <phoneRooms:CallsInQueueView Grid.Row="1" />
-            <phoneRooms:ActiveCallsView Grid.Row="2" />
-            <views:BuildInformationView Grid.Row="3" Grid.Column="0" />
+        <ScrollViewer>
+            <toolkit:WrapPanel Orientation="Vertical">
+            <reportCriteria:PhoneroomsView x:Name="pv" />
+            <phoneRooms:CallsInQueueView/>
+            <phoneRooms:ActiveCallsView />
+            <views:BuildInformationView />
+            </toolkit:WrapPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

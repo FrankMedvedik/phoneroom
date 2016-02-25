@@ -1,40 +1,24 @@
-﻿<UserControl xmlns:CallsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts"  x:Class="PhoneLogic.Core.Areas.Recruiters.OutboundCallView"
+﻿<UserControl xmlns:utility="clr-namespace:PhoneLogic.Core.Views.Utility"  
+    x:Class="PhoneLogic.Core.Areas.Recruiters.OutboundCallView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:behaviors="clr-namespace:PhoneLogic.Core.Behaviors"
     mc:Ignorable="d" >
-        <Border BorderThickness="1,1,3,4" CornerRadius="5" BorderBrush="Black" HorizontalAlignment="Center"  VerticalAlignment="Top" >
-        <Grid x:Name="LayoutRoot" Background="#a6dbed" HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+        <!--<Border BorderThickness="1,1,3,4" CornerRadius="5" BorderBrush="Black" HorizontalAlignment="Center"  VerticalAlignment="Top" >-->
+        <Grid x:Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Make A Call"  Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="3" FontSize="14" Grid.Row="0"/>
-            <TextBlock Text="Job"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="6" Grid.Row="1" FontSize="12" Grid.Column="0"/>
-            <TextBlock Text="{Binding Task.JobFormatted}"  Margin="6" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" FontSize="12" VerticalAlignment="Top"/>
-            <TextBlock Text="Phone Number"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="6" FontSize="12"
-                           Grid.Row="2" Grid.Column="0"/>
-            <TextBox Name="tbOutboundPhone"  HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"  
-                         Width="150" Margin="6" Grid.Row="2" Grid.Column="1" TabIndex="0" TabNavigation="Local" > 
-                    <i:Interaction.Behaviors>
-                    <behaviors:DefaultButtonBehavior ButtonName="btnCall"/>
-                    </i:Interaction.Behaviors>
-                </TextBox>
-            <TextBlock Name="tbErrors"  VerticalAlignment="Top"  HorizontalAlignment="Center"  Foreground="Red" Margin="6" FontSize="12"
-                           Grid.Row="3" Grid.Column="0"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  >
-            <Button Click="Call_Click"  Width="75" Name="btnCall" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"
-                            IsEnabled="{Binding CanMakeCall}">Call</Button>
+            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="6" Visibility="Collapsed">
+            <TextBlock Text="Job"  VerticalAlignment="Top" Margin="6" FontSize="16" FontWeight="Bold"  />
+            <TextBlock Text="{Binding Task.JobFormatted}" Margin="6" FontSize="16" FontWeight="Bold"  VerticalAlignment="Top"/>
             </StackPanel>
-            </Grid>
-    </Border>
+            <utility:DialPadView ActionName="Call" HorizontalAlignment="Left" Visibility="{Binding CanMakeCall, Converter={StaticResource BoolToVisConverter}}" />
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" 
+                       Margin="6" FontSize="12" Text="Select a Job" Visibility="{Binding CanMakeCall, Converter={StaticResource NotBoolToVisConverter}}" />
+            <TextBlock Name="tbErrors"  VerticalAlignment="Top"  HorizontalAlignment="Center"  Foreground="Red" Margin="6" FontSize="12"/>
+            </StackPanel>
+        </Grid>
 </UserControl>

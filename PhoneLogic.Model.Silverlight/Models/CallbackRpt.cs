@@ -15,16 +15,26 @@ namespace PhoneLogic.Model.Models
         public string taskName { get; set; }
         [Display(Name = "Type")]
         public string TaskTypeId { get; set; }
-        [Display(Name = "Open Cnt")]
-        public int openCnt { get; set; }
-        [Display(Name = "Closed Cnt")]
-        public int closedCnt { get; set; }
+        [Display(Name = "Cnt")]
+        public int CallbackCnt { get; set; }
+
         [Display(Name = "Job")]
         public string JobFormatted
         {
             get
             {
                 return StringFormatSvc.JobFormatted(jobNum) + ":"+ taskID.ToString().PadLeft(2,'0');
+            }
+        }
+        public String tollFreeNumber { get; set; }
+
+
+        [Display(Name = "Toll Free #")]
+        public string TollFreeFormatted
+        {
+            get
+            {
+                return StringFormatSvc.PhoneNumberFormatted(tollFreeNumber);
             }
         }
 

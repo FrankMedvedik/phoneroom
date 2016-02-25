@@ -7,11 +7,9 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using PhoneLogic.Core.Areas.ReportCriteria;
 
 namespace PhoneLogic.Core.Helpers
 {
-
     public static class DataGridExtensions
     {
         public static void Export(this DataGrid dg, string filename)
@@ -134,19 +132,6 @@ namespace PhoneLogic.Core.Helpers
             }
         }
 
-        //private static string FormatField(string data, string format)
-        //{
-        //    switch (format)
-        //    {
-        //        case "XML":
-        //            return String.Format("<Cell><Data ss:Type=\"String\">{0}</Data></Cell>", data);
-        //        case "CSV":
-        //            return String.Format("\"{0}\"", data.Replace("\"", "\"\"\"").Replace("\n", "").Replace("\r", ""));
-        //    }
-        //    return data;
-        //}
-
-      // replaced to format numbers
         private static string FormatField(string data, string format)
         {
             double Num;

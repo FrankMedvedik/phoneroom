@@ -33,13 +33,33 @@ namespace PhoneLogic.Core.Services
             }
 
         }
-
-
-        public static async Task<List<Call>> GetCalls(String CallerID)
+        public static async Task<List<Call>> GetCallsToPhoneNumber(String phoneNumber, DateTime startDate, DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ConditionalConfiguration.apiUrl + "Calls?callerId=" + CallerID));
+                new Uri(ConditionalConfiguration.apiUrl + "Calls?startDate=" + startDate.Ticks
+                        + "&endDate=" + endDate.Ticks + "&phoneNumber=" +phoneNumber));
+            try
+            {
+                var z = JsonConvert.DeserializeObject<List<Call>>(data);
+                return z;
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException == null)
+                    Console.Write(e.Message + e.StackTrace);
+                else
+                    Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
+                return null;
+            }
+
+        }
+
+        public static async Task<List<Call>> GetCalls(String phoneNumber)
+        {
+            var client = new WebClient();
+            var data = await client.DownloadStringTaskAsync(
+                new Uri(ConditionalConfiguration.apiUrl + "Calls?phoneNumber=" + phoneNumber));
             try
             {
                 var z = JsonConvert.DeserializeObject<List<Call>>(data);

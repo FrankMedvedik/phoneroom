@@ -3,8 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
-using Newtonsoft.Json;
-using PhoneLogic.Core.Areas.CallsRpts.Models;
+using PhoneLogic.Core.Areas.DialHistory;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
@@ -17,25 +16,6 @@ namespace PhoneLogic.Core.Areas.Callbacks
     public class MyCallBacksViewModel : CollectionViewModelBase
     {
      
-        public MyCallBacksViewModel()
-        {
-            
-            //Messenger.Default.Register<NotificationMessage>(this, HandleNotification);
-        }
-
-       //private void HandleNotification(NotificationMessage message)
-       // {
-       //     if (message.Notification == Notifications.PauseRefresh)
-       //     {
-       //         CanRefresh = false;
-       //     }
-       //     if (message.Notification == Notifications.Refresh)
-       //     {
-       //         CanRefresh = true;
-       //     }
-       // }
-
-
         private Boolean _canRefresh = true;
 
         public Boolean CanRefresh
@@ -70,13 +50,8 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-                if (MyCallbacksOnly)
-                    GetMyCallbacks();
-                else
-                    GetAllCallBacks();
+            GetMyCallbacks();
         }
-
-        public bool MyCallbacksOnly { get; set; }
 
         #region myCallbacks
         
@@ -104,6 +79,13 @@ namespace PhoneLogic.Core.Areas.Callbacks
             {
                 _selectedMyCallback = value;
                 NotifyPropertyChanged();
+                //Messenger.Default.Send(new NotificationMessage<DialHistoryMessage>(
+                //    new DialHistoryMessage
+                //    {
+                //        PhoneNumber = SelectedMyCallback.callbackNum,
+                //        StartDate = SelectedMyCallback.timeEntered,
+                //        EndDate = DateTime.Now
+                //    }, Notifications.PhoneNumberChanged));
             }
         }
 
@@ -184,29 +166,29 @@ namespace PhoneLogic.Core.Areas.Callbacks
         }
 
         public ReportDateRange ReportDateRange = new ReportDateRange();
-        public async void GetAllCallBacks()
-        {
-            ShowGridData = false;
-            HeadingText = "";
-            try
-            {
-                if ((ReportDateRange != null) && (SelectedJobNum != null))
-                {
-                    HeadingText = "Loading...";
-                    var ro = await CallbackSvc.GetJobCallbacks(SelectedJobNum, SelectedTaskId.ToString(),
-                                ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                    ShowGridData = true;
-                    MyCallbacks = new ObservableCollection<myCallback>(ro.OrderByDescending(x => x.timeEntered));
-                    HeadingText = String.Format("Job {0} has {1} Voice Mail Messages", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
-                    LoadedOk = true;
-                }
+        //public async void GetAllCallBacks()
+        //{
+        //    ShowGridData = false;
+        //    HeadingText = "";
+        //    try
+        //    {
+        //        if ((ReportDateRange != null) && (SelectedJobNum != null))
+        //        {
+        //            HeadingText = "Loading...";
+        //            var ro = await CallbackSvc.GetJobCallbacks(SelectedJobNum, SelectedTaskId.ToString(),
+        //                        ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+        //            ShowGridData = true;
+        //            MyCallbacks = new ObservableCollection<myCallback>(ro.OrderByDescending(x => x.timeEntered));
+        //            HeadingText = String.Format("Job {0} has {1} Voice Mail Messages", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
+        //            LoadedOk = true;
+        //        }
                 
-            }
-            catch (Exception e)
-            {
-                LoadFailed(e);
-            }
-        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        LoadFailed(e);
+        //    }
+        //}
         public async void GetMyCallbacks()
         {
             myCallback s = SelectedMyCallback;

@@ -8,13 +8,21 @@
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d">
     <Grid Width="156" >
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                <TextBlock Text="Phone Number" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Margin="6,3,6,3" />
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="Lato UI" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+        </Grid.Resources>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <TextBlock Text="Phone Number" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Margin="6,3,6,3" Visibility="Collapsed" />
                 <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <TextBox x:Name="phone" FontSize="12" FontWeight="Bold" Width="120" Text="{Binding PhoneNumber, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Margin="4" />
                     <sdk:DescriptionViewer Margin="4" Target="{Binding ElementName=phone}" />
                 </StackPanel>-->
-                <TextBox Name="TbPhoneNumber" FontSize="12" FontWeight="Bold" Width="120" VerticalAlignment="Center" Margin="6" TabIndex="0" TabNavigation="Local">
+                <TextBox Name="TbPhoneNumber" FontSize="12" FontWeight="Bold" Width="140" TabIndex="1"
+                         VerticalAlignment="Center" Margin="6" TabNavigation="Local" >
                     <i:Interaction.Behaviors>
                         <behaviors:DefaultButtonBehavior ButtonName="btnGo" />
                     </i:Interaction.Behaviors>
@@ -43,7 +51,9 @@
                         <Button Content="8" Click="key_Click" Grid.Row="2" Grid.Column="1" />
                         <Button Content="9" Click="key_Click" Grid.Row="2" Grid.Column="2" />
                         <Button Content="0" Click="key_Click" Grid.Row="3" Grid.Column="0" />
-                        <Button Name="btnGo"  BorderThickness="2"  Click="key_Click" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
+                        <Button Name="btnGo"  BorderThickness="2" Content="TEST"  
+                                FontWeight="Bold" Click="key_Click" 
+                                Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
                         <Button Content="Clr" Click="key_Click" Grid.Row="4" Grid.Column="0" />
                         <Button Content="Backspace" Click="key_Click" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
                     </Grid>

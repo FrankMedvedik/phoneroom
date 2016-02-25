@@ -46,7 +46,7 @@ namespace PhoneLogic.Model
        [Display(Name = "Last Call")]
        public string LastCallTimeFormatted
        {
-           get { return StringFormatSvc.TimeFormatted(FirstCallTime.GetValueOrDefault(DateTime.MinValue)); }
+           get { return StringFormatSvc.TimeFormatted(LastCallTime.GetValueOrDefault(DateTime.MinValue)); }
        }
 
        public Nullable<System.DateTime> FirstCallTime { get; set; }

@@ -9,9 +9,11 @@
              xmlns:dialHistory="clr-namespace:PhoneLogic.Core.Areas.DialHistory;assembly=PhoneLogic.Core"
              mc:Ignorable="d ignore"  >
     <Grid x:Name="LayoutRoot" Margin="10">
-        <StackPanel Margin="6">
-            <dialHistory:DialHistoryView />
-            <views:BuildInformationView />
-        </StackPanel>
+        <ScrollViewer>
+            <StackPanel Margin="6">
+                <dialHistory:DialHistoryView />
+                <views:BuildInformationView />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
