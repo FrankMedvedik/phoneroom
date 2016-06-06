@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace PhoneLogic.Callbacks
+namespace PhoneLogic.CallbackHistory
 {
     public partial class MainPage : UserControl
     {

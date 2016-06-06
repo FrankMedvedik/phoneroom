@@ -105,15 +105,16 @@ namespace PhoneLogic.Core.Areas.DialHistory
             ShowGridData = false;
             HeadingText = "";
             var ro = new List<Call>();
+            HeadingText = "Loading...";
             try
             {
                 if (PhoneNumber != null)
                 {
-                    HeadingText = "Loading...";
                     if(AllCalls)
                         ro = await LyncCallLogSvc.GetCalls(PhoneNumberSvc.GetNumbers(PhoneNumber));
                     else
                         ro = await LyncCallLogSvc.GetCallsToPhoneNumber(PhoneNumberSvc.GetNumbers(PhoneNumber), StartDate, EndDate);
+
                     Calls = new ObservableCollection<Call>(ro.OrderByDescending(x => x.CallStartTime));
                     if (Calls.Count > 0)
                     {

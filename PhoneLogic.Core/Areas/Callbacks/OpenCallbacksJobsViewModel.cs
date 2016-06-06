@@ -17,9 +17,9 @@ namespace PhoneLogic.Core.Areas.Callbacks
     {
         public OpenCallbacksJobsViewModel()
         {
-          Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
+          Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                if (message.Notification == Notifications.GlobalReportCriteriaChanged)
+                if (message.Notification == Notifications.AutoRefreshNow)
                 {
                     GetJobs();
                 }

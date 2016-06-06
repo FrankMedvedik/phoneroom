@@ -247,6 +247,9 @@
       <DependentUpon>RecruiterJobsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CallsRpts\RecruiterJobsViewModel.cs" />
+    <Compile Include="Areas\InboundCallAlerts\ToastNotification.xaml.cs">
+      <DependentUpon>ToastNotification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Recruiters\MyJobsSmallView.xaml.cs">
       <DependentUpon>MyJobsSmallView.xaml</DependentUpon>
     </Compile>
@@ -267,6 +270,9 @@
       <DependentUpon>RecruiterUtilizationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\RecruiterUtilization\RecruiterViewModel.cs" />
+    <Compile Include="Areas\ReportCriteria\AutoRefreshView.xaml.cs">
+      <DependentUpon>AutoRefreshView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\ReportCriteria\ReportDateRange.cs" />
     <Compile Include="Areas\CallsRpts\CallsViewModel.cs" />
     <Compile Include="Areas\CallsRpts\RecruiterMonitorView.xaml.cs">
@@ -495,6 +501,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Areas\InboundCallAlerts\ToastNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Areas\Recruiters\MyJobsSmallView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -518,6 +528,10 @@
     <Page Include="Areas\RecruiterUtilization\RecruiterUtilizationView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\ReportCriteria\AutoRefreshView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Areas\ReportCriteria\GlobalReportCriteriaView.xaml">
       <SubType>Form</SubType>

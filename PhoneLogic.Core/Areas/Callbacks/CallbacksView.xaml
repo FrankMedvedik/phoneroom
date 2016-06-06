@@ -24,7 +24,7 @@
         <toolkit:WrapPanel Orientation="Vertical">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6"  />
-                <audioPlayer:SimplePlayer Name="AudioPlayer" Visibility="{Binding ShowAudioPlayer, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" />
+                <audioPlayer:SimplePlayer Name="AudioPlayer" Margin="6" Visibility="{Binding ShowAudioPlayer, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" />
                 <sdk:DataGrid x:Name="callbackGrid" AutoGenerateColumns="False" MaxHeight="225" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Loaded="callbackGrid_Loaded" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding MyCallbacks}" SelectedItem="{Binding SelectedMyCallback, Mode=TwoWay}" SelectionChanged="CallbackDG_SelectionChanged" ToolTipService.ToolTip="Voice Mail Messages" Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" SelectionMode="Single" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True">
                         <sdk:DataGrid.Columns>
                             <sdk:DataGridTextColumn Binding="{Binding phoneFormatted}" />

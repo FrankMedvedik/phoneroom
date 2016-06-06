@@ -20,7 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False,{2765851D-82CC-4D40-B497-97837DA2AD6F}|..\PhoneLogic.Callbacks\PhoneLogic.Callbacks.csproj|ClientBin|False,{44671B53-C04B-40AD-AB91-89C6AAB831C8}|..\PhoneLogic.DialHistory\PhoneLogic.DialHistory.csproj|ClientBin|False,{ED91449B-6970-4AEC-95E6-3F39B4105DC1}|..\PhoneLogic.Jobs\PhoneLogic.Jobs.csproj|ClientBin|False,{E44A0723-AD9B-4BC3-AF71-FEB611C90AFF}|..\PhoneLogic.Recruiters\PhoneLogic.Recruiters.csproj|ClientBin|False,{33686882-B855-4D8F-80E1-C20C78B0B3B6}|..\PhoneLogic.Status\PhoneLogic.Status.csproj|ClientBin|False,{164B43B7-D658-4678-B8A8-31D28C8C2A6C}|..\PhoneLogic.MyAlerts\PhoneLogic.MyAlerts.csproj|ClientBin|False,{307FA1CF-CCE2-4854-B08B-DE71DFB04C85}|..\PhoneLogic.MyDialer\PhoneLogic.MyDialer.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{BD853521-086A-4B3A-9E98-504B3CF0B683}|..\PhoneLogic.Outbound\PhoneLogic.Outbound.csproj|ClientBin|False,{C38D0026-5828-499C-B984-F40514CA093D}|..\PhoneLogic.Mgr\PhoneLogic.Mgr.csproj|ClientBin|False,{33E6D24F-13D6-431D-AF00-C109CB45C694}|..\PhoneLogic.Inbound\PhoneLogic.Inbound.csproj|ClientBin|False,{44671B53-C04B-40AD-AB91-89C6AAB831C8}|..\PhoneLogic.DialHistory\PhoneLogic.DialHistory.csproj|ClientBin|False,{ED91449B-6970-4AEC-95E6-3F39B4105DC1}|..\PhoneLogic.Jobs\PhoneLogic.Jobs.csproj|ClientBin|False,{E44A0723-AD9B-4BC3-AF71-FEB611C90AFF}|..\PhoneLogic.Recruiters\PhoneLogic.Recruiters.csproj|ClientBin|False,{33686882-B855-4D8F-80E1-C20C78B0B3B6}|..\PhoneLogic.Status\PhoneLogic.Status.csproj|ClientBin|False,{164B43B7-D658-4678-B8A8-31D28C8C2A6C}|..\PhoneLogic.MyAlerts\PhoneLogic.MyAlerts.csproj|ClientBin|False,{307FA1CF-CCE2-4854-B08B-DE71DFB04C85}|..\PhoneLogic.MyDialer\PhoneLogic.MyDialer.csproj|ClientBin|False,{2765851D-82CC-4D40-B497-97837DA2AD6F}|..\PhoneLogic.CallbackHistory\PhoneLogic.CallbackHistory.csproj|ClientBin|False,{C5B1474D-BA01-46B1-8900-D0E84A65AE82}|..\PhoneLogic.OpenCallbacks\PhoneLogic.OpenCallbacks.csproj|ClientBin|False</SilverlightApplicationList>
     <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -1341,9 +1341,7 @@
     <Content Include="assets\plugins\_revolution-slider\videojs\video-js.swf" />
     <Content Include="assets\plugins\_revolution-slider\videojs\video.dev.js" />
     <Content Include="assets\plugins\_revolution-slider\videojs\video.js" />
-    <Content Include="ClientBin\PhoneLogic.Callbacks.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ClientBin\PhoneLogic.CallbackHistory.xap" />
     <Content Include="ClientBin\PhoneLogic.DialHistory.xap">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1358,6 +1356,7 @@
     </Content>
     <Content Include="ClientBin\PhoneLogic.MyAlerts.xap" />
     <Content Include="ClientBin\PhoneLogic.MyDialer.xap" />
+    <Content Include="ClientBin\PhoneLogic.OpenCallbacks.xap" />
     <Content Include="ClientBin\Phonelogic.Outbound.xap">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1836,15 +1835,16 @@
     <Content Include="Global.asax" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\reckner-logo-color.png" />
-    <Content Include="PhoneLogic.Callbacks.html" />
+    <Content Include="PhoneLogic.CallbackHistory.html" />
+    <Content Include="PhoneLogic.OpenCallbacks.html" />
     <Content Include="PhoneLogic.MyAlerts.html" />
     <Content Include="PhoneLogic.MyDialer.html" />
     <Content Include="Phonelogic.Inbound.html" />
     <Content Include="PhoneLogic.Mgr.html" />
     <Content Include="PhoneLogic.Phoneroom.Mgr.html" />
-    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.0.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -2027,7 +2027,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="v1.aspx" />
     <Content Include="Views\Home\Index - Copy.cshtml" />
-    <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Views\Mgr\Index.cshtml" />
     <Resource Include="Images\RecknerLogoRight.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

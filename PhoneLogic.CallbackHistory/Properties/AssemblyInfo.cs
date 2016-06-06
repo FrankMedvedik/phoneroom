@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PhoneLogic.Callbacks")]
+[assembly: AssemblyTitle("PhoneLogic.CallbackHistory")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("PhoneLogic.Callbacks")]
+[assembly: AssemblyProduct("PhoneLogic.CallbackHistory")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2765851d-82cc-4d40-b497-97837da2ad6f")]
+[assembly: Guid("D86F7E43-7760-4ED2-9FE2-835CA3AA202C")]
 
 // Version information for an assembly consists of the following four values:
 //

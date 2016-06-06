@@ -2,7 +2,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
 
-namespace PhoneLogic.Callbacks
+namespace PhoneLogic.CallbackHistory
 {
     public partial class App : Application
     {

@@ -54,5 +54,10 @@
         {
             get { return "MySelectedPhoneLogicTaskChanged"; }
         }
+
+        public static string AutoRefreshNow
+        {
+            get { return "AutoRefreshNow"; }
+        }
     }
 }
