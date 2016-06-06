@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneLogic.OpenCallbacks", "PhoneLogic.OpenCallbacks.csproj", "{2765851D-82CC-4D40-B497-97837DA2AD6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DEBUG-LOCAL|Any CPU = DEBUG-LOCAL|Any CPU
+		DEBUGPROD|Any CPU = DEBUGPROD|Any CPU
+		DEBUGTEST|Any CPU = DEBUGTEST|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.DEBUG-LOCAL|Any CPU.ActiveCfg = DEBUG-LOCAL|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.DEBUG-LOCAL|Any CPU.Build.0 = DEBUG-LOCAL|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.DEBUGPROD|Any CPU.ActiveCfg = DEBUGPROD|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.DEBUGPROD|Any CPU.Build.0 = DEBUGPROD|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.DEBUGTEST|Any CPU.ActiveCfg = DEBUGTEST|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.DEBUGTEST|Any CPU.Build.0 = DEBUGTEST|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2765851D-82CC-4D40-B497-97837DA2AD6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
