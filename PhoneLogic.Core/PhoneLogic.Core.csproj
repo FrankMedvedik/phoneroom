@@ -194,20 +194,36 @@
     </Reference>
     <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.SilverlightToolkit-Data.5.2011.11\lib\sl50\System.Windows.Controls.Data.DataForm.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Data.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.SilverlightToolkit-Data.5.2011.11\lib\sl50\System.Windows.Controls.Data.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.SilverlightToolkit-DataViz.5.2011.11\lib\sl50\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Controls.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.SilverlightToolkit-Input.5.2011.11\lib\sl50\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.SilverlightToolkit-Layout.5.2011.11\lib\sl50\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Theming.BureauBlack, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Theming.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\Phonelogic.Web\packages\Unofficial.SilverlightToolkit-Theming.5.2011.11\lib\sl50\System.Windows.Controls.Theming.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Unofficial.SilverlightToolkit-Theming.5.2011.11\lib\sl50\System.Windows.Controls.Theming.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\Phonelogic.Web\packages\Unofficial.SilverlightToolkit-Core.5.2011.11\lib\sl50\System.Windows.Controls.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Unofficial.SilverlightToolkit-Core.5.2011.11\lib\sl50\System.Windows.Controls.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Interactivity, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -217,10 +233,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
-    <Reference Include="ToggleSwitch, Version=1.1.2.0, Culture=neutral, PublicKeyToken=8637099990568f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\ToggleSwitch.1.1.2\lib\sl40\ToggleSwitch.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Callbacks\CallbacksView.xaml.cs">
@@ -737,13 +749,13 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MM.Toolkit\MM.Toolkit.csproj">
-      <Project>{49aa6ed4-61e7-4cdc-8f12-01c31a25cec3}</Project>
-      <Name>MM.Toolkit</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AudioPlayer\AudioPlayer.csproj">
       <Project>{0d14777b-2ebf-41e2-97b6-5461405ea0a7}</Project>
       <Name>AudioPlayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MM.Toolkit\MM.Toolkit.csproj">
+      <Project>{49aa6ed4-61e7-4cdc-8f12-01c31a25cec3}</Project>
+      <Name>MM.Toolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\Phonelogic.Model.Silverlight\PhoneLogic.Model.Silverlight.csproj">
       <Project>{e4c37822-fcfa-431b-b373-a78fbd5136b3}</Project>
