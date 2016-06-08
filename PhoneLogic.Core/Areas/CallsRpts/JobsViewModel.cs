@@ -19,14 +19,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public JobsViewModel()
         {
             //StopAutoRefresh();
-           Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
+            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
                 if (message.Notification == Notifications.GlobalReportCriteriaChanged)
                 {
-                        ReportDateRange = message.Content.ReportDateRange;
-                        Phoneroom = message.Content.Phoneroom;
-                        PhoneroomJobs = message.Content.PhoneroomJobs;
-                        RefreshAll(null,null);
+                    ReportDateRange = message.Content.ReportDateRange;
+                    Phoneroom = message.Content.Phoneroom;
+                    PhoneroomJobs = message.Content.PhoneroomJobs;
+                    RefreshAll(null, null);
                 }
             });
         }
@@ -34,30 +34,43 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public List<PhoneLogicTask> PhoneroomJobs
         {
             get { return _phoneroomJobs; }
-            set { 
+            set
+            {
                 _phoneroomJobs = value;
-                NotifyPropertyChanged(); 
+                NotifyPropertyChanged();
             }
         }
 
         public string Phoneroom
         {
             get { return _phoneroom; }
-            set { _phoneroom = value; NotifyPropertyChanged(); }
+            set
+            {
+                _phoneroom = value;
+                NotifyPropertyChanged();
+            }
         }
 
         private bool _canRefresh = true;
-        public Boolean CanRefresh       
+
+        public Boolean CanRefresh
         {
             get { return _canRefresh; }
-            set { _canRefresh = value; NotifyPropertyChanged(); }
+            set
+            {
+                _canRefresh = value;
+                NotifyPropertyChanged();
+            }
         }
 
         #region reporting variables
+
         public ReportDateRange ReportDateRange = new ReportDateRange();
+
         #endregion
 
         #region CallSummaries
+
         private ObservableCollection<ByJob> _jobs = new ObservableCollection<ByJob>();
         private ObservableCollection<ByJob> _filteredJobs = new ObservableCollection<ByJob>();
         private ByJob _selectedJob;
@@ -91,14 +104,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         #region Filters
 
-
-
         #endregion
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-                GetJobs();
-                FilterJobs();
+            GetJobs();
+            FilterJobs();
         }
 
         private string _headingText;
@@ -131,7 +142,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             ShowGridData = false;
             try
             {
-                var ro  = await LyncCallLogSvc.GetLynCallsByJob(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                var ro = await LyncCallLogSvc.GetLynCallsByJob(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                 Jobs = new ObservableCollection<ByJob>(ro);
             }
             catch (Exception e)
@@ -150,16 +161,21 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 if (Jobs.Any())
                 {
                     var rx = (from c in Jobs
-                              join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
-                              select c).ToList().OrderByDescending(x => x.JobFormatted);
+                        join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
+                        select c).ToList().OrderByDescending(x => x.JobFormatted);
                     FilteredJobs = new ObservableCollection<ByJob>(rx);
-                    HeadingText = string.Format("{0} Phone Room has {1} jobs with call activity between  {2} and {3} as of {4} ", Phoneroom, Jobs.Count(), ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, DateTime.Now.ToShortTimeString()) ;
+                    HeadingText =
+                        string.Format("{0} Phone Room has {1} jobs with call activity between  {2} and {3} as of {4} ",
+                            Phoneroom, Jobs.Count(), ReportDateRange.StartRptDate, ReportDateRange.EndRptDate,
+                            DateTime.Now.ToShortTimeString());
                     ShowGridData = true;
                     SelectedJob = null; // if i am just changing the filtereing i want to loose the selected job
                 }
                 else
                 {
-                    HeadingText = string.Format("{0} Phone Room(s) has no call activity between  {1} and {2} as of {3}", Phoneroom, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, DateTime.Now.ToShortTimeString());
+                    HeadingText = string.Format(
+                        "{0} Phone Room(s) has no call activity between  {1} and {2} as of {3}", Phoneroom,
+                        ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, DateTime.Now.ToShortTimeString());
                     SelectedJob = null;
                     ShowGridData = false;
                 }
@@ -173,6 +189,5 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         #endregion
-
     }
 }

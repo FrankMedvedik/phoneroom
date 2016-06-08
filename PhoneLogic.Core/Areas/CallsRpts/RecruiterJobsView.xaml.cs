@@ -23,6 +23,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             _vm.RefreshAll();
         }
+
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             try
@@ -39,14 +40,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public string RecruiterSIP
         {
             get { return _vm.RecruiterSIP; }
-            set
-            {
-                _vm.RecruiterSIP = value;
-            }
+            set { _vm.RecruiterSIP = value; }
         }
-        
+
         public static readonly DependencyProperty RecruiterSipProperty =
-            DependencyProperty.Register("RecruiterSip", typeof(string), typeof(RecruiterJobsView), new PropertyMetadata(""));
+            DependencyProperty.Register("RecruiterSip", typeof(string), typeof(RecruiterJobsView),
+                new PropertyMetadata(""));
 
         public ReportDateRange ReportDateRange
         {
@@ -58,9 +57,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        
+
         public static readonly DependencyProperty ReportDateRangeProperty =
-            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(JobRecruitersView), new PropertyMetadata(new ReportDateRange()));
+            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(JobRecruitersView),
+                new PropertyMetadata(new ReportDateRange()));
 
         private void RecruiterJobsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -74,6 +74,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             else
                 cv.ShowData = false;
         }
+
         public bool ShowData
         {
             get { return _vm.ShowGridData; }
@@ -85,8 +86,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         public static readonly DependencyProperty ShowDataProperty =
-      DependencyProperty.Register("ShowData", typeof(bool), typeof(JobRecruitersView), new PropertyMetadata(false));
-       
+            DependencyProperty.Register("ShowData", typeof(bool), typeof(JobRecruitersView), new PropertyMetadata(false));
     }
-
 }

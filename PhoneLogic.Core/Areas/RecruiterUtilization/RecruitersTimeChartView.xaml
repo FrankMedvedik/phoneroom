@@ -8,18 +8,16 @@
              mc:Ignorable="d ignore">
     <Grid>
 
-        <toolkit:Chart x:Name="TimeChart" Title="Minutes" Width="600" Height="500" 
-            Background="LightSteelBlue">
+        <toolkit:Chart x:Name="TimeChart" Title="Minutes" Width="600" Height="500"
+                       Background="LightSteelBlue">
             <toolkit:Chart.Series>
                 <toolkit:BarSeries Title="In Call"
-            IndependentValueBinding="{Binding Path=Key}"
-            DependentValueBinding="{Binding Path=Value}">
-                </toolkit:BarSeries>
-                    <toolkit:BarSeries Title="Other"
-            IndependentValueBinding="{Binding Path=Key}"
-            DependentValueBinding="{Binding Path=Value}">
-                    </toolkit:BarSeries>
-                </toolkit:Chart.Series>
+                                   IndependentValueBinding="{Binding Path=Key}"
+                                   DependentValueBinding="{Binding Path=Value}" />
+                <toolkit:BarSeries Title="Other"
+                                   IndependentValueBinding="{Binding Path=Key}"
+                                   DependentValueBinding="{Binding Path=Value}" />
+            </toolkit:Chart.Series>
         </toolkit:Chart>
     </Grid>
 </UserControl>

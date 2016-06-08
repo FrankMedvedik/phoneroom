@@ -6,7 +6,6 @@ using System.Windows.Threading;
 
 namespace PhoneLogic.Core.Areas.ReportCriteria
 {
-
     public partial class ReportDateRangeView : UserControl
     {
         private ReportDateRangeViewModel _vm = null;
@@ -16,8 +15,8 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             InitializeComponent();
             _vm = new ReportDateRangeViewModel();
             DataContext = _vm;
-
         }
+
         protected void StartAutoRefresh(int refreshIntervalInSeconds)
         {
             _vm.EndRptDate = DateTime.Now;
@@ -52,7 +51,8 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DateRangeProperty =
-            DependencyProperty.Register("DateRange", typeof(ReportDateRange), typeof(ReportDateRangeView), new PropertyMetadata(new ReportDateRange()));
+            DependencyProperty.Register("DateRange", typeof(ReportDateRange), typeof(ReportDateRangeView),
+                new PropertyMetadata(new ReportDateRange()));
 
         private DispatcherTimer _timer;
 
@@ -63,13 +63,12 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             AutoEndTime = true;
             StartAutoRefresh(60);
         }
+
         private void chkAutoEndTime_Unchecked(object sender, RoutedEventArgs e)
         {
             AutoEndTime = false;
             //pckEnd.IsEnabled = true;
             StopAutoRefresh();
-
         }
-
     }
 }

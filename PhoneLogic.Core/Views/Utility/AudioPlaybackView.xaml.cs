@@ -32,6 +32,7 @@ namespace PhoneLogic.Core.Views
         #region AudioPlayback controls
 
         private string _playbackFileName = "";
+
         public string PlaybackFileName
         {
             get { return _playbackFileName; }
@@ -54,6 +55,7 @@ namespace PhoneLogic.Core.Views
         {
             ResetPlayback();
         }
+
         //private void tbtnListen_Checked(object sender, System.Windows.RoutedEventArgs e)
         //{
         //    (sender as ToggleButton).Content = "Stop";
@@ -105,13 +107,11 @@ namespace PhoneLogic.Core.Views
             TbPlaybackDuration.Text = String.Format("{0:g}", AudioPlayback.Position);
             SliderPosition.Value = 0;
             SliderPosition.Maximum = AudioPlayback.NaturalDuration.TimeSpan.TotalSeconds;
-            }
-     
+        }
+
         //public delegate void PlaybackStoppedEventHandler();
         //public event PlaybackStoppedEventHandler PlaybackStopped;
-        
-        #endregion
 
-       
+        #endregion
     }
 }

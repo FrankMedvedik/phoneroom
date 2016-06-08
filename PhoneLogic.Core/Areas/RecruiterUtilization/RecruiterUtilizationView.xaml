@@ -6,6 +6,5 @@
              xmlns:ignore="http://www.galasoft.ch/ignore"
              mc:Ignorable="d ignore"
              DataContext="{Binding ViewModelName, Source={StaticResource Locator}}">
-    <Grid>
-    </Grid>
+    <Grid />
 </UserControl>

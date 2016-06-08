@@ -11,11 +11,10 @@ using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.Callbacks
-    
+
 {
     public class MyCallBacksViewModel : CollectionViewModelBase
     {
-     
         private Boolean _canRefresh = true;
 
         public Boolean CanRefresh
@@ -27,6 +26,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 NotifyPropertyChanged();
             }
         }
+
         public DateTime? LastCallBackStartTime
         {
             get
@@ -54,8 +54,9 @@ namespace PhoneLogic.Core.Areas.Callbacks
         }
 
         #region myCallbacks
-        
+
         private ObservableCollection<myCallback> _myCallbacks;
+
         public ObservableCollection<myCallback> MyCallbacks
         {
             get { return _myCallbacks; }
@@ -68,10 +69,10 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         #endregion
 
-
         #region SelectedCallback
 
         private myCallback _selectedMyCallback;
+
         public myCallback SelectedMyCallback
         {
             get { return _selectedMyCallback; }
@@ -100,9 +101,9 @@ namespace PhoneLogic.Core.Areas.Callbacks
             {
                 _selectedJobNum = value;
                 NotifyPropertyChanged();
-
             }
         }
+
         private int _selectedTaskId;
 
         public int SelectedTaskId
@@ -115,7 +116,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             }
         }
 
-                    private string _headingText;
+        private string _headingText;
 
         public string HeadingText
         {
@@ -131,10 +132,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         public Boolean CanCall
         {
-            get
-            {
-                return _canCall;
-            }
+            get { return _canCall; }
             set
             {
                 _canCall = value;
@@ -143,7 +141,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
         }
 
 
-        private String _actionMsg ;
+        private String _actionMsg;
 
         public String ActionMsg
         {
@@ -182,7 +180,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
         //            HeadingText = String.Format("Job {0} has {1} Voice Mail Messages", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
         //            LoadedOk = true;
         //        }
-                
+
         //    }
         //    catch (Exception e)
         //    {
@@ -197,12 +195,17 @@ namespace PhoneLogic.Core.Areas.Callbacks
             ShowGridData = false;
             try
             {
-                var mcb = new ObservableCollection<myCallback>(await CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri, SelectedJobNum, SelectedTaskId.ToString()));
+                var mcb =
+                    new ObservableCollection<myCallback>(
+                        await
+                            CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri, SelectedJobNum,
+                                SelectedTaskId.ToString()));
                 MyCallbacks = mcb;
                 if (MyCallbacks.Count > 0)
                 {
                     ShowGridData = true;
-                    HeadingText = String.Format("Job {0}-{1} has {2} voice mail messages", SelectedJobNum.Substring(0, 4), SelectedJobNum.Substring(4), MyCallbacks.Count);
+                    HeadingText = String.Format("Job {0}-{1} has {2} voice mail messages",
+                        SelectedJobNum.Substring(0, 4), SelectedJobNum.Substring(4), MyCallbacks.Count);
                     if (s != null)
                         SelectedMyCallback = MyCallbacks.First(x => x.callbackID == s.callbackID);
                 }
@@ -215,10 +218,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             catch (Exception e)
             {
                 LoadFailed(e);
-
             }
         }
-
-
     }
 }

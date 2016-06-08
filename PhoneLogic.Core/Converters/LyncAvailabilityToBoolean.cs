@@ -5,8 +5,8 @@ using System.Windows.Media;
 using Microsoft.Lync.Model;
 
 namespace PhoneLogic.Core.Converters
-{                
-    public class LyncAvailablityToBoolean  : IValueConverter
+{
+    public class LyncAvailablityToBoolean : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -14,10 +14,10 @@ namespace PhoneLogic.Core.Converters
 
             if (input == null)
                 return DependencyProperty.UnsetValue;
-           
+
             switch (input)
             {
-                case (int)ContactAvailability.Free:
+                case (int) ContactAvailability.Free:
                     return true;
 
                 default:
@@ -25,7 +25,8 @@ namespace PhoneLogic.Core.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
         {
             throw new NotSupportedException();
         }

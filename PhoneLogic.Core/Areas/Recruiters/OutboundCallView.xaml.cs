@@ -13,8 +13,8 @@ namespace PhoneLogic.Core.Areas.Recruiters
 {
     public partial class OutboundCallView : UserControl
     {
-        private OutboundCallViewModel _vm; 
-        
+        private OutboundCallViewModel _vm;
+
         public OutboundCallView()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             {
                 if (message.Notification == Notifications.PhoneNumberChanged)
                 {
-                     _vm.PhoneNumber = message.Content;
+                    _vm.PhoneNumber = message.Content;
                     PlaceCall();
                 }
             });
@@ -33,12 +33,13 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         public Boolean CanRefresh
         {
-            get { return _vm.CanMakeCall; } 
+            get { return _vm.CanMakeCall; }
         }
 
         // Using a DependencyProperty as the backing store for CanRefresh.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CanRefreshProperty =
-            DependencyProperty.Register("CanRefresh", typeof(Boolean), typeof(MyCallbacksView), new PropertyMetadata(false));
+            DependencyProperty.Register("CanRefresh", typeof(Boolean), typeof(MyCallbacksView),
+                new PropertyMetadata(false));
 
         public PhoneLogicTask Task
         {
@@ -51,9 +52,10 @@ namespace PhoneLogic.Core.Areas.Recruiters
         }
 
         public DependencyProperty TaskProperty =
-            DependencyProperty.Register("Task", typeof(PhoneLogicTask), typeof(OutboundCallView), new PropertyMetadata(new PhoneLogicTask()));
+            DependencyProperty.Register("Task", typeof(PhoneLogicTask), typeof(OutboundCallView),
+                new PropertyMetadata(new PhoneLogicTask()));
 
- 
+
         private void ValidateCallerId()
         {
             tbErrors.Text = "";
@@ -63,8 +65,8 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 tbErrors.Text = "Phone number is required";
             if ((PhoneNumberSvc.GetNumbers(_vm.PhoneNumber).Length != 10))
                 tbErrors.Text = "Phone number invalid";
-
         }
+
         private async void PlaceCall()
         {
             ValidateCallerId();
@@ -75,17 +77,18 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 StartTimer();
                 string job = String.Format("{0}:0{1}", _vm.Task.JobNum, _vm.Task.TaskID);
                 tbErrors.Text = "Your call has been placed";
-                await LyncSvc.RecruiterDialOut(job, PhoneNumberSvc.GetNumbers(_vm.PhoneNumber), 0); // zero because it is not a calllback...
+                await LyncSvc.RecruiterDialOut(job, PhoneNumberSvc.GetNumbers(_vm.PhoneNumber), 0);
+                    // zero because it is not a calllback...
             }
             //System.Windows.Browser.HtmlPage.Plugin.Focus();
             //tbOutboundPhone.Focus();
-
         }
 
         public void StartTimer()
         {
             System.Windows.Threading.DispatcherTimer myDispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0); // 5 seconds
+            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0);
+                // 5 seconds
             myDispatcherTimer.Tick += new EventHandler(Each_Tick);
             myDispatcherTimer.Start();
         }
@@ -96,10 +99,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
         public void Each_Tick(object o, EventArgs sender)
         {
             _vm.CanMakeCall = true;
-            tbErrors.Text ="";
+            tbErrors.Text = "";
         }
-
-
-
     }
 }

@@ -4,7 +4,6 @@ using System.Windows.Data;
 
 namespace PhoneLogic.Core.Converters
 {
-
     public class RadioButtonConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -13,9 +12,9 @@ namespace PhoneLogic.Core.Converters
         }
 
         public object ConvertBack(object value, Type targetType,
-               object parameter, CultureInfo culture)
+            object parameter, CultureInfo culture)
         {
-            return (bool)value ? Enum.Parse(targetType, parameter.ToString(), true) : null;
+            return (bool) value ? Enum.Parse(targetType, parameter.ToString(), true) : null;
         }
     }
 }

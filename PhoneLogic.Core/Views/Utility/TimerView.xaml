@@ -5,18 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ignore="http://www.ignore.com"
              mc:Ignorable="d ignore" Margin="10">
-    <Grid  HorizontalAlignment="Center" >
-        
+    <Grid HorizontalAlignment="Center">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="Auto"/>
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Margin="6">
             <TextBlock Text="Call Time" />
-            <TextBlock Text="{Binding TimeFromStart, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}"/>
+            <TextBlock Text="{Binding TimeFromStart, FallbackValue=00:00:00, StringFormat=\{0:hh\}:\{0:mm\}:\{0:ss\}}" />
         </StackPanel>
     </Grid>
 </UserControl>
-

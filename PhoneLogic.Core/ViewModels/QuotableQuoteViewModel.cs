@@ -6,7 +6,6 @@ namespace PhoneLogic.Core.ViewModels
 {
     public class QuotableQuoteViewModel : CollectionViewModelBase
     {
-
         #region QuotableQuotes
 
         ObservableCollection<QuotableQuote> _quotableQuotes;
@@ -31,7 +30,6 @@ namespace PhoneLogic.Core.ViewModels
         {
             StartAutoRefresh(36000);
             RefreshAll();
-
         }
 
         protected override void RefreshAll(object sender, EventArgs e)
@@ -39,7 +37,7 @@ namespace PhoneLogic.Core.ViewModels
             GetQuotableQuotes();
         }
 
-        
+
         public async void GetQuotableQuotes()
         {
             try
@@ -56,8 +54,5 @@ namespace PhoneLogic.Core.ViewModels
                 LoadFailed(e);
             }
         }
- 
-
-
     }
 }

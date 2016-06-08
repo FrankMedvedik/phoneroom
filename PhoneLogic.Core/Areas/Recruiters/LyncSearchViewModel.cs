@@ -8,15 +8,14 @@ using Silverlight.Base.MVVMBaseTypes;
 
 namespace PhoneLogic.Core.Areas.Recruiters
 {
-
     public class lsContact : ViewModelBase
     {
         private Contact _contact;
+
         public lsContact()
         {
             //Contact.ContactInformationChanged += _Contact_OnInformationChanged;
-
-        } 
+        }
 
         public Contact Contact
         {
@@ -30,42 +29,38 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         private Boolean _canCall;
 
-        public Boolean CanCall { 
-            get
-            {
-                return _canCall;
-            }
+        public Boolean CanCall
+        {
+            get { return _canCall; }
             set
             {
                 _canCall = value;
                 NotifyPropertyChanged();
             }
         }
-        
+
         void _Contact_OnInformationChanged(Object source, ContactInformationChangedEventArgs data)
         {
             if (data.ChangedContactInformation.Contains(ContactInformationType.Availability))
             {
-                CanCall = ((ContactAvailability)_contact.GetContactInformation(ContactInformationType.Availability) ==
-                            ContactAvailability.Free);
+                CanCall = ((ContactAvailability) _contact.GetContactInformation(ContactInformationType.Availability) ==
+                           ContactAvailability.Free);
             }
-
         }
     }
 
     public class LyncSearchViewModel : CollectionViewModelBase
     {
-
         private ObservableCollection<lsContact> _contacts = new ObservableCollection<lsContact>();
 
         public ObservableCollection<lsContact> Contacts
         {
             get { return _contacts; }
             set
-            {   _contacts = value;
+            {
+                _contacts = value;
                 NotifyPropertyChanged();
                 ShowGridData = (Contacts.Count > 0);
-
             }
         }
 
@@ -82,6 +77,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
         }
 
         private Boolean _showGridData;
+
         public Boolean ShowGridData
         {
             get { return _showGridData; }
@@ -94,11 +90,10 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         public void SearchForContacts(string searchKey)
         {
-             
-                LyncClient.GetClient().ContactManager.BeginSearch(searchKey,
+            LyncClient.GetClient().ContactManager.BeginSearch(searchKey,
                 (ar) =>
                 {
-                    var contacts = new ObservableCollection<lsContact>(); 
+                    var contacts = new ObservableCollection<lsContact>();
                     var searchResults = LyncClient.GetClient().ContactManager.EndSearch(ar);
                     foreach (Contact contact in searchResults.Contacts)
                     {
@@ -107,12 +102,10 @@ namespace PhoneLogic.Core.Areas.Recruiters
                     Contacts = contacts;
                 },
                 null);
-            
         }
 
         internal void ClearSearch()
         {
-  
             Contacts = new ObservableCollection<lsContact>();
         }
 

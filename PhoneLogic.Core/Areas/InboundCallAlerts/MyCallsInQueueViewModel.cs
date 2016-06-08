@@ -8,17 +8,17 @@ using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.InboundCallAlerts
-    
+
 {
     public class MyCallsInQueueViewModel : CollectionViewModelBase
     {
-  
         public MyCallsInQueueViewModel()
         {
-         StartAutoRefresh(ApiRefreshFrequency.LyncApi);
+            StartAutoRefresh(ApiRefreshFrequency.LyncApi);
         }
 
         private CallInQueue _selectedCallInQueue;
+
         public CallInQueue SelectedCallInQueue
         {
             get { return _selectedCallInQueue; }
@@ -28,10 +28,12 @@ namespace PhoneLogic.Core.Areas.InboundCallAlerts
                 NotifyPropertyChanged();
             }
         }
+
         protected override void RefreshAll(object sender, EventArgs e)
         {
-           GetMyQueuedCalls();
+            GetMyQueuedCalls();
         }
+
         public async void GetMyQueuedCalls()
         {
             try
@@ -49,7 +51,7 @@ namespace PhoneLogic.Core.Areas.InboundCallAlerts
                         TimeIn = c.TimeIn
                     }).ToList());
 
-                  ShowGridData = true;
+                    ShowGridData = true;
                 }
                 else
                     ShowGridData = false;
@@ -66,39 +68,35 @@ namespace PhoneLogic.Core.Areas.InboundCallAlerts
         private ObservableCollection<CallInQueue> _CallsInQueue = new ObservableCollection<CallInQueue>();
 
         public ObservableCollection<CallInQueue> CallsInQueue
-         {
-             get { return _CallsInQueue; }
-             set
-             {
+        {
+            get { return _CallsInQueue; }
+            set
+            {
                 _CallsInQueue = value;
-                 NotifyPropertyChanged();
-                 NotifyPropertyChanged("TheBackground");
-                 NotifyPropertyChanged("TheForeground");
-                 AppColors ac = new AppColors()
-                 {
-                     TheForeground = ColorToBrushSvc.GetForeground(CallsInQueue.Count),
-                     TheBackground = ColorToBrushSvc.GetBackground(CallsInQueue.Count)
-                 };
-                 Messenger.Default.Send(ac);
-             }
-         }
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("TheBackground");
+                NotifyPropertyChanged("TheForeground");
+                AppColors ac = new AppColors()
+                {
+                    TheForeground = ColorToBrushSvc.GetForeground(CallsInQueue.Count),
+                    TheBackground = ColorToBrushSvc.GetBackground(CallsInQueue.Count)
+                };
+                Messenger.Default.Send(ac);
+            }
+        }
+
         #endregion
 
-         #region DisplayColors
+        #region DisplayColors
 
-         public  string TheBackground
+        public string TheBackground
         {
-            get
-            {
-                return ColorMappingSvc.GetBackground(CallsInQueue.Count);
-            }
+            get { return ColorMappingSvc.GetBackground(CallsInQueue.Count); }
         }
 
         public string TheForeground
         {
-            get {
-                return ColorMappingSvc.GetForeground(CallsInQueue.Count);
-            }
+            get { return ColorMappingSvc.GetForeground(CallsInQueue.Count); }
         }
 
         public new Boolean ShowGridData
@@ -119,8 +117,6 @@ namespace PhoneLogic.Core.Areas.InboundCallAlerts
             get { return base.ShowGridData; }
         }
 
-
         #endregion
-        
     }
 }

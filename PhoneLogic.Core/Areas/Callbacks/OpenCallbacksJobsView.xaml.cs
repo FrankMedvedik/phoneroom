@@ -25,6 +25,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
         {
             JobsDG.Export(String.Format("Open Callbacks Jobs {0}", DateTime.Now));
         }
+
         private void JobsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_vm.SelectedJob != null)

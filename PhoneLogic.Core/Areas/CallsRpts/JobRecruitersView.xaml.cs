@@ -17,26 +17,26 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             InitializeComponent();
             _vm = new JobRecruitersViewModel();
             DataContext = _vm;
-
         }
 
         public void Refresh()
         {
             _vm.RefreshAll();
         }
+
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
                 string fname = string.Format("{0}", "Jobs" + _vm.ReportDateRange.ToFormattedString('.'));
                 JobRecruitersDG.Export(fname);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error Saving file - " + ex.Message);
             }
         }
+
         public string SelectedJobNum
         {
             get { return _vm.CallRptJobNum; }
@@ -49,7 +49,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedJobNumProperty =
-            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(JobRecruitersView), new PropertyMetadata(""));
+            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(JobRecruitersView),
+                new PropertyMetadata(""));
 
 
         public ReportDateRange ReportDateRange
@@ -64,7 +65,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ReportDateRangeProperty =
-            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(JobRecruitersView), new PropertyMetadata(new ReportDateRange()));
+            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(JobRecruitersView),
+                new PropertyMetadata(new ReportDateRange()));
 
         private void JobRecruitersDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -78,6 +80,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             else
                 cv.ShowData = false;
         }
+
         public bool ShowData
         {
             get { return _vm.ShowGridData; }
@@ -90,10 +93,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         // Using a DependencyProperty as the backing store for boolean ShowData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowDataProperty =
-      DependencyProperty.Register("ShowData", typeof(bool), typeof(JobRecruitersView), new PropertyMetadata(false));
-
-
-       
+            DependencyProperty.Register("ShowData", typeof(bool), typeof(JobRecruitersView), new PropertyMetadata(false));
     }
-
 }

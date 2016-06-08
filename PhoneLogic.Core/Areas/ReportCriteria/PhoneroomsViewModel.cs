@@ -20,6 +20,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
     public class PhoneroomsViewModel : ViewModelBase
     {
         private IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
+
         /// <summary>
         /// Initializes a new instance of the PhoneroomsViewModel class.
         /// </summary>
@@ -35,6 +36,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             }
             setup();
         }
+
         private bool _showGridData;
 
         public bool ShowGridData
@@ -42,21 +44,19 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             get { return _showGridData; }
             set
             {
-                _showGridData = value; 
+                _showGridData = value;
                 NotifyPropertyChanged();
             }
         }
-        
+
         private async void setup()
         {
-            
             ShowGridData = false;
             _phoneroomRecruiterJobs = await PhoneroomRecruiterJobSvc.GetAllPhoneroomRecruiterJobs();
             PhoneRooms = PhoneRoomSvc.GetAll();
 //            SelectedPhoneRoomName = PhoneRoomSvc.GetDefault().Name;
             SelectedPhoneRoomName = (string) appSettings["PhoneRoomName"];
             ShowGridData = true;
-
         }
 
         private ObservableCollection<PhoneLogic.Model.PhoneRoom> _PhoneRooms =
@@ -69,7 +69,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             {
                 _PhoneRooms = value;
                 NotifyPropertyChanged();
-                }
+            }
         }
 
 
@@ -119,8 +119,6 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 _filteredJobs = value;
                 NotifyPropertyChanged();
             }
-
-
         }
 
 
@@ -131,7 +129,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             {
                 jobs = (from t in _phoneroomRecruiterJobs
                     where t.PhoneRoom == SelectedPhoneRoomName
-                        group t by new { t.jobNum, t.taskID, t.taskName, t.taskTypeID, t.taskDscr, t.tollFreeNumber }
+                    group t by new {t.jobNum, t.taskID, t.taskName, t.taskTypeID, t.taskDscr, t.tollFreeNumber}
                     into grp
                     select new PhoneLogicTask()
                     {
@@ -142,7 +140,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                         TaskTypeID = grp.Key.taskTypeID,
                         tollFreeNumber = grp.Key.tollFreeNumber
                     })
-                    .OrderByDescending(x => x.JobFormatted) 
+                    .OrderByDescending(x => x.JobFormatted)
                     .ToList();
             }
             else
@@ -159,7 +157,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                         TaskTypeID = grp.Key.taskTypeID,
                         tollFreeNumber = grp.Key.tollFreeNumber
                     })
-                    .OrderByDescending(x => x.JobFormatted) 
+                    .OrderByDescending(x => x.JobFormatted)
                     .ToList();
             }
             FilteredJobs = new ObservableCollection<PhoneLogicTask>(jobs);
@@ -167,29 +165,34 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         private void GetRecruiters()
         {
-              List<Recruiter> sips;
-            if (!String.IsNullOrEmpty(SelectedPhoneRoomName) && SelectedPhoneRoomName != PhoneRoomSvc.GetDefault().Name) 
+            var l = LyncCallLogSvc.GetLyncCallsByRecruiter(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+
+            Recruiters = new ObservableCollection<LyncCallByRecruiter>(l);
+
+
+            List<Recruiter> sips;
+            if (!String.IsNullOrEmpty(SelectedPhoneRoomName) && SelectedPhoneRoomName != PhoneRoomSvc.GetDefault().Name)
             {
                 sips =
-                (
-                    from x in _phoneroomRecruiterJobs
-                    where x.PhoneRoom == SelectedPhoneRoomName
-                    group x by new {x.sip, x.EmailAddress, x.DisplayName, x.Description}
-                    into grp
-                    select new Recruiter()
-                    {
-                        DisplayName = grp.Key.DisplayName,
-                        EmailAddress = grp.Key.EmailAddress,
-                        Description = grp.Key.Description
-                    })
-                    .OrderBy(c => c.DisplayName).ToList();
-              }
+                    (
+                        from x in _phoneroomRecruiterJobs
+                        where x.PhoneRoom == SelectedPhoneRoomName
+                        group x by new {x.sip, x.EmailAddress, x.DisplayName, x.Description}
+                        into grp
+                        select new Recruiter()
+                        {
+                            DisplayName = grp.Key.DisplayName,
+                            EmailAddress = grp.Key.EmailAddress,
+                            Description = grp.Key.Description
+                        })
+                        .OrderBy(c => c.DisplayName).ToList();
+            }
             else
             {
                 sips =
-                (
-                    from x in _phoneroomRecruiterJobs
-                    group x by new { x.sip, x.EmailAddress, x.DisplayName, x.Description }
+                    (
+                        from x in _phoneroomRecruiterJobs
+                        group x by new {x.sip, x.EmailAddress, x.DisplayName, x.Description}
                         into grp
                         select new Recruiter()
                         {
@@ -199,11 +202,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                         }).OrderBy(c => c.DisplayName).ToList();
             }
 
-            FilteredRecruiters =  new ObservableCollection<Recruiter>(sips);
+            FilteredRecruiters = new ObservableCollection<Recruiter>(sips);
         }
-    
     }
 }
-
-
-

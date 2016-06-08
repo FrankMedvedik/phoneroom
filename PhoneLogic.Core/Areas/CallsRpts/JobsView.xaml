@@ -10,52 +10,61 @@
              mc:Ignorable="d ignore">
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition  Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition  Height="Auto"/>
-                <RowDefinition  Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch" >
-                <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6"/>
+            <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Stretch" Margin="6" />
             </StackPanel>
-            <sdk:DataGrid Grid.Column="0" x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="250"   Grid.Row="1" FrozenColumnCount="1"
-                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="Auto" MaxWidth="1200"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="JobsDG_SelectionChanged" 
-                      ItemsSource="{Binding FilteredJobs}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedJob, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
-            <sdk:DataGrid.Columns>
-                <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
+            <sdk:DataGrid Grid.Column="0" x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="250" Grid.Row="1"
+                          FrozenColumnCount="1"
+                          Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+                          Width="Auto" MaxWidth="1200"
+                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                          SelectionChanged="JobsDG_SelectionChanged"
+                          ItemsSource="{Binding FilteredJobs}" VerticalAlignment="Top"
+                          SelectedItem="{Binding SelectedJob, Mode=TwoWay}"
+                          ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left"
+                          SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
                     <sdk:DataGridTextColumn Binding="{Binding TaskTypeID }" />
                     <sdk:DataGridTextColumn Binding="{Binding TaskName }" />
                     <sdk:DataGridTextColumn Binding="{Binding TaskDscr }" />
                     <sdk:DataGridTextColumn Binding="{Binding RecruiterCnt }" />
-                 <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}" />
-                <sdk:DataGridTextColumn Binding="{Binding FirstCallTimeFormatted }" />
-                <sdk:DataGridTextColumn Binding="{Binding LastCallTimeFormatted }" />
-                <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding OutgoingCallCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding TotalCallDurationFormatted }" />
-                <sdk:DataGridTextColumn Binding="{Binding MaxCallDurationFormatted }" />
-                <sdk:DataGridTextColumn Binding="{Binding AvgCallDurationFormatted }" />
-                <sdk:DataGridTextColumn Binding="{Binding UniqueCallerCnt }" />
-                <sdk:DataGridTextColumn Binding="{Binding CompleteCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding AbandonedCnt}" />
-                <sdk:DataGridTextColumn Binding="{Binding LeftMsgCnt}" />
-            </sdk:DataGrid.Columns>
-        </sdk:DataGrid>
-        <Button  Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="2" HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
-    </Grid>
-    <sdk:GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Width="Auto" Height="3" BorderBrush="#FFD6D6D6" BorderThickness="1,0" Opacity="0.715">
+                    <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}" />
+                    <sdk:DataGridTextColumn Binding="{Binding FirstCallTimeFormatted }" />
+                    <sdk:DataGridTextColumn Binding="{Binding LastCallTimeFormatted }" />
+                    <sdk:DataGridTextColumn Binding="{Binding CallCnt}" />
+                    <sdk:DataGridTextColumn Binding="{Binding IncomingCallCnt}" />
+                    <sdk:DataGridTextColumn Binding="{Binding OutgoingCallCnt}" />
+                    <sdk:DataGridTextColumn Binding="{Binding TotalCallDurationFormatted }" />
+                    <sdk:DataGridTextColumn Binding="{Binding MaxCallDurationFormatted }" />
+                    <sdk:DataGridTextColumn Binding="{Binding AvgCallDurationFormatted }" />
+                    <sdk:DataGridTextColumn Binding="{Binding UniqueCallerCnt }" />
+                    <sdk:DataGridTextColumn Binding="{Binding CompleteCnt}" />
+                    <sdk:DataGridTextColumn Binding="{Binding AbandonedCnt}" />
+                    <sdk:DataGridTextColumn Binding="{Binding LeftMsgCnt}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="2"
+                    HorizontalAlignment="Left" Width="100" Click="Button_Click">
+                Save To Excel
+            </Button>
+        </Grid>
+        <sdk:GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Width="Auto" Height="3" BorderBrush="#FFD6D6D6"
+                          BorderThickness="1,0" Opacity="0.715">
             <sdk:GridSplitter.Background>
                 <SolidColorBrush Opacity="1" Color="Gray" />
             </sdk:GridSplitter.Background>
         </sdk:GridSplitter>
-        <callsRpts:JobRecruitersView Grid.Row="2" Name="jrv"/>
+        <callsRpts:JobRecruitersView Grid.Row="2" Name="jrv" />
     </Grid>
 </UserControl>

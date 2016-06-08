@@ -3,6 +3,7 @@
 
   Summary:   Converter class for converting Boolean to Visibility. 
 =====================================================================*/
+
 using System.Windows;
 
 namespace PhoneLogic.Core.Converters
@@ -23,5 +24,5 @@ namespace PhoneLogic.Core.Converters
         {
             return ConvertCollapsed(!value);
         }
-    } 
+    }
 }

@@ -19,10 +19,9 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         public PhoneroomsView()
         {
             InitializeComponent();
-           _vm = new PhoneroomsViewModel ();
-           DataContext = _vm;
-           ShowDetails(false);
-
+            _vm = new PhoneroomsViewModel();
+            DataContext = _vm;
+            ShowDetails(false);
         }
 
         public void ShowDetails(bool b)
@@ -37,7 +36,8 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedPhoneroomProperty =
-            DependencyProperty.Register("SelectedPhoneroom", typeof(string), typeof(PhoneroomsView), new PropertyMetadata(""));
+            DependencyProperty.Register("SelectedPhoneroom", typeof(string), typeof(PhoneroomsView),
+                new PropertyMetadata(""));
 
 
         public List<Recruiter> PhoneroomRecruiters
@@ -48,7 +48,8 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PhoneroomRecruitersProperty =
-            DependencyProperty.Register("PhoneroomRecruiters", typeof(List<Recruiter>), typeof(PhoneroomsView), new PropertyMetadata(new List<Recruiter>()));
+            DependencyProperty.Register("PhoneroomRecruiters", typeof(List<Recruiter>), typeof(PhoneroomsView),
+                new PropertyMetadata(new List<Recruiter>()));
 
 
         public List<PhoneLogicTask> PhoneroomJobs
@@ -59,8 +60,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PhoneroomJobsProperty =
-            DependencyProperty.Register("PhoneroomJobs", typeof(List<PhoneLogicTask>), typeof(PhoneroomsView), new PropertyMetadata(new List<PhoneLogicTask>()));
-
-
+            DependencyProperty.Register("PhoneroomJobs", typeof(List<PhoneLogicTask>), typeof(PhoneroomsView),
+                new PropertyMetadata(new List<PhoneLogicTask>()));
     }
 }

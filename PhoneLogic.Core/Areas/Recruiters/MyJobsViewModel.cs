@@ -17,9 +17,9 @@ namespace PhoneLogic.Core.Areas.Recruiters
         {
             RefreshAll();
             StartAutoRefresh(ApiRefreshFrequency.UserDB);
-             Messenger.Default.Register<string>(this, HandleNotification);
-
+            Messenger.Default.Register<string>(this, HandleNotification);
         }
+
         private string headingText;
 
         public string HeadingText
@@ -31,10 +31,9 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 NotifyPropertyChanged();
             }
         }
-        
+
         private void HandleNotification(string message)
         {
-
             if (message == Notifications.AudioPlaybackStarted)
             {
                 CanRefresh = false;
@@ -44,11 +43,11 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 CanRefresh = true;
             }
         }
-    
+
         public async void GetMyJobs()
         {
             PhoneLogicTask s = null;
-            if(SelectedPhoneLogicTask != null)
+            if (SelectedPhoneLogicTask != null)
                 s = SelectedPhoneLogicTask;
 
             LoadDate = DateTime.Now;
@@ -59,15 +58,16 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 PhoneLogicTasks = new ObservableCollection<PhoneLogicTask>(mcb);
                 if (PhoneLogicTasks.Count > 0)
                 {
-                    HeadingText = String.Format("There are {0} jobs that have {1} voice mail messages and {2} calls today",
-                        PhoneLogicTasks.Count, PhoneLogicTasks.Sum(x => x.MsgCnt), PhoneLogicTasks.Sum(x => x.CallCnt));
+                    HeadingText =
+                        String.Format("There are {0} jobs that have {1} voice mail messages and {2} calls today",
+                            PhoneLogicTasks.Count, PhoneLogicTasks.Sum(x => x.MsgCnt),
+                            PhoneLogicTasks.Sum(x => x.CallCnt));
                     if (s != null)
                     {
                         SelectedPhoneLogicTask =
                             PhoneLogicTasks.FirstOrDefault(x => x.JobNum == s.JobNum && x.TaskID == s.TaskID);
                     }
                     ShowGridData = true;
-
                 }
                 else
                 {
@@ -75,25 +75,24 @@ namespace PhoneLogic.Core.Areas.Recruiters
                     HeadingText = "No jobs found";
                 }
                 LoadedOk = true;
-
             }
             catch (Exception e)
             {
                 HeadingText = "Load Error";
                 LoadFailed(e);
-
             }
         }
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-            if(CanRefresh)
+            if (CanRefresh)
                 GetMyJobs();
         }
 
         #region MyJobs
-        
+
         private ObservableCollection<PhoneLogicTask> _phoneLogicTask = new ObservableCollection<PhoneLogicTask>();
+
         public ObservableCollection<PhoneLogicTask> PhoneLogicTasks
         {
             get { return _phoneLogicTask; }
@@ -117,6 +116,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
         }
 
         private PhoneLogicTask _selectedPhoneLogicTask;
+
         public PhoneLogicTask SelectedPhoneLogicTask
         {
             get { return _selectedPhoneLogicTask; }
@@ -125,14 +125,14 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 if (_selectedPhoneLogicTask != value)
                 {
                     _selectedPhoneLogicTask = value;
-                   NotifyPropertyChanged();
+                    NotifyPropertyChanged();
                     CanRefresh = true;
                     Messenger.Default.Send(new NotificationMessage<PhoneLogicTask>(SelectedPhoneLogicTask,
-              Notifications.MySelectedPhoneLogicTaskChanged));
+                        Notifications.MySelectedPhoneLogicTaskChanged));
                 }
             }
         }
+
         #endregion
     }
 }
-

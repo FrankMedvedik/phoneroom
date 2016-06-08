@@ -26,13 +26,13 @@ namespace PhoneLogic.Core.Areas.DialHistory
             //    }
             //});
             Messenger.Default.Register<NotificationMessage<string>>(this, message =>
-                     {
-                         if (message.Notification == Notifications.PhoneNumberChanged)
-                         {
-                             PhoneNumber = message.Content;
-                             GetCalls();
-                         }
-                     });
+            {
+                if (message.Notification == Notifications.PhoneNumberChanged)
+                {
+                    PhoneNumber = message.Content;
+                    GetCalls();
+                }
+            });
         }
 
         public DateTime EndDate { get; set; }
@@ -40,6 +40,7 @@ namespace PhoneLogic.Core.Areas.DialHistory
         public DateTime StartDate { get; set; }
 
         private Call _selectedCall;
+
         public Call SelectedCall
         {
             get { return _selectedCall; }
@@ -47,11 +48,13 @@ namespace PhoneLogic.Core.Areas.DialHistory
             {
                 _selectedCall = value;
                 NotifyPropertyChanged();
-                Messenger.Default.Send(new NotificationMessage<Call>(this, SelectedCall, Notifications.DialHistoryCallChanged));
+                Messenger.Default.Send(new NotificationMessage<Call>(this, SelectedCall,
+                    Notifications.DialHistoryCallChanged));
             }
         }
 
-        private string _phoneNumber= null;
+        private string _phoneNumber = null;
+
         public string PhoneNumber
         {
             get { return _phoneNumber; }
@@ -63,6 +66,7 @@ namespace PhoneLogic.Core.Areas.DialHistory
         }
 
         private string _headingText;
+
         public string HeadingText
         {
             get { return _headingText; }
@@ -85,19 +89,23 @@ namespace PhoneLogic.Core.Areas.DialHistory
                 NotifyPropertyChanged();
             }
         }
+
         private bool _showInput = true;
 
         public bool ShowInput
         {
             get { return _showInput; }
-            set { _showInput = value; NotifyPropertyChanged(); }
+            set
+            {
+                _showInput = value;
+                NotifyPropertyChanged();
+            }
         }
 
-   
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-                GetCalls();
+            GetCalls();
         }
 
         public async void GetCalls()
@@ -110,15 +118,19 @@ namespace PhoneLogic.Core.Areas.DialHistory
             {
                 if (PhoneNumber != null)
                 {
-                    if(AllCalls)
+                    if (AllCalls)
                         ro = await LyncCallLogSvc.GetCalls(PhoneNumberSvc.GetNumbers(PhoneNumber));
                     else
-                        ro = await LyncCallLogSvc.GetCallsToPhoneNumber(PhoneNumberSvc.GetNumbers(PhoneNumber), StartDate, EndDate);
+                        ro =
+                            await
+                                LyncCallLogSvc.GetCallsToPhoneNumber(PhoneNumberSvc.GetNumbers(PhoneNumber), StartDate,
+                                    EndDate);
 
                     Calls = new ObservableCollection<Call>(ro.OrderByDescending(x => x.CallStartTime));
                     if (Calls.Count > 0)
                     {
-                        HeadingText = String.Format(" {0} has {1} calls", StringFormatSvc.PhoneNumberFormatted(PhoneNumber), Calls.Count());
+                        HeadingText = String.Format(" {0} has {1} calls",
+                            StringFormatSvc.PhoneNumberFormatted(PhoneNumber), Calls.Count());
                         ShowGridData = true;
                     }
                     else
@@ -127,7 +139,6 @@ namespace PhoneLogic.Core.Areas.DialHistory
                         ShowGridData = false;
                     }
                     LoadedOk = true;
-                    
                 }
             }
             catch (Exception e)
@@ -147,5 +158,3 @@ namespace PhoneLogic.Core.Areas.DialHistory
     //    public DateTime EndDate { get; set; }
     //}
 }
-
-

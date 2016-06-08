@@ -5,19 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ignore="http://www.galasoft.ch/ignore"
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
-             mc:Ignorable="d ignore" >
+             mc:Ignorable="d ignore">
     <Grid>
-        <toolkit:Chart x:Name="CallsChart"  Title="Calls" Width="600" Height="500" 
-           Background="#FFA1E6B7">
+        <toolkit:Chart x:Name="CallsChart" Title="Calls" Width="600" Height="500"
+                       Background="#FFA1E6B7">
             <toolkit:Chart.Series>
                 <toolkit:BarSeries Title="Inbound"
-            IndependentValueBinding="{Binding Path=Key}"
-            DependentValueBinding="{Binding Path=Value}">
-                </toolkit:BarSeries>
-                    <toolkit:BarSeries Title="Outbound"
-            IndependentValueBinding="{Binding Path=Key}"
-            DependentValueBinding="{Binding Path=Value}">
-                    </toolkit:BarSeries>
+                                   IndependentValueBinding="{Binding Path=Key}"
+                                   DependentValueBinding="{Binding Path=Value}" />
+                <toolkit:BarSeries Title="Outbound"
+                                   IndependentValueBinding="{Binding Path=Key}"
+                                   DependentValueBinding="{Binding Path=Value}" />
                 <!--<toolkit:BarSeries Title="Total"
             IndependentValueBinding="{Binding Path=Key}"
             DependentValueBinding="{Binding Path=Value}">

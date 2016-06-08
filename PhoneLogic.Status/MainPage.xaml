@@ -12,8 +12,8 @@
     <Grid x:Name="LayoutRoot">
         <ScrollViewer>
             <toolkit:WrapPanel Orientation="Vertical">
-            <!--<reportCriteria:PhoneroomsView x:Name="pv" />-->
-            <phoneRooms:CallsInQueueView/>
+                <reportCriteria:PhoneroomsView x:Name="pv" />
+                <phoneRooms:CallsInQueueView/>
             <phoneRooms:ActiveCallsView />
             <views:BuildInformationView />
             </toolkit:WrapPanel>

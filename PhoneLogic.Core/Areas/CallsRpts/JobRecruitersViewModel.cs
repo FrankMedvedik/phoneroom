@@ -15,37 +15,39 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private bool _canRefresh = true;
+
         public Boolean CanRefresh
         {
             get { return _canRefresh; }
             set { _canRefresh = value; }
         }
 
-
         #region reporting variables
-        public  ReportDateRange ReportDateRange = new ReportDateRange();
+
+        public ReportDateRange ReportDateRange = new ReportDateRange();
+
         #endregion
 
         private ObservableCollection<ByRecruitersForJob> _jobRecruiters = new ObservableCollection<ByRecruitersForJob>();
-        
+
         private string _callRptJobNum;
+
         public string CallRptJobNum
         {
             get { return _callRptJobNum; }
-            set { 
-                _callRptJobNum = value; 
-                  NotifyPropertyChanged();
+            set
+            {
+                _callRptJobNum = value;
+                NotifyPropertyChanged();
             }
         }
 
 
         private string _headingText;
+
         public string HeadingText
         {
-            get
-            {
-                return _headingText;
-            }
+            get { return _headingText; }
             set
             {
                 _headingText = value;
@@ -56,10 +58,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         public ObservableCollection<ByRecruitersForJob> JobRecruiters
         {
-            get
-            {
-                return _jobRecruiters;
-            }
+            get { return _jobRecruiters; }
             set
             {
                 _jobRecruiters = value;
@@ -68,18 +67,20 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        private ByRecruitersForJob  _selectedRecruiter;
+        private ByRecruitersForJob _selectedRecruiter;
+
         public ByRecruitersForJob SelectedRecruiter
         {
             get { return _selectedRecruiter; }
-            set {
+            set
+            {
                 _selectedRecruiter = value;
                 NotifyPropertyChanged();
             }
         }
 
-        
-        protected override void RefreshAll (object sender, EventArgs e)
+
+        protected override void RefreshAll(object sender, EventArgs e)
         {
             if (CanRefresh)
             {
@@ -97,11 +98,13 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 try
                 {
                     var ro = await LyncCallLogSvc.GetLynRecruitersForJob(_callRptJobNum, ReportDateRange.StartRptDate,
-                                ReportDateRange.EndRptDate);
-                        ShowGridData = true;
-                        JobRecruiters = new ObservableCollection<ByRecruitersForJob>(ro);
-                        HeadingText = String.Format("Job {0} has {1} Recruiters with call activity between {2} and {3}", StringFormatSvc.JobAndTaskFormatted(CallRptJobNum), JobRecruiters.Count, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                        LoadedOk = true;
+                        ReportDateRange.EndRptDate);
+                    ShowGridData = true;
+                    JobRecruiters = new ObservableCollection<ByRecruitersForJob>(ro);
+                    HeadingText = String.Format("Job {0} has {1} Recruiters with call activity between {2} and {3}",
+                        StringFormatSvc.JobAndTaskFormatted(CallRptJobNum), JobRecruiters.Count,
+                        ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                    LoadedOk = true;
                 }
                 catch (Exception e)
                 {
@@ -110,6 +113,5 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 }
             }
         }
-
     }
 }

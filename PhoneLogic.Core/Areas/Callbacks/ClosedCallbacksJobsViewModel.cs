@@ -16,18 +16,20 @@ namespace PhoneLogic.Core.Areas.Callbacks
     {
         public ClosedCallbacksJobsViewModel()
         {
-          Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
+            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
                 if (message.Notification == Notifications.GlobalReportCriteriaChanged)
                 {
-                        ReportDateRange = message.Content.ReportDateRange;
-                        Phoneroom = message.Content.Phoneroom;
-                        PhoneroomJobs = message.Content.PhoneroomJobs;
-                        RefreshAll(null,null);
+                    ReportDateRange = message.Content.ReportDateRange;
+                    Phoneroom = message.Content.Phoneroom;
+                    PhoneroomJobs = message.Content.PhoneroomJobs;
+                    RefreshAll(null, null);
                 }
             });
         }
+
         #region reporting variables
+
         public ReportDateRange ReportDateRange = new ReportDateRange();
 
         public string Phoneroom
@@ -38,7 +40,6 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 _phoneroom = value;
                 NotifyPropertyChanged();
             }
-            
         }
 
         public List<PhoneLogicTask> PhoneroomJobs
@@ -46,7 +47,8 @@ namespace PhoneLogic.Core.Areas.Callbacks
             get { return _phoneroomJobs; }
             set
             {
-                _phoneroomJobs = value; NotifyPropertyChanged();
+                _phoneroomJobs = value;
+                NotifyPropertyChanged();
                 FilterJobs();
             }
         }
@@ -58,10 +60,10 @@ namespace PhoneLogic.Core.Areas.Callbacks
         private CallbackRpt _selectedJob;
         private List<CallbackRpt> Jobs = new List<CallbackRpt>();
 
-        
+
         protected override void RefreshAll(object sender, EventArgs e)
         {
-           GetJobs();
+            GetJobs();
         }
 
         private string _headingText;
@@ -85,7 +87,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 NotifyPropertyChanged();
             }
         }
-        
+
         private string _phoneroom;
         private List<PhoneLogicTask> _phoneroomJobs;
         private ObservableCollection<CallbackRpt> _filteredJobs = new ObservableCollection<CallbackRpt>();
@@ -99,16 +101,18 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 NotifyPropertyChanged();
             }
         }
-        
+
         private void FilterJobs()
         {
-                var rx = (from c in Jobs
-                            join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
-                            select c).ToList().OrderByDescending(x => x.CallbackCnt);
-                ShowGridData = true;
-                FilteredJobs = new ObservableCollection<CallbackRpt>(rx.ToList());
-                HeadingText = string.Format("{0} Phone Room has {1} Jobs with Closed Callbacks as of {2}", Phoneroom, FilteredJobs.Count() , DateTime.Now );
+            var rx = (from c in Jobs
+                join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
+                select c).ToList().OrderByDescending(x => x.CallbackCnt);
+            ShowGridData = true;
+            FilteredJobs = new ObservableCollection<CallbackRpt>(rx.ToList());
+            HeadingText = string.Format("{0} Phone Room has {1} Jobs with Closed Callbacks as of {2}", Phoneroom,
+                FilteredJobs.Count(), DateTime.Now);
         }
+
         public async void GetJobs()
         {
             HeadingText = "Loading...";
@@ -117,7 +121,9 @@ namespace PhoneLogic.Core.Areas.Callbacks
             try
             {
                 var s = SelectedJob;
-                Jobs = await ClosedCallbackSvc.GetClosedCallbackRpt(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                Jobs =
+                    await
+                        ClosedCallbackSvc.GetClosedCallbackRpt(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                 LoadedOk = true;
                 FilterJobs();
                 if (s != null)
@@ -131,6 +137,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 HeadingText = e.Message;
             }
         }
+
         #endregion
     }
 }

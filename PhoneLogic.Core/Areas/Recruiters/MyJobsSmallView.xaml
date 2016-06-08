@@ -1,17 +1,17 @@
-﻿<UserControl 
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="PhoneLogic.Core.Areas.Recruiters.MyJobsSmallView"
-    mc:Ignorable="d" VerticalAlignment="Top"  HorizontalAlignment="Left">
+    mc:Ignorable="d" VerticalAlignment="Top" HorizontalAlignment="Left">
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Job" FontSize="12" Margin="6" VerticalAlignment="Center"  Visibility="Collapsed"/>
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" Name="comboBox1" 
-                  VerticalAlignment="Center" Width="140" ItemsSource="{Binding Path=PhoneLogicTasks, Mode=OneWay}" 
-                  SelectedValue="{Binding Path=SelectedPhoneLogicTask, Mode=TwoWay}" 
-                  DisplayMemberPath="JobFormatted" />
+            <TextBlock Text="Job" FontSize="12" Margin="6" VerticalAlignment="Center" Visibility="Collapsed" />
+            <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" Name="comboBox1"
+                      VerticalAlignment="Center" Width="140" ItemsSource="{Binding Path=PhoneLogicTasks, Mode=OneWay}"
+                      SelectedValue="{Binding Path=SelectedPhoneLogicTask, Mode=TwoWay}"
+                      DisplayMemberPath="JobFormatted" />
         </StackPanel>
     </Grid>
 </UserControl>

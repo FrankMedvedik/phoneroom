@@ -12,6 +12,7 @@ namespace PhoneLogic.Core.ViewModels
         {
             LoadedOk = true;
         }
+
         protected void StartAutoRefresh(int refreshIntervalInSeconds)
         {
             _timer = new System.Windows.Threading.DispatcherTimer();
@@ -34,6 +35,7 @@ namespace PhoneLogic.Core.ViewModels
         }
 
         private String _DataStatusHeadingMsg = "";
+
         public String DataStatusHeadingMsg
         {
             get { return _DataStatusHeadingMsg; }
@@ -44,7 +46,8 @@ namespace PhoneLogic.Core.ViewModels
             }
         }
 
-        private String _DataStatusMsg ="";
+        private String _DataStatusMsg = "";
+
         public String DataStatusMsg
         {
             get { return _DataStatusMsg; }
@@ -56,6 +59,7 @@ namespace PhoneLogic.Core.ViewModels
         }
 
         private Boolean _showGridData;
+
         public Boolean ShowGridData
         {
             get { return _showGridData; }
@@ -67,6 +71,7 @@ namespace PhoneLogic.Core.ViewModels
         }
 
         private DateTime _loadDate;
+
         public DateTime LoadDate
         {
             get { return _loadDate; }
@@ -90,6 +95,7 @@ namespace PhoneLogic.Core.ViewModels
         }
 
         private Boolean _loadedOk;
+
         public Boolean LoadedOk
         {
             get { return _loadedOk; }
@@ -101,6 +107,7 @@ namespace PhoneLogic.Core.ViewModels
         }
 
         private string _loadError;
+
         public string LoadError
         {
             get { return _loadError; }
@@ -112,6 +119,7 @@ namespace PhoneLogic.Core.ViewModels
         }
 
         private string _loadMethod;
+
         public string LoadMethod
         {
             get { return _loadMethod; }
@@ -130,7 +138,6 @@ namespace PhoneLogic.Core.ViewModels
             if (e.InnerException != null)
                 if (!String.IsNullOrEmpty(e.InnerException.Message))
                     LoadError = LoadError + e.InnerException.Message;
-
         }
     }
 }

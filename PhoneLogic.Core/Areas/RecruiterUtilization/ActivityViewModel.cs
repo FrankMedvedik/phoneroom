@@ -7,8 +7,8 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
 {
     public class ActivityViewModel : ViewModelBase
     {
-
         private string _headingText;
+
         public string HeadingText
         {
             get { return _headingText; }
@@ -19,7 +19,7 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
             }
         }
 
-        private string  _sip;
+        private string _sip;
 
         public string sip
         {
@@ -33,13 +33,14 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
 
         private ObservableCollection<RecruiterActivity> _recruiterActivities;
 
-        public ObservableCollection<RecruiterActivity> RecruiterActivities { get { return _recruiterActivities; }
-            set { _recruiterActivities = value;
-            NotifyPropertyChanged();
-        } }
-
+        public ObservableCollection<RecruiterActivity> RecruiterActivities
+        {
+            get { return _recruiterActivities; }
+            set
+            {
+                _recruiterActivities = value;
+                NotifyPropertyChanged();
+            }
+        }
     }
-
 }
-
-

@@ -13,8 +13,9 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
     public partial class GlobalReportCriteriaView : UserControl
     {
         private Visibility _showControl;
-        private GlobalReportCriteria grc{ get; set; }
+        private GlobalReportCriteria grc { get; set; }
         private System.Windows.Threading.DispatcherTimer _timer;
+
         /// <summary>
         /// Initializes a new instance of the GlobalReportCriteriaView class.
         /// </summary>
@@ -32,6 +33,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 }
             });
         }
+
         protected void StartAutoRefresh(int refreshIntervalInSeconds)
         {
             _timer = new System.Windows.Threading.DispatcherTimer();
@@ -49,10 +51,10 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         }
 
         public bool AutoRefresh { get; set; }
-        
+
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-                SendUpdateMessage();
+            SendUpdateMessage();
         }
 
         private void chkAutoRefresh_Checked(object sender, RoutedEventArgs e)

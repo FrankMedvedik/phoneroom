@@ -4,7 +4,7 @@ using Silverlight.Base.MVVMBaseTypes;
 
 namespace PhoneLogic.Core.ViewModels
 {
-    public class TimerViewModel : ViewModelBase 
+    public class TimerViewModel : ViewModelBase
     {
         public TimerViewModel()
         {
@@ -18,7 +18,6 @@ namespace PhoneLogic.Core.ViewModels
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
             startTime = DateTime.Now;
-            
         }
 
         public void Stop()
@@ -39,7 +38,5 @@ namespace PhoneLogic.Core.ViewModels
         {
             NotifyPropertyChanged("TimeFromStart");
         }
-
-        
     }
 }

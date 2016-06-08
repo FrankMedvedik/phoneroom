@@ -4,13 +4,13 @@ using System.Windows.Data;
 using System.Windows.Media;
 
 namespace PhoneLogic.Core.Converters
-{                
+{
     public class IntToBrush : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             int? input = value as int?;
-            if(input == null)
+            if (input == null)
                 return DependencyProperty.UnsetValue;
 
             switch (input)
@@ -23,7 +23,8 @@ namespace PhoneLogic.Core.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
         {
             throw new NotSupportedException();
         }

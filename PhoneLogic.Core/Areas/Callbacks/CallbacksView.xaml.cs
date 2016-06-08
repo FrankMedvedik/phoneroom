@@ -9,7 +9,7 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Areas.Callbacks
 {
-    public partial class CallbacksView 
+    public partial class CallbacksView
     {
         private readonly CallBacksViewModel _vm;
 
@@ -24,7 +24,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             dhv.AllCalls = false;
         }
 
-        public string SelectedJobNum 
+        public string SelectedJobNum
         {
             get { return _vm.SelectedJobNum; }
             set
@@ -34,9 +34,11 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 AudioPlayer.Visibility = Visibility.Collapsed;
             }
         }
+
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedJobNumProperty =
-            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(CallbacksView), new PropertyMetadata(""));
+            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(CallbacksView),
+                new PropertyMetadata(""));
 
         public DateTime? LastCallBackStartTime
         {
@@ -45,7 +47,8 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LastCallBackStartTimeProperty =
-            DependencyProperty.Register("LastCallBackStartTime", typeof(DateTime?), typeof(CallbacksView), new PropertyMetadata(DateTime.Today));
+            DependencyProperty.Register("LastCallBackStartTime", typeof(DateTime?), typeof(CallbacksView),
+                new PropertyMetadata(DateTime.Today));
 
 
         public int SelectedTaskId
@@ -75,13 +78,15 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ReportDateRangeProperty =
-            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(CallbacksView), new PropertyMetadata(new ReportDateRange()));
+            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(CallbacksView),
+                new PropertyMetadata(new ReportDateRange()));
 
         public void Refresh()
         {
             dhv.Visibility = Visibility.Collapsed;
             _vm.RefreshAll();
         }
+
         public bool ShowData
         {
             get { return _vm.ShowGridData; }
@@ -90,9 +95,9 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 _vm.ShowGridData = value;
                 AudioPlayer.Visibility = System.Windows.Visibility.Collapsed;
                 _vm.HeadingText = "";
-
             }
         }
+
         private async void CloseCallback_Click(object sender, RoutedEventArgs e)
         {
             // set the status of the callback to closed
@@ -123,10 +128,10 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 return;
             }
 
-            if (!String.IsNullOrWhiteSpace(_vm.SelectedMyCallback.status))  
+            if (!String.IsNullOrWhiteSpace(_vm.SelectedMyCallback.status))
             {
                 if (MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",
-                    MessageBoxButton.OKCancel) != MessageBoxResult.OK) 
+                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
                     return;
             }
 
@@ -151,8 +156,6 @@ namespace PhoneLogic.Core.Areas.Callbacks
                     _vm.SelectedMyCallback.phoneFormatted);
                 AudioPlayer.Visibility = Visibility.Visible;
             }
-
-
         }
 
         private void callbackGrid_Loaded(object sender, RoutedEventArgs e)
@@ -164,7 +167,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
         public void StartTimer()
         {
             System.Windows.Threading.DispatcherTimer myDispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0); 
+            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0);
             myDispatcherTimer.Tick += new EventHandler(Each_Tick);
             myDispatcherTimer.Start();
         }
@@ -173,29 +176,26 @@ namespace PhoneLogic.Core.Areas.Callbacks
         int i = 0;
 
 
-        public bool OpenCallbacksOnly   
+        public bool OpenCallbacksOnly
         {
             get { return _vm.OpenCallbacksOnly; }
-            set { _vm.OpenCallbacksOnly = value;  }
+            set { _vm.OpenCallbacksOnly = value; }
         }
 
         // Using a DependencyProperty as the backing store for OpenCallbacksOnlyMyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty OpenCallbacksOnlyProperty =
-            DependencyProperty.Register("OpenCallbacksOnly", typeof(bool), typeof(CallbacksView), new PropertyMetadata(false));
-
-
+            DependencyProperty.Register("OpenCallbacksOnly", typeof(bool), typeof(CallbacksView),
+                new PropertyMetadata(false));
 
 
         public void Each_Tick(object o, EventArgs sender)
         {
             _vm.CanCall = true;
             _vm.ActionMsg = "";
-           
         }
 
         public void ResizeGrid()
         {
-            
             //tbGridSize.Text = String.Format("Width : {0}  Height : {1} ", BrowserInfoSvc.ClientWidth,
             //    BrowserInfoSvc.ClientHeight);
             if (BrowserInfoSvc.ClientWidth < UserInterfaceTimings.ResizeBoundryWidth)
@@ -210,28 +210,26 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 callbackGrid.Columns[3].Visibility = Visibility.Visible;
                 //callbackGrid.Columns[4].Visibility = Visibility.Visible;
             }
-
         }
+
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
                 callbackGrid.Export("MyCallbacks");
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error Saving file - " + ex.Message);
             }
-
         }
+
         private void CallbackDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SetupAudioPlayback();
 
             if (_vm.SelectedMyCallback != null)
             {
-                
                 dhv.PhoneNumber = _vm.SelectedMyCallback.phoneNum;
                 dhv.StartDate = _vm.SelectedMyCallback.timeEntered;
                 dhv.EndDate = DateTime.Now;
@@ -241,6 +239,5 @@ namespace PhoneLogic.Core.Areas.Callbacks
             else
                 dhv.Visibility = Visibility.Collapsed;
         }
-
     }
 }

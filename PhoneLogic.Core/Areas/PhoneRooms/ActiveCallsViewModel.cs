@@ -12,11 +12,12 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public class ActiveCallsViewModel : CollectionViewModelBase
     {
-
         #region ActiveCalls
 
         ObservableCollection<ActiveCallDetail> _activeCalls = new ObservableCollection<ActiveCallDetail>();
-        private ObservableCollection<ActiveCallDetail> _filteredActiveCalls = new ObservableCollection<ActiveCallDetail>();
+
+        private ObservableCollection<ActiveCallDetail> _filteredActiveCalls =
+            new ObservableCollection<ActiveCallDetail>();
 
         public ObservableCollection<ActiveCallDetail> ActiveCalls
         {
@@ -46,23 +47,19 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         private void FilterCalls()
         {
             var acd = new ObservableCollection<ActiveCallDetail>();
-                if(MyRecruiters.Any() && ActiveCalls.Any())
-                    acd = new ObservableCollection<ActiveCallDetail>
-                        (from c in ActiveCalls
-                            join b in MyRecruiters on c.RecruiterUri equals b.sip
-                            select c);
-                FilteredActiveCalls = acd;
-                if (FilteredActiveCalls.Any())
-                    ShowGridData = true;
-                else
-                    ShowGridData = false;
-
-
-
+            if (MyRecruiters.Any() && ActiveCalls.Any())
+                acd = new ObservableCollection<ActiveCallDetail>
+                    (from c in ActiveCalls
+                        join b in MyRecruiters on c.RecruiterUri equals b.sip
+                        select c);
+            FilteredActiveCalls = acd;
+            if (FilteredActiveCalls.Any())
+                ShowGridData = true;
+            else
+                ShowGridData = false;
         }
 
         #endregion
-
 
         // sets up the 
         public ActiveCallsViewModel()
@@ -79,10 +76,9 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 }
             });
             RefreshAll();
-
         }
 
-        public List<Recruiter> MyRecruiters { get; set; } 
+        public List<Recruiter> MyRecruiters { get; set; }
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
@@ -90,23 +86,20 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
             FilterCalls();
         }
 
-
         #region SelectedActiveCall
 
         private ActiveCallDetail _selectedActiveCall;
+
         public ActiveCallDetail SelectedActiveCall
         {
-            get
-            {
-                return _selectedActiveCall;
-            }
+            get { return _selectedActiveCall; }
             set
             {
                 _selectedActiveCall = value;
                 NotifyPropertyChanged();
             }
         }
-        
+
         #endregion
 
         public async void GetActiveCalls()
@@ -122,8 +115,8 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 LoadFailed(e);
             }
         }
-        #region DisplayColors
 
+        #region DisplayColors
 
         public string TheBackground
         {
@@ -145,7 +138,8 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
         public string TheForeground
         {
-            get {
+            get
+            {
                 var callCnt = 0;
                 try
                 {
@@ -159,10 +153,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 return ColorMappingSvc.GetForeground(callCnt);
             }
         }
+
         #endregion
-
-
-
-
     }
 }

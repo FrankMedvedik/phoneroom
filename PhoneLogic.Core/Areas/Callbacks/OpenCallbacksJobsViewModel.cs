@@ -17,7 +17,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
     {
         public OpenCallbacksJobsViewModel()
         {
-          Messenger.Default.Register<NotificationMessage>(this, message =>
+            Messenger.Default.Register<NotificationMessage>(this, message =>
             {
                 if (message.Notification == Notifications.AutoRefreshNow)
                 {
@@ -26,15 +26,16 @@ namespace PhoneLogic.Core.Areas.Callbacks
             });
             GetJobs();
         }
-        #region reporting variables
 
+        #region reporting variables
 
         public List<PhoneLogicTask> PhoneroomJobs
         {
             get { return _phoneroomJobs; }
             set
             {
-                _phoneroomJobs = value; NotifyPropertyChanged();
+                _phoneroomJobs = value;
+                NotifyPropertyChanged();
                 FilterJobs();
             }
         }
@@ -46,10 +47,10 @@ namespace PhoneLogic.Core.Areas.Callbacks
         private CallbackRpt _selectedJob;
         private List<CallbackRpt> Jobs = new List<CallbackRpt>();
 
-        
+
         protected override void RefreshAll(object sender, EventArgs e)
         {
-           GetJobs();
+            GetJobs();
         }
 
         private string _headingText;
@@ -73,7 +74,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 NotifyPropertyChanged();
             }
         }
-        
+
         private string _phoneroom;
         private List<PhoneLogicTask> _phoneroomJobs;
         private ObservableCollection<CallbackRpt> _filteredJobs = new ObservableCollection<CallbackRpt>();
@@ -87,16 +88,17 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 NotifyPropertyChanged();
             }
         }
-        
+
         private void FilterJobs()
         {
-                var rx = (from c in Jobs
-                            //join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
-                            select c).ToList().OrderByDescending(x => x.CallbackCnt);
-                ShowGridData = true;
-                FilteredJobs = new ObservableCollection<CallbackRpt>(rx.ToList());
-                HeadingText = string.Format("{0} Jobs with Open Callbacks as of {1}", FilteredJobs.Count(),  DateTime.Now );
+            var rx = (from c in Jobs
+                //join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
+                select c).ToList().OrderByDescending(x => x.CallbackCnt);
+            ShowGridData = true;
+            FilteredJobs = new ObservableCollection<CallbackRpt>(rx.ToList());
+            HeadingText = string.Format("{0} Jobs with Open Callbacks as of {1}", FilteredJobs.Count(), DateTime.Now);
         }
+
         public async void GetJobs()
         {
             HeadingText = "Loading...";
@@ -105,7 +107,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             try
             {
                 var s = SelectedJob;
-                    Jobs = await OpenCallbackSvc.GetOpenCallbackRpt();
+                Jobs = await OpenCallbackSvc.GetOpenCallbackRpt();
                 LoadedOk = true;
                 FilterJobs();
                 if (s != null)
@@ -119,6 +121,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 HeadingText = e.Message;
             }
         }
+
         #endregion
     }
 }

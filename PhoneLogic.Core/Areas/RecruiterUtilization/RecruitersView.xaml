@@ -9,19 +9,22 @@
              mc:Ignorable="d ignore">
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding HeadingText}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Margin="6"/>
+        <TextBlock Text="{Binding HeadingText}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Margin="6" />
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-        <StackPanel Orientation="Vertical" >
-                <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300" 
-                       Width="Auto" FrozenColumnCount="2"
-                    VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto"    SelectionChanged="RecruitersDG_SelectionChanged"
-                      ItemsSource="{Binding Recruiters}"  VerticalAlignment="Top" SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"  
-                    ToolTipService.ToolTip="Recruiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
+            <StackPanel Orientation="Vertical">
+                <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" MaxHeight="300"
+                              Width="Auto" FrozenColumnCount="2"
+                              VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                              SelectionChanged="RecruitersDG_SelectionChanged"
+                              ItemsSource="{Binding Recruiters}" VerticalAlignment="Top"
+                              SelectedItem="{Binding SelectedRecruiter, Mode=TwoWay}"
+                              ToolTipService.ToolTip="Recruiters" Margin="6" HorizontalAlignment="Left"
+                              SelectionMode="Single">
                     <sdk:DataGrid.Columns>
                         <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
                         <sdk:DataGridTextColumn Binding="{Binding InboundCallCnt}" />
@@ -31,25 +34,27 @@
                         <sdk:DataGridTextColumn Binding="{Binding TotalIdleDurationFormatted}" />
                     </sdk:DataGrid.Columns>
                 </sdk:DataGrid>
-                <Button  HorizontalAlignment="Left"  Width="100" Click="Button_Click" >Save To Excel</Button>
+                <Button HorizontalAlignment="Left" Width="100" Click="Button_Click">Save To Excel</Button>
                 <recruiterUtilization:ActivityView Name="av" Margin="6" />
             </StackPanel>
-            <StackPanel  Margin="6"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-                <TextBlock  HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text=""/>
-                <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
-                    <TextBlock Text="Error during load"/>
+            <StackPanel Margin="6"
+                        Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+                <TextBlock HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text="" />
+                <StackPanel Orientation="Vertical"
+                            Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}">
+                    <TextBlock Text="Error during load" />
                     <TextBlock Text="{Binding LoadMethod}" />
                     <TextBlock Text="{Binding LoadError}" />
                 </StackPanel>
             </StackPanel>
-                <sdk:TabControl  Width="Auto" Margin="6" >
-                    <sdk:TabItem  Header="Calls" VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <recruiterUtilization:RecruitersCallsChartView  Name="CallChart" />
-                    </sdk:TabItem>
-                    <sdk:TabItem  Header="Time">
-                        <recruiterUtilization:RecruitersTimeChartView   Name="TimeChart"/>
-                    </sdk:TabItem>
-                </sdk:TabControl>
+            <sdk:TabControl Width="Auto" Margin="6">
+                <sdk:TabItem Header="Calls" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <recruiterUtilization:RecruitersCallsChartView Name="CallChart" />
+                </sdk:TabItem>
+                <sdk:TabItem Header="Time">
+                    <recruiterUtilization:RecruitersTimeChartView Name="TimeChart" />
+                </sdk:TabItem>
+            </sdk:TabControl>
         </StackPanel>
     </Grid>
 </UserControl>

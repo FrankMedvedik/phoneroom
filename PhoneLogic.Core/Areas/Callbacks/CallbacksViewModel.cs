@@ -10,14 +10,12 @@ using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.Callbacks
-    
+
 {
     public class CallBacksViewModel : CollectionViewModelBase
     {
-     
         public CallBacksViewModel()
         {
-            
         }
 
         private Boolean _canRefresh = true;
@@ -31,6 +29,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 NotifyPropertyChanged();
             }
         }
+
         public DateTime? LastCallBackStartTime
         {
             get
@@ -54,16 +53,16 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-                if (OpenCallbacksOnly)
-                    GetOpenCallbacks();
-                else
-                    GetClosedCallbacks();
+            if (OpenCallbacksOnly)
+                GetOpenCallbacks();
+            else
+                GetClosedCallbacks();
         }
 
-
         #region myCallbacks
-        
+
         private ObservableCollection<myCallback> _myCallbacks;
+
         public ObservableCollection<myCallback> MyCallbacks
         {
             get { return _myCallbacks; }
@@ -76,10 +75,10 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         #endregion
 
-
         #region SelectedCallback
 
         private myCallback _selectedMyCallback;
+
         public myCallback SelectedMyCallback
         {
             get { return _selectedMyCallback; }
@@ -102,7 +101,11 @@ namespace PhoneLogic.Core.Areas.Callbacks
         public bool ShowAudioPlayer
         {
             get { return _showAudioPlayer; }
-            set { _showAudioPlayer = value; NotifyPropertyChanged(); }
+            set
+            {
+                _showAudioPlayer = value;
+                NotifyPropertyChanged();
+            }
         }
 
         #endregion
@@ -116,9 +119,9 @@ namespace PhoneLogic.Core.Areas.Callbacks
             {
                 _selectedJobNum = value;
                 NotifyPropertyChanged();
-
             }
         }
+
         private int _selectedTaskId;
 
         public int SelectedTaskId
@@ -131,7 +134,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             }
         }
 
-                    private string _headingText;
+        private string _headingText;
 
         public string HeadingText
         {
@@ -147,10 +150,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         public Boolean CanCall
         {
-            get
-            {
-                return _canCall;
-            }
+            get { return _canCall; }
             set
             {
                 _canCall = value;
@@ -159,7 +159,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
         }
 
 
-        private String _actionMsg ;
+        private String _actionMsg;
 
         public String ActionMsg
         {
@@ -198,16 +198,17 @@ namespace PhoneLogic.Core.Areas.Callbacks
                     var ro = await OpenCallbackSvc.GetOpenJobCallbacks(SelectedJobNum, SelectedTaskId.ToString());
                     ShowGridData = true;
                     MyCallbacks = new ObservableCollection<myCallback>(ro.OrderByDescending(x => x.timeEntered));
-                    HeadingText = String.Format("Job {0} has {1} Voice Mail Messages", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
+                    HeadingText = String.Format("Job {0} has {1} Voice Mail Messages",
+                        StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
                     LoadedOk = true;
                 }
-                
             }
             catch (Exception e)
             {
                 LoadFailed(e);
             }
         }
+
         public async void GetClosedCallbacks()
         {
             ShowGridData = false;
@@ -218,20 +219,18 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 {
                     HeadingText = "Loading...";
                     var ro = await ClosedCallbackSvc.GetClosedJobCallbacks(SelectedJobNum, SelectedTaskId.ToString(),
-                                ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                        ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     ShowGridData = true;
                     MyCallbacks = new ObservableCollection<myCallback>(ro.OrderByDescending(x => x.timeEntered));
-                    HeadingText = String.Format("Job {0} has {1} Voice Mail Messages", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
+                    HeadingText = String.Format("Job {0} has {1} Voice Mail Messages",
+                        StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), MyCallbacks.Count());
                     LoadedOk = true;
                 }
-
             }
             catch (Exception e)
             {
                 LoadFailed(e);
             }
         }
-
-
     }
 }

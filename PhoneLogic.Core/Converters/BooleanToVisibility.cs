@@ -5,6 +5,7 @@
 
 
 =====================================================================*/
+
 using System;
 using System.Globalization;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace PhoneLogic.Core.Converters
             {
                 value = System.Convert.ToBoolean(value);
             }
-            return ConvertValue((bool)value);
+            return ConvertValue((bool) value);
         }
 
         /// <summary>
@@ -54,9 +55,9 @@ namespace PhoneLogic.Core.Converters
         /// <returns></returns>
         internal static Visibility ConvertCollapsed(bool isVisible)
         {
-            return isVisible ?
-                        Visibility.Visible :
-                        Visibility.Collapsed;
+            return isVisible
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
     }
 }

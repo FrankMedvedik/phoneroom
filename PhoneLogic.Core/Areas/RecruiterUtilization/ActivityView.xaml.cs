@@ -53,11 +53,13 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RecruiterActivitiesProperty =
-            DependencyProperty.Register("RecruiterActivities", typeof(List<RecruiterActivity>), typeof(ActivityView), new PropertyMetadata(new List<RecruiterActivity>()));
+            DependencyProperty.Register("RecruiterActivities", typeof(List<RecruiterActivity>), typeof(ActivityView),
+                new PropertyMetadata(new List<RecruiterActivity>()));
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-        try {
+            try
+            {
                 ActivitiesDG.Export("RecruiterActivities");
             }
             catch (Exception ex)
@@ -65,6 +67,5 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
                 MessageBox.Show("Error Saving file - " + ex.Message);
             }
         }
-
     }
 }

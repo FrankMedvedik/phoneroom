@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.Core.Services;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 using PhoneLogic.Model;
+
 namespace PhoneLogic.Core.Areas.DialHistory
 {
     /// <summary>
@@ -27,8 +28,8 @@ namespace PhoneLogic.Core.Areas.DialHistory
             //    }
             //});
             AudioPlayer.Visibility = Visibility.Collapsed;
-
         }
+
         public void Refresh()
         {
             _vm.RefreshAll();
@@ -50,20 +51,19 @@ namespace PhoneLogic.Core.Areas.DialHistory
             if (_vm.PhoneNumber != null)
             {
                 AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" +
-                                  _vm.SelectedCall.CallId +".wma";
+                                  _vm.SelectedCall.CallId + ".wma";
                 AudioPlayer.Reset();
                 AudioPlayer.Title = String.Format("{0} - {1}", _vm.SelectedCall.JobFormatted,
                     _vm.SelectedCall.PhoneFormatted);
                 AudioPlayer.Visibility = Visibility.Visible;
             }
-
-
         }
+
         //// Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         //public static readonly DependencyProperty SelectedCallerIdProperty =
         //    DependencyProperty.Register("SelectedCallerId", typeof(string), typeof(DialHistoryView), new PropertyMetadata(""));
 
-        public void GetCalls(string CallerId )
+        public void GetCalls(string CallerId)
         {
             PhoneNumber = CallerId;
             _vm.GetCalls();
@@ -81,13 +81,12 @@ namespace PhoneLogic.Core.Areas.DialHistory
             {
                 _vm.ShowGridData = value;
                 _vm.HeadingText = "";
-
             }
         }
+
         // Using a DependencyProperty as the backing store for boolean ShowData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowDataProperty =
-      DependencyProperty.Register("ShowData", typeof(bool), typeof(DialHistoryView), new PropertyMetadata(false));
-
+            DependencyProperty.Register("ShowData", typeof(bool), typeof(DialHistoryView), new PropertyMetadata(false));
 
 
         public bool ShowInput
@@ -97,7 +96,6 @@ namespace PhoneLogic.Core.Areas.DialHistory
             {
                 _vm.ShowInput = value;
                 _vm.HeadingText = "";
-
             }
         }
 
@@ -127,7 +125,8 @@ namespace PhoneLogic.Core.Areas.DialHistory
 
         // Using a DependencyProperty as the backing store for boolean ShowData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowInputProperty =
-      DependencyProperty.Register("ShowInput", typeof(bool), typeof(DialHistoryView), new PropertyMetadata(false));
+            DependencyProperty.Register("ShowInput", typeof(bool), typeof(DialHistoryView), new PropertyMetadata(false));
+
         public void ResizeGrid()
         {
             //tbGridSize.Text = String.Format("Width : {0}  Height : {1} ", BrowserInfoSvc.ClientWidth,
@@ -150,7 +149,6 @@ namespace PhoneLogic.Core.Areas.DialHistory
                 CallsDG.Columns[8].Visibility = Visibility.Visible;
                 CallsDG.Columns[9].Visibility = Visibility.Visible;
             }
-
         }
 
         private void CallsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)

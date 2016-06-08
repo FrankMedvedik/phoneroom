@@ -21,16 +21,13 @@ namespace PhoneLogic.Core.Areas.CallsRpts
     {
         public CallsViewModel()
         {
-
         }
 
         private Boolean _canCall = true;
+
         public Boolean CanCall
         {
-            get
-            {
-                return _canCall;
-            }
+            get { return _canCall; }
             set
             {
                 _canCall = value;
@@ -40,6 +37,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
 
         private String _actionMsg;
+
         public String ActionMsg
         {
             get { return _actionMsg; }
@@ -51,19 +49,21 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private bool _canRefresh = true;
+
         public Boolean CanRefresh
         {
             get { return _canRefresh; }
             set { _canRefresh = value; }
         }
 
-
         #region reporting variables
+
         public ReportDateRange ReportDateRange = new ReportDateRange();
+
         #endregion
 
-
         private string _selectedRecruiter = null;
+
         public string SelectedRecruiter
         {
             get { return _selectedRecruiter; }
@@ -75,6 +75,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private Call _selectedCall;
+
         public Call SelectedCall
         {
             get { return _selectedCall; }
@@ -86,6 +87,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         }
 
         private string _selectedJobNum = null;
+
         public string SelectedJobNum
         {
             get { return _selectedJobNum; }
@@ -93,11 +95,11 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 _selectedJobNum = value;
                 NotifyPropertyChanged();
-
             }
         }
 
         private string _headingText;
+
         public string HeadingText
         {
             get { return _headingText; }
@@ -110,6 +112,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
 
         private ObservableCollection<Call> _calls = new ObservableCollection<Call>();
+
         public ObservableCollection<Call> Calls
         {
             get { return _calls; }
@@ -152,7 +155,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 {
                     HeadingText = "Loading...";
                     ro = await LyncCallLogSvc.GetLyncCallLog(SelectedJobNum, SelectedRecruiter,
-                                ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                        ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                 }
                 else if ((ReportDateRange != null) && (SelectedRecruiter != null))
                 {
@@ -169,17 +172,18 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                     //if its a recruiter show the heading without their name
                     //string sip = Calls.First().RecruiterSIP;
                     //if (sip == LyncClient.GetClient().Uri)
-                    HeadingText = String.Format("Job {0} has {1} calls", StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), Calls.Count());
+                    HeadingText = String.Format("Job {0} has {1} calls",
+                        StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), Calls.Count());
                     //else
                     //{
-                        //if its a not a recruiter show the heading with name 
-                        //Contact r = LyncClient.GetClient().ContactManager.GetContactByUri(sip);
-                        //HeadingText = String.Format("{0} has {1} Calls for Job {2}-{3}",
-                        //    r.GetContactInformation(ContactInformationType.DisplayName).ToString() != ""
-                        //        ? r.GetContactInformation(ContactInformationType.DisplayName).ToString()
-                        //        : "Inbound Respondent",
-                        //    Calls.Count(), SelectedJobNum.Substring(0, 4), SelectedJobNum.Substring(4, 4));
-                    }
+                    //if its a not a recruiter show the heading with name 
+                    //Contact r = LyncClient.GetClient().ContactManager.GetContactByUri(sip);
+                    //HeadingText = String.Format("{0} has {1} Calls for Job {2}-{3}",
+                    //    r.GetContactInformation(ContactInformationType.DisplayName).ToString() != ""
+                    //        ? r.GetContactInformation(ContactInformationType.DisplayName).ToString()
+                    //        : "Inbound Respondent",
+                    //    Calls.Count(), SelectedJobNum.Substring(0, 4), SelectedJobNum.Substring(4, 4));
+                }
                 else
                 {
                     HeadingText = "No calls";
@@ -194,8 +198,4 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
     }
-
-
 }
-
-

@@ -9,11 +9,10 @@
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
-             mc:Ignorable="d ignore"  >
-    <Grid  HorizontalAlignment="Left" >
-            <TextBlock Text="{Binding Author}" HorizontalAlignment="Center"/>
-              <TextBlock Text="{Binding Quote}" HorizontalAlignment="Left"/>
-              <TextBlock Text="{Binding Source}" HorizontalAlignment="Left"/>
+             mc:Ignorable="d ignore">
+    <Grid HorizontalAlignment="Left">
+        <TextBlock Text="{Binding Author}" HorizontalAlignment="Center" />
+        <TextBlock Text="{Binding Quote}" HorizontalAlignment="Left" />
+        <TextBlock Text="{Binding Source}" HorizontalAlignment="Left" />
     </Grid>
 </UserControl>
-

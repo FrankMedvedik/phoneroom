@@ -13,10 +13,10 @@ namespace PhoneLogic.Core.Areas.CallsRpts
     public partial class RecruitersView : UserControl
     {
         private RecruiterViewModel _vm = null;
+
         /// <summary>
         /// Initializes a new instance of the RecruiterView class.
         /// </summary>
-        
         public RecruitersView()
         {
             InitializeComponent();
@@ -24,6 +24,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             DataContext = _vm;
             _vm.CurrentRefreshMode = RecruiterViewModel.RefreshModes.ActiveRecruiters;
         }
+
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             try
@@ -36,7 +37,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             {
                 MessageBox.Show("Error Saving file - " + ex.Message);
             }
-            
         }
 
         private void RecruitersDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,6 +50,5 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             else
                 cv.ShowData = false;
         }
-
     }
 }

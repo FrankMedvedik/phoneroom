@@ -20,7 +20,9 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 }
             });
         }
+
         private Boolean _canMakeCall;
+
         public Boolean CanMakeCall
         {
             get { return _canMakeCall; }
@@ -33,7 +35,9 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 }
             }
         }
+
         private string _phoneNumber;
+
         public string PhoneNumber
         {
             get { return _phoneNumber; }
@@ -48,20 +52,16 @@ namespace PhoneLogic.Core.Areas.Recruiters
         }
 
         private PhoneLogicTask _task;
+
         public PhoneLogicTask Task
         {
             get { return _task; }
             set
             {
-                    _task = value;
-                    NotifyPropertyChanged();
-                    CanMakeCall = true;
-                }
-                
+                _task = value;
+                NotifyPropertyChanged();
+                CanMakeCall = true;
             }
         }
-        
-        
     }
-
-
+}

@@ -8,7 +8,10 @@ namespace PhoneLogic.Core.ViewModels
     {
         private static volatile ConversationContext instance;
         private static object syncRoot = new Object();
-        private ConversationContext() { }
+
+        private ConversationContext()
+        {
+        }
 
         public static ConversationContext Instance
         {
@@ -57,6 +60,5 @@ namespace PhoneLogic.Core.ViewModels
                 NotifyPropertyChanged();
             }
         }
-
     }
 }

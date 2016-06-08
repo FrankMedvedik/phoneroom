@@ -18,7 +18,6 @@ namespace PhoneLogic.Core.Areas.InboundCallAlerts
             _timer.Interval = TimeSpan.FromSeconds(timespan);
             _timer.Tick += new EventHandler(TimerTick);
             this.LayoutRoot.Width = Application.Current.Host.Content.ActualWidth;
-
         }
 
         private string _pauseMessage = "";
@@ -42,7 +41,6 @@ namespace PhoneLogic.Core.Areas.InboundCallAlerts
         /// <returns></returns>
         public static ToastNotification CreateToast(double timespan)
         {
-
             if (_notification == null)
             {
                 _notification = new ToastNotification(timespan);
@@ -101,8 +99,6 @@ namespace PhoneLogic.Core.Areas.InboundCallAlerts
                 NotificationPopup.IsOpen = false;
                 PauseMessage = "Click to pause.";
             }
-
         }
-
     }
 }

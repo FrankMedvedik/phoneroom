@@ -23,5 +23,4 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         //}
     }
-
 }

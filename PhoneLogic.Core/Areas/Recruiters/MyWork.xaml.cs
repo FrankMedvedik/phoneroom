@@ -19,7 +19,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             _vm = new MyJobsViewModel();
             DataContext = _vm;
             OBCView.Visibility = Visibility.Collapsed;
-        //    SizeChanged += HandleSizeChanged;
+            //    SizeChanged += HandleSizeChanged;
             cv.SetMyCallsConfiguration();
             mcb.SetMyCallsbacksConfiguration();
         }
@@ -32,7 +32,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         private void DGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            var c = (PhoneLogicTask)e.Row.DataContext;
+            var c = (PhoneLogicTask) e.Row.DataContext;
             if (c.MsgCnt > 0)
             {
                 FrameworkElement ele = DGrid.Columns[0].GetCellContent(e.Row);
@@ -43,7 +43,6 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
                 ele = DGrid.Columns[3].GetCellContent(e.Row);
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Red);
-
             }
 
 
@@ -57,7 +56,6 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
                 ele = DGrid.Columns[3].GetCellContent(e.Row);
                 (ele as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
-
             }
         }
 
@@ -65,7 +63,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
         {
             if (_vm.SelectedPhoneLogicTask == null)
             {
-                tc.Visibility = Visibility.Collapsed; 
+                tc.Visibility = Visibility.Collapsed;
                 return;
             }
 
@@ -111,11 +109,11 @@ namespace PhoneLogic.Core.Areas.Recruiters
         private void RefreshCallBacks()
         {
             if (mcb.SelectedJobNum != null && _vm.SelectedPhoneLogicTask != null)
-            if (mcb.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum 
-                && mcb.SelectedTaskId == _vm.SelectedPhoneLogicTask.TaskID.GetValueOrDefault(0) 
-                &&( (_vm.SelectedPhoneLogicTask.NewestMsg == mcb.LastCallBackStartTime)
-                    || _vm.SelectedPhoneLogicTask.MsgCnt.GetValueOrDefault(0) == 0))
-                return;
+                if (mcb.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum
+                    && mcb.SelectedTaskId == _vm.SelectedPhoneLogicTask.TaskID.GetValueOrDefault(0)
+                    && ((_vm.SelectedPhoneLogicTask.NewestMsg == mcb.LastCallBackStartTime)
+                        || _vm.SelectedPhoneLogicTask.MsgCnt.GetValueOrDefault(0) == 0))
+                    return;
             // Trigger getting callbacks 
             if (_vm.SelectedPhoneLogicTask != null)
             {
@@ -166,8 +164,5 @@ namespace PhoneLogic.Core.Areas.Recruiters
             cv.ResizeGrid();
             dhv.ResizeGrid();
         }
-
-        
     }
-
 }

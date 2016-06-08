@@ -6,7 +6,6 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.ViewModels
 {
-
     public class PeopleViewModel : CollectionViewModelBase
     {
         public void LookupPhone(string phoneNum)
@@ -18,7 +17,9 @@ namespace PhoneLogic.Core.ViewModels
                 LoadPeople(pn);
             }
         }
+
         private ObservableCollection<person> _people = new ObservableCollection<person>();
+
         public ObservableCollection<person> People
         {
             get { return _people; }

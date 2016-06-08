@@ -17,19 +17,17 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             Messenger.Default.Send(new NotificationMessage(this, _notificationMessage));
         }
 
-        private string  _notificationMessage = Notifications.DateRangeChanged;
-        public string  NotificationMessage
+        private string _notificationMessage = Notifications.DateRangeChanged;
+
+        public string NotificationMessage
         {
             get { return _notificationMessage; }
-            set
-            {
-                _notificationMessage = value; 
-                
-            }
+            set { _notificationMessage = value; }
         }
- 
+
         private bool _canRefresh;
-        public Boolean CanRefresh       
+
+        public Boolean CanRefresh
         {
             get { return _canRefresh; }
             set { _canRefresh = value; }
@@ -38,6 +36,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         #region reporting variables
 
         private DateTime _startRptDate;
+
         public DateTime StartRptDate
         {
             get { return _startRptDate; }
@@ -50,6 +49,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         }
 
         private DateTime _endRptDate;
+
         public DateTime EndRptDate
         {
             get { return _endRptDate; }
@@ -63,8 +63,8 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         private void chkAutoEndTime_Unchecked(object sender, RoutedEventArgs e)
         {
-
         }
+
         #endregion
 
         public void FloatEndTime()
@@ -72,5 +72,4 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             throw new NotImplementedException();
         }
     }
-
 }

@@ -20,7 +20,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             _vm = new JobsViewModel();
             DataContext = _vm;
         }
-            
+
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             try

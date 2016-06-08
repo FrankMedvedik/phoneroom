@@ -3,7 +3,6 @@ using PhoneLogic.Core.ViewModels;
 
 namespace PhoneLogic.Core.Views
 {
-
     public partial class TimerView : UserControl
     {
         public TimerViewModel _vm;
@@ -14,7 +13,5 @@ namespace PhoneLogic.Core.Views
             _vm = new TimerViewModel();
             DataContext = _vm;
         }
-
-
     }
 }

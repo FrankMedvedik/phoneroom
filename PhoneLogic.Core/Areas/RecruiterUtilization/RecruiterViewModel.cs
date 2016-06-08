@@ -13,21 +13,21 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
 {
     public class RecruiterViewModel : CollectionViewModelBase
     {
-       
         public RecruiterViewModel()
         {
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
             {
                 if (message.Notification == Notifications.GlobalReportCriteriaChanged)
                 {
-                        ReportDateRange = message.Content.ReportDateRange;
-                        SelectedPhoneRoomName = message.Content.Phoneroom;
-                        RefreshAll(null, null);
+                    ReportDateRange = message.Content.ReportDateRange;
+                    SelectedPhoneRoomName = message.Content.Phoneroom;
+                    RefreshAll(null, null);
                 }
             });
         }
 
         private string _selectedPhoneRoomName;
+
         public string SelectedPhoneRoomName
         {
             get { return _selectedPhoneRoomName; }
@@ -40,18 +40,24 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
         }
 
         private bool _canRefresh = true;
-        public Boolean CanRefresh       
+
+        public Boolean CanRefresh
         {
             get { return _canRefresh; }
             set { _canRefresh = value; }
         }
 
         #region reporting variables
-        public  ReportDateRange ReportDateRange = new ReportDateRange();
+
+        public ReportDateRange ReportDateRange = new ReportDateRange();
+
         #endregion
 
         #region CallSummaries
-        private ObservableCollection<RecruiterTimeSummary> _recruiters = new ObservableCollection<RecruiterTimeSummary>();
+
+        private ObservableCollection<RecruiterTimeSummary> _recruiters =
+            new ObservableCollection<RecruiterTimeSummary>();
+
         private RecruiterTimeSummary _selectedRecruiter;
 
 
@@ -65,37 +71,37 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
                 _recruiters = value;
                 NotifyPropertyChanged();
                 HeadingText = String.Format("{0} Phone Room Activity for {1} and {2} - for {3} Recruiters as of {4}",
-                    SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, Recruiters.Count, DateTime.Now.ToLongTimeString());
+                    SelectedPhoneRoomName, ReportDateRange.StartRptDate, ReportDateRange.EndRptDate, Recruiters.Count,
+                    DateTime.Now.ToLongTimeString());
                 //ShowGridData = true;
 
                 if (s != null)
                 {
                     SelectedRecruiter = Recruiters.First(x => x.RecruiterSIP == s.RecruiterSIP);
                 }
-
             }
         }
 
         #endregion
 
-
-        
         protected override void RefreshAll(object sender, EventArgs e)
         {
-                GetRecruiters();
+            GetRecruiters();
         }
-        
+
 
         private string _headingText;
-       public string HeadingText
+
+        public string HeadingText
         {
-            get {return _headingText;}
-            set 
+            get { return _headingText; }
+            set
             {
                 _headingText = value;
                 NotifyPropertyChanged();
             }
         }
+
         public RecruiterTimeSummary SelectedRecruiter
         {
             get { return _selectedRecruiter; }
@@ -108,14 +114,18 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
 
         public async void GetRecruiters()
         {
-              //ShowGridData = false;
-              HeadingText = "Loading...";
+            //ShowGridData = false;
+            HeadingText = "Loading...";
             try
             {
-                List<RecruiterTimeSummary> l  = await RecruiterUtilizationSvc.GetRecruiterTimeSummary(SelectedPhoneRoomName,ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
-                Recruiters = new ObservableCollection<RecruiterTimeSummary>(l.OrderByDescending(x=>x.CallTime).ToList());
+                List<RecruiterTimeSummary> l =
+                    await
+                        RecruiterUtilizationSvc.GetRecruiterTimeSummary(SelectedPhoneRoomName,
+                            ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+                Recruiters =
+                    new ObservableCollection<RecruiterTimeSummary>(l.OrderByDescending(x => x.CallTime).ToList());
                 Messenger.Default.Send(new NotificationMessage(Notifications.RecruiterTimeSummaryDataRefreshed));
-                LoadedOk = true; 
+                LoadedOk = true;
                 //ShowGridData = true;
             }
             catch (Exception e)
@@ -124,7 +134,6 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
                 LoadFailed(e);
                 HeadingText = e.Message + " at " + DateTime.Now.ToLongTimeString();
             }
-
         }
     }
 }

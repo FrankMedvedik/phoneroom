@@ -8,7 +8,6 @@ using PhoneLogic.Core.ViewModels;
 
 namespace PhoneLogic.Core.Views
 {
-
     public partial class QuotableQuoteView : UserControl
     {
         private QuotableQuoteViewModel _vm;
@@ -19,6 +18,5 @@ namespace PhoneLogic.Core.Views
             DataContext = _vm;
             InitializeComponent();
         }
-
     }
 }

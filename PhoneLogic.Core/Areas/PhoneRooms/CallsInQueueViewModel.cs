@@ -9,11 +9,10 @@ using PhoneLogic.Model;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.PhoneRooms
-    
+
 {
     public class CallsInQueueViewModel : CollectionViewModelBase
     {
-  
         // sets up the 
         public CallsInQueueViewModel()
         {
@@ -23,12 +22,13 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 {
                     Jobs = new ObservableCollection<PhoneLogicTask>(message.Content.PhoneroomJobs.ToList());
                     RefreshAll(null, null);
-                 }
-             });
-             StartAutoRefresh(ApiRefreshFrequency.LyncApi);
+                }
+            });
+            StartAutoRefresh(ApiRefreshFrequency.LyncApi);
         }
 
         #region Jobs
+
         public ObservableCollection<PhoneLogicTask> Jobs
         {
             get { return _jobs; }
@@ -39,7 +39,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
             }
         }
 
-        
+
         private ObservableCollection<QueueSummary> _filteredCallsInQueue = new ObservableCollection<QueueSummary>();
 
         public ObservableCollection<QueueSummary> FilteredCallsInQueue
@@ -47,7 +47,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
             get { return _filteredCallsInQueue; }
             set
             {
-                _filteredCallsInQueue= value;
+                _filteredCallsInQueue = value;
                 NotifyPropertyChanged();
                 NotifyPropertyChanged("TheForeground");
                 NotifyPropertyChanged("TheBackground");
@@ -57,31 +57,29 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         private void FilterCalls()
         {
             var acd = new ObservableCollection<QueueSummary>();
-                
-        //    if(Jobs.Any() && CallsInQueue.Any())
-                    acd = new ObservableCollection<QueueSummary>
-                        (from c in CallsInQueue
-                            join b in Jobs on c.jobFormatted equals b.JobFormatted
-                            select c);
-                FilteredCallsInQueue = acd;
-                if (FilteredCallsInQueue.Any())
-                    ShowGridData = true;
-                else
-                    ShowGridData = false;
 
-         }
+            //    if(Jobs.Any() && CallsInQueue.Any())
+            acd = new ObservableCollection<QueueSummary>
+                (from c in CallsInQueue
+                    join b in Jobs on c.jobFormatted equals b.JobFormatted
+                    select c);
+            FilteredCallsInQueue = acd;
+            if (FilteredCallsInQueue.Any())
+                ShowGridData = true;
+            else
+                ShowGridData = false;
+        }
 
         #endregion
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
-           GetQueuedCalls();
-           FilterCalls();
+            GetQueuedCalls();
+            FilterCalls();
         }
 
         public void testGetMyQueuedCalls()
         {
-
             CallsInQueue.Clear();
             CallsInQueue.Add(new QueueSummary
             {
@@ -93,21 +91,21 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 InQueue = 0,
                 JobNumber = "1111-1111"
             });
-            LoadDate = DateTime.Now; 
+            LoadDate = DateTime.Now;
             ShowGridData = true;
             LoadedOk = true;
         }
 
-   
+
         public async void GetQueuedCalls()
         {
             try
             {
                 LoadDate = DateTime.Now;
                 var cq = await LyncSvc.GetAllQueueSummary();
-                  CallsInQueue = cq;
-                   LoadedOk = true;
-           }
+                CallsInQueue = cq;
+                LoadedOk = true;
+            }
             catch (Exception e)
             {
                 LoadFailed(e);
@@ -120,22 +118,22 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         private ObservableCollection<PhoneLogicTask> _jobs = new ObservableCollection<PhoneLogicTask>();
 
         public ObservableCollection<QueueSummary> CallsInQueue
-         {
-             get { return _CallsInQueue; }
-             set
-             {
+        {
+            get { return _CallsInQueue; }
+            set
+            {
+                _CallsInQueue = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("TheBackground");
+                NotifyPropertyChanged("TheForeground");
+            }
+        }
 
-                     _CallsInQueue = value;
-                     NotifyPropertyChanged();
-                     NotifyPropertyChanged("TheBackground");
-                     NotifyPropertyChanged("TheForeground");
-             }
-         }
         #endregion
 
-         #region DisplayColors
+        #region DisplayColors
 
-         public  string TheBackground
+        public string TheBackground
         {
             get
             {
@@ -152,7 +150,8 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
         public string TheForeground
         {
-            get {
+            get
+            {
                 int callCnt = 0;
 
                 foreach (var c in FilteredCallsInQueue)
@@ -164,11 +163,6 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
             }
         }
 
- 
         #endregion
-
-
-
-        
     }
 }

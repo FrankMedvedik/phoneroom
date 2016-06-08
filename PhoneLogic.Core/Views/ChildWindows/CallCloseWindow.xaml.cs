@@ -4,16 +4,16 @@ using System.Windows;
 
 namespace PhoneLogic.Core.Views
 {
-    public partial class CallCloseWindow 
+    public partial class CallCloseWindow
     {
         public CallCloseWindow()
         {
             InitializeComponent();
             DataContext = this;
-
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         private void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -24,7 +24,7 @@ namespace PhoneLogic.Core.Views
 
         public TimeSpan CallDuration
         {
-            get { return (TimeSpan)GetValue(CallDurationProperty); }
+            get { return (TimeSpan) GetValue(CallDurationProperty); }
             set
             {
                 SetValue(CallDurationProperty, value);
@@ -33,12 +33,13 @@ namespace PhoneLogic.Core.Views
         }
 
         public DependencyProperty CallDurationProperty =
-            DependencyProperty.Register("CallDuration", typeof(TimeSpan), typeof(CallCloseWindow), new PropertyMetadata(new TimeSpan()));
+            DependencyProperty.Register("CallDuration", typeof(TimeSpan), typeof(CallCloseWindow),
+                new PropertyMetadata(new TimeSpan()));
 
 
         public Boolean KeepCallback
         {
-            get { return (Boolean)GetValue(KeepCallbackProperty); }
+            get { return (Boolean) GetValue(KeepCallbackProperty); }
             set
             {
                 SetValue(KeepCallbackProperty, value);
@@ -47,24 +48,24 @@ namespace PhoneLogic.Core.Views
         }
 
         public static readonly DependencyProperty KeepCallbackProperty =
-            DependencyProperty.Register("KeepCallback", typeof(Boolean), typeof(CallCloseWindow), new PropertyMetadata(false));
-
+            DependencyProperty.Register("KeepCallback", typeof(Boolean), typeof(CallCloseWindow),
+                new PropertyMetadata(false));
 
 
         public Boolean IsCallback
         {
-            get { return (Boolean)GetValue(IsCallbackProperty); }
+            get { return (Boolean) GetValue(IsCallbackProperty); }
             set
             {
-               SetValue(IsCallbackProperty, value);
-               CallbackStackPanel.Visibility = IsCallback ? Visibility.Visible : Visibility.Collapsed;
-               RaisePropertyChanged("IsCallback");
+                SetValue(IsCallbackProperty, value);
+                CallbackStackPanel.Visibility = IsCallback ? Visibility.Visible : Visibility.Collapsed;
+                RaisePropertyChanged("IsCallback");
             }
         }
 
         public static readonly DependencyProperty IsCallbackProperty =
-            DependencyProperty.Register("IsCallback", typeof(Boolean), typeof(CallCloseWindow), new PropertyMetadata(false));
-
+            DependencyProperty.Register("IsCallback", typeof(Boolean), typeof(CallCloseWindow),
+                new PropertyMetadata(false));
 
 
         //public string NoticeText
@@ -81,4 +82,3 @@ namespace PhoneLogic.Core.Views
         }
     }
 }
-

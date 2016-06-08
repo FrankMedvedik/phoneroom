@@ -12,18 +12,18 @@ namespace PhoneLogic.Core.Areas.CallsRpts
     public partial class RecruiterMonitorView : UserControl
     {
         private RecruiterViewModel _vm = null;
+
         /// <summary>
         /// Initializes a new instance of the RecruiterView class.
         /// </summary>
-        
         public RecruiterMonitorView()
         {
             InitializeComponent();
             _vm = new RecruiterViewModel();
             DataContext = _vm;
             _vm.CurrentRefreshMode = RecruiterViewModel.RefreshModes.AllRecruiters;
-            
         }
+
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             RecruitersDG.Export("Recruiters" + _vm.ReportDateRange.ToFormattedString('.'));
@@ -40,6 +40,5 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             else
                 cv.ShowData = false;
         }
-
     }
 }

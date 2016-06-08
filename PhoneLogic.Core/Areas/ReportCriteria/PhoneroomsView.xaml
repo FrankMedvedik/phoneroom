@@ -9,57 +9,63 @@
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
              mc:Ignorable="d ignore">
     <Control.Resources>
-        <DataTemplate x:Key="RecruiterStatusTemplate" >
-            <Grid Margin="3" >
-                <controls:PresenceIndicator x:Name="Presence" Source="{Binding sip}" PhotoDisplayMode="Small"/>
+        <DataTemplate x:Key="RecruiterStatusTemplate">
+            <Grid Margin="3">
+                <controls:PresenceIndicator x:Name="Presence" Source="{Binding sip}" PhotoDisplayMode="Small" />
             </Grid>
         </DataTemplate>
     </Control.Resources>
-        <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical">
         <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <toolkit:WrapPanel Orientation="Horizontal" Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <toolkit:WrapPanel Orientation="Horizontal" Grid.Row="0">
                 <TextBlock Text="Phone Room" FontSize="12" Margin="6" VerticalAlignment="Bottom" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="6" 
-                           Name="comboBox1" VerticalAlignment="Center" Width="100" 
-                              ItemsSource="{Binding Path=PhoneRooms, Mode=OneWay}" 
-                                SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}" 
-                  DisplayMemberPath="Name" 
-                      SelectedValuePath="Name" />
-        </toolkit:WrapPanel>
-        <toolkit:WrapPanel Grid.Row="1" x:Name="Details">
-        <toolkit:Expander Header="Jobs" HorizontalAlignment="Left"  Margin="12,6,6,6" >
-            <sdk:DataGrid x:Name="JobsDG" AutoGenerateColumns="False"  
-                       VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredJobs}"  VerticalAlignment="Top" 
-                    ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" FrozenColumnCount="1">
-                <sdk:DataGrid.Columns>
-                    <sdk:DataGridTextColumn Binding="{Binding JobFormatted}"  />
-                    <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}"  />
-                    <sdk:DataGridTextColumn Binding="{Binding TaskName}"  />
-                    <!--<sdk:DataGridTextColumn Binding="{Binding TaskDscr}"  />-->
-                </sdk:DataGrid.Columns>
-            </sdk:DataGrid>
-        </toolkit:Expander>
-                <toolkit:Expander Header="Recruiters" HorizontalAlignment="Left"  Margin="12,6,6,6" >
-                    <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredRecruiters}"  
-                    VerticalAlignment="Top" ToolTipService.ToolTip="Phone Room Recruiters" Margin="6" HorizontalAlignment="Left" SelectionMode="Single" >
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="6"
+                          Name="comboBox1" VerticalAlignment="Center" Width="100"
+                          ItemsSource="{Binding Path=PhoneRooms, Mode=OneWay}"
+                          SelectedValue="{Binding Path=SelectedPhoneRoomName, Mode=TwoWay}"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Name" />
+            </toolkit:WrapPanel>
+            <toolkit:WrapPanel Grid.Row="1" x:Name="Details">
+                <toolkit:Expander Header="Jobs" HorizontalAlignment="Left" Margin="12,6,6,6">
+                    <sdk:DataGrid x:Name="JobsDG" AutoGenerateColumns="False"
+                                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                                  ItemsSource="{Binding FilteredJobs}" VerticalAlignment="Top"
+                                  ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left"
+                                  FrozenColumnCount="1">
                         <sdk:DataGrid.Columns>
-                            <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource RecruiterStatusTemplate}"/>
+                            <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
+                            <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}" />
+                            <sdk:DataGridTextColumn Binding="{Binding TaskName}" />
+                            <!--<sdk:DataGridTextColumn Binding="{Binding TaskDscr}"  />-->
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+                </toolkit:Expander>
+                <toolkit:Expander Header="Recruiters" HorizontalAlignment="Left" Margin="12,6,6,6">
+                    <sdk:DataGrid x:Name="RecruitersDG" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredRecruiters}"
+                                  VerticalAlignment="Top" ToolTipService.ToolTip="Phone Room Recruiters" Margin="6"
+                                  HorizontalAlignment="Left" SelectionMode="Single">
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTemplateColumn Header="Status"
+                                                        CellTemplate="{StaticResource RecruiterStatusTemplate}" />
                             <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
-        </toolkit:Expander>
-           </toolkit:WrapPanel>
-            </Grid>
-        <StackPanel  Margin="6"  Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <TextBlock  HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text=""/>
-            <StackPanel  Orientation="Vertical" Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}" >
-                <TextBlock Text="Loading Phone Rooms ..."/>
+                </toolkit:Expander>
+            </toolkit:WrapPanel>
+        </Grid>
+        <StackPanel Margin="6" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+            <TextBlock HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Text="" />
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding LoadedOk, Converter={StaticResource NotBoolToVisConverter}}">
+                <TextBlock Text="Loading Phone Rooms ..." />
             </StackPanel>
         </StackPanel>
-        </StackPanel>
+    </StackPanel>
 </UserControl>

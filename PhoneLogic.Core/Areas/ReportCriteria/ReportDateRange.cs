@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 namespace PhoneLogic.Core.Areas.ReportCriteria
 {
-    public class ReportDateRange 
+    public class ReportDateRange
     {
         public DateTime EndRptDate { get; set; }
         public DateTime StartRptDate { get; set; }
+
         public string ToFormattedString(char token)
         {
             var v = new List<KeyValuePair<string, string>>();

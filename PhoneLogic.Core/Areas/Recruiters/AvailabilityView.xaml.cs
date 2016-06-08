@@ -13,12 +13,11 @@ namespace PhoneLogic.Core.Areas.Recruiters
         {
             InitializeComponent();
         }
-    
+
 
         //private void Button_Click(object sender, RoutedEventArgs e)
         //{
         //    HtmlPage.Window.Navigate(new Uri("PhoneLogic.MyCalls.html", UriKind.Relative), "_blank");
         //}
-        
     }
 }

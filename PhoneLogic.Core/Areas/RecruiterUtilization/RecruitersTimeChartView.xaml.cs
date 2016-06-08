@@ -22,18 +22,16 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
 
         private void LoadBarChartData()
         {
-
             List<KeyValuePair<string, long>> incall = new List<KeyValuePair<string, long>>();
             List<KeyValuePair<string, long>> other = new List<KeyValuePair<string, long>>();
 
-            foreach (var r in _recruiters.OrderByDescending(x=>x.CallTime.TotalMinutes))
+            foreach (var r in _recruiters.OrderByDescending(x => x.CallTime.TotalMinutes))
             {
-                incall.Add(new KeyValuePair<string, long>(r.DisplayName, (long)(r.CallTime.TotalMinutes)));
-                other.Add(new KeyValuePair<string, long>(r.DisplayName, (long)r.IdleTime.TotalMinutes));
+                incall.Add(new KeyValuePair<string, long>(r.DisplayName, (long) (r.CallTime.TotalMinutes)));
+                other.Add(new KeyValuePair<string, long>(r.DisplayName, (long) r.IdleTime.TotalMinutes));
             }
-            ((BarSeries)TimeChart.Series[0]).ItemsSource = incall;
-            ((BarSeries)TimeChart.Series[1]).ItemsSource = other;
-
+            ((BarSeries) TimeChart.Series[0]).ItemsSource = incall;
+            ((BarSeries) TimeChart.Series[1]).ItemsSource = other;
         }
 
         private List<RecruiterTimeSummary> _recruiters;
@@ -49,7 +47,7 @@ namespace PhoneLogic.Core.Areas.RecruiterUtilization
 
         // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RecruitersProperty =
-            DependencyProperty.Register("Recruiters", typeof(string), typeof(RecruitersCallsChartView), new PropertyMetadata(""));
-
+            DependencyProperty.Register("Recruiters", typeof(string), typeof(RecruitersCallsChartView),
+                new PropertyMetadata(""));
     }
 }
