@@ -239,6 +239,9 @@
     <Compile Include="rptMyPhoneLogicTask.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="rpt_GetActiveRecruiters_Result.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="rpt_GetCallerLyncCallLog_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>

@@ -4,12 +4,7 @@ namespace PhoneLogic.Model
     using System;
     using System.ComponentModel.DataAnnotations;
 
-
-//#if SILVERLIGHT
-//    public class Recruiter : INotifyPropertyChanged
-//#else
     public class Recruiter
-//#endif
     {
         [Display(Name = "SIP")]
         public string sip
@@ -27,16 +22,20 @@ namespace PhoneLogic.Model
         public String EmailAddress { get; set; }
         [Display(Name = "Title")]
         public String Description { get; set; }
-        [Display(Name = "Out")]
-        public int OutboundCallCnt{ get; set; }
-        [Display(Name = "In")]
-        public int InboundCallCnt { get; set; }
-        [Display(Name = "Total Idle Time")]
-        public Double TotalIdleTime { get; set; }
-        [Display(Name = "Avg Idle Time")]
-        public Double AvgIdleTime { get; set; }
-        [Display(Name = "Max Idle Time")]
-        public Double MaxIdleTime { get; set; }
+        [Display(Name = "CallCnt")]
+        public int CallCnt { get; set; }
+
+
+        //[Display(Name = "Out")]
+        //public int OutboundCallCnt{ get; set; }
+        //[Display(Name = "In")]
+        //public int InboundCallCnt { get; set; }
+        //[Display(Name = "Total Idle Time")]
+        //public Double TotalIdleTime { get; set; }
+        //[Display(Name = "Avg Idle Time")]
+        //public Double AvgIdleTime { get; set; }
+        //[Display(Name = "Max Idle Time")]
+        //public Double MaxIdleTime { get; set; }
     }
 }
 

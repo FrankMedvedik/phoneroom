@@ -8,7 +8,7 @@
     xmlns:callsRpts="clr-namespace:PhoneLogic.Core.Areas.CallsRpts"
     xmlns:callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks"
     xmlns:dialHistory="clr-namespace:PhoneLogic.Core.Areas.DialHistory"
-    x:Class="PhoneLogic.Core.Areas.Recruiters.MyWorkView"
+    x:Class="PhoneLogic.Core.Areas.Recruiters.MyJobsView"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700" VerticalAlignment="Top" HorizontalAlignment="Left">
     <Grid Width="Auto" Height="Auto">
         <Grid.RowDefinitions>

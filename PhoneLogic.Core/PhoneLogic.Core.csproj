@@ -40,7 +40,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;Release</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -380,8 +380,8 @@
     <Compile Include="Views\Utility\AudioPlaybackView.xaml.cs">
       <DependentUpon>AudioPlaybackView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Recruiters\MyWork.xaml.cs">
-      <DependentUpon>MyWork.xaml</DependentUpon>
+    <Compile Include="Areas\Recruiters\MyJobs.xaml.cs">
+      <DependentUpon>MyJobs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Recruiters\MyCallsInQueueView.xaml.cs">
       <DependentUpon>MyCallsInQueueView.xaml</DependentUpon>
@@ -594,7 +594,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\Recruiters\MyWork.xaml">
+    <Page Include="Areas\Recruiters\MyJobs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

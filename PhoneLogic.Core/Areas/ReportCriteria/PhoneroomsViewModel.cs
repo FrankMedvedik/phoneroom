@@ -90,6 +90,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                     Phoneroom = this.SelectedPhoneRoomName,
                     PhoneroomJobs = this.FilteredJobs.ToList(),
                     PhoneroomRecruiters = this.FilteredRecruiters.ToList()
+                     
                 },
                     Notifications.PhoneroomChanged));
             }
@@ -165,9 +166,9 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         private void GetRecruiters()
         {
-            var l = LyncCallLogSvc.GetLyncCallsByRecruiter(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
+            //var l = RecruiterSvc.GetActiveRecruiters(ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
 
-            Recruiters = new ObservableCollection<LyncCallByRecruiter>(l);
+            //Recruiters = new ObservableCollection<LyncCallByRecruiter>(l);
 
 
             List<Recruiter> sips;

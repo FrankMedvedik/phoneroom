@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
         <controls:MyStatusArea  Name="ms"  Grid.Column="0" Grid.Row="0" PhotoDisplayMode="Large"  MinWidth="200" Height="Auto"  Background="Transparent"  Margin="6" HorizontalAlignment="Left"/>
         <inboundCallAlerts:MyCallsInQueueView Name="MyCallsInQ" MinWidth="300" Height="Auto" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
-        <recruiter:MyWorkView Name="MyWork" Margin="6" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Left" />
+        <recruiter:MyJobsView Name="MyWork" Margin="6" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Left" />
         <views:BuildInformationView  Grid.Column="0" Grid.Row="3"/>
         </Grid>
     </ScrollViewer>

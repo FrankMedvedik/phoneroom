@@ -9,11 +9,11 @@ using PhoneLogic.Model;
 
 namespace PhoneLogic.Core.Areas.Recruiters
 {
-    public partial class MyWorkView : UserControl
+    public partial class MyJobsView : UserControl
     {
         private MyJobsViewModel _vm;
 
-        public MyWorkView()
+        public MyJobsView()
         {
             InitializeComponent();
             _vm = new MyJobsViewModel();

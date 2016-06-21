@@ -2,12 +2,10 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.Core.Areas.Callbacks;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
-using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.Recruiters
 {
@@ -21,14 +19,6 @@ namespace PhoneLogic.Core.Areas.Recruiters
             _vm = new OutboundCallViewModel();
             DataContext = _vm;
             //cid.spPhoneLookUp.Visibility = System.Windows.Visibility.Collapsed;
-            Messenger.Default.Register<NotificationMessage<string>>(this, message =>
-            {
-                if (message.Notification == Notifications.PhoneNumberChanged)
-                {
-                    _vm.PhoneNumber = message.Content;
-                    PlaceCall();
-                }
-            });
         }
 
         public Boolean CanRefresh
@@ -38,8 +28,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
 
         // Using a DependencyProperty as the backing store for CanRefresh.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CanRefreshProperty =
-            DependencyProperty.Register("CanRefresh", typeof(Boolean), typeof(MyCallbacksView),
-                new PropertyMetadata(false));
+            DependencyProperty.Register("CanRefresh", typeof(Boolean), typeof(MyCallbacksView), new PropertyMetadata(false));
 
         public PhoneLogicTask Task
         {
@@ -52,22 +41,27 @@ namespace PhoneLogic.Core.Areas.Recruiters
         }
 
         public DependencyProperty TaskProperty =
-            DependencyProperty.Register("Task", typeof(PhoneLogicTask), typeof(OutboundCallView),
-                new PropertyMetadata(new PhoneLogicTask()));
+            DependencyProperty.Register("Task", typeof(PhoneLogicTask), typeof(OutboundCallView), new PropertyMetadata(new PhoneLogicTask()));
+
+        //private async void btnLookup_Click(object sender, RoutedEventArgs e)
+        //{
+        //    cid.SelectedCallerId = tbOutboundPhone.Text;
+        //    cid.Refresh();
+        //}
 
 
         private void ValidateCallerId()
         {
             tbErrors.Text = "";
             System.Windows.Browser.HtmlPage.Plugin.Focus();
-            //btnCall.Focus();
-            if (String.IsNullOrWhiteSpace(_vm.PhoneNumber))
+            btnCall.Focus();
+            if (String.IsNullOrWhiteSpace(tbOutboundPhone.Text))
                 tbErrors.Text = "Phone number is required";
-            if ((PhoneNumberSvc.GetNumbers(_vm.PhoneNumber).Length != 10))
+            if ((PhoneNumberSvc.GetNumbers(tbOutboundPhone.Text).Length != 10))
                 tbErrors.Text = "Phone number invalid";
-        }
 
-        private async void PlaceCall()
+        }
+        private async void Call_Click(object sender, RoutedEventArgs e)
         {
             ValidateCallerId();
 
@@ -76,19 +70,25 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 _vm.CanMakeCall = false;
                 StartTimer();
                 string job = String.Format("{0}:0{1}", _vm.Task.JobNum, _vm.Task.TaskID);
+                //if (MessageBox.Show(
+                //    String.Format("Job {0} Phone {1} sip {2}", job, _vm.PhoneNumber, LyncClient.GetClient().Self.Contact.Uri), 
+                //    "Confirm",
+                //    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+                //    return;
+
+                //tbErrors.Foreground = new SolidColorBrush(Color.FromArgb(255,255,255,255));
                 tbErrors.Text = "Your call has been placed";
-                await LyncSvc.RecruiterDialOut(job, PhoneNumberSvc.GetNumbers(_vm.PhoneNumber), 0);
-                    // zero because it is not a calllback...
+                await LyncSvc.RecruiterDialOut(job, PhoneNumberSvc.GetNumbers(tbOutboundPhone.Text), 0); // zero because it is not a calllback...
             }
-            //System.Windows.Browser.HtmlPage.Plugin.Focus();
-            //tbOutboundPhone.Focus();
+            System.Windows.Browser.HtmlPage.Plugin.Focus();
+            tbOutboundPhone.Focus();
+
         }
 
         public void StartTimer()
         {
             System.Windows.Threading.DispatcherTimer myDispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0);
-                // 5 seconds
+            myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0); // 5 seconds
             myDispatcherTimer.Tick += new EventHandler(Each_Tick);
             myDispatcherTimer.Start();
         }
@@ -101,5 +101,8 @@ namespace PhoneLogic.Core.Areas.Recruiters
             _vm.CanMakeCall = true;
             tbErrors.Text = "";
         }
+
+
+
     }
 }

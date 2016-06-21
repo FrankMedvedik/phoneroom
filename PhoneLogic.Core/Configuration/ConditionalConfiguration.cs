@@ -61,17 +61,12 @@ namespace PhoneLogic.Core
         public static string rootUrl = "http://cc-prod.reckner.com/PhoneRoom/";
         public static string LyncServiceRefUrl = "http://cc-prod.reckner.com:1255/PhoneLogic";
      public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";   
-#elif RELEASEPROD
-        public static string BuildType = "PROD-RELEASE";
+#elif Release
+        public static string BuildType = "Release";
         public static string apiUrl = "http://cc-prod.reckner.com/PhoneRoom/api/";
         public static string rootUrl = "http://cc-prod.reckner.com/PhoneRoom/";
         public static string LyncServiceRefUrl = "http://cc-prod.reckner.com:1255/PhoneLogic";
-     public const string RecknerCallAppGuid = "{EF327138-E9C6-4E5D-8BB3-F505DAB0F567}";
-#elif RELEASETEST
-      public static string BuildType = "TEST-RELEASE";
-     public static string apiUrl = "http://cc-app.reckner.com/inbound/api/";
-     public static string LyncServiceRefUrl = "http://cc-app.reckner.com:1255/PhoneLogic";
-     public const string RecknerCallAppGuid = "{EF327138-E9C6-4E5D-8BB3-F505DAB0F567}";
+        public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";   
 #endif
 
         public static readonly DateTime BuildDate = Timestamp.BuildAt;

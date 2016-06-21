@@ -327,27 +327,6 @@ namespace PhoneLogic.Repository
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CallbackRpt>("rpt_GetClosedCallbackRpt", startDateParameter, endDateParameter);
         }
     
-        public virtual ObjectResult<callbackDTO> rpt_GetClosedJobCallbacks(string jobNum, string taskId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
-        {
-            var jobNumParameter = jobNum != null ?
-                new ObjectParameter("jobNum", jobNum) :
-                new ObjectParameter("jobNum", typeof(string));
-    
-            var taskIdParameter = taskId != null ?
-                new ObjectParameter("taskId", taskId) :
-                new ObjectParameter("taskId", typeof(string));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetClosedJobCallbacks", jobNumParameter, taskIdParameter, startDateParameter, endDateParameter);
-        }
-    
         public virtual ObjectResult<callbackDTO> rpt_GetOpenJobCallbacks(string jobNum, string taskId)
         {
             var jobNumParameter = jobNum != null ?
@@ -376,6 +355,40 @@ namespace PhoneLogic.Repository
                 new ObjectParameter("endDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LyncCallLog>("rpt_GetLyncCallsforPhoneInDateRange", phoneNumberParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<rpt_GetActiveRecruiters_Result> rpt_GetActiveRecruiters(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rpt_GetActiveRecruiters_Result>("rpt_GetActiveRecruiters", startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<callbackDTO> rpt_GetClosedJobCallbacks(string jobNum, string taskId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var jobNumParameter = jobNum != null ?
+                new ObjectParameter("jobNum", jobNum) :
+                new ObjectParameter("jobNum", typeof(string));
+    
+            var taskIdParameter = taskId != null ?
+                new ObjectParameter("taskId", taskId) :
+                new ObjectParameter("taskId", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetClosedJobCallbacks", jobNumParameter, taskIdParameter, startDateParameter, endDateParameter);
         }
     }
 }
