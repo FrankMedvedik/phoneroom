@@ -327,19 +327,6 @@ namespace PhoneLogic.Repository
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CallbackRpt>("rpt_GetClosedCallbackRpt", startDateParameter, endDateParameter);
         }
     
-        public virtual ObjectResult<callbackDTO> rpt_GetOpenJobCallbacks(string jobNum, string taskId)
-        {
-            var jobNumParameter = jobNum != null ?
-                new ObjectParameter("jobNum", jobNum) :
-                new ObjectParameter("jobNum", typeof(string));
-    
-            var taskIdParameter = taskId != null ?
-                new ObjectParameter("taskId", taskId) :
-                new ObjectParameter("taskId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetOpenJobCallbacks", jobNumParameter, taskIdParameter);
-        }
-    
         public virtual ObjectResult<LyncCallLog> rpt_GetLyncCallsforPhoneInDateRange(string phoneNumber, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
         {
             var phoneNumberParameter = phoneNumber != null ?
@@ -389,6 +376,19 @@ namespace PhoneLogic.Repository
                 new ObjectParameter("endDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetClosedJobCallbacks", jobNumParameter, taskIdParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<callbackDTO> rpt_GetOpenJobCallbacks(string jobNum, string taskId)
+        {
+            var jobNumParameter = jobNum != null ?
+                new ObjectParameter("jobNum", jobNum) :
+                new ObjectParameter("jobNum", typeof(string));
+    
+            var taskIdParameter = taskId != null ?
+                new ObjectParameter("taskId", taskId) :
+                new ObjectParameter("taskId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetOpenJobCallbacks", jobNumParameter, taskIdParameter);
         }
     }
 }

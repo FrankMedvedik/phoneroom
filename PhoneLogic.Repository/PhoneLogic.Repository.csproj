@@ -257,6 +257,9 @@
     <Compile Include="rpt_GetMyPhoneLogicTasks1_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="rpt_GetOpenJobCallbacks1_Result.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AgentUtils.cs" />
     <Compile Include="Utils\FormatUtil.cs" />
     <Compile Include="vw_PhoneLogicTaskAgent.cs">

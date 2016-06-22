@@ -10,7 +10,7 @@
              mc:Ignorable="d ignore">
     <Grid x:Name="LayoutRoot">
         <StackPanel Orientation="Vertical">
-            <toolkit:Expander Header="{Binding HeadingText}" IsExpanded="True">
+            <TextBlock Text="{Binding HeadingText}" />
                 <StackPanel Orientation="Vertical">
                     <sdk:DataGrid x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="255"
                                   Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
@@ -32,7 +32,6 @@
                         Save To Excel
                     </Button>
                 </StackPanel>
-            </toolkit:Expander>
             <Callbacks:CallbacksView Name="cv" />
         </StackPanel>
     </Grid>

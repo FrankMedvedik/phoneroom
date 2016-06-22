@@ -11,9 +11,9 @@
              mc:Ignorable="d ignore">
     <Grid x:Name="LayoutRoot">
         <toolkit:WrapPanel Orientation="Vertical">
-            <toolkit:Expander Header="{Binding HeadingText}" IsExpanded="True">
                 <StackPanel Orientation="Vertical">
-                    <reportCriteria:AutoRefreshView />
+                <TextBlock Text="{Binding HeadingText}" />
+                <reportCriteria:AutoRefreshView />
                     <sdk:DataGrid x:Name="JobsDG" AutoGenerateColumns="False" MaxHeight="255"
                                   Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                                   Width="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
@@ -34,7 +34,6 @@
                         Save To Excel
                     </Button>
                 </StackPanel>
-            </toolkit:Expander>
             <Callbacks:CallbacksView Grid.Row="2" Name="cv" />
         </toolkit:WrapPanel>
     </Grid>

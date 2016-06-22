@@ -22,7 +22,7 @@ namespace PhoneLogic.Core
         /// <remarks>
         /// Do not modify the definition of BuildAt as your changes will be discarded.
         /// </remarks>
-        public static DateTime BuildAt { get { return new DateTime(636021229794859473); } } //--**
+        public static DateTime BuildAt { get { return new DateTime(636022055680373841); } } //--**
         /// <summary>
         /// The program that time stamped it.
         /// </summary>

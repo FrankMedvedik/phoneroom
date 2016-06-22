@@ -200,6 +200,10 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           <Parameter Name="SIP" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="rpt_GetOpenCallbackRpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="rpt_GetOpenJobCallbacks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jobNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="taskId" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="rpt_GetRecruiterLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="sip" Type="nvarchar" Mode="In" />
           <Parameter Name="startDate" Type="datetime" Mode="In" />
@@ -333,10 +337,6 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="rpt_GetOpenJobCallbacks" ReturnType="Collection(PhoneLogicModel.callbackDTO)">
-            <Parameter Name="jobNum" Mode="In" Type="String" />
-            <Parameter Name="taskId" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="rpt_GetLyncCallsforPhoneInDateRange" ReturnType="Collection(PhoneLogicModel.LyncCallLog)">
             <Parameter Name="PhoneNumber" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
@@ -351,6 +351,10 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="taskId" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="rpt_GetOpenJobCallbacks" ReturnType="Collection(PhoneLogicModel.callbackDTO)">
+            <Parameter Name="jobNum" Mode="In" Type="String" />
+            <Parameter Name="taskId" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="returnedCall">
@@ -743,6 +747,23 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
         <ComplexType Name="rpt_GetActiveRecruiters_Result">
           <Property Type="String" Name="RecruiterSIP" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="CallCnt" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="rpt_GetOpenJobCallbacks1_Result">
+          <Property Type="Int32" Name="callbackID" Nullable="false" />
+          <Property Type="String" Name="jobNum" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="taskID" Nullable="false" />
+          <Property Type="String" Name="taskName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TaskTypeId" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="phoneNum" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="msgLength" Nullable="true" />
+          <Property Type="DateTime" Name="StatusDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UTC_code" Nullable="true" />
+          <Property Type="String" Name="Region" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="timeEntered" Nullable="false" Precision="23" />
+          <Property Type="String" Name="tollFreeNumber" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="msgScr" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="status" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SIP" Nullable="true" MaxLength="256" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1188,6 +1209,27 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetClosedJobCallbacks" FunctionName="PhoneLogicModel.Store.rpt_GetClosedJobCallbacks" >
             <ResultMapping>
+              <ComplexTypeMapping TypeName="PhoneLogicModel.callbackDTO">
+                <ScalarProperty Name="callbackID" ColumnName="callbackID" />
+                <ScalarProperty Name="jobNum" ColumnName="jobNum" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="msgLength" ColumnName="msgLength" />
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+                <ScalarProperty Name="UTC_code" ColumnName="UTC_code" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="timeEntered" ColumnName="timeEntered" />
+                <ScalarProperty Name="tollFreeNumber" ColumnName="tollFreeNumber" />
+                <ScalarProperty Name="msgScr" ColumnName="msgScr" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="SIP" ColumnName="SIP" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rpt_GetOpenJobCallbacks" FunctionName="PhoneLogicModel.Store.rpt_GetOpenJobCallbacks">
+          <ResultMapping>
               <ComplexTypeMapping TypeName="PhoneLogicModel.callbackDTO">
                 <ScalarProperty Name="callbackID" ColumnName="callbackID" />
                 <ScalarProperty Name="jobNum" ColumnName="jobNum" />
