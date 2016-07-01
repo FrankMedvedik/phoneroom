@@ -8,7 +8,6 @@ namespace PhoneLogic.Model
 #if !SILVERLIGHT
     [Serializable]
 #endif
-
     public class RecruiterActivity
     {
         [Display(Name = "ReviewDate")]
