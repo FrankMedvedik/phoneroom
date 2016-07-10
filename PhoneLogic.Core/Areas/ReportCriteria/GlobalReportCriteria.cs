@@ -9,7 +9,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         public ReportDateRange ReportDateRange = new ReportDateRange();
         public string Phoneroom { get; set; }
 
-        public Dictionary<string, PhoneroomRecruiterJob> RecruiterJobs { get; set; }
+        public Dictionary<string, PhoneroomRecruiterJob> RecruiterJobs { get; set; } 
         public List<Recruiter> PhoneroomRecruiters { get; set; }
         public List<PhoneLogicTask> PhoneroomJobs { get; set; }
 

@@ -145,9 +145,6 @@
     <Compile Include="..\PhoneLogic.Model.Silverlight\StringFormatSvc.cs">
       <Link>StringFormatSvc.cs</Link>
     </Compile>
-    <Compile Include="..\PhoneLogic.Model.Silverlight\TestConfig.cs">
-      <Link>TestConfig.cs</Link>
-    </Compile>
     <Compile Include="Models\LyncCallJobRecruiter.cs" />
     <Compile Include="Models\LyncCallByRecruiter.cs" />
     <None Include="Models\RecruiterLyncCallLog.cs.xxx" />

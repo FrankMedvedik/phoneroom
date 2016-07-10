@@ -21,13 +21,8 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             InitializeComponent();
             _vm = new PhoneroomsViewModel();
             DataContext = _vm;
-            ShowDetails(false);
         }
 
-        public void ShowDetails(bool b)
-        {
-            Details.Visibility = b ? Visibility.Visible : Visibility.Collapsed;
-        }
 
         public string SelectedPhoneroom
         {
@@ -62,5 +57,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         public static readonly DependencyProperty PhoneroomJobsProperty =
             DependencyProperty.Register("PhoneroomJobs", typeof(List<PhoneLogicTask>), typeof(PhoneroomsView),
                 new PropertyMetadata(new List<PhoneLogicTask>()));
+
+        
     }
 }

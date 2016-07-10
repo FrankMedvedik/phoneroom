@@ -15,16 +15,6 @@ namespace PhoneLogic.Core.Areas.DialHistory
         public DialHistoryViewModel()
         {
             AllCalls = true;
-            //Messenger.Default.Register<NotificationMessage<DialHistoryMessage>>(this, message =>
-            //{
-            //    if (message.Notification == Notifications.PhoneNumberChanged)
-            //    {
-            //        PhoneNumber = message.Content.PhoneNumber;
-            //        StartDate = message.Content.StartDate;
-            //        EndDate = message.Content.StartDate;
-            //        GetCalls();
-            //    }
-            //});
             Messenger.Default.Register<NotificationMessage<string>>(this, message =>
             {
                 if (message.Notification == Notifications.PhoneNumberChanged)
@@ -151,10 +141,5 @@ namespace PhoneLogic.Core.Areas.DialHistory
         public bool AllCalls { get; set; }
     }
 
-    //public class DialHistoryMessage
-    //{
-    //    public string PhoneNumber { get; set; }
-    //    public DateTime StartDate { get; set; }
-    //    public DateTime EndDate { get; set; }
-    //}
+   
 }

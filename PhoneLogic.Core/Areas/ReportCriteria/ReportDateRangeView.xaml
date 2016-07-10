@@ -8,19 +8,20 @@
              xmlns:controls="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
              mc:Ignorable="d ignore">
     <Grid>
-        <controls:WrapPanel Orientation="Horizontal" Margin="-10,0,10,0">
+        <controls:WrapPanel Orientation="Horizontal" Margin="10,0,10,0">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Start" Width="35" Margin="16,6,6,6" VerticalAlignment="Center"
+                <TextBlock Text="Start" Margin="10,6,4,6" VerticalAlignment="Center"
                            HorizontalAlignment="Right" />
                 <toolkit:DateTimeBox x:Name="pckStart" ToolTipService.ToolTip="start date and time for the report"
-                                     SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" Margin="0,10,0,9"
+                                     SelectedDateTime="{Binding StartRptDate, Mode=TwoWay}" VerticalAlignment="Center"
                                      Width="180" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="End" Width="35" Margin="6" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                <toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the report"
-                                     SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" Margin="0,10,0,9" Width="180" />
-                <CheckBox Margin="6" x:Name="chkAutoEndTime" VerticalAlignment="Center"
+                <TextBlock Text="End" Margin="8,6,4,6" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <toolkit:DateTimeBox x:Name="pckEnd" ToolTipService.ToolTip="end date and time for the report" SelectedDateTime="{Binding EndRptDate, Mode=TwoWay}" Margin="0,10,0,9" Width="180" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+            <CheckBox Margin="6" x:Name="chkAutoEndTime" VerticalAlignment="Center"
                           Checked="chkAutoEndTime_Checked" Unchecked="chkAutoEndTime_Unchecked">
                     Use Current Time For End?
                 </CheckBox>

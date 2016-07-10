@@ -10,7 +10,7 @@
              mc:Ignorable="d ignore"  >
     <Grid x:Name="LayoutRoot" Margin="10">
         <ScrollViewer>
-            <StackPanel Margin="6">
+            <StackPanel Margin="12">
                 <dialHistory:DialHistoryView />
                 <views:BuildInformationView />
             </StackPanel>

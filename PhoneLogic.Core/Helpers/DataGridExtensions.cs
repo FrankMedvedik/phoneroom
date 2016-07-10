@@ -103,7 +103,7 @@ namespace PhoneLogic.Core.Helpers
                     sw.WriteLine("<Version>1</Version>");
                     sw.WriteLine("</DocumentProperties>");
                     sw.WriteLine(
-                        "<Worksheet ss:Name=\"Silverlight Export\" xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\">");
+                        "<Worksheet ss:Name=\"Phone Room Export\" xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\">");
                     sw.WriteLine("<Table>");
                 }
                 sw.Write(strBuilder.ToString());

@@ -77,18 +77,28 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
             });
             RefreshAll();
         }
-
+        public string CallsInQueueHeading
+        {
+            get { return _callsInQueueHeading; }
+            set
+            {
+                _callsInQueueHeading = value;
+                NotifyPropertyChanged();
+            }
+        }
         public List<Recruiter> MyRecruiters { get; set; }
 
         protected override void RefreshAll(object sender, EventArgs e)
         {
             GetActiveCalls();
             FilterCalls();
+            CallsInQueueHeading = String.Format("{0} Active Calls", FilteredActiveCalls.Count);
         }
 
         #region SelectedActiveCall
 
         private ActiveCallDetail _selectedActiveCall;
+        private string _callsInQueueHeading;
 
         public ActiveCallDetail SelectedActiveCall
         {

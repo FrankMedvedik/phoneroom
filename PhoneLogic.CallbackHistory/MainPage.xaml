@@ -9,12 +9,10 @@
              xmlns:callbacks="clr-namespace:PhoneLogic.Core.Areas.Callbacks;assembly=PhoneLogic.Core"
              mc:Ignorable="d ignore" Width="Auto">
     <Grid x:Name="LayoutRoot">
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <reportCriteria:PhoneroomsView />
-                <reportCriteria:GlobalReportCriteriaView VerticalAlignment="Top" />
-            </StackPanel>
-            <callbacks:ClosedCallbacksJobsView />
+        <StackPanel Orientation="Vertical" Margin="10">
+                <reportCriteria:PhoneroomsView  HorizontalAlignment="Left"/>
+            <reportCriteria:GlobalReportCriteriaView HorizontalAlignment="Left" />
+            <callbacks:ClosedCallbacksJobsView HorizontalAlignment="Left"/>
             <views:BuildInformationView />
         </StackPanel>
     </Grid>

@@ -59,21 +59,13 @@ namespace PhoneLogic.Core.Areas.DialHistory
             }
         }
 
-        //// Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty SelectedCallerIdProperty =
-        //    DependencyProperty.Register("SelectedCallerId", typeof(string), typeof(DialHistoryView), new PropertyMetadata(""));
-
-        public void GetCalls(string CallerId)
+     public void GetCalls(string CallerId)
         {
             PhoneNumber = CallerId;
             _vm.GetCalls();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            _vm.GetCalls();
-        }
-
+     
         public bool ShowData
         {
             get { return _vm.ShowGridData; }
@@ -123,7 +115,6 @@ namespace PhoneLogic.Core.Areas.DialHistory
             set { _vm.AllCalls = value; }
         }
 
-        // Using a DependencyProperty as the backing store for boolean ShowData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowInputProperty =
             DependencyProperty.Register("ShowInput", typeof(bool), typeof(DialHistoryView), new PropertyMetadata(false));
 

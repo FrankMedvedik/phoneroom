@@ -29,7 +29,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             try
             {
-                string fname = string.Format("{0}", "Recruiters" + _vm.ReportDateRange.ToFormattedString('.'));
+                string fname = string.Format("{0}", "ActiveRecruiters" + _vm.ReportDateRange.ToFormattedString('.'));
 
                 RecruitersDG.Export(fname);
             }

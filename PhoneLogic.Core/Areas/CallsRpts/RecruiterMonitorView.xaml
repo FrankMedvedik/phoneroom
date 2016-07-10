@@ -11,7 +11,7 @@
     <Control.Resources>
         <DataTemplate x:Key="RecruiterStatusTemplate">
             <Grid Margin="3">
-                <controls:PresenceIndicator x:Name="Presence" Source="{Binding RecruiterSIP}" PhotoDisplayMode="Hidden" />
+                <controls:PresenceIndicator x:Name="Presence" VerticalContentAlignment="Stretch" Source="{Binding RecruiterSIP}" PhotoDisplayMode="Hidden" />
             </Grid>
         </DataTemplate>
     </Control.Resources>
@@ -64,6 +64,10 @@
                     <TextBlock Text="{Binding LoadError}" />
                 </StackPanel>
             </StackPanel>
+            <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" 
+                    Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Width="100" Click="Button_Click">
+                Save To Excel
+            </Button>
         </Grid>
         <sdk:GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Width="Auto" Height="3" BorderBrush="Black"
                           BorderThickness="1,0" Opacity="0.715">

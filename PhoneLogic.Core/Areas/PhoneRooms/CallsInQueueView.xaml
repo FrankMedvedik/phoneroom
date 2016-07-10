@@ -10,6 +10,7 @@
         <StackPanel Grid.Row="0" Grid.Column="0"
                     Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                     Background="{Binding TheBackground}">
+            <TextBlock Text="{Binding CallsInQueueHeading}" FontWeight="Bold" HorizontalAlignment="Center" Margin="6,6,6,6" />
             <!--<TextBlock Text="Incoming Call: Become Available in Lync to Accept" FontWeight="Bold" Foreground="{Binding TheForeground}" Margin="6" />-->
             <sdk:DataGrid x:Name="callbackGrid" HorizontalAlignment="Center" AutoGenerateColumns="False"
                           FontWeight="Bold" Foreground="{Binding TheForeground}"
@@ -18,13 +19,13 @@
                           Margin="6" MinHeight="20">
                 <sdk:DataGrid.Columns>
                     <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" Header="Job" />
-                    <sdk:DataGridTextColumn Binding="{Binding InQueue}" Header="Incoming Calls" />
+                    <sdk:DataGridTextColumn Binding="{Binding InQueue}" Header="Cnt" />
                 </sdk:DataGrid.Columns>
             </sdk:DataGrid>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="0"
                     Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}" Margin="6">
-            <!--<TextBlock Text="No Incoming Calls" HorizontalAlignment="Center"/>-->
+            <TextBlock Text="No Incoming Calls" FontWeight="Bold" HorizontalAlignment="Center" Margin="6"/>
             <Image HorizontalAlignment="Center" Stretch="None"
                    Source="/PhoneLogic.Core;component/Images/Sleeping-Medical-Staff.png"
                    ToolTipService.ToolTip="no incoming phone calls " />

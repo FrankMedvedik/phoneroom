@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PhoneLogic.Web.Controllers;
 using PhoneLogic.Model;
-namespace PhoneLogic.Test
+using PhoneLogic.Test;
+using PhoneLogic.Web.Controllers;
+
+namespace PhoneLogic.Server.Tests.ControllerTests
 {
     [TestClass]
     public class CallbackControllerUnitTest

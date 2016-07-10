@@ -104,11 +104,14 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         private void FilterJobs()
         {
-            var rx = (from c in Jobs
-                join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
-                select c).ToList().OrderByDescending(x => x.CallbackCnt);
+            //var rx = (from c in Jobs
+            //    join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
+            //    select c).ToList().OrderByDescending(x => x.CallbackCnt);
             ShowGridData = true;
-            FilteredJobs = new ObservableCollection<CallbackRpt>(rx.ToList());
+            //FilteredJobs = new ObservableCollection<CallbackRpt>(rx.ToList());
+
+            FilteredJobs = new ObservableCollection<CallbackRpt>(Jobs);
+
             HeadingText = string.Format("{0} Phone Room has {1} Jobs with Closed Callbacks as of {2}", Phoneroom,
                 FilteredJobs.Count(), DateTime.Now);
         }

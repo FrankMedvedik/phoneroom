@@ -24,15 +24,9 @@
         </DataTemplate>
     </Control.Resources>
     <Grid HorizontalAlignment="Left">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <sdk:DataGrid Grid.Row="0" x:Name="ActiveCallsDG" AutoGenerateColumns="False" MaxHeight="550"
+        <StackPanel Margin="6" Grid.Row="0" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
+            <TextBlock Text="{Binding CallsInQueueHeading}" FontWeight="Bold" HorizontalAlignment="Center" Margin="6,6,6,6" />
+            <sdk:DataGrid x:Name="ActiveCallsDG" AutoGenerateColumns="False" MaxHeight="550"
                       Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                       ItemsSource="{Binding FilteredActiveCalls}"
@@ -46,8 +40,10 @@
                 <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
+        </StackPanel>
         <StackPanel Margin="6" Grid.Row="0"
                     Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
+            <TextBlock Text="{Binding CallsInQueueHeading}" FontWeight="Bold" HorizontalAlignment="Center" Margin="6,6,6,6" />
             <Image HorizontalAlignment="Center" Stretch="None" Source="/PhoneLogic.Core;component/Images/Sleep PC.png"
                    ToolTipService.ToolTip="no recruiters currently active" />
             <StackPanel Orientation="Vertical"

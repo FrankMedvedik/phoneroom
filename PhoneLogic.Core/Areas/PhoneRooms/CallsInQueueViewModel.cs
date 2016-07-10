@@ -14,6 +14,16 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
     public class CallsInQueueViewModel : CollectionViewModelBase
     {
         // sets up the 
+        public string CallsInQueueHeading
+        {
+            get { return _callsInQueueHeading; }
+            set
+            {
+                _callsInQueueHeading = value; 
+                NotifyPropertyChanged();
+            }
+        }
+
         public CallsInQueueViewModel()
         {
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
@@ -76,6 +86,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         {
             GetQueuedCalls();
             FilterCalls();
+            CallsInQueueHeading = String.Format("{0} Calls in Queue", FilteredCallsInQueue.Sum(x=> x.InQueue));
         }
 
         public void testGetMyQueuedCalls()
@@ -116,6 +127,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
         private ObservableCollection<QueueSummary> _CallsInQueue = new ObservableCollection<QueueSummary>();
         private ObservableCollection<PhoneLogicTask> _jobs = new ObservableCollection<PhoneLogicTask>();
+        private string _callsInQueueHeading;
 
         public ObservableCollection<QueueSummary> CallsInQueue
         {

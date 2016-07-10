@@ -9,9 +9,9 @@
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
              mc:Ignorable="d ignore">
     <Control.Resources>
-        <DataTemplate x:Key="RecruiterStatusTemplate">
+        <DataTemplate x:Key="RecruiterStatusTemplate" >
             <Grid Margin="0">
-                <controls:PresenceIndicator x:Name="Presence" Source="{Binding RecruiterSIP}" PhotoDisplayMode="Hidden" />
+                <controls:PresenceIndicator x:Name="Presence" VerticalContentAlignment="Stretch" Source="{Binding RecruiterSIP}" PhotoDisplayMode="Hidden" />
             </Grid>
         </DataTemplate>
     </Control.Resources>

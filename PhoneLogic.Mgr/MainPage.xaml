@@ -64,11 +64,12 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <ReportCriteria:PhoneroomsView x:Name="pv"  Grid.Row="0"/>
-                    <phoneRooms:CallsInQueueView Grid.Row="1"  />
-                    <phoneRooms:ActiveCallsView Grid.Row="2" />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <phoneRooms:CallsInQueueView  />
+                        <phoneRooms:ActiveCallsView />
+                    </StackPanel>
                 </Grid>
             </Border>
             <views:BuildInformationView Grid.Row="1" Grid.Column="0"/>

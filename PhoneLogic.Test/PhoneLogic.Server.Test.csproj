@@ -9,8 +9,8 @@
     <ProjectGuid>{96DB26DF-E3C9-4F1C-9AF7-3E7BECBDE678}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhoneLogic.Test</RootNamespace>
-    <AssemblyName>PhoneLogic.Test</AssemblyName>
+    <RootNamespace>PhoneLogic.Server.Tests</RootNamespace>
+    <AssemblyName>PhoneLogic.Server.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

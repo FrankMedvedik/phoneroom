@@ -1845,9 +1845,7 @@
     <Content Include="Phonelogic.Inbound.html" />
     <Content Include="PhoneLogic.Mgr.html" />
     <Content Include="PhoneLogic.Phoneroom.Mgr.html" />
-    <Content Include="Scripts\jquery-2.2.1.js" />
-    <Content Include="Scripts\jquery-2.2.1.min.js" />
-    <Content Include="Scripts\jquery-2.2.1.min.map" />
+    <None Include="Properties\PublishProfiles\cc-prod.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />

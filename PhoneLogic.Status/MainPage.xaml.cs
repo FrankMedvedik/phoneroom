@@ -8,7 +8,6 @@ namespace PhoneLogic.Status
         public MainPage()
         {
             InitializeComponent();
-            pv.ShowDetails(true);
         }
 
     }

@@ -9,8 +9,7 @@ namespace PhoneLogic.DialHistory
         public MainPage()
         {
             InitializeComponent();
-            Toast = ToastNotification.CreateToast(10.5); 
-            Toast.ShowMessage("WORLD SOLALISM NOW");
+
         }
     }
 }

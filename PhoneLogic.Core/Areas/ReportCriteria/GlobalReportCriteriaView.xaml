@@ -10,11 +10,11 @@
     <!--<Border CornerRadius="5" BorderThickness="1" Width="Auto" BorderBrush="Black">-->
     <toolkit:WrapPanel Orientation="Horizontal" Name="spCriteria" Visibility="{Binding ShowControl}">
         <ReportCriteria:ReportDateRangeView Name="DR" />
-        <CheckBox Margin="6,13,6,6" x:Name="chkAutoRefresh" VerticalAlignment="Top" Checked="chkAutoRefresh_Checked"
+        <CheckBox Margin="6,6,6,6" x:Name="chkAutoRefresh" VerticalAlignment="Center" Checked="chkAutoRefresh_Checked"
                   Unchecked="chkAutoRefresh_Unchecked">
             Automatically Refresh?
         </CheckBox>
-        <Button Name="btnRefresh" FontSize="12" Width="Auto" Margin="6,10,6,6" VerticalAlignment="Top"
+        <Button Name="btnRefresh" FontSize="12" Width="Auto" Margin="6,6,6,6" VerticalAlignment="Top"
                 IsEnabled="False" HorizontalAlignment="Center" Click="Refresh_Click">
             Refresh
         </Button>

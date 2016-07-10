@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PhoneLogic.Repository;
+using PhoneLogic.Test;
 
-namespace PhoneLogic.Test
+namespace PhoneLogic.Server.Tests.RespositoryTests
 {
     [TestClass]
     public class RespondentRepositoryTest

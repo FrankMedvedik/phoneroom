@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PhoneLogic.Test;
 using PhoneLogic.Web.Controllers;
 
-namespace PhoneLogic.Test.ControllerTests
+namespace PhoneLogic.Server.Tests.ControllerTests
 {
     [TestClass]
     public class CallsControllerUnitTest

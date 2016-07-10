@@ -8,7 +8,6 @@ namespace PhoneLogic.Mgr
         public MainPage()
         {
             InitializeComponent();
-            pv.ShowDetails(true);
         }
 
     }

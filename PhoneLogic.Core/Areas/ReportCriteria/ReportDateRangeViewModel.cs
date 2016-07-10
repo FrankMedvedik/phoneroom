@@ -61,11 +61,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             }
         }
 
-        private void chkAutoEndTime_Unchecked(object sender, RoutedEventArgs e)
-        {
-        }
-
-        #endregion
+   #endregion
 
         public void FloatEndTime()
         {
