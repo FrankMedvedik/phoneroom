@@ -124,7 +124,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             }
         }
 
-
+        private string _oldPhoneRoomName ="not set";
         private string _selectedPhoneRoomName;
 
         public string SelectedPhoneRoomName
@@ -136,13 +136,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 NotifyPropertyChanged();
                 appSettings["PhoneRoomName"] = value;
                 RefreshAll();
-                Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(new GlobalReportCriteria()
-                {
-                    Phoneroom = this.SelectedPhoneRoomName,
-                    PhoneroomJobs = _allPhoneroomJobs,
-                    PhoneroomRecruiters = _allPhoneRoomRecruiters
-                },
-                Notifications.PhoneroomChanged));
+
             }
         }
 
@@ -154,7 +148,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         private List<PhoneLogicTask> _allPhoneroomJobs = new List<PhoneLogicTask>();
         private List<Recruiter> _allPhoneRoomRecruiters = new List<Recruiter>();
 
-        private async void Refresh()
+        private async Task Refresh()
         {
             _allPhoneroomJobs = await GetAllPhoneroomJobs();
             FilteredJobs = new ObservableCollection<PhoneLogicTask>(_allPhoneroomJobs);
@@ -162,6 +156,25 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             FilteredRecruiters = new ObservableCollection<Recruiter>(GetActivePhoneroomRecruiters(_allPhoneRoomRecruiters));
             RecruiterHeading = string.Format("{0} {1} Recruiters", FilteredRecruiters.Count, GetRecruiterFilter());
             JobHeading = string.Format("{0} Jobs", FilteredJobs.Count);
+
+
+            Console.WriteLine("Phone room -" + this.SelectedPhoneRoomName);
+            Console.WriteLine("Job Cnt -" + _allPhoneroomJobs.Count);
+            //Console.WriteLine("Job Number -" + _allPhoneroomJobs.First()?.JobNum);
+            Console.WriteLine("Recruiter Cnt -" + _allPhoneRoomRecruiters.Count);
+            //Console.WriteLine("Job Number -" + _allPhoneRoomRecruiters.First()?.sip);
+            if (_oldPhoneRoomName != SelectedPhoneRoomName)
+            {
+                Messenger.Default.Send(new NotificationMessage<GlobalReportCriteria>(new GlobalReportCriteria()
+                {
+                    Phoneroom = this.SelectedPhoneRoomName,
+                    PhoneroomJobs = _allPhoneroomJobs,
+                    PhoneroomRecruiters = _allPhoneRoomRecruiters
+                },
+                    Notifications.PhoneroomChanged));
+                _oldPhoneRoomName = SelectedPhoneRoomName;
+            }
+
         }
 
         private string GetRecruiterFilter()
@@ -281,6 +294,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
         }
         private List<Recruiter> GetActivePhoneroomRecruiters(List<Recruiter> allPhoneroomRecruiters )
         {
+
                 var contactManager = LyncClient.GetClient().ContactManager;
                 var activeRecruiters = new List<Recruiter>();
 
@@ -311,15 +325,13 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 {
                     try
                     {
-                        if (r.sip.Length > 4)
-                        {
+                  
                             var c = contactManager.GetContactByUri(r.sip);
                             var ca = (ContactAvailability) c.GetContactInformation(ContactInformationType.Availability);
                             if (ca == ContactAvailability.Free || ca == ContactAvailability.FreeIdle)
                             {
                                 activeRecruiters.Add(r);
                             }
-                        }
                     }
                     catch (Exception e)
                     {
@@ -344,6 +356,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                         (
                             from x in _phoneroomRecruiterJobs
                             where x.PhoneRoom == SelectedPhoneRoomName
+                            where x.sip.Length > 4
                             group x by new {x.sip, x.EmailAddress, x.DisplayName, x.Description}
                             into grp
                             select new Recruiter()

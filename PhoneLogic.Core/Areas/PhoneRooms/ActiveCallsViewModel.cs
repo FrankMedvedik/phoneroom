@@ -73,6 +73,12 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 {
                     MyRecruiters = message.Content.PhoneroomRecruiters;
                     RefreshAll(null, null);
+
+                    Console.WriteLine("Phone room -" + message.Content.Phoneroom);
+                    Console.WriteLine("Job Cnt -" + message.Content.PhoneroomJobs.Count);
+                    //Console.WriteLine("Job Number -" + message.Content.PhoneroomJobs.First().JobNum);
+                    Console.WriteLine("Recruiter Cnt -" + message.Content.PhoneroomRecruiters.Count);
+                    //Console.WriteLine("Job Number -" + message.Content.PhoneroomRecruiters.First().sip);
                 }
             });
             RefreshAll();
