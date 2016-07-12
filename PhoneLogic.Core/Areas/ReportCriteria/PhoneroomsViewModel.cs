@@ -23,38 +23,38 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
     {
         private IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
 
-        public bool ActiveOnly
-        {
-            get { return _activeOnly; }
-            set
-            {
-                   _activeOnly = value;
-                    NotifyPropertyChanged();
-                    RefreshAll();
-            }
-        }
+        //public bool ActiveOnly
+        //{
+        //    get { return _activeOnly; }
+        //    set
+        //    {
+        //           _activeOnly = value;
+        //            NotifyPropertyChanged();
+        //            RefreshAll();
+        //    }
+        //}
 
-        public bool AllRecruiters
-        {
-            get { return _allRecruiters; }
-            set
-            {
-                    _allRecruiters = value;
-                    NotifyPropertyChanged();
-                    RefreshAll();
-            }
-        }
+        //public bool AllRecruiters
+        //{
+        //    get { return _allRecruiters; }
+        //    set
+        //    {
+        //            _allRecruiters = value;
+        //            NotifyPropertyChanged();
+        //            RefreshAll();
+        //    }
+        //}
 
-        public bool AvailableOnly
-        {
-            get { return _availableOnly; }
-            set
-            {
-                    _availableOnly = value;
-                    NotifyPropertyChanged();
-                    RefreshAll();
-            }
-        }
+        //public bool AvailableOnly
+        //{
+        //    get { return _availableOnly; }
+        //    set
+        //    {
+        //            _availableOnly = value;
+        //            NotifyPropertyChanged();
+        //            RefreshAll();
+        //    }
+        //}
         public string JobHeading
         {
             get { return _jobHeading; }
@@ -99,9 +99,9 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             // gets universe of all jobs in all phonerooms associated with all recruiters 
             _phoneroomRecruiterJobs = await PhoneroomRecruiterJobSvc.GetAllPhoneroomRecruiterJobs();
             StartAutoRefresh(5);
-            AvailableOnly = true;
-            ActiveOnly = false;
-            AllRecruiters = false;
+            RecruiterLyncStates = RecruiterLyncStatesSvc.GetAll();
+            SelectedRecruiterLyncState = RecruiterLyncStatesSvc.GetDefault();
+
             ShowGridData = false;
             // setting the selected phone room
             PhoneRooms = PhoneRoomSvc.GetAll();
@@ -111,15 +111,43 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
 
         }
 
-        private ObservableCollection<PhoneLogic.Model.PhoneRoom> _PhoneRooms =
+
+        private ObservableCollection<String> _recruiterLyncStates = new ObservableCollection<String>();
+
+        public ObservableCollection<String> RecruiterLyncStates
+        {
+            get { return _recruiterLyncStates; }
+            set
+            {
+                _recruiterLyncStates  = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _selectedRecruiterLyncState;
+
+        public string SelectedRecruiterLyncState
+        {
+            get { return _selectedRecruiterLyncState; ; }
+            set
+            {
+                _selectedRecruiterLyncState = value;
+                NotifyPropertyChanged();
+
+            }
+        }
+
+
+
+        private ObservableCollection<PhoneLogic.Model.PhoneRoom> _phoneRooms =
             new ObservableCollection<PhoneLogic.Model.PhoneRoom>();
 
         public ObservableCollection<PhoneLogic.Model.PhoneRoom> PhoneRooms
         {
-            get { return _PhoneRooms; }
+            get { return _phoneRooms; }
             set
             {
-                _PhoneRooms = value;
+                _phoneRooms = value;
                 NotifyPropertyChanged();
             }
         }
@@ -154,7 +182,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
             FilteredJobs = new ObservableCollection<PhoneLogicTask>(_allPhoneroomJobs);
             _allPhoneRoomRecruiters = await GetAllPhoneroomRecruiters();
             FilteredRecruiters = new ObservableCollection<Recruiter>(GetActivePhoneroomRecruiters(_allPhoneRoomRecruiters));
-            RecruiterHeading = string.Format("{0} {1} Recruiters", FilteredRecruiters.Count, GetRecruiterFilter());
+            RecruiterHeading = string.Format("{0} {1} Recruiters", FilteredRecruiters.Count, SelectedRecruiterLyncState);
             JobHeading = string.Format("{0} Jobs", FilteredJobs.Count);
 
 
@@ -175,13 +203,6 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 _oldPhoneRoomName = SelectedPhoneRoomName;
             }
 
-        }
-
-        private string GetRecruiterFilter()
-        {
-            if (ActiveOnly) return "Active";
-            if (AvailableOnly) return "Available";
-            return "All";
         }
 
         private async Task<IEnumerable<PhoneLogicTask>> GetActivePhoneroomJobs(List<PhoneLogicTask> allPhoneroomJobs, List<RecruiterTimeSummary> activeRecruiters)
@@ -298,9 +319,9 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 var contactManager = LyncClient.GetClient().ContactManager;
                 var activeRecruiters = new List<Recruiter>();
 
-            if (AllRecruiters) return allPhoneroomRecruiters;
+            if (SelectedRecruiterLyncState == RecruiterLyncStatesSvc.AllRecruiters) return allPhoneroomRecruiters;
 
-            if (ActiveOnly)
+            if (SelectedRecruiterLyncState == RecruiterLyncStatesSvc.ActiveRecruiters)
             {
                 foreach (var r in allPhoneroomRecruiters)
                 {
@@ -319,7 +340,7 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                     }
                 }
             }
-            else if (AvailableOnly)
+            else if (SelectedRecruiterLyncState == RecruiterLyncStatesSvc.AvailableRecruiters)
             {
                 foreach (var r in allPhoneroomRecruiters)
                 {

@@ -21,33 +21,41 @@
         </DataTemplate>
     </Control.Resources>
     <StackPanel Orientation="Vertical">
-        <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="600">
+        <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Width="426">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition MaxHeight="350" />
+                <RowDefinition MaxHeight="350"  />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="650"/>
+                <ColumnDefinition MaxWidth="500" />
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <ComboBox Height="23" HorizontalAlignment="Right" 
-                          Margin="400,6,0,6" FontWeight="Bold" x:Name="comboBox1" VerticalAlignment="Center" Width="120" ItemsSource="{Binding PhoneRooms, Mode=OneWay}" SelectedValue="{Binding SelectedPhoneRoomName, Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="Name" />
-                <!--<TextBlock Text="Phone Room" FontSize="12" Margin="6" VerticalAlignment="Center" />-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
+                <TextBlock Text="Phone Room" FontSize="12" Margin="6" VerticalAlignment="Center" />
+                <ComboBox Height="23" HorizontalAlignment="Left" 
+                          Margin="6,6,10,6" FontWeight="Bold" x:Name="comboBox1" 
+                          VerticalAlignment="Center" Width="120" ItemsSource="{Binding PhoneRooms, Mode=OneWay}" 
+                          SelectedValue="{Binding SelectedPhoneRoomName, Mode=TwoWay}" 
+                          DisplayMemberPath="Name" SelectedValuePath="Name" />
             </StackPanel>
             <Grid Grid.Row="1">
-                <sdk:TabControl>
+                <toolkit:Expander Header="Details" HorizontalAlignment="Left" >
+                    <sdk:TabControl>
                     <sdk:TabItem Header="Recruiters"  IsSelected="True">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding RecruiterHeading}" FontWeight="Bold" HorizontalAlignment="Left" Margin="12,6,12,6" Width="200"/>
-                                <StackPanel Orientation="Horizontal" Margin="100,6,6,6" Width="200" >
+                                    <TextBlock FontSize="12" Text="{Binding RecruiterHeading}" FontWeight="Bold" HorizontalAlignment="Left" Margin="12,6,12,6" Width="200" />
+                                    <!--<TextBlock Text="Status" FontSize="12" Margin="6" VerticalAlignment="Center" />-->
+                                    <ComboBox Height="23" Margin="6,6,6,6" FontWeight="Bold" x:Name="comboBox2" VerticalAlignment="Center" Width="120" ItemsSource="{Binding RecruiterLyncStates, Mode=OneWay}" 
+                                              SelectedValue="{Binding SelectedRecruiterLyncState, Mode=TwoWay}" />
+                                <!--<StackPanel Orientation="Horizontal" Margin="100,6,6,6" Width="200" >
                                     <RadioButton IsChecked="{Binding Path=AvailableOnly, Mode=TwoWay}" Margin="6"  GroupName="A">Available</RadioButton>
                                     <RadioButton IsChecked="{Binding Path=ActiveOnly, Mode=TwoWay}" Margin="6" GroupName="A">Active</RadioButton>
                                     <RadioButton IsChecked="{Binding Path=AllRecruiters, Mode=TwoWay}" Margin="6" GroupName="A">All</RadioButton>    
-                                </StackPanel>
-                                            
-                            <!--<CheckBox IsChecked="{Binding Path=ActiveOnly, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6">Active Only</CheckBox>-->
+                                </StackPanel>-->
+                         
+                                <!--<TextBlock Text="Phone Room" FontSize="12" Margin="6" VerticalAlignment="Center" />-->
+                                <!--<CheckBox IsChecked="{Binding Path=ActiveOnly, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6">Active Only</CheckBox>-->
                             </StackPanel>
                             <ItemsControl ItemsSource="{Binding FilteredRecruiters}" ItemTemplate="{StaticResource RecruiterStatusTemplate}">
                                     <ItemsControl.ItemsPanel>
@@ -81,7 +89,7 @@
 
                     </sdk:TabItem>
                 </sdk:TabControl>
-                
+                </toolkit:Expander>
                 </Grid>
         </Grid>
         <StackPanel Margin="6" Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
@@ -91,5 +99,6 @@
                 <TextBlock Text="Loading Phone Rooms ..." />
             </StackPanel>
         </StackPanel>
+      
     </StackPanel>
 </UserControl>

@@ -18,26 +18,9 @@
         <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch">
             <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Left" Margin="6" />
         </StackPanel>
-        <Grid Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <sdk:DataGrid Grid.Column="0" Grid.RowSpan="2" Grid.Row="1" x:Name="CallsDG" AutoGenerateColumns="False"
-                          MaxHeight="225"
-                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                          SelectionChanged="CallsDG_SelectionChanged" Loaded="CallsDG_Loaded"
-                          ItemsSource="{Binding Calls}" VerticalAlignment="Top"
-                          SelectedItem="{Binding SelectedCall, Mode=TwoWay}"
-                          RowDetailsVisibilityMode="VisibleWhenSelected"
-                          ToolTipService.ToolTip="Phone Calls" Margin="6" HorizontalAlignment="Left"
-                          SelectionMode="Single">
+        <toolkit:WrapPanel Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+            <sdk:DataGrid x:Name="CallsDG" AutoGenerateColumns="False" MaxHeight="225" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" SelectionChanged="CallsDG_SelectionChanged" Loaded="CallsDG_Loaded" ItemsSource="{Binding Calls}" VerticalAlignment="Top" SelectedItem="{Binding SelectedCall, Mode=TwoWay}" RowDetailsVisibilityMode="VisibleWhenSelected" ToolTipService.ToolTip="Phone Calls" Margin="6" HorizontalAlignment="Left" SelectionMode="Single">
                 <sdk:DataGrid.Columns>
                     <!--<sdk:DataGridTextColumn Binding="{Binding JobFormatted }" />-->
                     <sdk:DataGridTextColumn Binding="{Binding PhoneFormatted }" />
@@ -50,24 +33,22 @@
                 <sdk:DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <toolkit:WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Button Name="Call" Width="80" Margin="3,6,3,6" Click="Call_Click"
-                                    IsEnabled="{Binding DataContext.CanCall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}">
+                            <Button Name="Call" Width="80" Margin="3,6,3,6" Click="Call_Click" IsEnabled="{Binding DataContext.CanCall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}">
                                 Call
                             </Button>
-                            <TextBlock
-                                Text="{Binding DataContext.ActionMsg, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}"
-                                Foreground="Red" Margin="6" />
+                            <TextBlock Text="{Binding DataContext.ActionMsg, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}" Foreground="Red" Margin="6" />
                         </toolkit:WrapPanel>
                     </DataTemplate>
                 </sdk:DataGrid.RowDetailsTemplate>
             </sdk:DataGrid>
-            <controls:ContactCard Grid.Column="1" Grid.Row="1" Name="cc" Margin="6" HorizontalAlignment="Left" />
-            <audioPlayer:SimplePlayer Name="AudioPlayer" Grid.Column="1" Margin="6" Grid.Row="2"
-                                      HorizontalAlignment="Left" />
-        </Grid>
-        <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Grid.Row="2"
-                HorizontalAlignment="Left" Width="120" Click="Button_Click">
-            Save To Excel
-        </Button>
+            <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" Width="120" Click="Button_Click">
+                Save To Excel
+            </Button>
+            </StackPanel>
+            <toolkit:WrapPanel Orientation="Horizontal">
+            <controls:ContactCard  Name="cc" Margin="6" HorizontalAlignment="Left" />
+            <audioPlayer:SimplePlayer Name="AudioPlayer" />
+            </toolkit:WrapPanel>
+        </toolkit:WrapPanel>
     </Grid>
 </UserControl>

@@ -361,6 +361,7 @@
     <Compile Include="Converters\RadioButtonConverter.cs" />
     <Compile Include="Helpers\DataGridExtensions.cs" />
     <Compile Include="Services\PhoneroomRecruiterJobSvc.cs" />
+    <Compile Include="Services\RecruiterLyncStatesSvc.cs" />
     <Compile Include="Services\RecruiterUtilizationSvc.cs" />
     <Compile Include="Timestamp.cs" />
     <Compile Include="ViewModels\CollectionViewModelBase.cs" />
