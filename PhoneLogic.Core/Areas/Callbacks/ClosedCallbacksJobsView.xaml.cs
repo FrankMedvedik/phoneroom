@@ -1,15 +1,16 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using PhoneLogic.Core.Behaviors;
 using PhoneLogic.Core.Helpers;
 
 namespace PhoneLogic.Core.Areas.Callbacks
 {
     /// <summary>
-    /// Description for JobsView.
+    ///     Description for JobsView.
     /// </summary>
     public partial class ClosedCallbacksJobsView : UserControl
     {
-        private ClosedCallbacksJobsViewModel _vm = null;
+        private readonly ClosedCallbacksJobsViewModel _vm;
 
         public ClosedCallbacksJobsView()
         {
@@ -20,7 +21,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             cv.OpenCallbacksOnly = false;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             JobsDG.Export("Jobs" + _vm.ReportDateRange.ToFormattedString('.'));
         }

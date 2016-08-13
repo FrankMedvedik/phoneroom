@@ -27,13 +27,10 @@ namespace PhoneLogic.Repository
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<returnedCall> returnedCalls { get; set; }
-        public virtual DbSet<inboundCall> inboundCalls { get; set; }
         public virtual DbSet<callback> callbacks { get; set; }
-        public virtual DbSet<agent> agents { get; set; }
-        public virtual DbSet<agentLog> agentLogs { get; set; }
-        public virtual DbSet<callLog> callLogs { get; set; }
         public virtual DbSet<vw_PhoneLogicTaskAgent> vw_PhoneLogicTaskAgent { get; set; }
+        public virtual DbSet<vLyncCallLog> vLyncCallLog { get; set; }
+        public virtual DbSet<agent> agents { get; set; }
     
         public virtual ObjectResult<callbackDTO> getMyCallbacks(string sIP, string jobNum, string taskId)
         {
@@ -136,36 +133,6 @@ namespace PhoneLogic.Repository
                 new ObjectParameter("End", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rptGetJobCallActivityResult>("rpt_GetJobCallActivity", startParameter, endParameter);
-        }
-    
-        public virtual ObjectResult<LyncCallLog> rpt_GetLyncCallLog(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
-        {
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LyncCallLog>("rpt_GetLyncCallLog", startDateParameter, endDateParameter);
-        }
-    
-        public virtual ObjectResult<LyncCallLog> rpt_GetRecruiterLyncCallLog(string sip, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
-        {
-            var sipParameter = sip != null ?
-                new ObjectParameter("sip", sip) :
-                new ObjectParameter("sip", typeof(string));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LyncCallLog>("rpt_GetRecruiterLyncCallLog", sipParameter, startDateParameter, endDateParameter);
         }
     
         public virtual ObjectResult<LyncCallRecruiter> rpt_GetLyncCallRecruiters(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
@@ -300,15 +267,6 @@ namespace PhoneLogic.Repository
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rpt_GetLyncCallRecruiterJobs>("rpt_GetLyncCallRecruiterJobs", sipParameter, startDateParameter, endDateParameter);
         }
     
-        public virtual ObjectResult<LyncCallLog> rpt_GetCallerLyncCallLog(string callerId)
-        {
-            var callerIdParameter = callerId != null ?
-                new ObjectParameter("callerId", callerId) :
-                new ObjectParameter("callerId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LyncCallLog>("rpt_GetCallerLyncCallLog", callerIdParameter);
-        }
-    
         public virtual ObjectResult<CallbackRpt> rpt_GetOpenCallbackRpt()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CallbackRpt>("rpt_GetOpenCallbackRpt");
@@ -325,23 +283,6 @@ namespace PhoneLogic.Repository
                 new ObjectParameter("endDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CallbackRpt>("rpt_GetClosedCallbackRpt", startDateParameter, endDateParameter);
-        }
-    
-        public virtual ObjectResult<LyncCallLog> rpt_GetLyncCallsforPhoneInDateRange(string phoneNumber, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
-        {
-            var phoneNumberParameter = phoneNumber != null ?
-                new ObjectParameter("PhoneNumber", phoneNumber) :
-                new ObjectParameter("PhoneNumber", typeof(string));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LyncCallLog>("rpt_GetLyncCallsforPhoneInDateRange", phoneNumberParameter, startDateParameter, endDateParameter);
         }
     
         public virtual ObjectResult<rpt_GetActiveRecruiters_Result> rpt_GetActiveRecruiters(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
@@ -389,6 +330,118 @@ namespace PhoneLogic.Repository
                 new ObjectParameter("taskId", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<callbackDTO>("rpt_GetOpenJobCallbacks", jobNumParameter, taskIdParameter);
+        }
+    
+        public virtual ObjectResult<vLyncCallLog> rpt_GetLyncCallsforPhoneInDateRange(string phoneNumber, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vLyncCallLog>("rpt_GetLyncCallsforPhoneInDateRange", phoneNumberParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<vLyncCallLog> rpt_GetLyncCallsforPhoneInDateRange(string phoneNumber, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, MergeOption mergeOption)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vLyncCallLog>("rpt_GetLyncCallsforPhoneInDateRange", mergeOption, phoneNumberParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<rpt_GetRecruiterCallLog_Result> rpt_GetRecruiterCallLog(string sip, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var sipParameter = sip != null ?
+                new ObjectParameter("sip", sip) :
+                new ObjectParameter("sip", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rpt_GetRecruiterCallLog_Result>("rpt_GetRecruiterCallLog", sipParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<rpt_GetRecruiterLyncCallLog_Result> rpt_GetRecruiterLyncCallLog(string sip, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var sipParameter = sip != null ?
+                new ObjectParameter("sip", sip) :
+                new ObjectParameter("sip", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<rpt_GetRecruiterLyncCallLog_Result>("rpt_GetRecruiterLyncCallLog", sipParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<vLyncCallLog> rpt_GetCallerLyncCallLog(string callerId)
+        {
+            var callerIdParameter = callerId != null ?
+                new ObjectParameter("callerId", callerId) :
+                new ObjectParameter("callerId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vLyncCallLog>("rpt_GetCallerLyncCallLog", callerIdParameter);
+        }
+    
+        public virtual ObjectResult<vLyncCallLog> rpt_GetCallerLyncCallLog(string callerId, MergeOption mergeOption)
+        {
+            var callerIdParameter = callerId != null ?
+                new ObjectParameter("callerId", callerId) :
+                new ObjectParameter("callerId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vLyncCallLog>("rpt_GetCallerLyncCallLog", mergeOption, callerIdParameter);
+        }
+    
+        public virtual ObjectResult<vLyncCallLog> rpt_GetLyncCallLog(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vLyncCallLog>("rpt_GetLyncCallLog", startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<vLyncCallLog> rpt_GetLyncCallLog(Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, MergeOption mergeOption)
+        {
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vLyncCallLog>("rpt_GetLyncCallLog", mergeOption, startDateParameter, endDateParameter);
         }
     }
 }

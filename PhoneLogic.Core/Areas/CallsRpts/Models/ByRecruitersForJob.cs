@@ -6,51 +6,51 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
 {
     public class ByRecruitersForJob
     {
-        public String recruiterSip { get; set; }
+        public string recruiterSip { get; set; }
 
         [Display(Name = "Phone Room")]
-        public String PhoneRoom { get; set; }
+        public string PhoneRoom { get; set; }
 
         [Display(Name = "Recruiter")]
-        public String DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         [Display(Name = "Email")]
-        public String EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
 
         public string JobNumber { get; set; }
 
         [Display(Name = "Total Call Cnt")]
-        public Nullable<int> CallCnt { get; set; }
+        public int? CallCnt { get; set; }
 
         [Display(Name = "Incoming")]
-        public Nullable<int> IncomingCallCnt { get; set; }
+        public int? IncomingCallCnt { get; set; }
 
         [Display(Name = "Outgoing")]
-        public Nullable<int> OutgoingCallCnt { get; set; }
+        public int? OutgoingCallCnt { get; set; }
 
-        public Nullable<int> TotalCallDuration { get; set; }
-        public Nullable<int> AvgCallDuration { get; set; }
-        public Nullable<int> MaxCallDuration { get; set; }
+        public int? TotalCallDuration { get; set; }
+        public int? AvgCallDuration { get; set; }
+        public int? MaxCallDuration { get; set; }
 
         [Display(Name = "Unique Callers")]
-        public Nullable<int> UniqueCallerCnt { get; set; }
+        public int? UniqueCallerCnt { get; set; }
 
         [Display(Name = "Complete")]
-        public Nullable<int> CompleteCnt { get; set; }
+        public int? CompleteCnt { get; set; }
 
         [Display(Name = "Hung Up")]
-        public Nullable<int> AbandonedCnt { get; set; }
+        public int? AbandonedCnt { get; set; }
 
         [Display(Name = "Left Msg")]
-        public Nullable<int> LeftMsgCnt { get; set; }
+        public int? LeftMsgCnt { get; set; }
 
         public string TollFreeNumber { get; set; }
 
         [Display(Name = "First Call")]
-        public Nullable<System.DateTime> FirstCallTime { get; set; }
+        public DateTime? FirstCallTime { get; set; }
 
         [Display(Name = "Last Call")]
-        public Nullable<System.DateTime> LastCallTime { get; set; }
+        public DateTime? LastCallTime { get; set; }
 
         [Display(Name = "Job")]
         public string JobFormatted
@@ -65,28 +65,27 @@ namespace PhoneLogic.Core.Areas.CallsRpts.Models
             get
             {
                 if (TollFreeNumber != null)
-                    return String.Format("{0:(###) ###-####}", double.Parse(TollFreeNumber));
-                else
-                    return "";
+                    return string.Format("{0:(###) ###-####}", double.Parse(TollFreeNumber));
+                return "";
             }
         }
 
         [Display(Name = "Total Time in Calls")]
         public string TotalCallDurationFormatted
         {
-            get { return string.Format("{0:00}:{1:00}", TotalCallDuration/3600, (TotalCallDuration/60)%60); }
+            get { return string.Format("{0:00}:{1:00}", TotalCallDuration/3600, TotalCallDuration/60%60); }
         }
 
         [Display(Name = "Avg")]
         public string AvgCallDurationFormatted
         {
-            get { return string.Format("{0:00}:{1:00}", AvgCallDuration/3600, (AvgCallDuration/60)%60); }
+            get { return string.Format("{0:00}:{1:00}", AvgCallDuration/3600, AvgCallDuration/60%60); }
         }
 
         [Display(Name = "Max")]
         public string MaxCallDurationFormatted
         {
-            get { return string.Format("{0:00}:{1:00}", MaxCallDuration/3600, (MaxCallDuration/60)%60); }
+            get { return string.Format("{0:00}:{1:00}", MaxCallDuration/3600, MaxCallDuration/60%60); }
         }
 
         [Display(Name = "Task Type")]

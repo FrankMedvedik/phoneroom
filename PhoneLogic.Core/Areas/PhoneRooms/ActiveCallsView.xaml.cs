@@ -4,7 +4,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public partial class ActiveCallsView : UserControl
     {
-        private ActiveCallsViewModel _vm;
+        private readonly ActiveCallsViewModel _vm;
 
         public ActiveCallsView()
         {

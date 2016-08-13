@@ -139,9 +139,6 @@
     <Compile Include="agent.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="agentLog.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="callback.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
@@ -149,12 +146,6 @@
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CallbackRpt.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="callLog.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="inboundCall.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LyncCallJob.cs">
@@ -224,9 +215,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RespModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="returnedCall.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="rptGetJobCallActivityResult.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
@@ -242,9 +230,6 @@
     <Compile Include="rpt_GetActiveRecruiters_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="rpt_GetCallerLyncCallLog_Result.cs">
-      <DependentUpon>PhonelogicModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="rpt_GetLyncCallRecruiterJobs.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
@@ -254,14 +239,17 @@
     <Compile Include="rpt_GetMyCallbacks_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="rpt_GetMyPhoneLogicTasks1_Result.cs">
+    <Compile Include="rpt_GetRecruiterCallLog_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="rpt_GetOpenJobCallbacks1_Result.cs">
+    <Compile Include="rpt_GetRecruiterLyncCallLog_Result.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\AgentUtils.cs" />
     <Compile Include="Utils\FormatUtil.cs" />
+    <Compile Include="vLyncCallLog.cs">
+      <DependentUpon>PhonelogicModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="vw_PhoneLogicTaskAgent.cs">
       <DependentUpon>PhonelogicModel.tt</DependentUpon>
     </Compile>

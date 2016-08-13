@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using PhoneLogic.CallRpt.Model;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
@@ -16,6 +14,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class JobsViewModel : CollectionViewModelBase
     {
+        private bool _canRefresh = true;
+
+        #region reporting variables
+
+        public ReportDateRange ReportDateRange = new ReportDateRange();
+
+        #endregion
+
         public JobsViewModel()
         {
             //StopAutoRefresh();
@@ -51,9 +57,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        private bool _canRefresh = true;
-
-        public Boolean CanRefresh
+        public bool CanRefresh
         {
             get { return _canRefresh; }
             set
@@ -62,12 +66,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged();
             }
         }
-
-        #region reporting variables
-
-        public ReportDateRange ReportDateRange = new ReportDateRange();
-
-        #endregion
 
         #region CallSummaries
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Microsoft.Lync.Model;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Helpers;
@@ -11,7 +12,34 @@ namespace PhoneLogic.Core.Areas.Callbacks
 {
     public partial class CallbacksView
     {
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedJobNumProperty =
+            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(CallbacksView),
+                new PropertyMetadata(""));
+
+        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LastCallBackStartTimeProperty =
+            DependencyProperty.Register("LastCallBackStartTime", typeof(DateTime?), typeof(CallbacksView),
+                new PropertyMetadata(DateTime.Today));
+
+        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedTaskIdProperty =
+            DependencyProperty.Register("SelectedTaskId", typeof(int), typeof(CallbacksView), new PropertyMetadata(0));
+
+        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ReportDateRangeProperty =
+            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(CallbacksView),
+                new PropertyMetadata(new ReportDateRange()));
+
+        // Using a DependencyProperty as the backing store for OpenCallbacksOnlyMyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OpenCallbacksOnlyProperty =
+            DependencyProperty.Register("OpenCallbacksOnly", typeof(bool), typeof(CallbacksView),
+                new PropertyMetadata(false));
+
         private readonly CallBacksViewModel _vm;
+
+        // A variable to count with.
+        private int i = 0;
 
         public CallbacksView()
         {
@@ -35,20 +63,10 @@ namespace PhoneLogic.Core.Areas.Callbacks
             }
         }
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedJobNumProperty =
-            DependencyProperty.Register("SelectedJobNum", typeof(string), typeof(CallbacksView),
-                new PropertyMetadata(""));
-
         public DateTime? LastCallBackStartTime
         {
             get { return _vm.LastCallBackStartTime; }
         }
-
-        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LastCallBackStartTimeProperty =
-            DependencyProperty.Register("LastCallBackStartTime", typeof(DateTime?), typeof(CallbacksView),
-                new PropertyMetadata(DateTime.Today));
 
 
         public int SelectedTaskId
@@ -61,10 +79,6 @@ namespace PhoneLogic.Core.Areas.Callbacks
             }
         }
 
-        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedTaskIdProperty =
-            DependencyProperty.Register("SelectedTaskId", typeof(int), typeof(CallbacksView), new PropertyMetadata(0));
-
 
         public ReportDateRange ReportDateRange
         {
@@ -76,26 +90,28 @@ namespace PhoneLogic.Core.Areas.Callbacks
             }
         }
 
-        // Using a DependencyProperty as the backing store for NotificationMessage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ReportDateRangeProperty =
-            DependencyProperty.Register("ReportDateRange", typeof(ReportDateRange), typeof(CallbacksView),
-                new PropertyMetadata(new ReportDateRange()));
-
-        public void Refresh()
-        {
-            dhv.Visibility = Visibility.Collapsed;
-            _vm.RefreshAll();
-        }
-
         public bool ShowData
         {
             get { return _vm.ShowGridData; }
             set
             {
                 _vm.ShowGridData = value;
-                AudioPlayer.Visibility = System.Windows.Visibility.Collapsed;
+                AudioPlayer.Visibility = Visibility.Collapsed;
                 _vm.HeadingText = "";
             }
+        }
+
+
+        public bool OpenCallbacksOnly
+        {
+            get { return _vm.OpenCallbacksOnly; }
+            set { _vm.OpenCallbacksOnly = value; }
+        }
+
+        public void Refresh()
+        {
+            dhv.Visibility = Visibility.Collapsed;
+            _vm.RefreshAll();
         }
 
         private async void CloseCallback_Click(object sender, RoutedEventArgs e)
@@ -104,7 +120,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             _vm.CanRefresh = false;
 
             if (_vm.SelectedMyCallback == null) return;
-            MessageBoxResult result = MessageBox.Show("Delete this Message?", "Confirm", MessageBoxButton.OKCancel);
+            var result = MessageBox.Show("Delete this Message?", "Confirm", MessageBoxButton.OKCancel);
 
             if (result == MessageBoxResult.OK)
             {
@@ -128,7 +144,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 return;
             }
 
-            if (!String.IsNullOrWhiteSpace(_vm.SelectedMyCallback.status))
+            if (!string.IsNullOrWhiteSpace(_vm.SelectedMyCallback.status))
             {
                 if (MessageBox.Show("Call may already be in progress, call anyway?", "Confirm",
                     MessageBoxButton.OKCancel) != MessageBoxResult.OK)
@@ -139,7 +155,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             _vm.ActionMsg = "Your call has been placed";
             StartTimer();
 
-            String job = _vm.SelectedMyCallback.jobNum + ":0" + _vm.SelectedMyCallback.taskID;
+            var job = _vm.SelectedMyCallback.jobNum + ":0" + _vm.SelectedMyCallback.taskID;
             await LyncSvc.RecruiterDialOut(job, _vm.SelectedMyCallback.phoneNum, _vm.SelectedMyCallback.callbackID);
             _vm.UpdateCallBack(_vm.SelectedMyCallback.callbackID);
         }
@@ -152,7 +168,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
                 AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/messages/" +
                                   _vm.SelectedMyCallback.msgScr;
                 AudioPlayer.Reset();
-                AudioPlayer.Title = String.Format("{0} - {1}", _vm.SelectedMyCallback.JobFormatted,
+                AudioPlayer.Title = string.Format("{0} - {1}", _vm.SelectedMyCallback.JobFormatted,
                     _vm.SelectedMyCallback.phoneFormatted);
                 AudioPlayer.Visibility = Visibility.Visible;
             }
@@ -166,26 +182,11 @@ namespace PhoneLogic.Core.Areas.Callbacks
         // inactivate call button
         public void StartTimer()
         {
-            System.Windows.Threading.DispatcherTimer myDispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            var myDispatcherTimer = new DispatcherTimer();
             myDispatcherTimer.Interval = new TimeSpan(0, 0, 0, UserInterfaceTimings.OutboundCallButtonInactivateTime, 0);
-            myDispatcherTimer.Tick += new EventHandler(Each_Tick);
+            myDispatcherTimer.Tick += Each_Tick;
             myDispatcherTimer.Start();
         }
-
-        // A variable to count with.
-        int i = 0;
-
-
-        public bool OpenCallbacksOnly
-        {
-            get { return _vm.OpenCallbacksOnly; }
-            set { _vm.OpenCallbacksOnly = value; }
-        }
-
-        // Using a DependencyProperty as the backing store for OpenCallbacksOnlyMyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty OpenCallbacksOnlyProperty =
-            DependencyProperty.Register("OpenCallbacksOnly", typeof(bool), typeof(CallbacksView),
-                new PropertyMetadata(false));
 
 
         public void Each_Tick(object o, EventArgs sender)
@@ -212,7 +213,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
             }
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {

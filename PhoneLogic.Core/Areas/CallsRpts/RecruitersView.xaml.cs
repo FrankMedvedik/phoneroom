@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Helpers;
-using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
     /// <summary>
-    /// Description for RecruitersView.
+    ///     Description for RecruitersView.
     /// </summary>
     public partial class RecruitersView : UserControl
     {
-        private RecruiterViewModel _vm = null;
+        private readonly RecruiterViewModel _vm;
 
         /// <summary>
-        /// Initializes a new instance of the RecruiterView class.
+        ///     Initializes a new instance of the RecruiterView class.
         /// </summary>
         public RecruitersView()
         {
@@ -25,11 +23,11 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             _vm.CurrentRefreshMode = RecruiterViewModel.RefreshModes.ActiveRecruiters;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string fname = string.Format("{0}", "ActiveRecruiters" + _vm.ReportDateRange.ToFormattedString('.'));
+                var fname = string.Format("{0}", "ActiveRecruiters" + _vm.ReportDateRange.ToFormattedString('.'));
 
                 RecruitersDG.Export(fname);
             }

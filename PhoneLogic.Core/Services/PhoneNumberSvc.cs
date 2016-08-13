@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+
 namespace PhoneLogic.Core.Services
 {
     public static class PhoneNumberSvc
@@ -7,6 +8,5 @@ namespace PhoneLogic.Core.Services
         {
             return new string(input.Where(c => char.IsDigit(c)).ToArray());
         }
-
     }
 }

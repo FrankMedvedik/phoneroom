@@ -1,6 +1,5 @@
-﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Views"
+﻿<UserControl xmlns:Views="clr-namespace:PhoneLogic.Core.Areas.DialHistory"
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
-             xmlns:utility="clr-namespace:PhoneLogic.Core.Views.Utility"
              x:Class="PhoneLogic.Core.Areas.DialHistory.DialHistoryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,12 +7,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ignore="http://www.ignore.com"
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-             xmlns:audioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer" mc:Ignorable="d ignore">
+             xmlns:audioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer"
+             xmlns:dialHistory="clr-namespace:PhoneLogic.Core.Areas.DialHistory"
+             mc:Ignorable="d ignore">
     <Grid>
         <toolkit:WrapPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Margin="6"
                         Visibility="{Binding ShowInput, Converter={StaticResource BoolToVisConverter}}">
-                <utility:DialPadView />
+                <dialHistory:DialPadView />
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="6"
                         Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
@@ -21,25 +22,26 @@
                 <!--<toolkit:WrapPanel x:Name="AudioInfo" Orientation="Vertical" Margin="6,12,6,6" >-->
                 <audioPlayer:SimplePlayer x:Name="AudioPlayer" Margin="6" HorizontalAlignment="Left" />
                 <!--</toolkit:WrapPanel>-->
-                <Grid Margin="3,6,6,6" MaxHeight="225" MaxWidth="800">
+                <Grid Margin="3,6,6,6" MaxHeight="225" MaxWidth="450">
                     <sdk:DataGrid Grid.Column="0" Grid.Row="0" x:Name="CallsDG" AutoGenerateColumns="False"
                                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                                   IsReadOnly="True" ItemsSource="{Binding Calls}" VerticalAlignment="Top"
                                   SelectedItem="{Binding SelectedCall, Mode=TwoWay}"
                                   ToolTipService.ToolTip="the past calls to or from this phone number"
-                                  Margin="3" HorizontalAlignment="Left" SelectionMode="Single"
+                                  Margin="3,3,6,3" HorizontalAlignment="Left" SelectionMode="Single"
                                   SelectionChanged="CallsDG_SelectionChanged">
                         <sdk:DataGrid.Columns>
                             <sdk:DataGridTextColumn Binding="{Binding CallStartTime}" />
-                            <sdk:DataGridTextColumn Binding="{Binding CallDirection}" />
-                            <sdk:DataGridTextColumn Binding="{Binding CallEndStatus}" />
-                            <sdk:DataGridTextColumn Binding="{Binding CallDurationFormatted}" />
                             <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
                             <sdk:DataGridTextColumn Binding="{Binding TaskTypeID}" />
                             <sdk:DataGridTextColumn Binding="{Binding TaskName}" />
-                            <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
                             <sdk:DataGridTextColumn Binding="{Binding CallerId_Region}" />
                             <sdk:DataGridTextColumn Binding="{Binding TaskDscr}" />
+                            <sdk:DataGridTextColumn Binding="{Binding DisplayName}" />
+                            <sdk:DataGridTextColumn Binding="{Binding CallDirection}" />
+                            <sdk:DataGridTextColumn Binding="{Binding CallEndStatus}" />
+                            <sdk:DataGridTextColumn Binding="{Binding CallDurationFormatted}" />
+
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
                 </Grid>

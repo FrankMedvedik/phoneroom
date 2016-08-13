@@ -2,30 +2,37 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Lync.Model;
-using Newtonsoft.Json;
-using PhoneLogic.CallRpt.Model;
-using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
-using PhoneLogic.ViewContracts.MVVMMessenger;
-using Silverlight.Base.MVVMBaseTypes;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class CallsViewModel : CollectionViewModelBase
     {
-        public CallsViewModel()
-        {
-        }
+        private string _actionMsg;
 
-        private Boolean _canCall = true;
 
-        public Boolean CanCall
+        private ObservableCollection<Call> _calls = new ObservableCollection<Call>();
+
+        private bool _canCall = true;
+
+        private string _headingText;
+
+        private Call _selectedCall;
+
+        private string _selectedJobNum;
+
+        private string _selectedRecruiter;
+
+        #region reporting variables
+
+        public ReportDateRange ReportDateRange = new ReportDateRange();
+
+        #endregion
+
+        public bool CanCall
         {
             get { return _canCall; }
             set
@@ -35,10 +42,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-
-        private String _actionMsg;
-
-        public String ActionMsg
+        public string ActionMsg
         {
             get { return _actionMsg; }
             set
@@ -48,21 +52,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        private bool _canRefresh = true;
-
-        public Boolean CanRefresh
-        {
-            get { return _canRefresh; }
-            set { _canRefresh = value; }
-        }
-
-        #region reporting variables
-
-        public ReportDateRange ReportDateRange = new ReportDateRange();
-
-        #endregion
-
-        private string _selectedRecruiter = null;
+        public bool CanRefresh { get; set; } = true;
 
         public string SelectedRecruiter
         {
@@ -74,8 +64,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        private Call _selectedCall;
-
         public Call SelectedCall
         {
             get { return _selectedCall; }
@@ -85,8 +73,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged();
             }
         }
-
-        private string _selectedJobNum = null;
 
         public string SelectedJobNum
         {
@@ -98,8 +84,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             }
         }
 
-        private string _headingText;
-
         public string HeadingText
         {
             get { return _headingText; }
@@ -109,9 +93,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged();
             }
         }
-
-
-        private ObservableCollection<Call> _calls = new ObservableCollection<Call>();
 
         public ObservableCollection<Call> Calls
         {
@@ -159,9 +140,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 }
                 else if ((ReportDateRange != null) && (SelectedRecruiter != null))
                 {
-                    //HeadingText = "Loading...";
-                    //ro = await LyncCallLogSvc.GetCalls(SelectedRecruiter, ReportDateRange.StartRptDate,
-                    //    ReportDateRange.EndRptDate);
                     throw new Exception("There is a prblem we should not ask for calls without a job!!!");
                 }
 
@@ -169,20 +147,8 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 Calls = new ObservableCollection<Call>(ro.OrderByDescending(x => x.CallStartTime));
                 if (Calls.Count > 0)
                 {
-                    //if its a recruiter show the heading without their name
-                    //string sip = Calls.First().RecruiterSIP;
-                    //if (sip == LyncClient.GetClient().Uri)
-                    HeadingText = String.Format("Job {0} has {1} calls",
+                    HeadingText = string.Format("Job {0} has {1} calls",
                         StringFormatSvc.JobAndTaskFormatted(SelectedJobNum), Calls.Count());
-                    //else
-                    //{
-                    //if its a not a recruiter show the heading with name 
-                    //Contact r = LyncClient.GetClient().ContactManager.GetContactByUri(sip);
-                    //HeadingText = String.Format("{0} has {1} Calls for Job {2}-{3}",
-                    //    r.GetContactInformation(ContactInformationType.DisplayName).ToString() != ""
-                    //        ? r.GetContactInformation(ContactInformationType.DisplayName).ToString()
-                    //        : "Inbound Respondent",
-                    //    Calls.Count(), SelectedJobNum.Substring(0, 4), SelectedJobNum.Substring(4, 4));
                 }
                 else
                 {

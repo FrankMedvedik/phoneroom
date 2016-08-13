@@ -1345,30 +1345,16 @@
     <Content Include="assets\plugins\_revolution-slider\videojs\video.dev.js" />
     <Content Include="assets\plugins\_revolution-slider\videojs\video.js" />
     <Content Include="ClientBin\PhoneLogic.CallbackHistory.xap" />
-    <Content Include="ClientBin\PhoneLogic.DialHistory.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ClientBin\Phonelogic.Inbound.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ClientBin\PhoneLogic.Jobs.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ClientBin\PhoneLogic.Mgr.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ClientBin\PhoneLogic.DialHistory.xap" />
+    <Content Include="ClientBin\PhoneLogic.Inbound.xap" />
+    <Content Include="ClientBin\PhoneLogic.Jobs.xap" />
+    <Content Include="ClientBin\PhoneLogic.Mgr.xap" />
     <Content Include="ClientBin\PhoneLogic.MyAlerts.xap" />
     <Content Include="ClientBin\PhoneLogic.MyDialer.xap" />
     <Content Include="ClientBin\PhoneLogic.OpenCallbacks.xap" />
-    <Content Include="ClientBin\Phonelogic.Outbound.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ClientBin\PhoneLogic.Recruiters.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ClientBin\PhoneLogic.Status.xap">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ClientBin\PhoneLogic.Outbound.xap" />
+    <Content Include="ClientBin\PhoneLogic.Recruiters.xap" />
+    <Content Include="ClientBin\PhoneLogic.Status.xap" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

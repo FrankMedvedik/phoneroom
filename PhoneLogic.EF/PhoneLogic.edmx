@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhoneLogicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LyncCallLogHist">
+          <Key>
+            <PropertyRef Name="CallID" />
+          </Key>
+          <Property Name="jobnum" Type="char" MaxLength="8" />
+          <Property Name="taskid" Type="int" />
+          <Property Name="StartLogId" Type="int" />
+          <Property Name="CallID" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="JobNumber" Type="char" MaxLength="11" />
+          <Property Name="CallerId" Type="varchar" MaxLength="22" />
+          <Property Name="CallerId_UTC_code" Type="int" />
+          <Property Name="CallerId_Region" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TollFreeNumber" Type="char" MaxLength="10" />
+          <Property Name="CallStartTime" Type="datetime" />
+          <Property Name="RecruiterConnectTime" Type="datetime" />
+          <Property Name="CallEndTime" Type="datetime" />
+          <Property Name="RecruiterSIP" Type="varchar" MaxLength="100" />
+          <Property Name="CallDirection" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="CallEndStatus" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="CallDuration" Type="int" />
+          <Property Name="taskName" Type="varchar" MaxLength="50" />
+          <Property Name="taskDscr" Type="varchar" MaxLength="255" />
+          <Property Name="taskTypeID" Type="varchar" MaxLength="35" />
+          <Property Name="CallFile" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="PhoneLogicModelStoreContainer">
+          <EntitySet Name="LyncCallLogHist" EntityType="Self.LyncCallLogHist" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhoneLogicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PhoneLogicEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LyncCallLogHists" EntityType="PhoneLogicModel.LyncCallLogHist" />
+        </EntityContainer>
+        <EntityType Name="LyncCallLogHist">
+          <Key>
+            <PropertyRef Name="CallID" />
+          </Key>
+          <Property Name="jobnum" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="taskid" Type="Int32" />
+          <Property Name="StartLogId" Type="Int32" />
+          <Property Name="CallID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="JobNumber" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="CallerId" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="CallerId_UTC_code" Type="Int32" />
+          <Property Name="CallerId_Region" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TollFreeNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CallStartTime" Type="DateTime" Precision="3" />
+          <Property Name="RecruiterConnectTime" Type="DateTime" Precision="3" />
+          <Property Name="CallEndTime" Type="DateTime" Precision="3" />
+          <Property Name="RecruiterSIP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CallDirection" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CallEndStatus" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CallDuration" Type="Int32" />
+          <Property Name="taskName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="taskDscr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="taskTypeID" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CallFile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhoneLogicModelStoreContainer" CdmEntityContainer="PhoneLogicEntities">
+          <EntitySetMapping Name="LyncCallLogHists">
+            <EntityTypeMapping TypeName="PhoneLogicModel.LyncCallLogHist">
+              <MappingFragment StoreEntitySet="LyncCallLogHist">
+                <ScalarProperty Name="CallFile" ColumnName="CallFile" />
+                <ScalarProperty Name="taskTypeID" ColumnName="taskTypeID" />
+                <ScalarProperty Name="taskDscr" ColumnName="taskDscr" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
+                <ScalarProperty Name="CallEndStatus" ColumnName="CallEndStatus" />
+                <ScalarProperty Name="CallDirection" ColumnName="CallDirection" />
+                <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
+                <ScalarProperty Name="CallEndTime" ColumnName="CallEndTime" />
+                <ScalarProperty Name="RecruiterConnectTime" ColumnName="RecruiterConnectTime" />
+                <ScalarProperty Name="CallStartTime" ColumnName="CallStartTime" />
+                <ScalarProperty Name="TollFreeNumber" ColumnName="TollFreeNumber" />
+                <ScalarProperty Name="CallerId_Region" ColumnName="CallerId_Region" />
+                <ScalarProperty Name="CallerId_UTC_code" ColumnName="CallerId_UTC_code" />
+                <ScalarProperty Name="CallerId" ColumnName="CallerId" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="CallID" ColumnName="CallID" />
+                <ScalarProperty Name="StartLogId" ColumnName="StartLogId" />
+                <ScalarProperty Name="taskid" ColumnName="taskid" />
+                <ScalarProperty Name="jobnum" ColumnName="jobnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

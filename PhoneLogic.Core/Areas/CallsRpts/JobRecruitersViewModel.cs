@@ -10,17 +10,14 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class JobRecruitersViewModel : CollectionViewModelBase
     {
-        public JobRecruitersViewModel()
-        {
-        }
+        private string _callRptJobNum;
 
-        private bool _canRefresh = true;
 
-        public Boolean CanRefresh
-        {
-            get { return _canRefresh; }
-            set { _canRefresh = value; }
-        }
+        private string _headingText;
+
+        private ObservableCollection<ByRecruitersForJob> _jobRecruiters = new ObservableCollection<ByRecruitersForJob>();
+
+        private ByRecruitersForJob _selectedRecruiter;
 
         #region reporting variables
 
@@ -28,9 +25,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 
         #endregion
 
-        private ObservableCollection<ByRecruitersForJob> _jobRecruiters = new ObservableCollection<ByRecruitersForJob>();
-
-        private string _callRptJobNum;
+        public bool CanRefresh { get; set; } = true;
 
         public string CallRptJobNum
         {
@@ -41,9 +36,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged();
             }
         }
-
-
-        private string _headingText;
 
         public string HeadingText
         {
@@ -66,8 +58,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged("JobHeadingText");
             }
         }
-
-        private ByRecruitersForJob _selectedRecruiter;
 
         public ByRecruitersForJob SelectedRecruiter
         {
@@ -101,7 +91,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                         ReportDateRange.EndRptDate);
                     ShowGridData = true;
                     JobRecruiters = new ObservableCollection<ByRecruitersForJob>(ro);
-                    HeadingText = String.Format("Job {0} has {1} Recruiters with call activity between {2} and {3}",
+                    HeadingText = string.Format("Job {0} has {1} Recruiters with call activity between {2} and {3}",
                         StringFormatSvc.JobAndTaskFormatted(CallRptJobNum), JobRecruiters.Count,
                         ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     LoadedOk = true;

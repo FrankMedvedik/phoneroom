@@ -18,36 +18,48 @@
         <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch">
             <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Left" Margin="6" />
         </StackPanel>
-        <toolkit:WrapPanel Grid.Row="1" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" Orientation="Horizontal">
+        <toolkit:WrapPanel Grid.Row="1"
+                           Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+                           Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
-            <sdk:DataGrid x:Name="CallsDG" AutoGenerateColumns="False" MaxHeight="225" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" SelectionChanged="CallsDG_SelectionChanged" Loaded="CallsDG_Loaded" ItemsSource="{Binding Calls}" VerticalAlignment="Top" SelectedItem="{Binding SelectedCall, Mode=TwoWay}" RowDetailsVisibilityMode="VisibleWhenSelected" ToolTipService.ToolTip="Phone Calls" Margin="6" HorizontalAlignment="Left" SelectionMode="Single">
-                <sdk:DataGrid.Columns>
-                    <!--<sdk:DataGridTextColumn Binding="{Binding JobFormatted }" />-->
-                    <sdk:DataGridTextColumn Binding="{Binding PhoneFormatted }" />
-                    <sdk:DataGridTextColumn Binding="{Binding CallStartTime }" />
-                    <sdk:DataGridTextColumn Binding="{Binding CallerId_Region}" />
-                    <sdk:DataGridTextColumn Binding="{Binding CallDirection }" />
-                    <sdk:DataGridTextColumn Binding="{Binding CallEndStatus }" />
-                    <sdk:DataGridTextColumn Binding="{Binding CallDurationFormatted}" />
-                </sdk:DataGrid.Columns>
-                <sdk:DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <toolkit:WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Button Name="Call" Width="80" Margin="3,6,3,6" Click="Call_Click" IsEnabled="{Binding DataContext.CanCall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}">
-                                Call
-                            </Button>
-                            <TextBlock Text="{Binding DataContext.ActionMsg, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}" Foreground="Red" Margin="6" />
-                        </toolkit:WrapPanel>
-                    </DataTemplate>
-                </sdk:DataGrid.RowDetailsTemplate>
-            </sdk:DataGrid>
-            <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" Width="120" Click="Button_Click">
-                Save To Excel
-            </Button>
+                <sdk:DataGrid x:Name="CallsDG" AutoGenerateColumns="False" MaxHeight="225"
+                              VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                              SelectionChanged="CallsDG_SelectionChanged" Loaded="CallsDG_Loaded"
+                              ItemsSource="{Binding Calls}" VerticalAlignment="Top"
+                              SelectedItem="{Binding SelectedCall, Mode=TwoWay}"
+                              RowDetailsVisibilityMode="VisibleWhenSelected" ToolTipService.ToolTip="Phone Calls"
+                              Margin="6" HorizontalAlignment="Left" SelectionMode="Single">
+                    <sdk:DataGrid.Columns>
+                        <!--<sdk:DataGridTextColumn Binding="{Binding JobFormatted }" />-->
+                        <sdk:DataGridTextColumn Binding="{Binding PhoneFormatted }" />
+                        <sdk:DataGridTextColumn Binding="{Binding CallStartTime }" />
+                        <sdk:DataGridTextColumn Binding="{Binding CallerId_Region}" />
+                        <sdk:DataGridTextColumn Binding="{Binding CallDirection }" />
+                        <sdk:DataGridTextColumn Binding="{Binding CallEndStatus }" />
+                        <sdk:DataGridTextColumn Binding="{Binding CallDurationFormatted}" />
+                    </sdk:DataGrid.Columns>
+                    <sdk:DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <toolkit:WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Button Name="Call" Width="80" Margin="3,6,3,6" Click="Call_Click"
+                                        IsEnabled="{Binding DataContext.CanCall, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}">
+                                    Call
+                                </Button>
+                                <TextBlock
+                                    Text="{Binding DataContext.ActionMsg, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=sdk:DataGrid}}"
+                                    Foreground="Red" Margin="6" />
+                            </toolkit:WrapPanel>
+                        </DataTemplate>
+                    </sdk:DataGrid.RowDetailsTemplate>
+                </sdk:DataGrid>
+                <Button Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+                        HorizontalAlignment="Left" Width="120" Click="Button_Click">
+                    Save To Excel
+                </Button>
             </StackPanel>
             <toolkit:WrapPanel Orientation="Horizontal">
-            <controls:ContactCard  Name="cc" Margin="6" HorizontalAlignment="Left" />
-            <audioPlayer:SimplePlayer Name="AudioPlayer" />
+                <controls:ContactCard Name="cc" Margin="6" HorizontalAlignment="Left" />
+                <audioPlayer:SimplePlayer Name="AudioPlayer" />
             </toolkit:WrapPanel>
         </toolkit:WrapPanel>
     </Grid>

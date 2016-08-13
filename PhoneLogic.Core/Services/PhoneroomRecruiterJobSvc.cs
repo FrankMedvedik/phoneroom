@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using PhoneLogic.Model;
-
 
 namespace PhoneLogic.Core.Services
 {

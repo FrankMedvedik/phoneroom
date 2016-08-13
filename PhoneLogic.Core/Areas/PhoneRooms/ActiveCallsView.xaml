@@ -24,26 +24,30 @@
         </DataTemplate>
     </Control.Resources>
     <Grid HorizontalAlignment="Left">
-        <StackPanel Margin="6" Grid.Row="0" Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
-            <TextBlock Text="{Binding CallsInQueueHeading}" FontWeight="Bold" HorizontalAlignment="Center" Margin="6,6,6,6" />
+        <StackPanel Margin="6" Grid.Row="0"
+                    Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}">
+            <TextBlock Text="{Binding CallsInQueueHeading}" FontWeight="Bold" HorizontalAlignment="Center"
+                       Margin="6,6,6,6" />
             <sdk:DataGrid x:Name="ActiveCallsDG" AutoGenerateColumns="False" MaxHeight="550"
-                      Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
-                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                      ItemsSource="{Binding FilteredActiveCalls}"
-                      SelectedItem="{Binding SelectedActiveCall, Mode=TwoWay}"
-                      ToolTipService.ToolTip="active recruiter sessions"
-                      Margin="6" HorizontalAlignment="Left" SelectionMode="Single"
-                      Foreground="{Binding TheForeground}" Background="{Binding TheBackground}">
-            <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="Recruiter" CellTemplate="{StaticResource RecruiterStatusTemplate}" />
-                <sdk:DataGridTextColumn Binding="{Binding TimeIn}" />
-                <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
-            </sdk:DataGrid.Columns>
-        </sdk:DataGrid>
+                          Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
+                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                          ItemsSource="{Binding FilteredActiveCalls}"
+                          SelectedItem="{Binding SelectedActiveCall, Mode=TwoWay}"
+                          ToolTipService.ToolTip="active recruiter sessions"
+                          Margin="6" HorizontalAlignment="Left" SelectionMode="Single"
+                          Foreground="{Binding TheForeground}" Background="{Binding TheBackground}">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Header="Recruiter"
+                                                CellTemplate="{StaticResource RecruiterStatusTemplate}" />
+                    <sdk:DataGridTextColumn Binding="{Binding TimeIn}" />
+                    <sdk:DataGridTextColumn Binding="{Binding jobFormatted}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
         </StackPanel>
         <StackPanel Margin="6" Grid.Row="0"
                     Visibility="{Binding ShowGridData, Converter={StaticResource NotBoolToVisConverter}}">
-            <TextBlock Text="{Binding CallsInQueueHeading}" FontWeight="Bold" HorizontalAlignment="Center" Margin="6,6,6,6" />
+            <TextBlock Text="{Binding CallsInQueueHeading}" FontWeight="Bold" HorizontalAlignment="Center"
+                       Margin="6,6,6,6" />
             <Image HorizontalAlignment="Center" Stretch="None" Source="/PhoneLogic.Core;component/Images/Sleep PC.png"
                    ToolTipService.ToolTip="no recruiters currently active" />
             <StackPanel Orientation="Vertical"

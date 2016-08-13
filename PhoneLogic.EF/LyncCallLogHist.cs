@@ -7,16 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhoneLogic.Repository
+namespace PhoneLogic.EF
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class rpt_GetCallerLyncCallLog_Result
+    public partial class LyncCallLogHist
     {
+        public string jobnum { get; set; }
+        public Nullable<int> taskid { get; set; }
         public Nullable<int> StartLogId { get; set; }
         public string CallID { get; set; }
         public string JobNumber { get; set; }
         public string CallerId { get; set; }
+        public Nullable<int> CallerId_UTC_code { get; set; }
+        public string CallerId_Region { get; set; }
         public string TollFreeNumber { get; set; }
         public Nullable<System.DateTime> CallStartTime { get; set; }
         public Nullable<System.DateTime> RecruiterConnectTime { get; set; }
@@ -25,5 +30,9 @@ namespace PhoneLogic.Repository
         public string CallDirection { get; set; }
         public string CallEndStatus { get; set; }
         public Nullable<int> CallDuration { get; set; }
+        public string taskName { get; set; }
+        public string taskDscr { get; set; }
+        public string taskTypeID { get; set; }
+        public string CallFile { get; set; }
     }
 }

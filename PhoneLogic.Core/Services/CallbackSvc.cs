@@ -1,17 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Lync.Model;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using PhoneLogic.Model;
-using PhoneLogic.Model.Models;
-
 
 namespace PhoneLogic.Core.Services
 {
-
     public static class CallbackSvc
     {
         public static async Task StartCall(CallbackDto cb)
@@ -20,7 +17,6 @@ namespace PhoneLogic.Core.Services
             cb.status = "Call In Progress";
             cb.statusDate = DateTime.Now;
             await Put(cb);
-
         }
 
         public static async Task EndCall(CallbackDto cb)
@@ -29,7 +25,6 @@ namespace PhoneLogic.Core.Services
             cb.SIP = string.Empty;
             cb.statusDate = DateTime.Now;
             await Put(cb);
-
         }
 
         public static async Task Close(CallbackDto cb)
@@ -42,7 +37,7 @@ namespace PhoneLogic.Core.Services
 
         private static async Task Put(CallbackDto cb)
         {
-            string uriTemplate = ConditionalConfiguration.apiUrl + "Callbacks/{0}";
+            var uriTemplate = ConditionalConfiguration.apiUrl + "Callbacks/{0}";
             var postRequest = JsonConvert.SerializeObject(cb);
             var url = string.Format(uriTemplate, cb.callbackID);
             var uri = new Uri(url, UriKind.Absolute);
@@ -52,14 +47,14 @@ namespace PhoneLogic.Core.Services
             var result = await client.UploadStringTaskAsync(uri, "POST", postRequest);
         }
 
-        
-        public  static async Task<List<myCallback>> GetMyCallbacks(string sip, string jobNum, string taskId)
+
+        public static async Task<List<myCallback>> GetMyCallbacks(string sip, string jobNum, string taskId)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl 
-                + "Callbacks?SIP=" + sip 
-                + "&jobNum="+jobNum
-                + "&taskId="+taskId));
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl
+                                                                    + "Callbacks?SIP=" + sip
+                                                                    + "&jobNum=" + jobNum
+                                                                    + "&taskId=" + taskId));
             return JsonConvert.DeserializeObject<List<myCallback>>(data);
         }
 
@@ -67,10 +62,9 @@ namespace PhoneLogic.Core.Services
         public static async Task<CallbackDto> GetCallback(int id)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "Callbacks?id=" + id));
+            var data =
+                await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "Callbacks?id=" + id));
             return JsonConvert.DeserializeObject<CallbackDto>(data);
         }
-
-      
     }
 }

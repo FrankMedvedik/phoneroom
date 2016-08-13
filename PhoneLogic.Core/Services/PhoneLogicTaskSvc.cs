@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using PhoneLogic.Model;
-
 
 namespace PhoneLogic.Core.Services
 {
@@ -12,7 +11,7 @@ namespace PhoneLogic.Core.Services
     {
         public static async Task<PhoneLogicTask> GetTask(string jobNum, string taskId)
         {
-            int task = Convert.ToInt32(taskId);
+            var task = Convert.ToInt32(taskId);
             var client = new WebClient();
             var data =
                 await
@@ -34,9 +33,11 @@ namespace PhoneLogic.Core.Services
         public static async Task<List<PhoneLogicTask>> GetMyJobs(string sip)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasksRpt?SIP=" + sip));
+            var data =
+                await
+                    client.DownloadStringTaskAsync(
+                        new Uri(ConditionalConfiguration.apiUrl + "PhoneLogicTasksRpt?SIP=" + sip));
             return JsonConvert.DeserializeObject<List<PhoneLogicTask>>(data);
         }
-
     }
 }

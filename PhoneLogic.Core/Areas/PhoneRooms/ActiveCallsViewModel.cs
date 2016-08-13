@@ -12,9 +12,65 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public class ActiveCallsViewModel : CollectionViewModelBase
     {
+        // sets up the 
+        public ActiveCallsViewModel()
+        {
+            StartAutoRefresh(ApiRefreshFrequency.LyncApi);
+            MyRecruiters = new List<Recruiter>();
+
+            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
+            {
+                if (message.Notification == Notifications.PhoneroomChanged)
+                {
+                    MyRecruiters = message.Content.PhoneroomRecruiters;
+                    RefreshAll(null, null);
+
+                    Console.WriteLine("Phone room -" + message.Content.Phoneroom);
+                    Console.WriteLine("Job Cnt -" + message.Content.PhoneroomJobs.Count);
+                    //Console.WriteLine("Job Number -" + message.Content.PhoneroomJobs.First().JobNum);
+                    Console.WriteLine("Recruiter Cnt -" + message.Content.PhoneroomRecruiters.Count);
+                    //Console.WriteLine("Job Number -" + message.Content.PhoneroomRecruiters.First().sip);
+                }
+            });
+            RefreshAll();
+        }
+
+        public string CallsInQueueHeading
+        {
+            get { return _callsInQueueHeading; }
+            set
+            {
+                _callsInQueueHeading = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public List<Recruiter> MyRecruiters { get; set; }
+
+        protected override void RefreshAll(object sender, EventArgs e)
+        {
+            GetActiveCalls();
+            FilterCalls();
+            CallsInQueueHeading = string.Format("{0} Active Calls", FilteredActiveCalls.Count);
+        }
+
+        public async void GetActiveCalls()
+        {
+            try
+            {
+                LoadDate = DateTime.Now;
+                ActiveCalls = await LyncSvc.GetActiveCallsDetail();
+                LoadedOk = true;
+            }
+            catch (Exception e)
+            {
+                LoadFailed(e);
+            }
+        }
+
         #region ActiveCalls
 
-        ObservableCollection<ActiveCallDetail> _activeCalls = new ObservableCollection<ActiveCallDetail>();
+        private ObservableCollection<ActiveCallDetail> _activeCalls = new ObservableCollection<ActiveCallDetail>();
 
         private ObservableCollection<ActiveCallDetail> _filteredActiveCalls =
             new ObservableCollection<ActiveCallDetail>();
@@ -61,46 +117,6 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
         #endregion
 
-        // sets up the 
-        public ActiveCallsViewModel()
-        {
-            StartAutoRefresh(ApiRefreshFrequency.LyncApi);
-            MyRecruiters = new List<Recruiter>();
-
-            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
-            {
-                if (message.Notification == Notifications.PhoneroomChanged)
-                {
-                    MyRecruiters = message.Content.PhoneroomRecruiters;
-                    RefreshAll(null, null);
-
-                    Console.WriteLine("Phone room -" + message.Content.Phoneroom);
-                    Console.WriteLine("Job Cnt -" + message.Content.PhoneroomJobs.Count);
-                    //Console.WriteLine("Job Number -" + message.Content.PhoneroomJobs.First().JobNum);
-                    Console.WriteLine("Recruiter Cnt -" + message.Content.PhoneroomRecruiters.Count);
-                    //Console.WriteLine("Job Number -" + message.Content.PhoneroomRecruiters.First().sip);
-                }
-            });
-            RefreshAll();
-        }
-        public string CallsInQueueHeading
-        {
-            get { return _callsInQueueHeading; }
-            set
-            {
-                _callsInQueueHeading = value;
-                NotifyPropertyChanged();
-            }
-        }
-        public List<Recruiter> MyRecruiters { get; set; }
-
-        protected override void RefreshAll(object sender, EventArgs e)
-        {
-            GetActiveCalls();
-            FilterCalls();
-            CallsInQueueHeading = String.Format("{0} Active Calls", FilteredActiveCalls.Count);
-        }
-
         #region SelectedActiveCall
 
         private ActiveCallDetail _selectedActiveCall;
@@ -117,20 +133,6 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         }
 
         #endregion
-
-        public async void GetActiveCalls()
-        {
-            try
-            {
-                LoadDate = DateTime.Now;
-                ActiveCalls = await LyncSvc.GetActiveCallsDetail();
-                LoadedOk = true;
-            }
-            catch (Exception e)
-            {
-                LoadFailed(e);
-            }
-        }
 
         #region DisplayColors
 

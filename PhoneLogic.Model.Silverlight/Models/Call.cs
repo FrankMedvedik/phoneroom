@@ -22,6 +22,9 @@ namespace PhoneLogic.Model
         [Display(Name = "State")]
         public string CallerId_Region { get; set; }
 
+        [Display(Name = "CallFile")]
+        public string CallFile { get; set; }
+
         [Display(Name = "CallId")]
         public string CallId { get; set; }
         [Display(Name = "Call Date")]

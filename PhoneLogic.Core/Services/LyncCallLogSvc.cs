@@ -1,18 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Model;
-
-
 
 namespace PhoneLogic.Core.Services
 {
     public static class LyncCallLogSvc
     {
-        public static async Task<List<Call>> GetCalls(String sip, DateTime startDate, DateTime endDate)
+        public static async Task<List<Call>> GetCalls(string sip, DateTime startDate, DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
@@ -31,14 +29,15 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
-        public static async Task<List<Call>> GetCallsToPhoneNumber(String phoneNumber, DateTime startDate, DateTime endDate)
+
+        public static async Task<List<Call>> GetCallsToPhoneNumber(string phoneNumber, DateTime startDate,
+            DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
                 new Uri(ConditionalConfiguration.apiUrl + "Calls?startDate=" + startDate.Ticks
-                        + "&endDate=" + endDate.Ticks + "&phoneNumber=" +phoneNumber));
+                        + "&endDate=" + endDate.Ticks + "&phoneNumber=" + phoneNumber));
             try
             {
                 var z = JsonConvert.DeserializeObject<List<Call>>(data);
@@ -52,10 +51,9 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
 
-        public static async Task<List<Call>> GetCalls(String phoneNumber)
+        public static async Task<List<Call>> GetCalls(string phoneNumber)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
@@ -73,7 +71,6 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
 
 
@@ -81,7 +78,8 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ConditionalConfiguration.apiUrl + "Calls?&startDate=" + startDate.Ticks + "&endDate=" + endDate.Ticks));
+                new Uri(ConditionalConfiguration.apiUrl + "Calls?&startDate=" + startDate.Ticks + "&endDate=" +
+                        endDate.Ticks));
             try
             {
                 var z = JsonConvert.DeserializeObject<List<Call>>(data);
@@ -95,7 +93,6 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
 
 
@@ -103,7 +100,8 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ConditionalConfiguration.apiUrl + "LyncCallJobs?startDate=" + startDate.Ticks + "&endDate=" + endDate.Ticks));
+                new Uri(ConditionalConfiguration.apiUrl + "LyncCallJobs?startDate=" + startDate.Ticks + "&endDate=" +
+                        endDate.Ticks));
             try
             {
                 var z = JsonConvert.DeserializeObject<List<ByJob>>(data);
@@ -117,11 +115,10 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
 
 
-        public static async Task<List<ByRecruitersForJob>> GetLynJobsForRecruiter( DateTime startDate,
+        public static async Task<List<ByRecruitersForJob>> GetLynJobsForRecruiter(DateTime startDate,
             DateTime endDate, string sip)
         {
             var client = new WebClient();
@@ -141,9 +138,7 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
-
 
 
         public static async Task<List<ByRecruitersForJob>> GetLynRecruitersForJob(string job, DateTime startDate,
@@ -166,9 +161,7 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
-
 
 
         public static async Task<List<Call>> GetLyncCallLog(string jobNum, string sip, DateTime startDate,
@@ -191,7 +184,6 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
 
 
@@ -204,7 +196,7 @@ namespace PhoneLogic.Core.Services
                     var client = new WebClient();
                     var data = await client.DownloadStringTaskAsync(
                         new Uri(ConditionalConfiguration.apiUrl + "LyncCallByRecruiters?startDate=" + startRptDate.Ticks +
-                                "&endDate=" + endRptDate.Ticks +"&primaryEntity=Log"));
+                                "&endDate=" + endRptDate.Ticks + "&primaryEntity=Log"));
                     var z = JsonConvert.DeserializeObject<List<LyncCallByRecruiter>>(data);
                     return z;
                 }
@@ -216,7 +208,6 @@ namespace PhoneLogic.Core.Services
                         Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                     return null;
                 }
-
             }
         }
 
@@ -241,9 +232,7 @@ namespace PhoneLogic.Core.Services
                         Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                     return null;
                 }
-
             }
         }
     }
 }
-

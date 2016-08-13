@@ -17,13 +17,13 @@ namespace PhoneLogic.Core.Services
 
         private static async Task Post(PhoneCall p)
         {
-            string url = ConditionalConfiguration.apiUrl + "PhoneCalls/";
-            string postRequest = JsonConvert.SerializeObject(p);
+            var url = ConditionalConfiguration.apiUrl + "PhoneCalls/";
+            var postRequest = JsonConvert.SerializeObject(p);
             var uri = new Uri(url, UriKind.Absolute);
             var client = new WebClient();
             client.Headers["Content-Length"] = postRequest.Length.ToString(CultureInfo.InvariantCulture);
             client.Headers["Content-Type"] = "application/json";
-            string result = await client.UploadStringTaskAsync(uri, "POST", postRequest);
+            var result = await client.UploadStringTaskAsync(uri, "POST", postRequest);
         }
     }
 }

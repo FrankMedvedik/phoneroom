@@ -1,21 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using PhoneLogic.Model;
-
-
 
 namespace PhoneLogic.Core.Services
 {
     public static class RecruiterSvc
     {
-        public static async Task<List<RecruiterLog>> GetRecruiterLog(String sip, DateTime startDate, DateTime endDate)
+        public static async Task<List<RecruiterLog>> GetRecruiterLog(string sip, DateTime startDate, DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ConditionalConfiguration.apiUrl + "RecruiterCallLogs?sip=" + sip + "&startDate=" + startDate.Ticks
+                new Uri(ConditionalConfiguration.apiUrl + "RecruiterCallLogs?sip=" + sip + "&startDate=" +
+                        startDate.Ticks
                         + "&endDate=" + endDate.Ticks));
             try
             {
@@ -30,14 +29,14 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
 
         public static async Task<List<Recruiter>> GetActiveRecruiters(DateTime startDate, DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ConditionalConfiguration.apiUrl + "Recruiter?startDate=" + startDate.Ticks + "&endDate=" + endDate.Ticks));
+                new Uri(ConditionalConfiguration.apiUrl + "Recruiter?startDate=" + startDate.Ticks + "&endDate=" +
+                        endDate.Ticks));
             try
             {
                 var z = JsonConvert.DeserializeObject<List<Recruiter>>(data);
@@ -51,13 +50,14 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
+
         public static async Task<List<RptRecruiterCalls>> GetRecruiterCallRpt(DateTime startDate, DateTime endDate)
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(
-                new Uri(ConditionalConfiguration.apiUrl + "recruiterCallRpt?&startDate=" + startDate.Ticks + "&endDate=" + endDate.Ticks));
+                new Uri(ConditionalConfiguration.apiUrl + "recruiterCallRpt?&startDate=" + startDate.Ticks + "&endDate=" +
+                        endDate.Ticks));
             try
             {
                 var z = JsonConvert.DeserializeObject<List<RptRecruiterCalls>>(data);
@@ -71,7 +71,6 @@ namespace PhoneLogic.Core.Services
                     Console.Write(e.Message + e.InnerException.Message + e.StackTrace);
                 return null;
             }
-
         }
 
 
@@ -96,4 +95,3 @@ namespace PhoneLogic.Core.Services
         }
     }
 }
-

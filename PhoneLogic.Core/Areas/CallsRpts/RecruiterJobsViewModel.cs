@@ -9,28 +9,13 @@ namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class RecruiterJobsViewModel : CollectionViewModelBase
     {
-        public RecruiterJobsViewModel()
-        {
-        }
-
-        private bool _canRefresh = true;
-
-        public Boolean CanRefresh
-        {
-            get { return _canRefresh; }
-            set { _canRefresh = value; }
-        }
-
-        #region reporting variables
-
-        public ReportDateRange ReportDateRange = new ReportDateRange();
-        public string RecruiterSIP;
-
-        #endregion
+        private string _headingText;
 
         private ObservableCollection<ByRecruitersForJob> _recruiterJobs = new ObservableCollection<ByRecruitersForJob>();
 
         private ByRecruitersForJob _selectedJob;
+
+        public bool CanRefresh { get; set; } = true;
 
         public ByRecruitersForJob SelectedJob
         {
@@ -41,9 +26,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 NotifyPropertyChanged();
             }
         }
-
-
-        private string _headingText;
 
         public string HeadingText
         {
@@ -88,7 +70,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                         ReportDateRange.EndRptDate, RecruiterSIP);
                     ShowGridData = true;
                     RecruiterJobs = new ObservableCollection<ByRecruitersForJob>(ro);
-                    HeadingText = String.Format("{0} Jobs with call activity between  {1} and {2}", RecruiterJobs.Count,
+                    HeadingText = string.Format("{0} Jobs with call activity between  {1} and {2}", RecruiterJobs.Count,
                         ReportDateRange.StartRptDate, ReportDateRange.EndRptDate);
                     LoadedOk = true;
                 }
@@ -99,5 +81,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts
                 }
             }
         }
+
+        #region reporting variables
+
+        public ReportDateRange ReportDateRange = new ReportDateRange();
+        public string RecruiterSIP;
+
+        #endregion
     }
 }

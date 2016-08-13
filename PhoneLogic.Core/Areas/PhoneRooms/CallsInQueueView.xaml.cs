@@ -4,7 +4,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public partial class CallsInQueueView : UserControl
     {
-        private CallsInQueueViewModel _vm;
+        private readonly CallsInQueueViewModel _vm;
 
         public CallsInQueueView()
         {

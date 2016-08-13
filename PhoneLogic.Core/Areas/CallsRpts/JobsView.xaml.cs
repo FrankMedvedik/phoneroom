@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using PhoneLogic.Core.Areas.CallsRpts;
 using PhoneLogic.Core.Helpers;
-using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
     /// <summary>
-    /// Description for JobsView.
+    ///     Description for JobsView.
     /// </summary>
     public partial class JobsView : UserControl
     {
-        private JobsViewModel _vm = null;
+        private readonly JobsViewModel _vm;
 
         public JobsView()
         {
@@ -21,7 +19,7 @@ namespace PhoneLogic.Core.Areas.CallsRpts
             DataContext = _vm;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {

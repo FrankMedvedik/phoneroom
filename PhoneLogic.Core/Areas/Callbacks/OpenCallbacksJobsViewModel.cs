@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
-using PhoneLogic.Core.Areas.CallsRpts.Models;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
@@ -21,10 +20,18 @@ namespace PhoneLogic.Core.Areas.Callbacks
             {
                 if (message.Notification == Notifications.AutoRefreshNow)
                 {
-                    GetJobs();
+                    RefreshAll(null, null);
                 }
             });
-            GetJobs();
+            Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
+            {
+                if (message.Notification == Notifications.PhoneroomChanged)
+                {
+                    PhoneroomJobs = message.Content.PhoneroomJobs.ToList();
+                    Phoneroom = message.Content.Phoneroom;
+                    RefreshAll(null, null);
+                }
+            });
         }
 
         #region reporting variables
@@ -51,6 +58,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
         protected override void RefreshAll(object sender, EventArgs e)
         {
             GetJobs();
+            FilterJobs();
         }
 
         private string _headingText;
@@ -77,6 +85,7 @@ namespace PhoneLogic.Core.Areas.Callbacks
 
         private string _phoneroom;
         private List<PhoneLogicTask> _phoneroomJobs;
+
         private ObservableCollection<CallbackRpt> _filteredJobs = new ObservableCollection<CallbackRpt>();
 
         public ObservableCollection<CallbackRpt> FilteredJobs
@@ -92,11 +101,22 @@ namespace PhoneLogic.Core.Areas.Callbacks
         private void FilterJobs()
         {
             var rx = (from c in Jobs
-                //join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
+                join b in PhoneroomJobs on c.JobFormatted equals b.JobFormatted
                 select c).ToList().OrderByDescending(x => x.CallbackCnt);
             ShowGridData = true;
             FilteredJobs = new ObservableCollection<CallbackRpt>(rx.ToList());
-            HeadingText = string.Format("{0} Jobs with Open Callbacks as of {1}", FilteredJobs.Count(), DateTime.Now);
+            HeadingText = string.Format("{0} Phone Room has {1} Jobs with Open Callbacks as of {2}", Phoneroom,
+                FilteredJobs.Count(), DateTime.Now);
+        }
+
+        public string Phoneroom
+        {
+            get { return _phoneroom; }
+            set
+            {
+                _phoneroom = value;
+                NotifyPropertyChanged();
+            }
         }
 
         public async void GetJobs()

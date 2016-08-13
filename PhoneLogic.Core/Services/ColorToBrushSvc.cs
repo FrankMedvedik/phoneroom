@@ -1,13 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System.Windows.Media;
 
 namespace PhoneLogic.Core.Services
 {
@@ -15,10 +6,10 @@ namespace PhoneLogic.Core.Services
     {
         public static Brush GetForeground(int? cnt)
         {
-            SolidColorBrush noActivity  = new SolidColorBrush( Colors.Black);
-            SolidColorBrush low = new SolidColorBrush( Colors.Black);
-            SolidColorBrush medium = new SolidColorBrush(Colors.Black);
-            SolidColorBrush high = new SolidColorBrush(Colors.Black);
+            var noActivity = new SolidColorBrush(Colors.Black);
+            var low = new SolidColorBrush(Colors.Black);
+            var medium = new SolidColorBrush(Colors.Black);
+            var high = new SolidColorBrush(Colors.Black);
 
             if (cnt == 0)
                 return noActivity;
@@ -33,10 +24,10 @@ namespace PhoneLogic.Core.Services
 
         public static Brush GetBackground(int? cnt)
         {
-            SolidColorBrush noActivity = new SolidColorBrush(Colors.White);
-            SolidColorBrush low = new SolidColorBrush(Colors.Yellow);
-            SolidColorBrush medium = new SolidColorBrush(Colors.Orange);
-            SolidColorBrush high = new SolidColorBrush(Colors.Red);
+            var noActivity = new SolidColorBrush(Colors.White);
+            var low = new SolidColorBrush(Colors.Yellow);
+            var medium = new SolidColorBrush(Colors.Orange);
+            var high = new SolidColorBrush(Colors.Red);
 
             if (cnt == 0)
                 return noActivity;
@@ -48,8 +39,5 @@ namespace PhoneLogic.Core.Services
                 return high;
             return low;
         }
-
-
-
     }
 }

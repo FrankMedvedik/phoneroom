@@ -40,8 +40,8 @@ namespace PhoneLogic.Web.Controllers
                             StartLogId = l.StartLogId,
                             CallId = l.CallID,
                             JobNumber = l.JobNumber,
-                            TaskDscr = l.taskdscr,
-                            TaskTypeID = l.TaskTypeId,
+                            TaskDscr = l.taskDscr,
+                            TaskTypeID = l.taskTypeID,
                             TaskName = l.taskName,
                             CallerId = l.CallerId,
                             CallerId_Region = l.CallerId_Region,
@@ -119,8 +119,8 @@ namespace PhoneLogic.Web.Controllers
                                 StartLogId = l.StartLogId,
                                 CallId = l.CallID,
                                 JobNumber = l.JobNumber,
-                                TaskDscr = l.taskdscr,
-                                TaskTypeID = l.TaskTypeId,
+                                TaskDscr = l.taskDscr,
+                                TaskTypeID = l.taskTypeID,
                                 TaskName = l.taskName,
                                 CallerId = l.CallerId,
                                 CallerId_Region = l.CallerId_Region,
@@ -171,8 +171,8 @@ namespace PhoneLogic.Web.Controllers
                                 StartLogId = l.StartLogId,
                                 CallId = l.CallID,
                                 JobNumber = l.JobNumber,
-                                TaskDscr = l.taskdscr,
-                                TaskTypeID = l.TaskTypeId,
+                                TaskDscr = l.taskDscr,
+                                TaskTypeID = l.taskTypeID,
                                 TaskName = l.taskName,
                                 CallerId = l.CallerId,
                                 CallerId_Region = l.CallerId_Region,
@@ -184,7 +184,8 @@ namespace PhoneLogic.Web.Controllers
                                 RecruiterSIP = l.RecruiterSIP,
                                 CallDirection = l.CallDirection,
                                 CallEndStatus = l.CallEndStatus,
-                                CallDuration = l.CallDuration
+                                CallDuration = l.CallDuration,
+                                CallFile = l.CallFile
                             };
                 v = query.OrderBy(x => x.CallStartTime).ToList();
             }

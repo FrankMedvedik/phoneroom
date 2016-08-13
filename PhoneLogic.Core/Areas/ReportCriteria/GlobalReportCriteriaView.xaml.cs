@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight.Messaging;
-using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.ReportCriteria
 {
     /// <summary>
-    /// Description for GlobalReportCriteriaView.
+    ///     Description for GlobalReportCriteriaView.
     /// </summary>
     public partial class GlobalReportCriteriaView : UserControl
     {
-        private Visibility _showControl;
-        private GlobalReportCriteria grc { get; set; }
-        private System.Windows.Threading.DispatcherTimer _timer;
+        private DispatcherTimer _timer;
 
         /// <summary>
-        /// Initializes a new instance of the GlobalReportCriteriaView class.
+        ///     Initializes a new instance of the GlobalReportCriteriaView class.
         /// </summary>
         public GlobalReportCriteriaView()
         {
@@ -30,13 +28,18 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                     grc = message.Content;
                     grc.ReportDateRange = DR.DateRange;
                     btnRefresh.IsEnabled = true;
+                    RefreshAll(null, null);
                 }
             });
         }
 
+        private GlobalReportCriteria grc { get; set; }
+
+        public bool AutoRefresh { get; set; }
+
         protected void StartAutoRefresh(int refreshIntervalInSeconds)
         {
-            _timer = new System.Windows.Threading.DispatcherTimer();
+            _timer = new DispatcherTimer();
             _timer.Tick += RefreshAll;
             _timer.Interval = new TimeSpan(0, 0, refreshIntervalInSeconds);
             _timer.Start();
@@ -49,8 +52,6 @@ namespace PhoneLogic.Core.Areas.ReportCriteria
                 SendUpdateMessage();
             }
         }
-
-        public bool AutoRefresh { get; set; }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {

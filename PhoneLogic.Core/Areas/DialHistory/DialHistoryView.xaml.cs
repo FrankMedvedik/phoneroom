@@ -20,13 +20,6 @@ namespace PhoneLogic.Core.Areas.DialHistory
             InitializeComponent();
             _vm = new DialHistoryViewModel();
             DataContext = _vm;
-            //Messenger.Default.Register<NotificationMessage<Call>>(this, message =>
-            //{
-            //    if (message.Notification == Notifications.DialHistoryCallChanged)
-            //    {
-            //        SetupAudioPlayback();
-            //    }
-            //});
             AudioPlayer.Visibility = Visibility.Collapsed;
         }
 
@@ -35,23 +28,21 @@ namespace PhoneLogic.Core.Areas.DialHistory
             _vm.RefreshAll();
         }
 
-        //public string SelectedCallerId
-        //{
-        //    get { return _vm.PhoneNumber; }
-        //    set
-        //    {
-        //        SetValue(SelectedCallerIdProperty, value);
-        //        _vm.PhoneNumber = value;
-        //    }
-        //}
 
         private void SetupAudioPlayback()
         {
             AudioPlayer.Visibility = Visibility.Collapsed;
             if (_vm.PhoneNumber != null)
             {
-                AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/" +
-                                  _vm.SelectedCall.CallId + ".wma";
+                AudioPlayer.Url = ConditionalConfiguration.rootUrl + "ClientBin/LiveRecordings/";
+
+                if (String.IsNullOrWhiteSpace(_vm.SelectedCall.CallFile) )
+                AudioPlayer.Url = AudioPlayer.Url + _vm.SelectedCall.CallId + ".wma";
+                else
+                {
+                    AudioPlayer.Url = AudioPlayer.Url  + _vm.SelectedCall.CallFile;
+
+                }
                 AudioPlayer.Reset();
                 AudioPlayer.Title = String.Format("{0} - {1}", _vm.SelectedCall.JobFormatted,
                     _vm.SelectedCall.PhoneFormatted);

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.Lync.Model;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using PhoneLogic.Model;
 using PhoneLogic.Model.Models;
-
 
 namespace PhoneLogic.Core.Services
 {
@@ -16,10 +13,10 @@ namespace PhoneLogic.Core.Services
         public static async Task<List<myCallback>> GetOpenJobCallbacks(string jobNum, string taskId)
         {
             var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl 
-                + "OpenCallbacks" 
-                + "?jobNum="+jobNum
-                + "&taskId="+taskId
+            var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl
+                                                                    + "OpenCallbacks"
+                                                                    + "?jobNum=" + jobNum
+                                                                    + "&taskId=" + taskId
                 ));
             return JsonConvert.DeserializeObject<List<myCallback>>(data);
         }
@@ -28,10 +25,8 @@ namespace PhoneLogic.Core.Services
         {
             var client = new WebClient();
             var data = await client.DownloadStringTaskAsync(new Uri(ConditionalConfiguration.apiUrl
-                + "OpenCallbacks"));
+                                                                    + "OpenCallbacks"));
             return JsonConvert.DeserializeObject<List<CallbackRpt>>(data);
         }
-
-      
     }
 }

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using PhoneLogic.Model;
+﻿using System.Collections.ObjectModel;
 
 namespace PhoneLogic.Core.Services
 {
     public static class RecruiterLyncStatesSvc
     {
+        public static string AvailableRecruiters = "Available";
+        public static string ActiveRecruiters = "Active";
+        public static string AllRecruiters = "All";
 
-        public static String AvailableRecruiters = "Available";
-        public static String ActiveRecruiters = "Active";
-        public static String AllRecruiters = "All";
-        public static ObservableCollection<String> GetAll()
+        public static ObservableCollection<string> GetAll()
         {
-            return new ObservableCollection<String>
+            return new ObservableCollection<string>
             {
                 AvailableRecruiters,
                 ActiveRecruiters,
@@ -20,7 +18,7 @@ namespace PhoneLogic.Core.Services
             };
         }
 
-        public static String GetDefault()
+        public static string GetDefault()
         {
             return ActiveRecruiters;
         }

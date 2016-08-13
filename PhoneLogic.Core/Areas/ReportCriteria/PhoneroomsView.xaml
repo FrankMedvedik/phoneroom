@@ -79,9 +79,9 @@
                             <sdk:DataGrid x:Name="JobDG" AutoGenerateColumns="False" MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredJobs}" VerticalAlignment="Top" ToolTipService.ToolTip="Phone Room Jobs" Margin="6" HorizontalAlignment="Left" FrozenColumnCount="1">
                                 <sdk:DataGrid.Columns>
                                     <sdk:DataGridTextColumn Binding="{Binding JobFormatted}" />
-                                    <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}" />
                                     <sdk:DataGridTextColumn Binding="{Binding TaskName}" Width="180" />
-                                    <!--<sdk:DataGridTextColumn Binding="{Binding TaskDscr}"  />-->
+                                    <sdk:DataGridTextColumn Binding="{Binding TollFreeFormatted}" />
+                                        <!--<sdk:DataGridTextColumn Binding="{Binding TaskDscr}"  />-->
                                 </sdk:DataGrid.Columns>
                             </sdk:DataGrid>
 

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace PhoneLogic.Core
 {
@@ -8,7 +7,6 @@ namespace PhoneLogic.Core
         public static int Rpts = 20;
         public static int UserDB = 20;
         public static int LyncApi = 1;
-
     }
 
     public static class UserInterfaceTimings
@@ -18,9 +16,7 @@ namespace PhoneLogic.Core
         public static int LyncApi = 1;
         public static int ResizeBoundryWidth = 800;
         public static int ResizeBoundryHeight = 800;
-
     }
-
 
 
     //public static class EndPointConfig
@@ -33,8 +29,6 @@ namespace PhoneLogic.Core
 
     public static class ConditionalConfiguration
     {
-
-
 #if DEBUGLOCAL
      public static string BuildType = "DEBUG-LOCAL";
      public const string apiUrl = "http://localhost:19938/api/";
@@ -60,7 +54,7 @@ namespace PhoneLogic.Core
         public static string apiUrl = "http://cc-prod.reckner.com/PhoneRoom/api/";
         public static string rootUrl = "http://cc-prod.reckner.com/PhoneRoom/";
         public static string LyncServiceRefUrl = "http://cc-prod.reckner.com:1255/PhoneLogic";
-     public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";   
+        public const string RecknerCallAppGuid = "{E7D2695C-96F8-4C49-858A-28F6106B2B39}";
 #elif Release
         public static string BuildType = "Release";
         public static string apiUrl = "http://cc-prod.reckner.com/PhoneRoom/api/";
@@ -71,6 +65,4 @@ namespace PhoneLogic.Core
 
         public static readonly DateTime BuildDate = Timestamp.BuildAt;
     }
-
-
-    }
+}

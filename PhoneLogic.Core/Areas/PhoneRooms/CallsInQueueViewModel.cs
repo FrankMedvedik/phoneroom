@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
@@ -13,17 +12,6 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 {
     public class CallsInQueueViewModel : CollectionViewModelBase
     {
-        // sets up the 
-        public string CallsInQueueHeading
-        {
-            get { return _callsInQueueHeading; }
-            set
-            {
-                _callsInQueueHeading = value; 
-                NotifyPropertyChanged();
-            }
-        }
-
         public CallsInQueueViewModel()
         {
             Messenger.Default.Register<NotificationMessage<GlobalReportCriteria>>(this, message =>
@@ -35,6 +23,58 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
                 }
             });
             StartAutoRefresh(ApiRefreshFrequency.LyncApi);
+        }
+
+        // sets up the 
+        public string CallsInQueueHeading
+        {
+            get { return _callsInQueueHeading; }
+            set
+            {
+                _callsInQueueHeading = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        protected override void RefreshAll(object sender, EventArgs e)
+        {
+            GetQueuedCalls();
+            FilterCalls();
+            CallsInQueueHeading = string.Format("{0} Calls in Queue", FilteredCallsInQueue.Sum(x => x.InQueue));
+        }
+
+        public void testGetMyQueuedCalls()
+        {
+            CallsInQueue.Clear();
+            CallsInQueue.Add(new QueueSummary
+            {
+                InQueue = 100,
+                JobNumber = "9999-9999"
+            });
+            CallsInQueue.Add(new QueueSummary
+            {
+                InQueue = 0,
+                JobNumber = "1111-1111"
+            });
+            LoadDate = DateTime.Now;
+            ShowGridData = true;
+            LoadedOk = true;
+        }
+
+
+        public async void GetQueuedCalls()
+        {
+            try
+            {
+                LoadDate = DateTime.Now;
+                var cq = await LyncSvc.GetAllQueueSummary();
+                CallsInQueue = cq;
+                LoadedOk = true;
+            }
+            catch (Exception e)
+            {
+                LoadFailed(e);
+            }
         }
 
         #region Jobs
@@ -82,47 +122,6 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
 
         #endregion
 
-        protected override void RefreshAll(object sender, EventArgs e)
-        {
-            GetQueuedCalls();
-            FilterCalls();
-            CallsInQueueHeading = String.Format("{0} Calls in Queue", FilteredCallsInQueue.Sum(x=> x.InQueue));
-        }
-
-        public void testGetMyQueuedCalls()
-        {
-            CallsInQueue.Clear();
-            CallsInQueue.Add(new QueueSummary
-            {
-                InQueue = 100,
-                JobNumber = "9999-9999"
-            });
-            CallsInQueue.Add(new QueueSummary
-            {
-                InQueue = 0,
-                JobNumber = "1111-1111"
-            });
-            LoadDate = DateTime.Now;
-            ShowGridData = true;
-            LoadedOk = true;
-        }
-
-
-        public async void GetQueuedCalls()
-        {
-            try
-            {
-                LoadDate = DateTime.Now;
-                var cq = await LyncSvc.GetAllQueueSummary();
-                CallsInQueue = cq;
-                LoadedOk = true;
-            }
-            catch (Exception e)
-            {
-                LoadFailed(e);
-            }
-        }
-
         #region CallsInQueue
 
         private ObservableCollection<QueueSummary> _CallsInQueue = new ObservableCollection<QueueSummary>();
@@ -149,7 +148,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         {
             get
             {
-                int callCnt = 0;
+                var callCnt = 0;
 
                 foreach (var c in FilteredCallsInQueue)
                 {
@@ -164,7 +163,7 @@ namespace PhoneLogic.Core.Areas.PhoneRooms
         {
             get
             {
-                int callCnt = 0;
+                var callCnt = 0;
 
                 foreach (var c in FilteredCallsInQueue)
                 {

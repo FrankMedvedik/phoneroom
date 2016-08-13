@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
+using PhoneLogic.Core.Services;
 using PhoneLogic.ViewContracts.MVVMMessenger;
 
-namespace PhoneLogic.Core.Views.Utility
+namespace PhoneLogic.Core.Areas.DialHistory
 {
     public partial class DialPadView : UserControl
     {
@@ -42,8 +44,9 @@ namespace PhoneLogic.Core.Views.Utility
             string s = btn.Content.ToString();
             if (s == ActionName)
             {
-                Messenger.Default.Send(new NotificationMessage<string>(this, TbPhoneNumber.Text,
-                    Notifications.PhoneNumberChanged));
+                if (ValidateCallerId())
+                    Messenger.Default.Send(new NotificationMessage<string>(this, TbPhoneNumber.Text,
+                        Notifications.PhoneNumberChanged));
             }
             else
             {
@@ -51,6 +54,7 @@ namespace PhoneLogic.Core.Views.Utility
                 {
                     case "Clr":
                         TbPhoneNumber.Text = "";
+                        tbErrors.Text = "";
                         break;
                     case "Backspace":
                         if (!String.IsNullOrEmpty(TbPhoneNumber.Text) && TbPhoneNumber.Text.Length > 0)
@@ -62,5 +66,21 @@ namespace PhoneLogic.Core.Views.Utility
                 }
             }
         }
+
+        private bool ValidateCallerId()
+        {
+            tbErrors.Text = "";
+
+            if (String.IsNullOrWhiteSpace(TbPhoneNumber.Text))
+                tbErrors.Text = "Phone number is required";
+            if ((PhoneNumberSvc.GetNumbers(TbPhoneNumber.Text).Length != 10))
+                tbErrors.Text = "Phone number invalid";
+
+            return (tbErrors.Text == "");
+
+        }
+
+
+
     }
 }
