@@ -2,15 +2,29 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Lync.Model;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.CallsRpts
 {
     public class CallsViewModel : CollectionViewModelBase
     {
+        public CallsViewModel()
+        {
+            Messenger.Default.Register<NotificationMessage<PhoneLogicTask>>(this, message =>
+            {
+                if (message.Notification == Notifications.MySelectedPhoneLogicTaskChanged)
+                {
+                    SelectedJobNum = message.Content.JobNum + ":0" + message.Content.TaskID;
+                    RefreshAll();
+                }
+            });
+        }
         private string _actionMsg;
 
 
@@ -129,6 +143,12 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         {
             ShowGridData = false;
             HeadingText = "";
+            SelectedRecruiter = LyncClient.GetClient().Self.Contact.Uri;
+            ReportDateRange = new ReportDateRange()
+            {
+                StartRptDate = Convert.ToDateTime("7/01/2015"),
+                EndRptDate = DateTime.Now
+            };
             var ro = new List<Call>();
             try
             {

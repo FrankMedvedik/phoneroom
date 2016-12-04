@@ -288,7 +288,7 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
             <Parameter Name="endDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="rpt_GetLyncCallJobRecruiterLog" ReturnType="Collection(PhoneLogicModel.LyncCallLog)">
+          <FunctionImport Name="rpt_GetLyncCallJobRecruiterLog" EntitySet="vLyncCallLog" ReturnType="Collection(PhoneLogicModel.vLyncCallLog)">
             <Parameter Name="jobNum" Mode="In" Type="String" />
             <Parameter Name="sip" Mode="In" Type="String" />
             <Parameter Name="startDate" Mode="In" Type="DateTime" />
@@ -875,23 +875,6 @@ warning 6002: The table/view 'PhoneLogic.dbo.vw_PhoneLogicTaskAgent' does not ha
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetLyncCallJobRecruiterLog" FunctionName="PhoneLogicModel.Store.rpt_GetLyncCallJobRecruiterLog">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="PhoneLogicModel.LyncCallLog">
-                <ScalarProperty Name="StartLogId" ColumnName="StartLogId" />
-                <ScalarProperty Name="CallID" ColumnName="CallID" />
-                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
-                <ScalarProperty Name="CallerId" ColumnName="CallerId" />
-                <ScalarProperty Name="TollFreeNumber" ColumnName="TollFreeNumber" />
-                <ScalarProperty Name="CallStartTime" ColumnName="CallStartTime" />
-                <ScalarProperty Name="RecruiterConnectTime" ColumnName="RecruiterConnectTime" />
-                <ScalarProperty Name="CallEndTime" ColumnName="CallEndTime" />
-                <ScalarProperty Name="RecruiterSIP" ColumnName="RecruiterSIP" />
-                <ScalarProperty Name="CallDirection" ColumnName="CallDirection" />
-                <ScalarProperty Name="CallEndStatus" ColumnName="CallEndStatus" />
-                <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
-                <ScalarProperty Name="taskName" ColumnName="taskName" />
-                </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="rpt_GetJobCallbacks" FunctionName="PhoneLogicModel.Store.rpt_GetJobCallbacks">
           <ResultMapping>

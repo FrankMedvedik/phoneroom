@@ -67,22 +67,23 @@ namespace PhoneLogic.Core.Areas.Recruiters
                 return;
             }
 
-            RefreshOutboundCall();
-            RefreshCallBacks();
-            RefreshCalls();
-
+            //RefreshOutboundCall();
+            //RefreshCallBacks();
+            //RefreshCalls();
+            OBCView.Visibility = Visibility.Visible;
             tc.Visibility = Visibility.Visible;
+
         }
 
         private void RefreshCalls()
         {
             if (cv.SelectedJobNum != null && _vm.SelectedPhoneLogicTask != null)
                 // no need to refresh if nothing has changed 
-                if ((cv.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID)
-                    &&
-                    (_vm.SelectedPhoneLogicTask.LastCallTime == cv.LastCallTime ||
-                     _vm.SelectedPhoneLogicTask.LastCallTime == null))
-                    return;
+                //if ((cv.SelectedJobNum == _vm.SelectedPhoneLogicTask.JobNum + ":0" + _vm.SelectedPhoneLogicTask.TaskID)
+                //    &&
+                //    (_vm.SelectedPhoneLogicTask.LastCallTime == cv.LastCallTime ||
+                //     _vm.SelectedPhoneLogicTask.LastCallTime == null))
+                //    return;
             // trigger getting the list of outbound calls
             if (_vm.SelectedPhoneLogicTask != null)
             {

@@ -107,7 +107,19 @@ namespace PhoneLogic.Inbound
                 ConversationContext.Instance.PhoneLogicContext.TaskID);
             JobDetail.Visibility = Visibility.Visible;
             cinfoView.CallerId = ConversationContext.Instance.PhoneLogicContext.callerId;
-             
+            if(ConversationContext.Instance.PhoneLogicContext.callbackId != -1) UpdateCallBack(ConversationContext.Instance.PhoneLogicContext.callbackId);
+        }
+
+        public async void UpdateCallBack(int callbackId)
+        {
+            
+            await CallbackSvc.StartCall(
+                new CallbackDto
+                {
+                    callbackID = callbackId,
+                    SIP = LyncClient.GetClient().Self.Contact.Uri,
+                    status = "In Call",
+                });
         }
 
 

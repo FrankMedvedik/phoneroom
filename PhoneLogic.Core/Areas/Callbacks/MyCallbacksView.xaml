@@ -8,21 +8,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
              xmlns:controls="clr-namespace:Microsoft.Lync.Controls;assembly=Microsoft.Lync.Controls"
              xmlns:audioPlayer="clr-namespace:AudioPlayer;assembly=AudioPlayer"
-             mc:Ignorable="d" d:DesignWidth="186.667" d:DesignHeight="123" VerticalAlignment="Top"
+             mc:Ignorable="d" VerticalAlignment="Top"
              HorizontalAlignment="Left">
-    <Control.Resources>
-        <DataTemplate x:Key="ContactTemplate">
-            <Grid>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding DisplayName, ElementName=Presence}" FontSize="10" Margin="6,3,6,1"
-                               VerticalAlignment="Top" HorizontalAlignment="Left"
-                               Visibility="{Binding DisplayStatusContact, Converter={StaticResource BoolToVisConverter}}" />
-                    <controls:PresenceIndicator x:Name="Presence" Margin="6,1,6,3" Source="{Binding SIP}"
-                                                PhotoDisplayMode="Small" Visibility="Collapsed" />
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-    </Control.Resources>
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -54,7 +41,7 @@
                 <sdk:DataGridTextColumn Binding="{Binding timeEntered}" />
                 <sdk:DataGridTextColumn Binding="{Binding Region}" />
                 <sdk:DataGridTextColumn Binding="{Binding tollFreeFormatted}" />
-                <sdk:DataGridTemplateColumn Header="Status" CellTemplate="{StaticResource ContactTemplate}" />
+                <!--<sdk:DataGridTextColumn Header="Status" Binding="{Binding status}" FontWeight="Bold" Foreground="Crimson" />-->
             </sdk:DataGrid.Columns>
             <sdk:DataGrid.RowDetailsTemplate>
                 <DataTemplate>

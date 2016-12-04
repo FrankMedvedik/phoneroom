@@ -128,14 +128,11 @@ namespace PhoneLogic.Core.Areas.Callbacks
                     MessageBoxButton.OKCancel) != MessageBoxResult.OK)
                     return;
             }
-
             _vm.CanCall = false;
             _vm.ActionMsg = "Your call has been placed";
             StartTimer();
-
             var job = _vm.SelectedMyCallback.jobNum + ":0" + _vm.SelectedMyCallback.taskID;
             await LyncSvc.RecruiterDialOut(job, _vm.SelectedMyCallback.phoneNum, _vm.SelectedMyCallback.callbackID);
-            _vm.UpdateCallBack(_vm.SelectedMyCallback.callbackID);
         }
 
         private void callbackGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

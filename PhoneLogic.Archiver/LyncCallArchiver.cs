@@ -22,7 +22,7 @@ namespace PhoneLogic.Archiver
 
         public string GetSubPath(DateTime startCallTime)
         {
-            return string.Format(@"{0}{1}\", startCallTime.Year, startCallTime.Month.ToString().PadLeft(2,'0'));   
+            return string.Format("{0}{1}", startCallTime.Year, startCallTime.Month.ToString().PadLeft(2,'0'));   
         }
 
         public LyncCallArchiver()
@@ -61,22 +61,22 @@ namespace PhoneLogic.Archiver
         private void ArchiveCallFile(LyncCallLogHist call)
         {
             string srcFile = String.Empty;
+            string tgtFile = String.Empty;
             try
             {
-                call.CallFile = Path.GetFullPath(string.Format(@"{0}{1}{2}", 
-                    GetSubPath(call.CallStartTime.GetValueOrDefault()), call.CallID, ".wma"));
-
+                call.CallFile = string.Format(@"{0}{1}{2}{3}", GetSubPath(call.CallStartTime.GetValueOrDefault()),@"\", call.CallID, ".wma");
+                logger.Debug(string.Format("Call.CallFile is {0}", call.CallFile));
                 //srcFile = Path.GetFullPath(String.Format(@"{0}{1}{2}",LiveRecordingFilePath,call.CallID,".wma"));
                 srcFile = Path.GetFullPath(String.Format(@"{0}{1}{2}", LiveRecordingFilePath, "00013213-2a62-41de-b52e-730a75428609", ".wma"));
-
-                logger.Debug(string.Format("Target file is {0}", call.CallFile));
+                tgtFile = Path.GetFullPath(String.Format(@"{0}{1}{2}{3}{4}", LiveRecordingFilePath, GetSubPath(call.CallStartTime.GetValueOrDefault()), @"/", call.CallID, ".wma"));
+                logger.Debug(string.Format("Target file is {0}", tgtFile));
                 logger.Debug(string.Format("source file is {0}", srcFile));
-                MoveCallFile(srcFile, call.CallFile);
+                MoveCallFile(srcFile, tgtFile);
             }
             catch (Exception e)
             {
                 logger.Error(string.Format("ERROR {0}", e));
-                logger.Error(string.Format("Target file is {0}", call.CallFile));
+                logger.Error(string.Format("Target file is {0}", tgtFile));
                 logger.Error(string.Format("source file is {0}", srcFile));
             }
             

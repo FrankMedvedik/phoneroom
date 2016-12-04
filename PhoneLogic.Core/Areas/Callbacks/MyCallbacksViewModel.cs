@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Lync.Model;
 using PhoneLogic.Core.Areas.ReportCriteria;
 using PhoneLogic.Core.Services;
 using PhoneLogic.Core.ViewModels;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 
 namespace PhoneLogic.Core.Areas.Callbacks
 
@@ -24,6 +27,19 @@ namespace PhoneLogic.Core.Areas.Callbacks
         private int _selectedTaskId;
 
         public ReportDateRange ReportDateRange = new ReportDateRange();
+
+        public MyCallBacksViewModel()
+        {
+            Messenger.Default.Register<NotificationMessage<PhoneLogicTask>>(this, message =>
+            {
+                if (message.Notification == Notifications.MySelectedPhoneLogicTaskChanged)
+                {
+                    SelectedJobNum = message.Content.JobNum;
+                    SelectedTaskId = message.Content.TaskID.GetValueOrDefault();
+                    RefreshAll();
+                }
+            });
+        }
 
         public bool CanRefresh
         {
@@ -112,14 +128,14 @@ namespace PhoneLogic.Core.Areas.Callbacks
         }
 
 
-        public async void UpdateCallBack(int callbackId)
-        {
-            await CallbackSvc.StartCall(
-                new CallbackDto
-                {
-                    callbackID = callbackId
-                });
-        }
+        //public async void UpdateCallBack(int callbackId)
+        //{
+        //    await CallbackSvc.StartCall(
+        //        new CallbackDto
+        //        {
+        //            callbackID = callbackId
+        //        });
+        //}
 
         //public async void GetAllCallBacks()
         //{
@@ -153,11 +169,11 @@ namespace PhoneLogic.Core.Areas.Callbacks
             try
             {
                 var mcb =
-                    new ObservableCollection<myCallback>(
+                    new List<myCallback>(
                         await
                             CallbackSvc.GetMyCallbacks(LyncClient.GetClient().Self.Contact.Uri, SelectedJobNum,
                                 SelectedTaskId.ToString()));
-                MyCallbacks = mcb;
+                MyCallbacks = new ObservableCollection<myCallback>(mcb.Where(x=> String.IsNullOrWhiteSpace(x.SIP)  || x.SIP == LyncClient.GetClient().Self.Contact.Uri));
                 if (MyCallbacks.Count > 0)
                 {
                     ShowGridData = true;

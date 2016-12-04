@@ -1,5 +1,7 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Messaging;
 using PhoneLogic.Model;
+using PhoneLogic.ViewContracts.MVVMMessenger;
 using Silverlight.Base.MVVMBaseTypes;
 
 namespace PhoneLogic.Core.Areas.Recruiters
@@ -9,6 +11,13 @@ namespace PhoneLogic.Core.Areas.Recruiters
         public OutboundCallViewModel()
         {
             CanMakeCall = true;
+            Messenger.Default.Register<NotificationMessage<PhoneLogicTask>>(this, message =>
+            {
+                if (message.Notification == Notifications.MySelectedPhoneLogicTaskChanged)
+                {
+                    Task = message.Content;
+                }
+            });
         }
         private Boolean _canMakeCall;
         public Boolean CanMakeCall

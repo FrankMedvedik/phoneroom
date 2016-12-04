@@ -122,7 +122,7 @@ namespace PhoneLogic.Core.Areas.Recruiters
             get { return _selectedPhoneLogicTask; }
             set
             {
-                if (_selectedPhoneLogicTask != value)
+                if (value != null)
                 {
                     _selectedPhoneLogicTask = value;
                     NotifyPropertyChanged();

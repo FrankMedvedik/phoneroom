@@ -147,10 +147,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         private void CallsDG_Loaded(object sender, RoutedEventArgs e)
         {
             AudioPlayer.Visibility = Visibility.Collapsed;
-            //if (_vm.SelectedCall != null)
-            //    CallsDG.SelectedItem = _vm.SelectedCall;
-            //else
-            //    CallsDG.SelectedIndex = 0;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -173,8 +169,6 @@ namespace PhoneLogic.Core.Areas.CallsRpts
         public void SetMyCallsConfiguration()
         {
             cc.Visibility = Visibility.Collapsed;
-            Grid.SetRow(AudioPlayer, 0);
-            Grid.SetColumn(AudioPlayer, 0);
         }
 
         public void ResizeGrid()

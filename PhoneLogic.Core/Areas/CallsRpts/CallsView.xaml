@@ -17,6 +17,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Stretch">
             <TextBlock Text="{Binding HeadingText}" HorizontalAlignment="Left" Margin="6" />
+            <audioPlayer:SimplePlayer Name="AudioPlayer" HorizontalAlignment="Left" Margin="6" />
         </StackPanel>
         <toolkit:WrapPanel Grid.Row="1"
                            Visibility="{Binding ShowGridData, Converter={StaticResource BoolToVisConverter}}"
@@ -59,7 +60,6 @@
             </StackPanel>
             <toolkit:WrapPanel Orientation="Horizontal">
                 <controls:ContactCard Name="cc" Margin="6" HorizontalAlignment="Left" />
-                <audioPlayer:SimplePlayer Name="AudioPlayer" />
             </toolkit:WrapPanel>
         </toolkit:WrapPanel>
     </Grid>
